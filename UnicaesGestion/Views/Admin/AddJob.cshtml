@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddJob</h2>
+
 
 <!-- Bootstrap core CSS -->
 <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
@@ -33,6 +33,25 @@
         <section class="panel">
             <header class="panel-heading">
                 Ingresar Nuevo Puesto de Trabajo
+            </header>
+
+            <header class="panel-heading">
+                <div class="form-group ">
+                    <div class="clearfix">
+                        <!--start-->
+                        <div class="btn-group pull-right">
+                            <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
+                                Herramientas <span class="caret"></span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="#">Imprimir</a></li>
+                                <li><a href="#">Guardar como PDF</a></li>
+                                <li><a href="#">Exportar como Excel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
             </header>
 
             <div class="panel-body">
@@ -72,12 +91,12 @@
                     <div class="clearfix">
 
                         <div class="btn-group">
-                            <button id="editable-sample_new" class="btn green">
-                                Nueva Fila <i class="fa fa-plus"></i>
+                            <button id="editable-sample_new" class="btn green btn-primary">
+                                Nueva Funcion <i class="fa fa-plus"></i>
                             </button>
                         </div>
 
-                        <div class="btn-group pull-right">
+                        @*<div class="btn-group pull-right">
                             <button class="btn dropdown-toggle" data-toggle="dropdown">
                                 Herramientas <i class="fa fa-angle-down"></i>
                             </button>
@@ -86,7 +105,7 @@
                                 <li><a href="#">Guardar como PDF</a></li>
                                 <li><a href="#">Exportar como Excel</a></li>
                             </ul>
-                        </div>
+                        </div>*@
                     </div>
                     <div class="space15"></div>
 
@@ -97,82 +116,82 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Funciones</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    @*<th>Edit</th>
+                                    <th>Delete</th>*@
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="">
                                     <td>Jondi Rose</td>
                                     <td>Jondi Rose</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Dulal</td>
                                     <td>Jondi Rose</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Sumon</td>
                                     <td>Jondi Rose</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>vectorlab</td>
                                     <td>Jondi Rose</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Admin</td>
                                     <td>Jondi Rose</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Rafiqul</td>
                                     <td>Jondi Rose</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Jhon Doe</td>
                                     <td>Jondi Rose</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Dulal</td>
                                     <td>Jondi Rose</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Sumon</td>
                                     <td>Jondi Rose</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>vectorlab</td>
                                     <td>Jondi Rose</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Admin</td>
                                     <td>Jondi Rose</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Rafiqul</td>
                                     <td>Jondi Rose</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                             </tbody>
                         </table>

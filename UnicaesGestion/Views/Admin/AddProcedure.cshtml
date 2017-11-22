@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>AddProcedure</h2>
+
 
 <!-- Bootstrap core CSS -->
 <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
@@ -19,6 +19,24 @@
 <!-- Custom styles for this template -->
 <link href="~/Content/css/style.css" rel="stylesheet">
 <link href="~/Content/css/style-responsive.css" rel="stylesheet" />
+
+<!--modal css-->
+<link type="text/css" href="~/Content/assets/jquery-multi-select/css/multi-select.css" rel="stylesheet" />
+<!--bootstrap switcher-->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/bootstrap-switch/static/stylesheets/bootstrap-switch.css" />
+
+<!-- switchery-->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/switchery/switchery.css" />
+
+<!--select 2-->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/select2/css/select2.min.css" />
+
+<!--right slidebar-->
+<link href="~/Content/css/slidebars.css" rel="stylesheet">
+
+<!--  summernote -->
+<link href="~/Content/assets/summernote/dist/summernote.css" rel="stylesheet">
+<!--modal css end-->
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
 <!--[if lt IE 9]>
@@ -35,6 +53,25 @@
             <header class="panel-heading">
                 Ingresar Nueva Procedimiento
             </header>
+
+            <header class="panel-heading">
+                <div class="form-group ">
+                    <div class="clearfix">
+                        <!--in-->
+                        <div class="btn-group pull-right">
+                            <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
+                                Herramientas <span class="caret"></span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="#">Imprimir</a></li>
+                                <li><a href="#">Guardar como PDF</a></li>
+                                <li><a href="#">Exportar como Excel</a></li>
+                            </ul>
+                        </div>
+                     </div>
+                </div>
+                <!--end-->                    
+           </header>
 
             <div class="panel-body">
                 <div class="form">
@@ -69,18 +106,104 @@
                 </div>
             </div>
 
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Agregar Nuevo Paso</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <!--body start-->
+                            <div class="form">
+                                <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">No. paso</label>
+                                        <div class="col-md-2">
+                                            <div id="spinner1">
+                                                <div class="input-group input-small">
+                                                    <input type="text" class="spinner-input form-control" maxlength="3" readonly>
+                                                    <div class="spinner-buttons input-group-btn btn-group-vertical">
+                                                        <button type="button" class="btn spinner-up btn-xs btn-default">
+                                                            <i class="fa fa-angle-up"></i>
+                                                        </button>
+                                                        <button type="button" class="btn spinner-down btn-xs btn-default">
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="unidad" class="control-label col-lg-2">Responsable</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="unidad" name="unidad" type="text" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group ">
+                                        <label for="unidad" class="control-label col-lg-2">Descripcion</label>
+                                        <div class="col-lg-10">
+                                            <input class=" form-control" id="unidad" name="unidad" type="text" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group last">
+                                        <label class="control-label col-md-3">indicaciones</label>
+                                        <div class="col-md-9">
+                                            <select name="country" class="multi-select" multiple="" id="my_multi_select3">
+                                                <option value="AF">Afghanistan</option>
+                                                <option value="AL">Albania</option>
+                                                <option value="DZ">Algeria</option>
+                                                <option value="AS">American Samoa</option>
+                                                <option value="AD">Andorra</option>
+                                                <option value="AO">Angola</option>
+                                                <option value="AI">Anguilla</option>
+                                                <option value="AQ">Antarctica</option>
+                                                <option value="AR">Argentina</option>
+                                                <option value="AM">Armenia</option>
+                                                <option value="AW">Aruba</option>
+                                                <option value="AU">Australia</option>
+                                                <option value="AT">Austria</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            
+                            <!--body end-->
+                        </div>
+
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                            <button class="btn btn-success" type="button">Agregar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- modal -->
+
 
             <div class="panel-body">
                 <div class="adv-table editable-table ">
                     <div class="clearfix">
 
-                        <div class="btn-group">
+                        @*<div class="btn-group">
                             <button id="editable-sample_new" class="btn green">
                                 Nueva Fila <i class="fa fa-plus"></i>
                             </button>
+                        </div>*@
+                        <div class="btn-group">
+                            <button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button">
+                            Agregar Paso <i class="fa fa-plus"></i>
+                            </button>
                         </div>
 
-                        <div class="btn-group pull-right">
+                        @*<div class="btn-group pull-right">
                             <button class="btn dropdown-toggle" data-toggle="dropdown">
                                 Herramientas  <i class="fa fa-angle-down"></i>
                             </button>
@@ -89,8 +212,10 @@
                                 <li><a href="#">Guardar como PDF</a></li>
                                 <li><a href="#">Exportar como Excel</a></li>
                             </ul>
-                        </div>
+                        </div>*@
                     </div>
+
+
                     <div class="space15"></div>
 
                     <div class="table-responsive">
@@ -102,8 +227,8 @@
                                     <th>Resposable</th>
                                     <th>Descripción</th>
                                     <th>Predecesor</th>
-                                    <th>Edit</th>
-                                    <th>Delete</th>
+                                    @*<th>Edit</th>
+                                    <th>Delete</th>*@
                                 </tr>
                             </thead>
                             <tbody>
@@ -112,96 +237,96 @@
                                     <td>Alfred Jondi Rose</td>
                                     <td>1234</td>
                                     <td>1234</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Dulal</td>
                                     <td>Jonathan Smith</td>
                                     <td>434</td>
                                     <td>1234</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Sumon</td>
                                     <td> Sumon Ahmed</td>
                                     <td>232</td>
                                     <td>1234</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>vectorlab</td>
                                     <td>dk mosa</td>
                                     <td>132</td>
                                     <td>1234</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Admin</td>
                                     <td> Flat Lab</td>
                                     <td>462</td>
                                     <td>1234</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Rafiqul</td>
                                     <td>Rafiqul dulal</td>
                                     <td>62</td>
                                     <td>1234</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Jhon Doe</td>
                                     <td>Jhon Doe </td>
                                     <td>1234</td>
                                     <td>1234</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Dulal</td>
                                     <td>Jonathan Smith</td>
                                     <td>434</td>
                                     <td>1234</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Sumon</td>
                                     <td> Sumon Ahmed</td>
                                     <td>232</td>
                                     <td>1234</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>vectorlab</td>
                                     <td>dk mosa</td>
                                     <td>132</td>
                                     <td>1234</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Admin</td>
                                     <td> Flat Lab</td>
                                     <td>462</td>
                                     <td>1234</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                                 <tr class="">
                                     <td>Rafiqul</td>
                                     <td>Rafiqul dulal</td>
                                     <td>62</td>
                                     <td>1234</td>
-                                    <td><a class="edit" href="javascript:;">Edit</a></td>
-                                    <td><a class="delete" href="javascript:;">Delete</a></td>
+                                    @*<td><a class="edit" href="javascript:;">Edit</a></td>
+                                    <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
                             </tbody>
                         </table>
@@ -221,6 +346,12 @@
     </section>
 </section>
 <!--main content end-->
+<!--common script for all pages-->
+<script src="~/Content/js/common-scripts.js"></script>
+
+
+
+
 
 <!-- js placed at the end of the document so the pages load faster -->
 <script src="~/Content/js/jquery.js"></script>
@@ -233,6 +364,7 @@
 <script type="text/javascript" src="~/Content/assets/data-tables/jquery.dataTables.js"></script>
 <script type="text/javascript" src="~/Content/assets/data-tables/DT_bootstrap.js"></script>
 <script src="~/Content/js/respond.min.js"></script>
+
 
 <!--right slidebar-->
 <script src="~/Content/js/slidebars.min.js"></script>
@@ -249,3 +381,39 @@
               EditableTable.init();
           });
 </script>
+
+<!--modal start-->
+<!--this page plugins-->
+<script type="text/javascript" src="~/Content/assets/fuelux/js/spinner.min.js"></script>
+@*<script type="text/javascript" src="~/Content/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+    <script type="text/javascript" src="~/Content/assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+    <script type="text/javascript" src="~/Content/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+    <script type="text/javascript" src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>*@
+<script type="text/javascript" src="~/Content/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="~/Content/assets/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="~/Content/assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="~/Content/assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+
+<script type="text/javascript" src="~/Content/assets/jquery-multi-select/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="~/Content/assets/jquery-multi-select/js/jquery.quicksearch.js"></script>
+
+<!--select2-->
+<script type="text/javascript" src="~/Content/assets/select2/js/select2.min.js"></script>
+
+<!--summernote-->
+<script src="~/Content/assets/summernote/dist/summernote.min.js"></script>
+
+<!--right slidebar-->
+<script src="~/Content/js/slidebars.min.js"></script>
+
+
+<!--this page  script only-->
+<script src="~/Content/js/advanced-form-components.js"></script>
+
+<!--bootstrap-switch-->
+<script src="~/Content/assets/bootstrap-switch/static/js/bootstrap-switch.js"></script>
+
+<!--bootstrap-switch-->
+<script src="~/Content/assets/switchery/switchery.js"></script>
+<!--modal end -->
