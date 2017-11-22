@@ -1,0 +1,229 @@
+﻿
+@{
+    ViewBag.Title = "AddJobProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@*<link rel="stylesheet" type="text/css" href="~/Content/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/bootstrap-datepicker/css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/bootstrap-timepicker/compiled/timepicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/bootstrap-daterangepicker/daterangepicker-bs3.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/bootstrap-datetimepicker/css/datetimepicker.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/assets/jquery-multi-select/css/multi-select.css" />*@
+<link href="~/Content/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-timepicker/compiled/timepicker.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/assets/jquery-multi-select/css/multi-select.css" rel="stylesheet" />
+
+
+
+<!--bootstrap switcher-->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/bootstrap-switch/static/stylesheets/bootstrap-switch.css" />
+
+<!-- switchery-->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/switchery/switchery.css" />
+
+<!--select 2-->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/select2/css/select2.min.css" />
+
+
+
+
+<!--new code-->
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+                Ingresar Nuevo Perfil de Contratacion
+            </header>
+
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Fecha de Elaboracion</label>
+                            <div class="col-md-3 col-xs-11">
+                                <div id="fechaElavoracion" data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012"
+                                     class="input-append date dpYears">
+                                    <input type="text" readonly="" value="12-02-2012" size="16" class="form-control">
+                                    <span class="input-group-btn add-on">
+                                        <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <span class="help-block">Seleccionar fecha</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Analista Responsable</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" id="unidad" name="unidad" type="text" />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Aprobado Por</label>
+                            <div class="col-lg-10">
+                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button" aria-expanded="false"><span class="caret"></span></button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Fecha de Elaboracion</label>
+                            <div class="col-md-3 col-xs-11">
+                                <div id="fechaAprobacion" data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012"
+                                     class="input-append date dpYears">
+                                    <input type="text" readonly="" value="12-02-2012" size="16" class="form-control">
+                                    <span class="input-group-btn add-on">
+                                        <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <span class="help-block">Seleccionar fecha</span>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+            <!--Start-->
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Tipo de Requisito</label>
+                            <div class="col-lg-10">
+                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button" aria-expanded="false"><span class="caret"></span></button>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Nivel de Requisito</label>
+                            <div class="col-lg-10">
+                                <button data-toggle="dropdown" class="btn btn-white dropdown-toggle" type="button" aria-expanded="false"><span class="caret"></span></button>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Prioridad de Requisito</label>
+                            <div class="radios col-lg-10">
+                                <label class="label_radio" for="radio-01">
+                                    <input name="sample-radio" id="radio-01" value="1" type="radio" checked /> Esencial
+                                </label>
+                                <label class="label_radio" for="radio-02">
+                                    <input name="sample-radio" id="radio-02" value="1" type="radio" /> completario
+                                </label>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Años de Experiencia</label>
+                            <div class="col-md-2">
+                                <div id="spinner1">
+                                    <div class="input-group input-small">
+                                        <input type="text" class="spinner-input form-control" maxlength="3" readonly>
+                                        <div class="spinner-buttons input-group-btn btn-group-vertical">
+                                            <button type="button" class="btn spinner-up btn-xs btn-default">
+                                                <i class="fa fa-angle-up"></i>
+                                            </button>
+                                            <button type="button" class="btn spinner-down btn-xs btn-default">
+                                                <i class="fa fa-angle-down"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="objetivo" class="control-label col-lg-2">Denominación</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" id="objetivo" name="objetivo" type="text" />
+                            </div>
+                        </div>
+
+                    </form>
+
+
+                </div>
+            </div>
+
+            <!--End-->
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!--end new code-->
+
+ <!-- js placed at the end of the document so the pages load faster -->
+<script src="~/Content/js/jquery.js"></script>
+@*<script src="~/Content/js/bootstrap.min.js"></script>
+<script class="include" type="text/javascript" src="~/Content/js/jquery.dcjqaccordion.2.7.js"></script>
+
+
+<script src="~/Content/js/respond.min.js"></script>*@
+<script src="~/Content/js/jquery.scrollTo.min.js"></script>
+<script src="~/Content/js/jquery.nicescroll.js" type="text/javascript"></script>
+
+<script src="~/Content/js/slidebars.min.js"></script>
+  <!--this page plugins-->
+
+<script src="~/Content/assets/fuelux/js/spinner.min.js"></script>
+<!--<script type="text/javascript" src="assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>-->
+<!--<script type="text/javascript" src="assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>-->
+<!--<script type="text/javascript" src="assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>-->
+
+
+<script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<script src="~/Content/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="~/Content/assets/bootstrap-daterangepicker/moment.min.js"></script>
+<script src="~/Content/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!--<script type="text/javascript" src="assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>-->
+
+<script src="~/Content/assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script src="~/Content/assets/jquery-multi-select/js/jquery.multi-select.js"></script>
+<!--<script type="text/javascript" src="assets/jquery-multi-select/js/jquery.quicksearch.js"></script>-->
+<!--<script type="text/javascript" src="assets/ckeditor/ckeditor.js"></script>-->
+<!--select2-->
+<script src="~/Content/assets/select2/js/select2.min.js"></script>
+
+
+
+<!--this page  script only-->
+<script src="~/Content/js/form-component.js"></script>
+<script src="~/Content/js/advanced-form-components.js"></script>
+<!--bootstrap-switch-->
+
+<script src="~/Content/assets/bootstrap-switch/static/js/bootstrap-switch.js"></script>
+<!--bootstrap-switch-->
+
+<script src="~/Content/assets/switchery/switchery.js"></script>
+<!--common script for all pages-->
+
+<script src="~/Content/js/common-scripts.js"></script>
+
+
+<!--select2-->
+<script type="text/javascript">
+
+      $(document).ready(function () {
+          $(".js-example-basic-single").select2();
+
+          $(".js-example-basic-multiple").select2();
+      });
+</script>
+
+
+
+
