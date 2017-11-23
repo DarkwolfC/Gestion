@@ -628,20 +628,24 @@
         </footer>
         <!--footer end -->
     </section>
-  
+
+    <!--common script for all pages-->
+    @*<script src="~/Content/js/common-scripts.js"></script>*@
+    <!--right slidebar-->
+    @*@Scripts.Render("~/Content/js/slidebars.min.js")*@
+
+   
     
-    @Scripts.Render("~/Content/js/bootstrap.min.js")
+    @*@Scripts.Render("~/Content/js/bootstrap.min.js")*@
     @Scripts.Render("~/Content/js/jquery.dcjqaccordion.2.7.js")
     @Scripts.Render("~/Content/js/jquery.scrollTo.min.js")
-    @Scripts.Render("~/Content/js/jquery.nicescroll.js")
+    @Scripts.Render("~/Content/js/jquery.nicescroll.js")  
     @Scripts.Render("~/Content/assets/jquery-knob/js/jquery.knob.js")
     @Scripts.Render("~/Content/js/respond.min.js")
 
-    <!--right slidebar-->
-    @Scripts.Render("~/Content/js/slidebars.min.js")
-     
-    <!--common script for all pages-->
-    @*<script src="~/Content/js/common-scripts.js"></script>
+   
+   
+    @* 
     <script>
       //knob
       $(".knob").knob();
@@ -661,10 +665,6 @@
     <!--right slidebar-->
     @*<script src="/Content/js/slidebars.min.js"></script>*@
 
-
-
     
-    
-
 </body>
 </html>

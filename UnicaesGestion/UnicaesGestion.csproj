@@ -380,6 +380,13 @@
     <Content Include="Content\assets\select2\js\select2.full.min.js" />
     <Content Include="Content\assets\select2\js\select2.js" />
     <Content Include="Content\assets\select2\js\select2.min.js" />
+    <Content Include="Content\assets\summernote\dist\summernote-bs2.css" />
+    <Content Include="Content\assets\summernote\dist\summernote-bs3.css" />
+    <Content Include="Content\assets\summernote\dist\summernote.css" />
+    <Content Include="Content\assets\summernote\dist\summernote.js" />
+    <Content Include="Content\assets\summernote\dist\summernote.min.js" />
+    <Content Include="Content\assets\summernote\less\elements.css" />
+    <Content Include="Content\assets\summernote\less\summernote.css" />
     <Content Include="Content\assets\switchery\switchery.css" />
     <Content Include="Content\assets\switchery\switchery.js" />
     <Content Include="Content\assets\switchery\switchery.min.css" />
@@ -901,6 +908,11 @@
     <Content Include="Content\assets\bootstrap-switch\static\less\bootstrap-switch.less" />
     <Content Include="Content\assets\bootstrap-switch\static\less\deps\mixins.less" />
     <Content Include="Content\assets\bootstrap-switch\static\less\deps\variables.less" />
+    <Content Include="Content\assets\summernote\.jshintignore" />
+    <Content Include="Content\assets\summernote\.jshintrc" />
+    <Content Include="Content\assets\summernote\.travis.yml" />
+    <Content Include="Content\assets\summernote\less\elements.less" />
+    <Content Include="Content\assets\summernote\less\summernote.less" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
