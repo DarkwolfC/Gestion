@@ -945,6 +945,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\LockScreen.cshtml" />
     <Content Include="Views\User\Perfil.cshtml" />
+    <Content Include="Views\Home\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
