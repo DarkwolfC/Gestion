@@ -263,9 +263,9 @@
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
-                            <li><a href="#"><i class=" fa fa-suitcase"></i>Profile</a></li>
-                            <li><a href="#"><i class="fa fa-cog"></i> Settings</a></li>
-                            <li><a href="#"><i class="fa fa-bell-o"></i> Notification</a></li>
+                            <li><a href="/Users/Profile"><i class=" fa fa-user"></i>Perfil de Usuario</a></li>
+                            <li><a href="#"><i class="fa fa-cog"></i> Configuracion </a></li>
+                            <li><a href="#"><i class="fa fa-bell-o"></i> Notificationes</a></li>
                             <li><a href="login.html"><i class="fa fa-key"></i> Log Out</a></li>
                         </ul>
                     </li>
@@ -282,12 +282,7 @@
             <div id="sidebar" class="nav-collapse ">
                 <!-- sidebar menu start-->
                 <ul class="sidebar-menu" id="nav-accordion">
-                    <li>
-                        <a href="index.html">
-                            <i class="fa fa-dashboard"></i>
-                            <span>Dashboard</span>
-                        </a>
-                    </li>
+                   
 
                     <li class="sub-menu">
                         <a href="javascript:;">
@@ -472,7 +467,10 @@
         </aside>
         <!--sidebar end-->
         <!--main content start-->
-        @RenderBody()
+        <div id="contenido" style="padding:10px;">
+            @RenderBody()
+        </div>
+       
         <!--main content end-->
         <!-- Right Slidebar start -->
         <div class="sb-slidebar sb-right sb-style-overlay">
