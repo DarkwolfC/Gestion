@@ -1,10 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "AddJob";
+    ViewBag.Title = "ReadJob";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 
 <!-- Bootstrap core CSS -->
 <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
@@ -25,34 +23,33 @@
   <script src="js/html5shiv.js"></script>
   <script src="js/respond.min.js"></script>
 <![endif]-->
-
 <!--main content start-->
 <section id="main-content">
     <section class="wrapper site-min-height">
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
-               Nuevo Puesto de Trabajo
+              Puesto de Trabajo
             </header>
 
-            @*<header class="panel-heading">
-                <div class="form-group ">
-                    <div class="clearfix">
-                        <!--start-->
-                        <div class="btn-group pull-right">
-                            <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
-                                Herramientas <span class="caret"></span>
-                            </button>
-                            <ul role="menu" class="dropdown-menu">
-                                <li><a href="#">Imprimir</a></li>
-                                <li><a href="#">Guardar como PDF</a></li>
-                                <li><a href="#">Exportar como Excel</a></li>
-                            </ul>
+            <header class="panel-heading">
+                    <div class="form-group ">
+                        <div class="clearfix">
+                            <!--start-->
+                            <div class="btn-group pull-right">
+                                <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
+                                    Herramientas <span class="caret"></span>
+                                </button>
+                                <ul role="menu" class="dropdown-menu">
+                                    <li><a href="#">Imprimir</a></li>
+                                    <li><a href="#">Guardar como PDF</a></li>
+                                    <li><a href="#">Exportar como Excel</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--end-->
-            </header>*@
+                    <!--end-->
+                </header>
 
             <div class="panel-body">
                 <div class="form">
@@ -60,13 +57,13 @@
                         <div class="form-group ">
                             <label for="unidad" class="control-label col-lg-2">Titulo del Puesto</label>
                             <div class="col-lg-10">
-                                <input class=" form-control" id="unidad" name="unidad" type="text" />
+                                <input class=" form-control" id="unidad" name="unidad" type="text" disabled />
                             </div>
                         </div>
                         <div class="form-group ">
                             <label for="password" class="control-label col-lg-2">Unidad Organizativa</label>
                             <div class="col-lg-10">
-                                <select class="form-control m-bot15">
+                                <select class="form-control m-bot15" disabled>
                                     <option>Opción 1</option>
                                     <option>Opción 2</option>
                                     <option>Opción 3</option>
@@ -76,7 +73,7 @@
                         <div class="form-group ">
                             <label for="password" class="control-label col-lg-2">Jefe Inmediato</label>
                             <div class="col-lg-10">
-                                <select class="form-control m-bot15">
+                                <select class="form-control m-bot15" disabled>
                                     <option>Opción 1</option>
                                     <option>Opción 2</option>
                                     <option>Opción 3</option>
@@ -86,7 +83,7 @@
                         <div class="form-group ">
                             <label for="objetivo" class="control-label col-lg-2">Objetivo</label>
                             <div class="col-lg-10">
-                                <input class=" form-control" id="objetivo" name="objetivo" type="text" />
+                                <input class=" form-control" id="objetivo" name="objetivo" type="text" disabled />
                             </div>
                         </div>
                     </form>
@@ -98,22 +95,22 @@
                 <div class="adv-table editable-table ">
                     <div class="clearfix">
 
-                        <div class="btn-group">
+                        @*<div class="btn-group">
                             <button id="editable-sample_new" class="btn green btn-primary">
                                 Nueva Funcion <i class="fa fa-plus"></i>
                             </button>
-                        </div>
+                        </div>*@
 
                         @*<div class="btn-group pull-right">
-                            <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                Herramientas <i class="fa fa-angle-down"></i>
-                            </button>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a href="#">Imprimir</a></li>
-                                <li><a href="#">Guardar como PDF</a></li>
-                                <li><a href="#">Exportar como Excel</a></li>
-                            </ul>
-                        </div>*@
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    Herramientas <i class="fa fa-angle-down"></i>
+                                </button>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="#">Imprimir</a></li>
+                                    <li><a href="#">Guardar como PDF</a></li>
+                                    <li><a href="#">Exportar como Excel</a></li>
+                                </ul>
+                            </div>*@
                     </div>
                     <div class="space15"></div>
 
@@ -124,80 +121,80 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Funciones</th>
-                                    <th>Guardar</th>
-                                    <th>Cancelar</th>
+                                    @*<th>Guardar</th>
+                                    <th>Cancelar</th>*@
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="">
+                                    <td>1</td>
                                     <td>Jondi Rose</td>
-                                    <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    @*<td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
+                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>*@
                                 </tr>
                                 <tr class="">
-                                    <td>Dulal</td>
+                                    <td>2</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    @*<td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
+                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>*@
                                 </tr>
                                 <tr class="">
-                                    <td>Sumon</td>
+                                    <td>3</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    @*<td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
+                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>*@
                                 </tr>
                                 <tr class="">
-                                    <td>vectorlab</td>
+                                    <td>4</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    @*<td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
+                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>*@
                                 </tr>
                                 <tr class="">
-                                    <td>Admin</td>
+                                    <td>5</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    @*<td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
+                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>*@
                                 </tr>
                                 <tr class="">
-                                    <td>Rafiqul</td>
+                                    <td>6</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    @*<td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
+                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>*@
                                 </tr>
                                 <tr class="">
-                                    <td>Jhon Doe</td>
+                                    <td>7</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    @*<td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
+                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>*@
                                 </tr>
                                 <tr class="">
-                                    <td>Dulal</td>
+                                    <td>8</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    @*<td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
+                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>*@
                                 </tr>
                                 <tr class="">
-                                    <td>Sumon</td>
+                                    <td>9</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    @*<td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
+                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>*@
                                 </tr>
                                 <tr class="">
-                                    <td>vectorlab</td>
+                                    <td>10</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
-                                </tr>                              
+                                    @*<td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
+                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>*@
+                                </tr>
                             </tbody>
                         </table>
 
-                        <div class="form-group">
+                        @*<div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
                                 <button class="btn btn-danger" type="submit">Guardar</button>
                                 <button class="btn btn-default" type="button">Cancelar</button>
                             </div>
-                        </div>
+                        </div>*@
 
                     </div>
                 </div>
@@ -207,8 +204,7 @@
     </section>
 </section>
 <!--main content end-->
-
-   <!-- js placed at the end of the document so the pages load faster -->
+<!-- js placed at the end of the document so the pages load faster -->
 <script src="~/Content/js/jquery.js"></script>
 <script src="~/Content/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="~/Content/js/jquery-migrate-1.2.1.min.js"></script>
@@ -235,3 +231,4 @@
               EditableTable.init();
           });
 </script>
+

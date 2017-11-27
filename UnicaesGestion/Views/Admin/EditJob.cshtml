@@ -1,10 +1,8 @@
 ﻿
 @{
-    ViewBag.Title = "AddJob";
+    ViewBag.Title = "EditJob";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-
 
 <!-- Bootstrap core CSS -->
 <link href="~/Content/css/bootstrap.min.css" rel="stylesheet">
@@ -25,34 +23,33 @@
   <script src="js/html5shiv.js"></script>
   <script src="js/respond.min.js"></script>
 <![endif]-->
-
 <!--main content start-->
 <section id="main-content">
     <section class="wrapper site-min-height">
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
-               Nuevo Puesto de Trabajo
+                Editar Puesto de Trabajo
             </header>
 
             @*<header class="panel-heading">
-                <div class="form-group ">
-                    <div class="clearfix">
-                        <!--start-->
-                        <div class="btn-group pull-right">
-                            <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
-                                Herramientas <span class="caret"></span>
-                            </button>
-                            <ul role="menu" class="dropdown-menu">
-                                <li><a href="#">Imprimir</a></li>
-                                <li><a href="#">Guardar como PDF</a></li>
-                                <li><a href="#">Exportar como Excel</a></li>
-                            </ul>
+                    <div class="form-group ">
+                        <div class="clearfix">
+                            <!--start-->
+                            <div class="btn-group pull-right">
+                                <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
+                                    Herramientas <span class="caret"></span>
+                                </button>
+                                <ul role="menu" class="dropdown-menu">
+                                    <li><a href="#">Imprimir</a></li>
+                                    <li><a href="#">Guardar como PDF</a></li>
+                                    <li><a href="#">Exportar como Excel</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!--end-->
-            </header>*@
+                    <!--end-->
+                </header>*@
 
             <div class="panel-body">
                 <div class="form">
@@ -105,15 +102,15 @@
                         </div>
 
                         @*<div class="btn-group pull-right">
-                            <button class="btn dropdown-toggle" data-toggle="dropdown">
-                                Herramientas <i class="fa fa-angle-down"></i>
-                            </button>
-                            <ul class="dropdown-menu pull-right">
-                                <li><a href="#">Imprimir</a></li>
-                                <li><a href="#">Guardar como PDF</a></li>
-                                <li><a href="#">Exportar como Excel</a></li>
-                            </ul>
-                        </div>*@
+                                <button class="btn dropdown-toggle" data-toggle="dropdown">
+                                    Herramientas <i class="fa fa-angle-down"></i>
+                                </button>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="#">Imprimir</a></li>
+                                    <li><a href="#">Guardar como PDF</a></li>
+                                    <li><a href="#">Exportar como Excel</a></li>
+                                </ul>
+                            </div>*@
                     </div>
                     <div class="space15"></div>
 
@@ -124,71 +121,71 @@
                                 <tr>
                                     <th>No.</th>
                                     <th>Funciones</th>
-                                    <th>Guardar</th>
-                                    <th>Cancelar</th>
+                                    <th>Editar</th>
+                                    <th>Eliminar</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class="">
                                     <td>Jondi Rose</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    <td><a href="javascript:;" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i> Editar</a></td>
+                                    <td><a href="javascript:;" class="delete btn btn-primary btn-default"><i class="fa fa-trash-o"></i> Eliminar</a></td>
                                 </tr>
                                 <tr class="">
                                     <td>Dulal</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    <td><a href="javascript:;" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i> Editar</a></td>
+                                    <td><a href="javascript:;" class="delete btn btn-primary btn-default"><i class="fa fa-trash-o"></i> Eliminar</a></td>
                                 </tr>
                                 <tr class="">
                                     <td>Sumon</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    <td><a href="javascript:;" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i> Editar</a></td>
+                                    <td><a href="javascript:;" class="delete btn btn-primary btn-default"><i class="fa fa-trash-o"></i> Eliminar</a></td>
                                 </tr>
                                 <tr class="">
                                     <td>vectorlab</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    <td><a href="javascript:;" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i> Editar</a></td>
+                                    <td><a href="javascript:;" class="delete btn btn-primary btn-default"><i class="fa fa-trash-o"></i> Eliminar</a></td>
                                 </tr>
                                 <tr class="">
                                     <td>Admin</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    <td><a href="javascript:;" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i> Editar</a></td>
+                                    <td><a href="javascript:;" class="delete btn btn-primary btn-default"><i class="fa fa-trash-o"></i> Eliminar</a></td>
                                 </tr>
                                 <tr class="">
                                     <td>Rafiqul</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    <td><a href="javascript:;" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i> Editar</a></td>
+                                    <td><a href="javascript:;" class="delete btn btn-primary btn-default"><i class="fa fa-trash-o"></i> Eliminar</a></td>
                                 </tr>
                                 <tr class="">
                                     <td>Jhon Doe</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    <td><a href="javascript:;" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i> Editar</a></td>
+                                    <td><a href="javascript:;" class="delete btn btn-primary btn-default"><i class="fa fa-trash-o"></i> Eliminar</a></td>
                                 </tr>
                                 <tr class="">
                                     <td>Dulal</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    <td><a href="javascript:;" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i> Editar</a></td>
+                                    <td><a href="javascript:;" class="delete btn btn-primary btn-default"><i class="fa fa-trash-o"></i> Eliminar</a></td>
                                 </tr>
                                 <tr class="">
                                     <td>Sumon</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
+                                    <td><a href="javascript:;" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i> Editar</a></td>
+                                    <td><a href="javascript:;" class="delete btn btn-primary btn-default"><i class="fa fa-trash-o"></i> Eliminar</a></td>
                                 </tr>
                                 <tr class="">
                                     <td>vectorlab</td>
                                     <td>Jondi Rose</td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i> Guardar</a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i> Cancelar</a></td>
-                                </tr>                              
+                                    <td><a href="javascript:;" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i> Editar</a></td>
+                                    <td><a href="javascript:;" class="delete btn btn-primary btn-default"><i class="fa fa-trash-o"></i> Eliminar</a></td>
+                                </tr>
                             </tbody>
                         </table>
 
@@ -207,8 +204,7 @@
     </section>
 </section>
 <!--main content end-->
-
-   <!-- js placed at the end of the document so the pages load faster -->
+<!-- js placed at the end of the document so the pages load faster -->
 <script src="~/Content/js/jquery.js"></script>
 <script src="~/Content/js/jquery-ui-1.9.2.custom.min.js"></script>
 <script src="~/Content/js/jquery-migrate-1.2.1.min.js"></script>
@@ -235,3 +231,4 @@
               EditableTable.init();
           });
 </script>
+

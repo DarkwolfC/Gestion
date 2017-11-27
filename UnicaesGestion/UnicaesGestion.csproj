@@ -946,6 +946,14 @@
     <Content Include="Views\Home\LockScreen.cshtml" />
     <Content Include="Views\User\Perfil.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
+    <Content Include="Views\Admin\ReadProcedure.cshtml" />
+    <Content Include="Views\Admin\EditProcedure.cshtml" />
+    <Content Include="Views\Admin\ReadJob.cshtml" />
+    <Content Include="Views\Admin\EditJob.cshtml" />
+    <Content Include="Views\Admin\ReadUnity.cshtml" />
+    <Content Include="Views\Admin\EditUnity.cshtml" />
+    <Content Include="Views\Admin\ReadJobProfile.cshtml" />
+    <Content Include="Views\Admin\EditJobProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

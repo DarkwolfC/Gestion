@@ -14,7 +14,26 @@ namespace UnicaesGestion.Controllers
             return View();
         }
 
+        //start views of job
+        public ActionResult ReadJob()
+        {
+            return View();
+        }
+        
         public ActionResult AddJob()
+        {
+            return View();
+        }
+
+        public ActionResult EditJob()
+        {
+            return View();
+        }
+
+        //end views of job
+
+        //start views of JobProfile
+        public ActionResult ReadJobProfile()
         {
             return View();
         }
@@ -24,7 +43,20 @@ namespace UnicaesGestion.Controllers
             return View();
         }
 
-        public ActionResult AddNewStep()
+        public ActionResult EditJobProfile()
+        {
+            return View();
+        }
+
+        //end views of JobProfile
+
+        //public ActionResult AddNewStep()
+        //{
+        //    return View();
+        //}
+
+        //start views of procedure
+        public ActionResult ReadProcedure()
         {
             return View();
         }
@@ -34,10 +66,30 @@ namespace UnicaesGestion.Controllers
             return View();
         }
 
+        public ActionResult EditProcedure()
+        {
+            return View();
+        }
+        //end views of procedure
+
+        //start views of unity
+        public ActionResult ReadUnity()
+        {
+            return View();
+        }
+
         public ActionResult AddUnity()
         {
             return View();
         }
+
+        public ActionResult EditUnity()
+        {
+            return View();
+        }
+
+        //end views of unity
+
 
         public ActionResult AddUser()
         {
