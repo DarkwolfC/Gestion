@@ -14,6 +14,24 @@
 <!--right slidebar-->
 <link href="~/Content/css/slidebars.css" rel="stylesheet">
 
+<!--modal css-->
+<link type="text/css" href="~/Content/assets/jquery-multi-select/css/multi-select.css" rel="stylesheet" />
+<!--bootstrap switcher-->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/bootstrap-switch/static/stylesheets/bootstrap-switch.css" />
+
+<!-- switchery-->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/switchery/switchery.css" />
+
+<!--select 2-->
+<link rel="stylesheet" type="text/css" href="~/Content/assets/select2/css/select2.min.css" />
+
+<!--right slidebar-->
+@*<link href="~/Content/css/slidebars.css" rel="stylesheet">*@
+
+<!--  summernote -->
+<link href="~/Content/assets/summernote/dist/summernote.css" rel="stylesheet">
+<!--modal css end-->
+
 <!-- Custom styles for this template -->
 <link href="~/Content/css/style.css" rel="stylesheet">
 <link href="~/Content/css/style-responsive.css" rel="stylesheet" />
@@ -63,6 +81,29 @@
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="panel-body">
+                <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+                    <div class="form-group last">
+                        <label class="control-label col-md-3">Conformado por:</label>
+                        <div class="col-md-9">
+                            <select name="country" class="multi-select" multiple="" id="my_multi_select3">
+                                <option value="AF">Jose Vasquez</option>
+                                <option value="AL">Claudia Torres</option>
+                                <option value="DZ">Jaime Rodriguez</option>
+                                <option value="AS">Nanci Rebeca</option>
+                                <option value="AD">Ismael Salinas</option>
+                                <option value="AO">Joao Salazar</option>
+                                <option value="AI">Ruben Cerna</option>
+                                <option value="AQ">Carlos Salguero</option>
+                                <option value="AR">Alex Linares</option>
+                                <option value="AM">Jose Pacheco</option>
+                                <option value="AW">Iris Martinez</option>
+                                <option value="AU">Sonia Perez</option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
             </div>
 
 
@@ -197,4 +238,37 @@
           });
 </script>
 
+<!--modal start-->
+<!--this page plugins-->
+<script type="text/javascript" src="~/Content/assets/fuelux/js/spinner.min.js"></script>
+@*<script type="text/javascript" src="~/Content/assets/bootstrap-fileupload/bootstrap-fileupload.js"></script>
+    <script type="text/javascript" src="~/Content/assets/bootstrap-wysihtml5/wysihtml5-0.3.0.js"></script>
+    <script type="text/javascript" src="~/Content/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.js"></script>
+    <script type="text/javascript" src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>*@
+<script type="text/javascript" src="~/Content/assets/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script type="text/javascript" src="~/Content/assets/bootstrap-daterangepicker/moment.min.js"></script>
+<script type="text/javascript" src="~/Content/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+<script type="text/javascript" src="~/Content/assets/bootstrap-colorpicker/js/bootstrap-colorpicker.js"></script>
+<script type="text/javascript" src="~/Content/assets/bootstrap-timepicker/js/bootstrap-timepicker.js"></script>
+<script type="text/javascript" src="~/Content/assets/jquery-multi-select/js/jquery.multi-select.js"></script>
+<script type="text/javascript" src="~/Content/assets/jquery-multi-select/js/jquery.quicksearch.js"></script>
 
+<!--select2-->
+<script type="text/javascript" src="~/Content/assets/select2/js/select2.min.js"></script>
+
+<!--summernote-->
+<script src="~/Content/assets/summernote/dist/summernote.min.js"></script>
+
+<!--right slidebar-->
+@*<script src="~/Content/js/slidebars.min.js"></script>*@
+
+
+<!--this page  script only-->
+<script src="~/Content/js/advanced-form-components.js"></script>
+
+<!--bootstrap-switch-->
+<script src="~/Content/assets/bootstrap-switch/static/js/bootstrap-switch.js"></script>
+
+<!--bootstrap-switch-->
+<script src="~/Content/assets/switchery/switchery.js"></script>
+<!--modal end -->
