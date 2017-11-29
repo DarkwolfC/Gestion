@@ -51,7 +51,7 @@
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
-                Ingresar Nueva Procedimiento
+               Nuevo Procedimiento
             </header>
 
             @*<header class="panel-heading">
@@ -156,6 +156,7 @@
                                     <th>Resposable</th>
                                     <th>Descripción</th>
                                     <th>Predecesor</th>
+                                    <th>Figura</th>
                                     @*<th>Edit</th>
                                     <th>Delete</th>*@
                                 </tr>
@@ -166,6 +167,7 @@
                                     <td>Alfred Jondi Rose</td>
                                     <td>1234</td>
                                     <td>1234</td>
+                                    <td>1234</td>
                                     @*<td><a class="edit" href="javascript:;">Edit</a></td>
                                     <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
@@ -173,6 +175,7 @@
                                     <td>Dulal</td>
                                     <td>Jonathan Smith</td>
                                     <td>434</td>
+                                    <td>1234</td>
                                     <td>1234</td>
                                     @*<td><a class="edit" href="javascript:;">Edit</a></td>
                                     <td><a class="delete" href="javascript:;">Delete</a></td>*@
@@ -182,6 +185,7 @@
                                     <td> Sumon Ahmed</td>
                                     <td>232</td>
                                     <td>1234</td>
+                                    <td>1234</td>
                                     @*<td><a class="edit" href="javascript:;">Edit</a></td>
                                     <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
@@ -189,6 +193,7 @@
                                     <td>vectorlab</td>
                                     <td>dk mosa</td>
                                     <td>132</td>
+                                    <td>1234</td>
                                     <td>1234</td>
                                     @*<td><a class="edit" href="javascript:;">Edit</a></td>
                                     <td><a class="delete" href="javascript:;">Delete</a></td>*@
@@ -198,6 +203,7 @@
                                     <td> Flat Lab</td>
                                     <td>462</td>
                                     <td>1234</td>
+                                    <td>1234</td>
                                     @*<td><a class="edit" href="javascript:;">Edit</a></td>
                                     <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
@@ -205,6 +211,7 @@
                                     <td>Rafiqul</td>
                                     <td>Rafiqul dulal</td>
                                     <td>62</td>
+                                    <td>1234</td>
                                     <td>1234</td>
                                     @*<td><a class="edit" href="javascript:;">Edit</a></td>
                                     <td><a class="delete" href="javascript:;">Delete</a></td>*@
@@ -214,6 +221,7 @@
                                     <td>Jhon Doe </td>
                                     <td>1234</td>
                                     <td>1234</td>
+                                    <td>1234</td>
                                     @*<td><a class="edit" href="javascript:;">Edit</a></td>
                                     <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
@@ -221,6 +229,7 @@
                                     <td>Dulal</td>
                                     <td>Jonathan Smith</td>
                                     <td>434</td>
+                                    <td>1234</td>
                                     <td>1234</td>
                                     @*<td><a class="edit" href="javascript:;">Edit</a></td>
                                     <td><a class="delete" href="javascript:;">Delete</a></td>*@
@@ -230,6 +239,7 @@
                                     <td> Sumon Ahmed</td>
                                     <td>232</td>
                                     <td>1234</td>
+                                    <td>1234</td>
                                     @*<td><a class="edit" href="javascript:;">Edit</a></td>
                                     <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
@@ -237,6 +247,7 @@
                                     <td>vectorlab</td>
                                     <td>dk mosa</td>
                                     <td>132</td>
+                                    <td>1234</td>
                                     <td>1234</td>
                                     @*<td><a class="edit" href="javascript:;">Edit</a></td>
                                     <td><a class="delete" href="javascript:;">Delete</a></td>*@
@@ -246,6 +257,7 @@
                                     <td> Flat Lab</td>
                                     <td>462</td>
                                     <td>1234</td>
+                                    <td>1234</td>
                                     @*<td><a class="edit" href="javascript:;">Edit</a></td>
                                     <td><a class="delete" href="javascript:;">Delete</a></td>*@
                                 </tr>
@@ -253,6 +265,7 @@
                                     <td>Rafiqul</td>
                                     <td>Rafiqul dulal</td>
                                     <td>62</td>
+                                    <td>1234</td>
                                     <td>1234</td>
                                     @*<td><a class="edit" href="javascript:;">Edit</a></td>
                                     <td><a class="delete" href="javascript:;">Delete</a></td>*@
@@ -262,8 +275,8 @@
 
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
-                                <button class="btn btn-danger" type="submit">Save</button>
-                                <button class="btn btn-default" type="button">Cancel</button>
+                                <button class="btn btn-danger" type="submit">Guardar</button>
+                                <button class="btn btn-default" type="button">Cancelar</button>
                             </div>
                         </div>
 
@@ -322,10 +335,21 @@
                                         </div>
                                     </div>
 
+                                    <div class="form-group ">
+                                        <label for="password" class="control-label col-lg-2">Figura</label>
+                                        <div class="col-lg-10">
+                                            <select class="form-control m-bot15">
+                                                <option>Opción 1</option>
+                                                <option>Opción 2</option>
+                                                <option>Opción 3</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
                                     <div class="form-group last">
-                                        <label class="control-label col-md-3">indicaciones</label>
+                                        <label class="control-label col-md-3">Dependencias: </label>
                                         <div class="col-md-9">
-                                            <select name="country" class="multi-select" multiple="" id="my_multi_select3">
+                                            <select name="country" class="multi-select" multiple="" id="my_multi_select1">
                                                 <option value="AF">1</option>
                                                 <option value="AL">2</option>
                                                 <option value="DZ">3</option>
