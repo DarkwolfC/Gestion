@@ -13,5 +13,10 @@ namespace UnicaesGestion.Controllers
         {
             return View();
         }
+
+        public ActionResult Banner()
+        {
+            return View();
+        }
     }
 }

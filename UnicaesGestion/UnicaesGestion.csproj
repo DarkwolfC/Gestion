@@ -671,9 +671,11 @@
     <Content Include="Content\Inicio\img\banner\banner_bg.jpg" />
     <Content Include="Content\Inicio\img\banner\imac.png" />
     <Content Include="Content\Inicio\img\banner\laptop.png" />
+    <Content Include="Content\Inicio\img\banner\logo.png" />
     <Content Include="Content\Inicio\img\banner\man.png" />
     <Content Include="Content\Inicio\img\banner\mobile.png" />
     <Content Include="Content\Inicio\img\banner\red-bg.jpg" />
+    <Content Include="Content\Inicio\img\banner\slider1.jpg" />
     <Content Include="Content\Inicio\img\banner\tab.png" />
     <Content Include="Content\Inicio\img\banner\test_man.png" />
     <Content Include="Content\Inicio\img\banner\text_imac.png" />
@@ -954,6 +956,7 @@
     <Content Include="Views\Admin\EditUnity.cshtml" />
     <Content Include="Views\Admin\ReadJobProfile.cshtml" />
     <Content Include="Views\Admin\EditJobProfile.cshtml" />
+    <Content Include="Views\User\Banner.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
