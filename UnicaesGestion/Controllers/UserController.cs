@@ -18,5 +18,21 @@ namespace UnicaesGestion.Controllers
         {
             return View();
         }
+
+        public ActionResult SearchProcedure()
+        {
+            return View();
+        }
+
+        public ActionResult SearchUnity()
+        {
+            return View();
+        }
+
+        public ActionResult SearchJob()
+        {
+            return View();
+        }
+
     }
 }
