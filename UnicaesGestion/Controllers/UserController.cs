@@ -34,5 +34,10 @@ namespace UnicaesGestion.Controllers
             return View();
         }
 
+        public ActionResult SearchJobProfile()
+        {
+            return View();
+        }
+
     }
 }

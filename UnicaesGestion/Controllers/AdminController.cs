@@ -50,10 +50,7 @@ namespace UnicaesGestion.Controllers
 
         //end views of JobProfile
 
-        //public ActionResult AddNewStep()
-        //{
-        //    return View();
-        //}
+        
 
         //start views of procedure
         public ActionResult ReadProcedure()
@@ -91,10 +88,16 @@ namespace UnicaesGestion.Controllers
         //end views of unity
 
 
-        public ActionResult AddUser()
+        // Start views of User
+        public ActionResult ReadUser()
         {
             return View();
         }
 
+        public ActionResult AddUser()
+        {
+            return View();
+        }
+        //end views of user
     }
 }

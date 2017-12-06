@@ -502,6 +502,7 @@
     <Content Include="Content\img\photos\user3.png" />
     <Content Include="Content\img\photos\user4.png" />
     <Content Include="Content\img\photos\user5.png" />
+    <Content Include="Content\img\photos\user6.png" />
     <Content Include="Content\img\photos\userprofile.png" />
     <Content Include="Content\img\pro-ac-1.png" />
     <Content Include="Content\img\pro-ac-2.png" />
@@ -960,6 +961,8 @@
     <Content Include="Views\User\SearchProcedure.cshtml" />
     <Content Include="Views\User\SearchUnity.cshtml" />
     <Content Include="Views\User\SearchJob.cshtml" />
+    <Content Include="Views\User\SearchJobProfile.cshtml" />
+    <Content Include="Views\Admin\ReadUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
