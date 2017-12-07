@@ -98,6 +98,11 @@ namespace UnicaesGestion.Controllers
         {
             return View();
         }
+
+        public ActionResult EditUser()
+        {
+            return View();
+        }
         //end views of user
     }
 }

@@ -963,6 +963,7 @@
     <Content Include="Views\User\SearchJob.cshtml" />
     <Content Include="Views\User\SearchJobProfile.cshtml" />
     <Content Include="Views\Admin\ReadUser.cshtml" />
+    <Content Include="Views\Admin\EditUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

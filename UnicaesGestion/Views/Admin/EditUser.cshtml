@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "EditUser";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--new code-->
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+                Editar Usuario
+            </header>
+
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Nombre</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" id="unidad" name="unidad" type="text" />
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Apellido</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" id="unidad" name="unidad" type="text" />
+                            </div>
+                        </div>
+
+
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Unidad Organizativa</label>
+                            <div class="col-lg-10">
+                                <select class="form-control m-bot15">
+                                    <option>Opción 1</option>
+                                    <option>Opción 2</option>
+                                    <option>Opción 3</option>
+                                </select>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Puesto de Trabajo</label>
+                            <div class="col-lg-10">
+                                <select class="form-control m-bot15">
+                                    <option>Opción 1</option>
+                                    <option>Opción 2</option>
+                                    <option>Opción 3</option>
+                                </select>
+                            </div>
+                        </div>  
+                        
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Usuario</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" id="unidad" name="unidad" type="text" />
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">contraseña</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" id="unidad" name="unidad" type="text" />
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Repetir Contraseña</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" id="unidad" name="unidad" type="text" />
+                            </div>
+                        </div>
+                        
+                    </form>
+
+
+                </div>
+            </div>
+
+            
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!--end new code-->
+<!--this page plugins-->
+<script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+<!--this page  script only-->
+<script src="~/Content/js/form-component.js"></script>
+
+<!--Start JavaScript-->
+@section JavaScript {
+
+    <!--select2-->
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".js-example-basic-single").select2();
+
+        $(".js-example-basic-multiple").select2();
+    });
+    </script>
+
+}
+<!--End JavaScript-->
+
