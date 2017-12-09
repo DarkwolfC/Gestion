@@ -31,7 +31,7 @@
                                             <span class="input-group-btn">
                                                 <button type="button" class="btn btn-white"><i class="fa fa-search"></i></button>
                                             </span>
-                                            <input type="text" class="form-control">
+                                            <input type="text" id="myInput" onkeyup="buscar()" class="form-control">
                                         </div>
 
                                     </div>
@@ -39,11 +39,11 @@
                             </form>
                         </div>
 
-                        <ul class="task-list">
+                        <ul id="myUL" class="task-list">
                             <li>
-
+                                
                                 <div class="task-title">
-                                    <span class="task-title-sp">Flatlab is Modern Dashboard</span>
+                                    <span class="task-title-sp"><a>Flatlab is Modern Dashboard</a></span>
 
                                     <div class="pull-right hidden-phone">
                                         <button onclick="location.href='/Admin/ReadJob'" class="btn btn-success btn-xs"><i class=" fa fa-eye"></i></button>
@@ -55,7 +55,7 @@
                             <li>
 
                                 <div class="task-title">
-                                    <span class="task-title-sp">Fully Responsive & Bootstrap 3.0.2 Compatible</span>
+                                    <span class="task-title-sp"><a>Fully Responsive & Bootstrap 3.0.2 Compatible</a></span>
 
                                     <div class="pull-right hidden-phone">
                                         <button class="btn btn-success btn-xs"><i class=" fa fa-eye"></i></button>
@@ -67,7 +67,7 @@
                             <li>
 
                                 <div class="task-title">
-                                    <span class="task-title-sp">Daily Standup Meeting</span>
+                                    <span class="task-title-sp"><a>Daily Standup Meeting</a></span>
 
                                     <div class="pull-right hidden-phone">
                                         <button class="btn btn-success btn-xs"><i class=" fa fa-eye"></i></button>
@@ -79,7 +79,7 @@
                             <li>
 
                                 <div class="task-title">
-                                    <span class="task-title-sp">Write well documentation for this theme</span>
+                                    <span class="task-title-sp"><a>Write well documentation for this theme</a></span>
 
                                     <div class="pull-right hidden-phone">
                                         <button class="btn btn-success btn-xs"><i class=" fa fa-eye"></i></button>
@@ -91,7 +91,7 @@
                             <li>
 
                                 <div class="task-title">
-                                    <span class="task-title-sp">We have a plan to include more features in future update</span>
+                                    <span class="task-title-sp"><a>We have a plan to include more features in future update</a></span>
 
                                     <div class="pull-right hidden-phone">
                                         <button class="btn btn-success btn-xs"><i class=" fa fa-eye"></i></button>
@@ -103,7 +103,7 @@
                             <li>
 
                                 <div class="task-title">
-                                    <span class="task-title-sp">Don't be hesitate to purchase this Dashbord</span>
+                                    <span class="task-title-sp"><a>Don't be hesitate to purchase this Dashbord</a></span>
 
                                     <div class="pull-right">
                                         <button class="btn btn-success btn-xs"><i class=" fa fa-eye"></i></button>
@@ -116,7 +116,7 @@
 
 
                                 <div class="task-title">
-                                    <span class="task-title-sp">Code compile and upload</span>
+                                    <span class="task-title-sp"><a>Code compile and upload</a></span>
 
                                     <div class="pull-right hidden-phone">
                                         <button class="btn btn-success btn-xs"><i class=" fa fa-eye"></i></button>
@@ -128,7 +128,7 @@
                             <li>
 
                                 <div class="task-title">
-                                    <span class="task-title-sp">Tell your friends to buy this dashboad</span>
+                                    <span class="task-title-sp"><a>Tell your friends to buy this dashboad</a></span>
 
                                     <div class="pull-right hidden-phone">
                                         <button class="btn btn-success btn-xs"><i class=" fa fa-eye"></i></button>
@@ -151,3 +151,27 @@
 <!--main content end-->
 
 
+<!--Start JavaScript-->
+@section JavaScript {
+
+    <script>
+        function buscar() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+
+                }
+            }
+        }
+    </script>
+
+}
+<!--End JavaScript-->
