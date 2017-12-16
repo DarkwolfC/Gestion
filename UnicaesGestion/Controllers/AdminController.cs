@@ -48,6 +48,8 @@ namespace UnicaesGestion.Controllers
             return View();
         }
 
+       
+
         //end views of JobProfile
 
         
@@ -104,5 +106,8 @@ namespace UnicaesGestion.Controllers
             return View();
         }
         //end views of user
+
+
+
     }
 }

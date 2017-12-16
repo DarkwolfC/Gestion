@@ -19,28 +19,27 @@
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
-                Nuevo Perfil de Contratacion
+                Perfil de Puesto de Trabajo
             </header>
 
             <header class="panel-heading">
-             <div class="form-group ">
-                 <div class="clearfix">
-                     <!--in-->
-                     <div class="btn-group pull-right">
-                         <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
-                             Herramientas <span class="caret"></span>
-                         </button>
-                         <ul role="menu" class="dropdown-menu">
-                             <li><a href="#">Imprimir</a></li>
-                             <li><a href="#">Guardar como PDF</a></li>
-                             <li><a href="#">Exportar como Excel</a></li>
-                             <li><a href="#">Mostrar Perfil de puesto Completo</a></li>
-                         </ul>
-                     </div>
-                  </div>
-             </div>
-             <!--end-->
-        </header>
+                <div class="form-group ">
+                    <div class="clearfix">
+                        <!--start-->
+                        <div class="btn-group pull-right">
+                            <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
+                                Herramientas <span class="caret"></span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="#">Imprimir</a></li>
+                                <li><a href="#">Guardar como PDF</a></li>
+                                <li><a href="#">Exportar como Excel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+            </header>
 
             <div class="panel-body">
                 <div class="form">
@@ -49,7 +48,27 @@
                         <div class="form-group ">
                             <label for="password" class="control-label col-lg-2">Puesto de Trabajo</label>
                             <div class="col-lg-10">
-                                <input class=" form-control" id="unidad" name="unidad" type="text" disabled />
+                                <input class=" form-control" id="unidad" name="unidad" placeholder="Fiscal" type="text" disabled />
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Unidad Organizativa</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" id="unidad" name="unidad" placeholder="Fiscalía" type="text" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Jefe Inmediato</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" id="unidad" name="unidad" placeholder="Rector" type="text" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="objetivo" class="control-label col-lg-2">Objetivo</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" id="formacionA" name="formacionA" disabled rows="3">Representar judicialmente a la Universidad y prestar diversos servicios de orden legal que incidan en la vida académica, científica, cultural, administrativa y económica de la institución,con el fin de resolver las situaciones jurídicas que atañen a la UNICAES.
+                                </textarea>
                             </div>
                         </div>
 
@@ -57,9 +76,7 @@
                         <div class="form-group">
                             <label class="control-label col-md-3">Fecha de Elaboracion</label>
                             <div class="col-md-3 col-xs-11">
-                                <div class="col-lg-10">
-                                    <input class=" form-control" id="unidad" name="unidad" type="text" disabled/>
-                                </div>
+                                <input class=" form-control" id="unidad" name="unidad" type="text" disabled />
                             </div>
                         </div>
 
@@ -77,72 +94,1144 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-md-3">Fecha </label>
+                            <label class="control-label col-md-3">Fecha de Aprobacion</label>
                             <div class="col-md-3 col-xs-11">
-                                <div class="col-lg-10">
-                                    <input class=" form-control" id="unidad" name="unidad" type="text" disabled />
-                                </div>
+                                <input class=" form-control" id="unidad" name="unidad" type="text" disabled />
                             </div>
                         </div>
 
+                        <div class="form-group ">
+                            <label for="procedimiento" class="control-label col-lg-2">Formacion Academica</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" id="formacionA" name="formacionA" rows="2" disabled>Ser Abogado de la República de El Salvador </textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="procedimiento" class="control-label col-lg-2">Experiencia Laboral</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" id="formacionA" name="formacionA" rows="2" disabled>Ejecicio de la abogacía en El Salvador</textarea>
+                            </div>
+                        </div>
+
+
+
+                        @*<div class="clearfix">
+                            <div class="btn-group">
+                                <button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button">
+                                    Agregar Requisito <i class="fa fa-plus"></i>
+                                </button>
+                            </div>
+                        </div>*@
+
                     </form>
-
-
                 </div>
             </div>
 
-            <!--Start-->
+
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Requisito</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <!--body start-->
+                            <div class="form">
+                                <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+                                    <!--controles-->
+
+                                    <div class="form-group ">
+                                        <label for="password" class="control-label col-lg-2">Tipo de Requisito</label>
+                                        <div class="col-lg-10">
+                                            <select class="form-control m-bot15">
+                                                <option>Formacion Academica</option>
+                                                <option>Experciencia Laboral</option>
+                                                <option>Complementos</option>
+                                                <option>Conocimientos Tecnicos</option>
+                                                <option>Habilidades Personales y Profesionales</option>
+                                                <option>Condiciones necesarias</option>
+                                                <option>Competencias necesarias</option>
+                                                <option>Competencias Especificas</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label for="procedimiento" class="control-label col-lg-2">Denominacion</label>
+                                        <div class="col-lg-10">
+                                            <textarea class="form-control" id="formacionA" name="formacionA" rows="2"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label for="password" class="control-label col-lg-4">Prioridad de Requisito</label>
+                                        <div class="col-lg-8">
+                                            <select class="form-control m-bot15">
+                                                <option>Alto</option>
+                                                <option>Medio</option>
+                                                <option>Bajo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="form-group ">
+                                            <label for="password" class="control-label col-lg-2">Prioridad de Requisito</label>
+                                            <div class="radios col-lg-10">
+                                                <label class="label_radio" for="radio-01">
+                                                    <input name="sample-radio" id="radio-01" value="1" type="radio" checked /> Esencial
+                                                </label>
+                                                <label class="label_radio" for="radio-02">
+                                                    <input name="sample-radio" id="radio-02" value="1" type="radio" /> completario
+                                                </label>
+                                            </div>
+                                        </div>*@
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Años de Experiencia</label>
+
+                                        <div class="col-md-2">
+                                            <div id="spinner1">
+                                                <div class="input-group input-small">
+                                                    <input type="text" class="spinner-input form-control" maxlength="3" readonly>
+                                                    <div class="spinner-buttons input-group-btn btn-group-vertical">
+                                                        <button type="button" class="btn spinner-up btn-xs btn-default">
+                                                            <i class="fa fa-angle-up"></i>
+                                                        </button>
+                                                        <button type="button" class="btn spinner-down btn-xs btn-default">
+                                                            <i class="fa fa-angle-down"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!--controles end-->
+                                </form>
+                            </div>
+
+                            <!--body end-->
+                        </div>
+
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                            <button class="btn btn-success" type="button">Agregar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- modal -->
+
+
+
             <div class="panel-body">
-                <div class="form">
-                    <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+                <div class="adv-table editable-table ">
+                    @*<header class="panel-heading">
+                            Complementos
+                        </header>*@
+                    <br />
 
-                        <div class="form-group ">
-                            <label for="password" class="control-label col-lg-2">Tipo de Requisito</label>
-                            <div class="col-lg-10">
-                                <input class=" form-control" id="unidad" name="unidad" type="text" disabled />
-                            </div>
-                        </div>
+                    <div class="space15"></div>
 
-                        <div class="form-group ">
-                            <label for="password" class="control-label col-lg-2">Nivel de Requisito</label>
-                            <div class="col-lg-10">
-                                <input class=" form-control" id="unidad" name="unidad" type="text" disabled />
-                            </div>
-                        </div>
+                    <div class="table-responsive">
 
-                        <div class="form-group ">
-                            <label for="password" class="control-label col-lg-2">Prioridad de Requisito</label>
-                            <div class="col-lg-10">
-                                <input class=" form-control" id="unidad" name="unidad" type="text" disabled />
-                            </div>
-                        </div>
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><i class=" "></i> Complementos</th>
 
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a>Maestria</a></td>
 
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                @*<tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
 
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                boka soka
+                                            </a>
+                                        </td>
 
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Años de Experiencia</label>
-                            <div class="col-md-2">
-                                <div class="col-lg-10">
-                                    <input class=" form-control" id="unidad" name="unidad" type="text" disabled />
-                                </div>
-                            </div>
-                        </div>
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                salbal llb
+                                            </a>
+                                        </td>
 
-                        <div class="form-group ">
-                            <label for="objetivo" class="control-label col-lg-2">Denominación</label>
-                            <div class="col-lg-10">
-                                <input class=" form-control" id="objetivo" name="objetivo" type="text" disabled/>
-                            </div>
-                        </div>
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Vector Ltd</a></td>
 
-                    </form>
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
 
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Vector Ltd</a></td>
 
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+
+                    </div>
                 </div>
             </div>
 
-            <!--End-->
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <header class="panel-heading">
+                        Funciones
+                    </header>
+                    <br />
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><i class=" "></i>Descripcion</th>
+
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Elaborar o revisar los aspectos jurídicos de los convenios, 
+                                            actos y contratos que han de ser suscritos por la Universidad, 
+                                            a fin de proteger los intereses de la misma.
+                                        </a>
+                                    </td>
+
+                                    @*<td>
+                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                        <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Intervenir en los asuntos judiciales que atañen a la Universidad.
+                                        </a>
+                                    </td>
+
+                                    @*<td>
+                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                        <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                </td>*@
+                                </tr>
+                                <tr>
+                                <td>
+                                    <a href="#">
+                                        Tramitar los asuntos jurídicos universitarios ante las autoridades competentes.
+                                    </a>
+                                </td>
+
+                                @*<td>
+                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">
+                                        Asesorar legalmente a los organismos y a las autoridades de la Universidad.
+                                    </a>
+                                </td>
+
+                                @*<td>
+                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">
+                                        Asesorar legalmente a las instancias de la Universidad que prestan servicios de docencia, 
+                                        investigación y proyección social que lo requieran.
+                                    </a>
+                                </td>
+
+                                @*<td>
+                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">
+                                        Supervisar la totalidad documental del inventario de los bienes inmuebles que integran el patrimonio universitario.
+                                    </a>
+                                </td>
+
+                                @*<td>
+                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">
+                                        Ordenar jurídicamente, en coordinación con la Unidad de Contabilidad, los títulos de propiedad o utilización de los bienes 
+                                        muebles e inmuebles de la Universidad, que han sido adquiridos por la UNICAES a cualquier título.
+                                    </a>
+                                </td>
+
+                                @*<td>
+                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">
+                                        Realizar trámites jurídicos en materia de propiedad intelectual e industrial de la Universidad.
+                                    </a>
+                                </td>
+
+                                @*<td>
+                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <a href="#">
+                                        Revisar, con la periodicidad oportuna, la situación jurídica de cada uno de los bienes 
+                                        inmuebles que conforman el patrimonio universitario, y su inscripción en el Registro de la Propiedad.
+                                    </a>
+                                </td>
+
+                                @*<td>
+                                    <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                </td>*@
+                            </tr>
+                            
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <header class="panel-heading">
+                        Conocimientos Tecnicos
+                    </header>
+                    <br />
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><i class=" "></i> Conocimientos</th>
+
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#">Normativas, leyes y reglamentos que rigen lo laboral, tributario y la educación, en El Salvador</a></td>
+
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Manejo de paquetes informáticos
+                                        </a>
+                                    </td>
+
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                @*<tr>
+                                        <td>
+                                            <a href="#">
+                                                boka soka
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                salbal llb
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <header class="panel-heading">
+                        Habilidades Personales y Profesionales
+                    </header>
+                    <br />
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><i class=" "></i> Habilidades</th>
+
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#">Negociación </a></td>
+
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Comunicación efectiva
+                                        </a>
+                                    </td>
+
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Proactivo
+                                        </a>
+                                    </td>
+
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Iniciativa
+                                        </a>
+                                    </td>
+
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                @*<tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <header class="panel-heading">
+                        Condiciones Personales
+                    </header>
+                    <br />
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><i class=" "></i> Condiciones </th>
+
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#">En consonancia con los principios institucionales</a></td>
+
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Disponibilidad de tiempo
+                                        </a>
+                                    </td>
+
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Reconocida honorabilidad
+                                        </a>
+                                    </td>
+
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Honesto
+                                        </a>
+                                    </td>
+
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                @*<tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <header class="panel-heading">
+                        Competencias Necesarias
+                    </header>
+                    <br />
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><i class=" "></i> Descripcion</th>
+                                    <th><i class=" "></i> Prioridad</th>
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#">Compromiso</a></td>
+                                    <td><a href="#">Alto</a></td>
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Ética e Integridad
+                                        </a>
+                                    </td>
+                                    <td><a href="#">Alto</a></td>
+
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Orientación al cliente interno-externo
+                                        </a>
+                                    </td>
+                                    <td><a href="#">Alto</a></td>
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Adaptabilidad al cambio
+                                        </a>
+                                    </td>
+                                    <td><a href="#">Alto</a></td>
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Trabajo bajo presión</a></td>
+                                    <td><a href="#">Alto</a></td>
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Trabajo en equipo
+                                        </a>
+                                    </td>
+                                    <td><a href="#">Alto</a></td>
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                @*<tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <header class="panel-heading">
+                        Competencias Especificas
+                    </header>
+                    <br />
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><i class=" "></i> Descripcion</th>
+                                    <th><i class=" "></i> Prioridad</th>
+                                    @*<th></th>*@
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a href="#">Liderazgo</a></td>
+                                    <td><a href="#">Alto</a></td>
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Pensamiento estratégico
+                                        </a>
+                                    </td>
+                                    <td><a href="#">Alto</a></td>
+
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Relaciones públicas
+                                        </a>
+                                    </td>
+                                    <td><a href="#">Alto</a></td>
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a href="#">
+                                            Habilidades mediáticas
+                                        </a>
+                                    </td>
+                                    <td><a href="#">Alto</a></td>
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                <tr>
+                                    <td><a href="#">Modalidades de contacto</a></td>
+                                    <td><a href="#">Alto</a></td>
+                                    @*<td>
+                                        <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                    </td>*@
+                                </tr>
+                                @*<tr>
+                                        <td>
+                                            <a href="#">
+                                                Trabajo en equipo
+                                            </a>
+                                        </td>
+                                        <td><a href="#">Alto</a></td>
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                        <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>*@
+                                @*<tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="#">Vector Ltd</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <a href="#">
+                                                Adimin co
+                                            </a>
+                                        </td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                            <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>*@
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            @*<div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                <button class="btn btn-success" type="button">Agregar</button>
+
+            </div>*@
 
         </section>
         <!-- page end-->
@@ -150,23 +1239,24 @@
 </section>
 <!--main content end-->
 <!--end new code-->
+<!--Start JavaScript-->
+@section JavaScript {
 
+    <!--this page plugins-->
+    <script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
-<script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
-<script src="~/Content/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!--this page  script only-->
-<script src="~/Content/js/form-component.js"></script>
+    <!--this page  script only-->
+    <script src="~/Content/js/form-component.js"></script>
 
+    <!--select2-->
+    <script type="text/javascript">
 
-<!--select2-->
-<script type="text/javascript">
+        $(document).ready(function () {
+            $(".js-example-basic-single").select2();
 
-    $(document).ready(function () {
-        $(".js-example-basic-single").select2();
-
-        $(".js-example-basic-multiple").select2();
-    });
-</script>
+            $(".js-example-basic-multiple").select2();
+        });
+    </script>
 
 }
 <!--End JavaScript-->
