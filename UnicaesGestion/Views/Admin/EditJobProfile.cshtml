@@ -98,13 +98,13 @@
 
 
 
-                        <div class="clearfix">
+                        @*<div class="clearfix">
                             <div class="btn-group">
                                 <button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button">
                                     Agregar Requisito <i class="fa fa-plus"></i>
                                 </button>
                             </div>
-                        </div>
+                        </div>*@
 
                     </form>
                 </div>
@@ -305,13 +305,13 @@
                     </div>
                 </div>
             </div>
-            <!-- modal -->
+            <!-- end edit modal -->
 
             <div class="panel-body">
                 <div class="adv-table editable-table ">
-                    @*<header class="panel-heading">
+                    <header class="panel-heading">
                             Complementos
-                        </header>*@
+                        </header>
                     <br />
 
                     <div class="space15"></div>
@@ -321,9 +321,12 @@
                         <table class="table table-bordered table-striped table-advance table-hover">
                             <thead>
                                 <tr>
-                                    <th><i class=" "></i> Complementos</th>
-
-                                    <th></th>
+                                    <th><i class=" "></i> Descripcion</th>
+                                    <th>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" href="#myModal" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th> 
                                 </tr>
                             </thead>
                             <tbody>
@@ -466,8 +469,12 @@
                             <thead>
                                 <tr>
                                     <th><i class=" "></i> Conocimientos</th>
+                                    <th>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" href="#myModal" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th>                             
 
-                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -607,8 +614,11 @@
                             <thead>
                                 <tr>
                                     <th><i class=" "></i> Habilidades</th>
-
-                                    <th></th>
+                                    <th>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" href="#myModal" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -748,8 +758,11 @@
                             <thead>
                                 <tr>
                                     <th><i class=" "></i> Condiciones </th>
-
-                                    <th></th>
+                                    <th>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" href="#myModal" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -890,7 +903,11 @@
                                 <tr>
                                     <th><i class=" "></i> Descripcion</th>
                                     <th><i class=" "></i> Prioridad</th>
-                                    <th></th>
+                                    <th>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" href="#editModal" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -1032,7 +1049,11 @@
                                 <tr>
                                     <th><i class=" "></i> Descripcion</th>
                                     <th><i class=" "></i> Prioridad</th>
-                                    <th></th>
+                                    <th>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" href="#editModal" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
