@@ -749,6 +749,7 @@
     <Content Include="Content\js\dynamic_table_init.js" />
     <Content Include="Content\js\easy-pie-chart.js" />
     <Content Include="Content\js\editable-table.js" />
+    <Content Include="Content\js\editableOneColumn.js" />
     <Content Include="Content\js\external-dragging-calendar.js" />
     <Content Include="Content\js\flot-chart.js" />
     <Content Include="Content\js\form-component.js" />
