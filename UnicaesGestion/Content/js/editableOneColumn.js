@@ -18,23 +18,24 @@ var EditableColumn = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-                jqTds[0].innerHTML = '<input type="text" class="form-control small" value="' + aData[0] + '">';                              
-                jqTds[1].innerHTML = '<a class="edit" href="">Save</a>';
-                jqTds[2].innerHTML = '<a class="cancel" href="">Cancel</a>';
+                //jqTds[0].innerHTML = '<input type="text" class="form-control small" value="' + aData[0] + '">'; 
+                jqTds[0].innerHTML = '<textarea class="form-control" rows="3" cols="120" value="' + aData[0] + '"></textarea>'; 
+                jqTds[1].innerHTML = '<a href="" class="edit btn btn-primary btn-default"><i class="fa fa-save"></i></a>';
+                jqTds[2].innerHTML = '<a href="" class="cancel btn btn-primary btn-default"><i class="fa fa-times"></i></a>';
             }
 
             function saveRow(oTable, nRow) {
                 var jqInputs = $('input', nRow);
                 oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);                              
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 1, false);
-                oTable.fnUpdate('<a class="delete" href="">Delete</a>', nRow, 2, false);
+                oTable.fnUpdate('<a href="" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i></a>', nRow, 1, false);
+                oTable.fnUpdate('<a href="" class="delete btn btn-primary btn-default"><i class="fa fa-trash-o"></i></a>', nRow, 2, false);
                 oTable.fnDraw();
             }
 
             function cancelEditRow(oTable, nRow) {
                 var jqInputs = $('input', nRow);
                 oTable.fnUpdate(jqInputs[0].value, nRow, 0, false);                
-                oTable.fnUpdate('<a class="edit" href="">Edit</a>', nRow, 1, false);
+                oTable.fnUpdate('<a href="" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i></a>', nRow, 1, false);
                 oTable.fnDraw();
             }
 
@@ -69,7 +70,7 @@ var EditableColumn = function () {
             $('#edit-table-button').click(function (e) {
                 e.preventDefault();
                 var aiNew = oTable.fnAddData(['', 
-                        '<a class="edit" href="">Edit</a>', '<a class="cancel" data-mode="new" href="">Cancel</a>'
+                    '<a href="" class="edit btn btn-primary btn-default"><i class="fa fa-pencil"></i></a>', '<a href="" class="btn cancel btn-primary btn-default"><i class="fa fa-times"></i></a>'
                 ]);
                 var nRow = oTable.fnGetNodes(aiNew[0]);
                 editRow(oTable, nRow);
