@@ -217,28 +217,16 @@
 
                                     <div class="form-group">
                                         <label class="control-label col-md-3">No. paso</label>
-                                        <div class="col-md-2">
-                                            <div id="spinner1">
-                                                <div class="input-group input-small">
-                                                    <input type="text" class="spinner-input form-control" maxlength="3" readonly>
-                                                    <div class="spinner-buttons input-group-btn btn-group-vertical">
-                                                        <button type="button" class="btn spinner-up btn-xs btn-default">
-                                                            <i class="fa fa-angle-up"></i>
-                                                        </button>
-                                                        <button type="button" class="btn spinner-down btn-xs btn-default">
-                                                            <i class="fa fa-angle-down"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div class="col-md-2">                                            
+                                                <input class=" form-control" id="npaso"  name="unidad" type="text" />
+                                         </div>
                                     </div>
 
 
                                     <div class="form-group ">
                                         <label for="password" class="control-label col-lg-2">Responsable</label>
                                         <div class="col-lg-10">
-                                            <select class="form-control m-bot15">
+                                            <select class="form-control m-bot15" id="cbxResponsable">
                                                 <option>Mecanico</option>
                                                 <option>Auxiliar Contable</option>
                                                 <option>Director Administrativo</option>
@@ -249,7 +237,7 @@
                                     <div class="form-group ">
                                         <label for="unidad" class="control-label col-lg-2">Descripcion</label>
                                         <div class="col-lg-10">
-                                            <textarea class="form-control" id="procedimiento" name="procedimiento" rows="2"> Al iniciar las labores, se procede a asear los vehiculos y se efectuan las revisiones mecanicas de estos.</textarea>
+                                            <textarea class="form-control" id="descripcion" name="procedimiento" rows="2"> Al iniciar las labores, se procede a asear los vehiculos y se efectuan las revisiones mecanicas de estos.</textarea>
 
                                         </div>
                                     </div>
@@ -257,7 +245,7 @@
                                     <div class="form-group ">
                                         <label for="password" class="control-label col-lg-2">Figura</label>
                                         <div class="col-lg-10">
-                                            <select class="form-control m-bot15">
+                                            <select class="form-control m-bot15" id="figura">
                                                 <option>Acttividad</option>
                                                 <option>Decision</option>
                                                 <option>Documento</option>
@@ -292,7 +280,7 @@
 
                         <div class="modal-footer">
                             <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
-                            <button class="btn btn-success" type="button">Agregar</button>
+                            <button class="btn btn-success" onclick="Obtener()" type="button">Agregar</button>
 
                         </div>
                     </div>
@@ -308,6 +296,8 @@
 
 <!--Start JavaScript-->
 @section JavaScript {
+<script src="~/Content/js/ModalFunction.js"></script>
+
     <script>
         $(document).ready(function () {
             EditableTable.init();

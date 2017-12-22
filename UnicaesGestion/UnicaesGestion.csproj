@@ -781,6 +781,7 @@
     <Content Include="Content\js\jquery.tagsinput.js" />
     <Content Include="Content\js\jquery.ui.touch-punch.min.js" />
     <Content Include="Content\js\jquery.validate.min.js" />
+    <Content Include="Content\js\ModalFunction.js" />
     <Content Include="Content\js\modernizr.custom.js" />
     <Content Include="Content\js\morris-script.js" />
     <Content Include="Content\js\nestable.js" />
