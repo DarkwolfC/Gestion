@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using UnicaesGestion.Models;
 
 namespace UnicaesGestion.Controllers
 {
@@ -15,6 +16,14 @@ namespace UnicaesGestion.Controllers
 
         public ActionResult Login()
         {
+            LoginModel modelo = new LoginModel();
+            return View(modelo);
+        }
+
+        [HttpPost]
+        public ActionResult Auth(Models.LoginModel modelo)
+        {
+
             return View();
         }
 
