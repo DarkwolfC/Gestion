@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2bb4cdda4f444b21afdf2a6396612184" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="GestionModel.Criterio" Width="1.5" PointX="3.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.FuncionPuestoTrabajo" Width="1.5" PointX="5.25" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.FuncionUnidad" Width="1.5" PointX="7.5" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.Paso" Width="1.5" PointX="8.25" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.PerfilContratacion" Width="1.5" PointX="0.75" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.Personal" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.PrioridadRequisito" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.Procedimiento" Width="1.5" PointX="6" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.PuestoTrabajo" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.Requisito" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.TipoPaso" Width="1.5" PointX="6" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.TipoPuesto" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.TipoRequisito" Width="1.5" PointX="3.75" PointY="21.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="GestionModel.Unidad" Width="1.5" PointX="5.25" PointY="16.5" IsExpanded="true" />
+        <AssociationConnector Association="GestionModel.criterios_requisito" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.funcionPuestoTrabajo_puestoTrabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.funcionUnidad_unidad" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.paso_procedimiento" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.paso_puestoTrabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.paso_tipoPaso" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.puestoTrabajo_perfilContratacion" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.requisito_perfilContratacion" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.personal_puestoTrabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.requisito_prioridadRequisito" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.puestoTrabajo_puestoTrabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.puestoTrabajo_tipoPuesto" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.puestoTrabajo_unidad" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.unidad_puestoTrabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.requisito_tipoRequisito" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.unidad_unidad" ManuallyRouted="false" />
+        <AssociationConnector Association="GestionModel.ProcedimientoUnidad" />
+        <EntityTypeShape EntityType="GestionModel.Credential" Width="1.5" PointX="7.5" PointY="13.5" />
+        <EntityTypeShape EntityType="GestionModel.Role" Width="1.5" PointX="5.25" PointY="24" />
+        <AssociationConnector Association="GestionModel.FK_Credentials_Personal" />
+        <AssociationConnector Association="GestionModel.FK_Credentials_Roles" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
