@@ -1,20 +1,8 @@
 ﻿@model IEnumerable<UnicaesGestion.Criterio>
 
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
-
 <ul id="myUL" class="task-list">
     @foreach (var item in Model)
-     {
+    {
         <li>
 
             <div class="task-title">
@@ -29,34 +17,6 @@
         </li>
 
     }
-
-    
-
 </ul>
 
 
-
-
-
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.criterio1)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.criterio1)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
-</table>*@

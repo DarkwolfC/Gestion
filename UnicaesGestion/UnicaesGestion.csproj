@@ -1080,6 +1080,7 @@
     <Content Include="Views\Roles\Details.cshtml" />
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Criterios\_PartialList.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

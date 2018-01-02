@@ -18,7 +18,7 @@ namespace UnicaesGestion.Controllers
         // GET: Criterios
         public async Task<ActionResult> Index()
         {
-            return View(await db.Criterios.ToListAsync());
+            return PartialView( "_PartialList",  await db.Criterios.ToListAsync());
         }
 
         // GET: Criterios/Details/5
@@ -37,9 +37,10 @@ namespace UnicaesGestion.Controllers
         }
 
         // GET: Criterios/Create
-        [Authorize]
+       // [Authorize]
         public ActionResult Create()
         {
+            ViewBag.lista =  db.Criterios.ToList();
             return View();
         }
 
@@ -54,7 +55,7 @@ namespace UnicaesGestion.Controllers
             {
                 db.Criterios.Add(criterio);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("create");
             }
 
             return View(criterio);
