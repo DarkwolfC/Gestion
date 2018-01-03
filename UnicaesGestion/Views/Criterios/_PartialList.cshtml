@@ -10,8 +10,9 @@
 
                 <div class="pull-right hidden-phone">
                     <button onclick="location.href='@Url.Action("Edit", "Criterios", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-eye"></i> </button>
-                    <button onclick="location.href='@Url.Action("Delete", "Delete", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                    <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                    <button onclick="location.href='@Url.Action("Delete", "Criterios", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                    @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
+                    <button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>
                 </div>
             </div>
         </li>
@@ -20,3 +21,39 @@
 </ul>
 
 
+  <!-- Modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Criterio</h4>
+            </div>
+
+            <div class="modal-body">
+                <!--body start-->
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+
+                        <div class="form-group ">
+                            @*<label for="unidad" class="control-label col-lg-2">Descripcion</label>*@
+                            <div class="col-lg-10">
+                                <textarea class="form-control" id="descripcion" name="procedimiento" rows="2"> Al iniciar las labores, se procede a asear los vehiculos y se efectuan las revisiones mecanicas de estos.</textarea>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <!--body end-->
+            </div>
+
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                <button class="btn btn-success"  type="button">Guardar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
