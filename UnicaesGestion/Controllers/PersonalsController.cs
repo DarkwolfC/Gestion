@@ -38,7 +38,7 @@ namespace UnicaesGestion.Controllers
         }
 
         // GET: Personals/Create
-        public ActionResult Create()
+        public ActionResult AddUser()
         {
             ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
             ViewBag.id = new SelectList(db.Credentials, "idPersonal", "user");
@@ -50,7 +50,7 @@ namespace UnicaesGestion.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "id,nombre,apellido,foto,idPuestoTrabajo")] Personal personal)
+        public async Task<ActionResult> AddUser([Bind(Include = "id,nombre,apellido,foto,idPuestoTrabajo")] Personal personal)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +65,7 @@ namespace UnicaesGestion.Controllers
         }
 
         // GET: Personals/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+        public async Task<ActionResult> EditUser(int? id)
         {
             if (id == null)
             {
@@ -86,7 +86,7 @@ namespace UnicaesGestion.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "id,nombre,apellido,foto,idPuestoTrabajo")] Personal personal)
+        public async Task<ActionResult> EditUser([Bind(Include = "id,nombre,apellido,foto,idPuestoTrabajo")] Personal personal)
         {
             if (ModelState.IsValid)
             {

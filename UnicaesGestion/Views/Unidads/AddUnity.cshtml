@@ -1,4 +1,7 @@
 ﻿
+@model UnicaesGestion.Unidad
+
+
 @{
     ViewBag.Title = "AddUnity";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,120 +17,46 @@
         <section class="panel">
             <header class="panel-heading">
                  Nueva Unidad
-            </header>
-
-            @*<header class="panel-heading">
-                <div class="form-group ">
-                    <div class="clearfix">
-                        <!--start-->
-                        <div class="btn-group pull-right">
-                            <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
-                                Herramientas <span class="caret"></span>
-                            </button>
-                            <ul role="menu" class="dropdown-menu">
-                                <li><a href="#">Imprimir</a></li>
-                                <li><a href="#">Guardar como PDF</a></li>
-                                <li><a href="#">Exportar como Excel</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!--end-->
-            </header>*@
+            </header>        
 
             <div class="panel-body">
-                <div class="form">
-                    <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+               @using (Html.BeginForm())
+               {
+                @Html.AntiForgeryToken()
                         <div class="form-group ">
-                            <label for="unidad" class="control-label col-lg-2">Unidad</label>
+                            @*<label for="unidad" class="control-label col-lg-2">Unidad</label>*@
+                            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-lg-2" })
                             <div class="col-lg-10">
-                                <input class=" form-control" id="unidad" placeholder="Mantenimiento Menor de vehiculos" name="unidad" type="text" />
+                                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
+                        
                         <div class="form-group ">
                             <label for="objetivo" class="control-label col-lg-2">Objetivo</label>
                             <div class="col-lg-10">
-                                <input class=" form-control" id="objetivo" name="objetivo" type="text" />
+                                @Html.EditorFor(model => model.objetivo, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
-                        @*<div class="form-group ">
-                            <label for="password" class="control-label col-lg-2">Dependencia</label>
-                            <div class="col-lg-10">
-                                <select class="form-control m-bot15">
-                                    <option>Opción 1</option>
-                                    <option>Opción 2</option>
-                                    <option>Opción 3</option>
-                                </select>
-                            </div>
-                        </div>*@
+                      
 
                         <div class="form-group last">
                             <label class="control-label col-md-3">Dependencias:</label>
+                            @Html.LabelFor(model => model.depende, "depende", htmlAttributes: new { @class = "control-label col-md-3" })
                             <div class="col-md-9">
-                                <select name="country" class="multi-select" multiple="" id="my_multi_select2">
-                                    <option value="AF">Rectoria</option>
-                                    <option value="AL">Vicerrectoría General</option>
-                                    <option value="DZ">Auditoría</option>
-                                    <option value="AS">Auditoría Interna</option>
-                                    <option value="AD">Comunicaciones</option>
-                                    <option value="AO">Unidad de Comunicaciones y Mercadeo</option>
-                                    <option value="AI">Facultad de Jurisprudencia y Ciencias Sociales</option>
-                                   
-                                </select>
+                              @Html.ListBox("id", new MultiSelectList(ViewData["depende"] as System.Collections.IEnumerable, "Id", "nombre", Model.depende(x => x.id).AsEnumerable()))
+                                @*@Html.Partial("_PartialListDependences", new ViewDataDictionary(@ViewBag.depende))*@
+                            
                             </div>
                         </div>
+               }
 
-                        <div class="form-group last">
-                            <label class="control-label col-md-3">Conformado por:</label>
-                            <div class="col-md-9">
-                                <select name="country" class="multi-select" multiple="" id="my_multi_select3">
-                                    <option value="AF">Jose Vasquez</option>
-                                    <option value="AL">Claudia Torres</option>
-                                    <option value="DZ">Jaime Rodriguez</option>
-                                    <option value="AS">Nanci Rebeca</option>
-                                    <option value="AD">Ismael Salinas</option>
-                                    <option value="AO">Joao Salazar</option>
-                                    <option value="AI">Ruben Cerna</option>
-                                    <option value="AQ">Carlos Salguero</option>
-                                    <option value="AR">Alex Linares</option>
-                                    <option value="AM">Jose Pacheco</option>
-                                    <option value="AW">Iris Martinez</option>
-                                    <option value="AU">Sonia Perez</option>
-                                </select>
-                            </div>
-                        </div>
-
-                       
-                    </form>
-                </div>
             </div>
 
-            
 
-            @*<div class="panel-body">
-                <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
-                    <div class="form-group last">
-                        <label class="control-label col-md-3">Conformado por:</label>
-                        <div class="col-md-9">
-                            <select name="country" class="multi-select" multiple="" id="my_multi_select3">
-                                <option value="AF">Jose Vasquez</option>
-                                <option value="AL">Claudia Torres</option>
-                                <option value="DZ">Jaime Rodriguez</option>
-                                <option value="AS">Nanci Rebeca</option>
-                                <option value="AD">Ismael Salinas</option>
-                                <option value="AO">Joao Salazar</option>
-                                <option value="AI">Ruben Cerna</option>
-                                <option value="AQ">Carlos Salguero</option>
-                                <option value="AR">Alex Linares</option>
-                                <option value="AM">Jose Pacheco</option>
-                                <option value="AW">Iris Martinez</option>
-                                <option value="AU">Sonia Perez</option>
-                            </select>
-                        </div>
-                    </div>
-                </form>
-            </div>*@
-          
+
+
+
+
 
             <div class="panel-body">
                 <div class="adv-table editable-table ">

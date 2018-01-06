@@ -153,9 +153,15 @@
     <Compile Include="Class\Security.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CriteriosController.cs" />
+    <Compile Include="Controllers\FuncionPuestoTrabajoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PerfilContratacionsController.cs" />
     <Compile Include="Controllers\PersonalsController.cs" />
+    <Compile Include="Controllers\PrioridadRequisitoesController.cs" />
+    <Compile Include="Controllers\ProcedimientoesController.cs" />
+    <Compile Include="Controllers\PuestoTrabajoesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\UnidadsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Credential.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -187,6 +193,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\FuncionTrabajoViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Paso.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -1040,30 +1047,30 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Admin\AddJob.cshtml" />
-    <Content Include="Views\Admin\AddJobProfile.cshtml" />
-    <Content Include="Views\Admin\AddProcedure.cshtml" />
-    <Content Include="Views\Admin\AddUnity.cshtml" />
-    <Content Include="Views\Admin\AddUser.cshtml" />
+    <Content Include="Views\PuestoTrabajoes\AddJob.cshtml" />
+    <Content Include="Views\PerfilContratacions\AddJobProfile.cshtml" />
+    <Content Include="Views\Procedimientoes\AddProcedure.cshtml" />
+    <Content Include="Views\Unidads\AddUnity.cshtml" />
+    <Content Include="Views\Personals\AddUser.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\LockScreen.cshtml" />
     <Content Include="Views\User\Perfil.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
-    <Content Include="Views\Admin\ReadProcedure.cshtml" />
-    <Content Include="Views\Admin\EditProcedure.cshtml" />
-    <Content Include="Views\Admin\ReadJob.cshtml" />
-    <Content Include="Views\Admin\EditJob.cshtml" />
-    <Content Include="Views\Admin\ReadUnity.cshtml" />
-    <Content Include="Views\Admin\EditUnity.cshtml" />
-    <Content Include="Views\Admin\ReadJobProfile.cshtml" />
-    <Content Include="Views\Admin\EditJobProfile.cshtml" />
+    <Content Include="Views\Procedimientoes\ReadProcedure.cshtml" />
+    <Content Include="Views\Procedimientoes\EditProcedure.cshtml" />
+    <Content Include="Views\PuestoTrabajoes\ReadJob.cshtml" />
+    <Content Include="Views\PuestoTrabajoes\EditJob.cshtml" />
+    <Content Include="Views\Unidads\ReadUnity.cshtml" />
+    <Content Include="Views\Unidads\EditUnity.cshtml" />
+    <Content Include="Views\PerfilContratacions\ReadJobProfile.cshtml" />
+    <Content Include="Views\PerfilContratacions\EditJobProfile.cshtml" />
     <Content Include="Views\User\Banner.cshtml" />
     <Content Include="Views\User\SearchProcedure.cshtml" />
     <Content Include="Views\User\SearchUnity.cshtml" />
     <Content Include="Views\User\SearchJob.cshtml" />
     <Content Include="Views\User\SearchJobProfile.cshtml" />
-    <Content Include="Views\Admin\ReadUser.cshtml" />
-    <Content Include="Views\Admin\EditUser.cshtml" />
+    <Content Include="Views\Personals\ReadUser.cshtml" />
+    <Content Include="Views\Personals\EditUser.cshtml" />
     <Content Include="Views\Criterios\Create.cshtml" />
     <Content Include="Views\Criterios\Delete.cshtml" />
     <Content Include="Views\Criterios\Details.cshtml" />
@@ -1081,8 +1088,41 @@
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Criterios\_PartialList.cshtml" />
+    <Content Include="Views\Unidads\Create.cshtml" />
+    <Content Include="Views\Unidads\Delete.cshtml" />
+    <Content Include="Views\Unidads\Details.cshtml" />
+    <Content Include="Views\Unidads\Edit.cshtml" />
+    <Content Include="Views\Unidads\Index.cshtml" />
+    <Content Include="Views\Unidads\_PartialListDependences.cshtml" />
+    <Content Include="Views\PuestoTrabajoes\Create.cshtml" />
+    <Content Include="Views\PuestoTrabajoes\Delete.cshtml" />
+    <Content Include="Views\PuestoTrabajoes\Details.cshtml" />
+    <Content Include="Views\PuestoTrabajoes\Edit.cshtml" />
+    <Content Include="Views\PuestoTrabajoes\Index.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajo\Create.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajo\Delete.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajo\Details.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajo\Edit.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajo\Index.cshtml" />
+    <Content Include="Views\PerfilContratacions\Create.cshtml" />
+    <Content Include="Views\PerfilContratacions\Delete.cshtml" />
+    <Content Include="Views\PerfilContratacions\Details.cshtml" />
+    <Content Include="Views\PerfilContratacions\Edit.cshtml" />
+    <Content Include="Views\PerfilContratacions\Index.cshtml" />
+    <Content Include="Views\Procedimientoes\Create.cshtml" />
+    <Content Include="Views\Procedimientoes\Delete.cshtml" />
+    <Content Include="Views\Procedimientoes\Details.cshtml" />
+    <Content Include="Views\Procedimientoes\Edit.cshtml" />
+    <Content Include="Views\Procedimientoes\Index.cshtml" />
+    <Content Include="Views\PrioridadRequisitoes\Create.cshtml" />
+    <Content Include="Views\PrioridadRequisitoes\Delete.cshtml" />
+    <Content Include="Views\PrioridadRequisitoes\Details.cshtml" />
+    <Content Include="Views\PrioridadRequisitoes\Edit.cshtml" />
+    <Content Include="Views\PrioridadRequisitoes\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Admin\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>

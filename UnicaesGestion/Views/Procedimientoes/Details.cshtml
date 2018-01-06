@@ -1,0 +1,43 @@
+﻿@model UnicaesGestion.Procedimiento
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Procedimiento</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objetivoInicial)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objetivoInicial)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objetvioFinal)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objetvioFinal)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,51 @@
+﻿@model UnicaesGestion.PerfilContratacion
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PerfilContratacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaElaboracion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaElaboracion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.analista)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.analista)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aprobadoPor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aprobadoPor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fecha)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fecha)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
