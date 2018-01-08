@@ -161,6 +161,7 @@
     <Compile Include="Controllers\ProcedimientoesController.cs" />
     <Compile Include="Controllers\PuestoTrabajoesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
+    <Compile Include="Controllers\TipoPasoesController.cs" />
     <Compile Include="Controllers\UnidadsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Credential.cs">
@@ -844,6 +845,7 @@
     <Content Include="Content\js\form-image-crop.js" />
     <Content Include="Content\js\form-validation-script.js" />
     <Content Include="Content\js\ga.js" />
+    <Content Include="Content\js\Get-value-table.js" />
     <Content Include="Content\js\gmaps-scripts.js" />
     <Content Include="Content\js\gmaps.js" />
     <Content Include="Content\js\gritter.js" />
@@ -1119,6 +1121,11 @@
     <Content Include="Views\PrioridadRequisitoes\Details.cshtml" />
     <Content Include="Views\PrioridadRequisitoes\Edit.cshtml" />
     <Content Include="Views\PrioridadRequisitoes\Index.cshtml" />
+    <Content Include="Views\TipoPasoes\Create.cshtml" />
+    <Content Include="Views\TipoPasoes\Delete.cshtml" />
+    <Content Include="Views\TipoPasoes\Details.cshtml" />
+    <Content Include="Views\TipoPasoes\Edit.cshtml" />
+    <Content Include="Views\TipoPasoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Admin\" />

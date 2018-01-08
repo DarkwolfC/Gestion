@@ -1,4 +1,4 @@
-﻿
+﻿@model UnicaesGestion.Procedimiento
 @{
     ViewBag.Title = "AddProcedure";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -34,22 +34,19 @@
                         <div class="form-group ">
                             <label for="procedimiento" class="control-label col-lg-2">Procedimiento</label>
                             <div class="col-lg-10">                                
-                                <textarea class="form-control" id="procedimiento" name="procedimiento" rows="3">Asear y revisar, diariamente, el buen funcionamiento de los vehiculos; asi como efectuar y llevar el control de las reparaciones menores.
-                                </textarea>
+                               @Html.TextAreaFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control", rows = "2", cols="20" } })
                             </div>
                         </div>
                         <div class="form-group ">
                             <label for="objetivoI" class="control-label col-lg-2">Objetivo Inicial</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" id="procedimiento" name="procedimiento" rows="2">Al iniciar las labores, se procede a asear los vehiculos y se efectuan las revisiones mecanicas de estos.
-                                </textarea>
+                                @Html.TextAreaFor(model => model.objetivoInicial, new { htmlAttributes = new { @class = "form-control" } })
                             </div>
                         </div>
                         <div class="form-group ">
                             <label for="objetivoF" class="control-label col-lg-2">Objetivo Final</label>
                             <div class="col-lg-10">
-                                <textarea class="form-control" id="procedimiento" name="procedimiento" rows="2">Cuando al haberse efectuado las reparaciones, las anota en la bitacora anual que se lleva de cada vehiculo, para su control.</textarea>
-                                
+                                @Html.TextAreaFor(model => model.objetvioFinal, new { htmlAttributes = new { @class = "form-control" } })                                
                             </div>
                         </div>
 

@@ -10,109 +10,109 @@ using UnicaesGestion;
 
 namespace UnicaesGestion.Controllers
 {
-    public class ProcedimientoesController : Controller
+    public class TipoPasoesController : Controller
     {
         private GestionEntities db = new GestionEntities();
 
-        // GET: Procedimientoes
+        // GET: TipoPasoes
         public ActionResult Index()
         {
-            return View(db.Procedimientoes.ToList());
+            return View(db.TipoPasoes.ToList());
         }
 
-        // GET: Procedimientoes/Details/5
+        // GET: TipoPasoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Procedimiento procedimiento = db.Procedimientoes.Find(id);
-            if (procedimiento == null)
+            TipoPaso tipoPaso = db.TipoPasoes.Find(id);
+            if (tipoPaso == null)
             {
                 return HttpNotFound();
             }
-            return View(procedimiento);
+            return View(tipoPaso);
         }
 
-        // GET: Procedimientoes/Create
-        public ActionResult AddProcedure()
+        // GET: TipoPasoes/Create
+        public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Procedimientoes/Create
+        // POST: TipoPasoes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddProcedure([Bind(Include = "id,nombre,objetivoInicial,objetvioFinal")] Procedimiento procedimiento)
+        public ActionResult Create([Bind(Include = "id,tipoPaso1")] TipoPaso tipoPaso)
         {
             if (ModelState.IsValid)
             {
-                db.Procedimientoes.Add(procedimiento);
+                db.TipoPasoes.Add(tipoPaso);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
-            return View(procedimiento);
+            return View(tipoPaso);
         }
 
-        // GET: Procedimientoes/Edit/5
+        // GET: TipoPasoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Procedimiento procedimiento = db.Procedimientoes.Find(id);
-            if (procedimiento == null)
+            TipoPaso tipoPaso = db.TipoPasoes.Find(id);
+            if (tipoPaso == null)
             {
                 return HttpNotFound();
             }
-            return View(procedimiento);
+            return View(tipoPaso);
         }
 
-        // POST: Procedimientoes/Edit/5
+        // POST: TipoPasoes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,objetivoInicial,objetvioFinal")] Procedimiento procedimiento)
+        public ActionResult Edit([Bind(Include = "id,tipoPaso1")] TipoPaso tipoPaso)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(procedimiento).State = EntityState.Modified;
+                db.Entry(tipoPaso).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
-            return View(procedimiento);
+            return View(tipoPaso);
         }
 
-        // GET: Procedimientoes/Delete/5
+        // GET: TipoPasoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Procedimiento procedimiento = db.Procedimientoes.Find(id);
-            if (procedimiento == null)
+            TipoPaso tipoPaso = db.TipoPasoes.Find(id);
+            if (tipoPaso == null)
             {
                 return HttpNotFound();
             }
-            return View(procedimiento);
+            return View(tipoPaso);
         }
 
-        // POST: Procedimientoes/Delete/5
+        // POST: TipoPasoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Procedimiento procedimiento = db.Procedimientoes.Find(id);
-            db.Procedimientoes.Remove(procedimiento);
+            TipoPaso tipoPaso = db.TipoPasoes.Find(id);
+            db.TipoPasoes.Remove(tipoPaso);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)
