@@ -195,7 +195,9 @@
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\FuncionTrabajoViewModel.cs" />
+    <Compile Include="Models\FuncionUnidadViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\PerfilContratacionViewModel.cs" />
     <Compile Include="Paso.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
