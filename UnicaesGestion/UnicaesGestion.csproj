@@ -162,6 +162,8 @@
     <Compile Include="Controllers\PuestoTrabajoesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TipoPasoesController.cs" />
+    <Compile Include="Controllers\TipoPuestoesController.cs" />
+    <Compile Include="Controllers\TipoRequisitoesController.cs" />
     <Compile Include="Controllers\UnidadsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Credential.cs">
@@ -1128,6 +1130,16 @@
     <Content Include="Views\TipoPasoes\Details.cshtml" />
     <Content Include="Views\TipoPasoes\Edit.cshtml" />
     <Content Include="Views\TipoPasoes\Index.cshtml" />
+    <Content Include="Views\TipoRequisitoes\Create.cshtml" />
+    <Content Include="Views\TipoRequisitoes\Delete.cshtml" />
+    <Content Include="Views\TipoRequisitoes\Details.cshtml" />
+    <Content Include="Views\TipoRequisitoes\Edit.cshtml" />
+    <Content Include="Views\TipoRequisitoes\Index.cshtml" />
+    <Content Include="Views\TipoPuestoes\Create.cshtml" />
+    <Content Include="Views\TipoPuestoes\Delete.cshtml" />
+    <Content Include="Views\TipoPuestoes\Details.cshtml" />
+    <Content Include="Views\TipoPuestoes\Edit.cshtml" />
+    <Content Include="Views\TipoPuestoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Admin\" />

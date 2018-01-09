@@ -7,5 +7,7 @@ namespace UnicaesGestion.Models
 {
     public class PerfilContratacionViewModel
     {
+
+
     }
 }
