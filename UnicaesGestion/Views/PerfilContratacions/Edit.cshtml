@@ -5,58 +5,199 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<link href="~/Content/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-timepicker/compiled/timepicker.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" />
+
+      
+         
+
+            <!--Encabezado Perfil de Contratacion-->
+            <section id="main-content">
+                <section class="wrapper site-min-height">
+                    <!-- page start-->
+                    <section class="panel">
+                        <header class="panel-heading">
+                            Editar Perfil de Contratacion
+                        </header>
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.id)
+                        <div class="panel-body">
+                            @*<div class="form">
+                                <form class="cmxform form-horizontal tasi-form" method="post" action="/PerfilContratacions/Edit">*@
+                            @using (Html.BeginForm())
+                                {
+                                 @Html.AntiForgeryToken()
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Fecha de Elaboracion</label>
+                                        <div class="col-md-3 col-xs-11">
+                                            <div id="fechaElavoracion" data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012"
+                                                 class="input-append date dpYears">
+                                                <div>
+                                                    @Html.EditorFor(model => model.fechaElaboracion, new { htmlAttributes = new { @class = "form-control" } })
+                                                </div>                                               
+                                                <span class="input-group-btn add-on">
+                                                    <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                            <span class="help-block">Seleccionar fecha</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label for="unidad" class="control-label col-lg-2">Analista Responsable</label>
+                                        <div class="col-lg-8">
+                                            @Html.EditorFor(model => model.analista, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label for="password" class="control-label col-lg-2">Aprobado Por</label>
+                                        <div class="col-lg-8">
+                                            @Html.EditorFor(model => model.aprobadoPor, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3">Fecha de Aprobacion</label>
+                                        <div class="col-md-3 col-xs-11">
+                                            <div id="fechaAprobacion" data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012"
+                                                 class="input-append date dpYears">
+                                                @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
+                                                <span class="input-group-btn add-on">
+                                                    <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                                </span>
+                                            </div>
+                                            <span class="help-block">Seleccionar fecha</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                                        @*<button class="btn btn-success" type="submit" value="Create">Agregar</button>*@
+                                        <input class="btn btn-success"  type="submit" value="Save" />                                        
+                                    </div>
+
+                                @*</form>
+                            </div>*@
+                            }
+                        </div>
+
+
+
+                    </section>
+                    <!-- page end-->
+                </section>
+            </section>
+            <!--Fin encabezado-->
+
+          
+
+
+
+
+
+<!--Encabezado Perfil de Contratacion-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+                Editar Perfil de Contratacion
+            </header>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.id)
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form" method="post" action="/PerfilContratacions/Edit/">
+                        @Html.AntiForgeryToken()
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Fecha de Elaboracion</label>
+                            <div class="col-md-3 col-xs-11">
+                                <div id="fechaElavoracion" data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012"
+                                     class="input-append date dpYears">
+                                    @Html.EditorFor(model => model.fechaElaboracion, new { htmlAttributes = new { @class = "form-control" } })
+                                    <span class="input-group-btn add-on">
+                                        <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <span class="help-block">Seleccionar fecha</span>
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Analista Responsable</label>
+                            <div class="col-lg-10">
+                                @Html.EditorFor(model => model.analista, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Aprobado Por</label>
+                            <div class="col-lg-10">
+                                @Html.EditorFor(model => model.aprobadoPor, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Fecha de Aprobacion</label>
+                            <div class="col-md-3 col-xs-11">
+                                <div id="fechaAprobacion" data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012"
+                                     class="input-append date dpYears">
+                                    @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
+                                    <span class="input-group-btn add-on">
+                                        <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <span class="help-block">Seleccionar fecha</span>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                            @*<button class="btn btn-success" type="submit" value="Create">Agregar</button>*@
+                            <input class="btn btn-success" type="submit" value="Save" />  
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+
+
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--Fin encabezado-->
+     
     
-    <div class="form-horizontal">
-        <h4>PerfilContratacion</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.fechaElaboracion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fechaElaboracion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fechaElaboracion, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<!--Start JavaScript-->
+@section JavaScript {
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.analista, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.analista, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.analista, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <!--this page plugins-->
+    <script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.aprobadoPor, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.aprobadoPor, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.aprobadoPor, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <!--this page  script only-->
+    <script src="~/Content/js/form-component.js"></script>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
-            </div>
-        </div>
+    <!--select2-->
+    <script type="text/javascript">
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+    $(document).ready(function () {
+        $(".js-example-basic-single").select2();
+
+        $(".js-example-basic-multiple").select2();
+    });
+    </script>
 }
+<!--End JavaScript-->
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+

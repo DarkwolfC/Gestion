@@ -1,4 +1,4 @@
-﻿@model UnicaesGestion.PuestoTrabajo
+﻿@model UnicaesGestion.Requisito
 
 @{
     ViewBag.Title = "Delete";
@@ -9,23 +9,23 @@
 
 <h3>Are you sure you want to delete this?</h3>
 <div>
-    <h4>PuestoTrabajo</h4>
+    <h4>Requisito</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
-            @Html.DisplayNameFor(model => model.titulo)
+            @Html.DisplayNameFor(model => model.denominacion)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.titulo)
+            @Html.DisplayFor(model => model.denominacion)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.objetivo)
+            @Html.DisplayNameFor(model => model.Criterio.criterio1)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.objetivo)
+            @Html.DisplayFor(model => model.Criterio.criterio1)
         </dd>
 
         <dt>
@@ -37,27 +37,19 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.PuestoTrabajo2.titulo)
+            @Html.DisplayNameFor(model => model.PrioridadRequisito.prioridad)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.PuestoTrabajo2.titulo)
+            @Html.DisplayFor(model => model.PrioridadRequisito.prioridad)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.TipoPuesto.tipo)
+            @Html.DisplayNameFor(model => model.TipoRequisito.tipo)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.TipoPuesto.tipo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Unidad.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Unidad.nombre)
+            @Html.DisplayFor(model => model.TipoRequisito.tipo)
         </dd>
 
     </dl>

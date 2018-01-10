@@ -18,11 +18,11 @@ var EditableTable = function () {
             function editRow(oTable, nRow) {
                 var aData = oTable.fnGetData(nRow);
                 var jqTds = $('>td', nRow);
-                jqTds[0].innerHTML = '<input type="text" class="form-control small" value="' + aData[0] + '">';
-                jqTds[1].innerHTML = '<input type="text" class="form-control small" value="' + aData[1] + '">';
-                jqTds[2].innerHTML = '<input type="text" class="form-control small" value="' + aData[2] + '">';
-                jqTds[3].innerHTML = '<input type="text" class="form-control small" value="' + aData[3] + '">';
-                jqTds[4].innerHTML = '<input type="text" class="form-control small" value="' + aData[4] + '">';
+                jqTds[0].innerHTML = '<textarea class="form-control" rows="3" cols="120" value="' + aData[0] + '"></textarea>';
+                jqTds[1].innerHTML = '<textarea class="form-control" rows="3" cols="120" value="' + aData[1] + '"></textarea>';
+                jqTds[2].innerHTML = '<textarea class="form-control" rows="3" cols="120" value="' + aData[2] + '"></textarea>';
+                jqTds[3].innerHTML = '<textarea class="form-control" rows="3" cols="120" value="' + aData[3] + '"></textarea>';
+                jqTds[4].innerHTML = '<textarea class="form-control" rows="3" cols="120" value="' + aData[4] + '"></textarea>';
                 jqTds[5].innerHTML = '<a href="" class=" edit btn btn-primary btn-default"><i class="fa fa-save"></i></a>';
                 jqTds[6].innerHTML = '<a href="" class="cancel btn btn-primary btn-default"><i class="fa fa-times"></i></a>';
             }

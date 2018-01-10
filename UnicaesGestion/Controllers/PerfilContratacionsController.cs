@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using UnicaesGestion;
+using UnicaesGestion.Models;
 
 namespace UnicaesGestion.Controllers
 {
@@ -36,17 +37,18 @@ namespace UnicaesGestion.Controllers
         }
 
         // GET: PerfilContratacions/Create
-        public ActionResult AddJobProfile()
+        public ActionResult Create()
         {
-            return View();
+           return View();
         }
 
         // POST: PerfilContratacions/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddJobProfile([Bind(Include = "id,fechaElaboracion,analista,aprobadoPor,fecha")] PerfilContratacion perfilContratacion)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "id,fechaElaboracion,analista,aprobadoPor,fecha")] PerfilContratacion perfilContratacion)
         {
             if (ModelState.IsValid)
             {
@@ -57,6 +59,8 @@ namespace UnicaesGestion.Controllers
 
             return View(perfilContratacion);
         }
+        
+
 
         // GET: PerfilContratacions/Edit/5
         public ActionResult Edit(int? id)
@@ -77,7 +81,7 @@ namespace UnicaesGestion.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,fechaElaboracion,analista,aprobadoPor,fecha")] PerfilContratacion perfilContratacion)
         {
             if (ModelState.IsValid)

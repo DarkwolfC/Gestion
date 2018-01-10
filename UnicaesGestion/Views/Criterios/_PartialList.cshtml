@@ -9,10 +9,10 @@
                 <span class="task-title-sp"><a>@Html.DisplayFor(modelItem => item.criterio1)</a></span>
 
                 <div class="pull-right hidden-phone">
-                    <button onclick="location.href='@Url.Action("Edit", "Criterios", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-eye"></i> </button>
-                    <button onclick="location.href='@Url.Action("Delete", "Criterios", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                    <button   type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "Criterios", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                    <button type="submit" value="Delete"onclick="location.href='@Url.Action("Delete", "Criterios", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
                     @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
-                    <button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>
+                    @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
                 </div>
             </div>
         </li>
@@ -21,7 +21,7 @@
 </ul>
 
 
-  <!-- Modal -->
+<!-- Modal -->
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">

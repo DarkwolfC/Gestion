@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using UnicaesGestion;
-using UnicaesGestion.Models;
 
 namespace UnicaesGestion.Controllers
 {
@@ -38,7 +37,7 @@ namespace UnicaesGestion.Controllers
         }
 
         // GET: PuestoTrabajoes/Create
-        public ActionResult AddJob()
+        public ActionResult Create()
         {
             ViewBag.idPerfilContratacion = new SelectList(db.PerfilContratacions, "id", "analista");
             ViewBag.jefeInmediato = new SelectList(db.PuestoTrabajoes, "id", "titulo");
@@ -52,44 +51,20 @@ namespace UnicaesGestion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AddJob([Bind(Include = "id,titulo,objetivo,jefeInmediato,idUnidad,idPerfilContratacion,idTipoPuesto,funcionPuesto")]FuncionTrabajoViewModel TrabajoFuncion )
+        public ActionResult Create([Bind(Include = "id,titulo,objetivo,jefeInmediato,idUnidad,idPerfilContratacion,idTipoPuesto")] PuestoTrabajo puestoTrabajo)
         {
             if (ModelState.IsValid)
             {
-                PuestoTrabajo puestotrabajo = new PuestoTrabajo
-                {
-                    id = TrabajoFuncion.id,
-                    titulo = TrabajoFuncion.objetivo,
-                    objetivo = TrabajoFuncion.objetivo,
-                    jefeInmediato = TrabajoFuncion.jefeInmediato,
-                    idPerfilContratacion = TrabajoFuncion.idPerfilContratacion,
-                    idTipoPuesto = TrabajoFuncion.idTipoPuesto
-                };
-                    
-                                    
-                db.PuestoTrabajoes.Add(puestotrabajo);
+                db.PuestoTrabajoes.Add(puestoTrabajo);
                 db.SaveChanges();
-
-                String[] cadenas= TrabajoFuncion.funcionPuesto.Split('.');
-
-                foreach (var cadena  in cadenas)
-                {
-                    FuncionPuestoTrabajo funcion = new FuncionPuestoTrabajo {
-                       id= puestotrabajo.id, funcion=cadena                     
-                    };
-                    db.FuncionPuestoTrabajoes.Add(funcion);                 
-                }
-                db.SaveChanges();
-
                 return RedirectToAction("Index");
             }
 
-            //ViewBag.idPerfilContratacion = new SelectList(db.PerfilContratacions, "id", "analista", puestoTrabajo.idPerfilContratacion);
-            //ViewBag.jefeInmediato = new SelectList(db.PuestoTrabajoes, "id", "titulo", puestoTrabajo.jefeInmediato);
-            //ViewBag.idTipoPuesto = new SelectList(db.TipoPuestoes, "id", "tipo", puestoTrabajo.idTipoPuesto);
-            //ViewBag.idUnidad = new SelectList(db.Unidads, "id", "nombre", puestoTrabajo.idUnidad);
-
-            return View(TrabajoFuncion);
+            ViewBag.idPerfilContratacion = new SelectList(db.PerfilContratacions, "id", "analista", puestoTrabajo.idPerfilContratacion);
+            ViewBag.jefeInmediato = new SelectList(db.PuestoTrabajoes, "id", "titulo", puestoTrabajo.jefeInmediato);
+            ViewBag.idTipoPuesto = new SelectList(db.TipoPuestoes, "id", "tipo", puestoTrabajo.idTipoPuesto);
+            ViewBag.idUnidad = new SelectList(db.Unidads, "id", "nombre", puestoTrabajo.idUnidad);
+            return View(puestoTrabajo);
         }
 
         // GET: PuestoTrabajoes/Edit/5
@@ -165,28 +140,5 @@ namespace UnicaesGestion.Controllers
             }
             base.Dispose(disposing);
         }
-
-        //mi codigo
-        
-        public ActionResult Prueba()
-        {
-            List<SelectListItem> listSelectItem = new List<SelectListItem>();
-            foreach (var Unidades  in db.PuestoTrabajoes)
-            {
-                SelectListItem selectlistItem = new SelectListItem() {
-                    Text = Unidades.titulo,
-                    Value = Unidades.id.ToString(),
-                   
-                };
-                listSelectItem.Add(selectlistItem);
-            }
-            return View();
-        }
-
-
-        //end
-
-
-
     }
 }

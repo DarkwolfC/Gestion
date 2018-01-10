@@ -1,5 +1,7 @@
 ﻿
-@model UnicaesGestion.PuestoTrabajo
+@*@model UnicaesGestion.PuestoTrabajo*@
+@using UnicaesGestion.Models
+@model FuncionTrabajoViewModel
 
 @{
     ViewBag.Title = "AddJob";
@@ -7,7 +9,11 @@
 }
 
 <link rel="stylesheet" href="~/Content/assets/data-tables/DT_bootstrap.css" />
-
+<style>
+    .oculta {
+        display: none;
+    }
+</style>
 
 <!--main content start-->
 <section id="main-content">
@@ -26,13 +32,22 @@
                 <div class="form-group">
                     <label for="unidad" class="control-label col-lg-4">Titulo del Puesto</label>
                     <div class="col-lg-10 ">
-                        @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control" } })
+                        @*@Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control" } })*@
+                        <input type="text" name="titulo" id="titulo" class="form-control" />
                     </div>
                  </div>
 
+
+                <div class="form-group ">
+                    <label for="objetivo" class="control-label col-lg-4">Objetivo</label>
+                    <div class="col-lg-10 ">
+                        @Html.DropDownList("idTipoPuesto", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
+
                     <div class="form-group ">
                         <label for="password" class="control-label col-lg-4">Unidad Organizativa</label>                      
-                        <div class="col-lg-10">
+                        <div class="col-lg-10">                           
                             @Html.DropDownList("idUnidad", null, htmlAttributes: new { @class = "form-control" })                        
                         </div>
                     </div>
@@ -47,9 +62,23 @@
                     <div class="form-group ">
                         <label for="objetivo" class="control-label col-lg-4">Objetivo</label>
                         <div class="col-lg-10 ">
+                            @Html.TextAreaFor(model => model.objetivo, new { htmlAttributes = new { @class = "form-control", rows = "3", cols = "120" } })
+                        </div>
+                    </div>
+
+
+                    <div class="form-group oculta">                        
+                        <div class="col-lg-10 ">
                             @Html.TextAreaFor(model => model.objetivo, new { htmlAttributes = new { @class = "form-control" } })
                         </div>
                     </div>
+
+                    @*<textarea class="form-control" id="procedimiento" name="procedimiento" rows="2">
+                            @Html.TextAreaFor()
+
+                    </textarea>*@
+
+
                }
                 </div>
 
@@ -142,44 +171,15 @@
                                     <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i></a></td>
                                 </tr>
 
-                                <tr class="">
-                                    <td>
-                                        <a href="#">
-                                            Ordenar jurídicamente, en coordinación con la Unidad de Contabilidad, los títulos de propiedad o utilización de los bienes
-                                            muebles e inmuebles de la Universidad, que han sido adquiridos por la UNICAES a cualquier título.
-                                        </a>
-                                    </td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i></a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i></a></td>
-                                </tr>
 
-                                <tr class="">
-                                    <td>
-                                        <a href="#">
-                                            Realizar trámites jurídicos en materia de propiedad intelectual e industrial de la Universidad.
-                                        </a>
-                                    </td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i></a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i></a></td>
-                                </tr>
 
-                                <tr class="">
-                                    <td>
-                                        <a href="#">
-                                            Revisar, con la periodicidad oportuna, la situación jurídica de cada uno de los bienes
-                                            inmuebles que conforman el patrimonio universitario, y su inscripción en el Registro de la Propiedad.
-                                        </a>
-                                    </td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-save"></i></a></td>
-                                    <td><a href="javascript:;" class="btn btn-primary btn-default"><i class="fa fa-times"></i></a></td>
-                                </tr>
                                                            
                             </tbody>
                         </table>
 
                         <div class="form-group">
                             <div class="col-lg-offset-2 col-lg-10">
-                                <button class="btn btn-danger" onclick="location.href='/Admin/AddJobProfile'" type="submit">Guardar</button>
+                                <button class="btn btn-danger" onclick="obtener()" type="button">Guardar</button>
                                 <button class="btn btn-default" type="button">Cancelar</button>
                             </div>
                         </div>
@@ -198,7 +198,24 @@
     <script>
         $(document).ready(function () {
             EditableColumn.init();
-        });
+        });   
     </script>
+
+    <script>
+        function obtener() {
+            var col1_value = "";
+
+            $("#edit-table tr").each(function () {
+                var currentRow = $(this);
+                col1_value += (currentRow.find("td:eq(0)").text());
+            });
+            console.log(col1_value);
+            
+        }
+    </script>
+
+ 
+
+@*<script src="~/Content/js/Get-value-table.js"></script>*@
 }
 <!--End JavaScript-->
