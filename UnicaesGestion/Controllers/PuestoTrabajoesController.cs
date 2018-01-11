@@ -50,7 +50,7 @@ namespace UnicaesGestion.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,titulo,objetivo,jefeInmediato,idUnidad,idPerfilContratacion,idTipoPuesto")] PuestoTrabajo puestoTrabajo)
         {
             if (ModelState.IsValid)
@@ -90,7 +90,7 @@ namespace UnicaesGestion.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,titulo,objetivo,jefeInmediato,idUnidad,idPerfilContratacion,idTipoPuesto")] PuestoTrabajo puestoTrabajo)
         {
             if (ModelState.IsValid)

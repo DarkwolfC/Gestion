@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@*<h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -55,4 +55,608 @@
     </tr>
 }
 
-</table>
+</table>*@
+
+
+
+<link href="~/Content/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-timepicker/compiled/timepicker.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" />
+
+<style>
+    .oculta {
+        display: none;
+    }
+</style>
+
+<!--new code-->
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+                Requisitos
+            </header>
+
+
+            <!-- Modal -->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Requisito</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <!--body start-->
+                            <div class="form">
+                                <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+                                    <!--controles-->
+
+                                    <div class="form-group ">
+                                        <label for="password" class="control-label col-lg-2">Tipo de Requisito</label>
+                                        <div class="col-lg-10">
+                                            <select class="form-control m-bot15" onchange="mostrar(this.value);">
+                                                <option value="1">Formacion Academica</option>
+                                                <option value="2">Experciencia Laboral</option>
+                                                <option value="3">Complementos</option>
+                                                <option value="4">Conocimientos Tecnicos</option>
+                                                <option value="5">Habilidades Personales y Profesionales</option>
+                                                <option value="6">Condiciones necesarias</option>
+                                                <option value="7">Competencias necesarias</option>
+                                                <option value="8">Competencias Especificas</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label for="procedimiento" class="control-label col-lg-2">Denominacion</label>
+                                        <div class="col-lg-10">
+                                            <textarea class="form-control" id="formacionA" name="formacionA" rows="2"></textarea>
+                                        </div>
+                                    </div>
+
+
+
+
+
+                                    <div class="oculta form-group" id="8">
+                                        <label for="password" class="control-label col-lg-4">Prioridad de Requisito</label>
+                                        <div class="col-lg-8">
+                                            <select class="form-control m-bot15 ">
+                                                <option>Alto</option>
+                                                <option>Medio</option>
+                                                <option>Bajo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+
+
+                                    @*<div class="form-group ">
+                                            <label for="password" class="control-label col-lg-2">Prioridad de Requisito</label>
+                                            <div class="radios col-lg-10">
+                                                <label class="label_radio" for="radio-01">
+                                                    <input name="sample-radio" id="radio-01" value="1" type="radio" checked /> Esencial
+                                                </label>
+                                                <label class="label_radio" for="radio-02">
+                                                    <input name="sample-radio" id="radio-02" value="1" type="radio" /> completario
+                                                </label>
+                                            </div>
+                                        </div>*@
+
+                                    @*<div class="form-group">
+                                            <label class="control-label col-md-3 oculta">Años de Experiencia</label>
+
+                                            <div class="col-md-2">
+                                                <div id="spinner1">
+                                                    <div class="input-group input-small">
+                                                        <input type="text" class="spinner-input form-control" maxlength="3" readonly>
+                                                        <div class="spinner-buttons input-group-btn btn-group-vertical">
+                                                            <button type="button" class="btn spinner-up btn-xs btn-default">
+                                                                <i class="fa fa-angle-up"></i>
+                                                            </button>
+                                                            <button type="button" class="btn spinner-down btn-xs btn-default">
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>*@
+
+                                    <!--controles end-->
+                                </form>
+                            </div>
+
+                            <!--body end-->
+                        </div>
+
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                            <button class="btn btn-success" type="button">Agregar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- modal -->
+            <!-- Edit Modal-->
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="editModal" class="modal fade">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <h4 class="modal-title">Agregar Requisito</h4>
+                        </div>
+
+                        <div class="modal-body">
+                            <!--body start-->
+                            <div class="form">
+                                <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+                                    <!--controles-->
+
+                                    <div class="form-group ">
+                                        <label for="password" class="control-label col-lg-2">Tipo de Requisito</label>
+                                        <div class="col-lg-10">
+                                            <select class="form-control m-bot15">
+                                                <option>Competencias necesarias</option>
+                                                <option>Complementos</option>
+                                                <option>Formacion Academica</option>
+                                                <option>Experciencia Laboral</option>
+                                                <option>Conocimientos Tecnicos</option>
+                                                <option>Habilidades Personales y Profesionales</option>
+                                                <option>Condiciones necesarias</option>
+                                                <option>Competencias Especificas</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group ">
+                                        <label for="procedimiento" class="control-label col-lg-2">Denominacion</label>
+                                        <div class="col-lg-10">
+                                            <textarea class="form-control" id="formacionA" name="formacionA" rows="2"> Compromiso</textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group" id="8">
+                                        <label for="password" class="control-label col-lg-4">Prioridad de Requisito</label>
+                                        <div class="col-lg-8">
+                                            <select class="form-control m-bot15 ">
+                                                <option>Alto</option>
+                                                <option>Medio</option>
+                                                <option>Bajo</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    @*<div class="form-group ">
+                                            <label for="password" class="control-label col-lg-4">Prioridad de Requisito</label>
+                                            <div class="col-lg-8">
+                                                <select class="form-control m-bot15">
+                                                    <option>Alto</option>
+                                                    <option>Medio</option>
+                                                    <option>Bajo</option>
+                                                </select>
+                                            </div>
+                                        </div>*@
+
+                                    @*<div class="form-group ">
+                                            <label for="password" class="control-label col-lg-2">Prioridad de Requisito</label>
+                                            <div class="radios col-lg-10">
+                                                <label class="label_radio" for="radio-01">
+                                                    <input name="sample-radio" id="radio-01" value="1" type="radio" checked /> Esencial
+                                                </label>
+                                                <label class="label_radio" for="radio-02">
+                                                    <input name="sample-radio" id="radio-02" value="1" type="radio" /> completario
+                                                </label>
+                                            </div>
+                                        </div>*@
+
+                                    @*<div class="form-group">
+                                            <label class="control-label col-md-3">Años de Experiencia</label>
+
+                                            <div class="col-md-2">
+                                                <div id="spinner2">
+                                                    <div class="input-group input-small">
+                                                        <input type="text" class="spinner-input form-control" maxlength="3" readonly>
+                                                        <div class="spinner-buttons input-group-btn btn-group-vertical">
+                                                            <button type="button" class="btn spinner-up btn-xs btn-default">
+                                                                <i class="fa fa-angle-up"></i>
+                                                            </button>
+                                                            <button type="button" class="btn spinner-down btn-xs btn-default">
+                                                                <i class="fa fa-angle-down"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>*@
+
+                                    <!--controles end-->
+                                </form>
+                            </div>
+
+                            <!--body end-->
+                        </div>
+
+                        <div class="modal-footer">
+                            <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                            <button class="btn btn-success" type="button">Agregar</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end edit modal -->
+
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <header class="panel-heading">
+                        Complementos
+                    </header>
+                    <br />
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><span>Descripción</span></th>
+                                    <th>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" href="#myModal" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.denominacion)
+                                        </td>
+                                        <td>
+                                            <div class="pull-right hidden-phone">
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "Requisitoes", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "Requisitoes", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                                @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
+                                                @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+
+
+                                @*<tr>
+                                        <td><a>Maestria</a></td>
+
+                                        <td>
+                                            <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                                <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                            <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                                        </td>
+                                    </tr>*@
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <header class="panel-heading">
+                        Conocimientos Tecnicos
+                    </header>
+                    <br />
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><span>Conocimientos</span></th>
+                                    <th>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" href="#myModal" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>                               
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.denominacion)
+                                        </td>
+                                        <td>
+                                            <div class="pull-right hidden-phone">
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "Requisitoes", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "Requisitoes", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                                @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
+                                                @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <header class="panel-heading">
+                        Habilidades Personales y Profesionales
+                    </header>
+                    <br />
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><span>Habilidades</span></th>
+                                    <th>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" href="#myModal" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                              
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.denominacion)
+                                        </td>
+                                        <td>
+                                            <div class="pull-right hidden-phone">
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "Requisitoes", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "Requisitoes", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                                @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
+                                                @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                              
+                              
+                               
+
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <header class="panel-heading">
+                        Condiciones Personales
+                    </header>
+                    <br />
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><span>Condiciones</span></th>
+                                    <th>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" href="#myModal" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.denominacion)
+                                        </td>
+                                        <td>
+                                            <div class="pull-right hidden-phone">
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "Requisitoes", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "Requisitoes", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                                @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
+                                                @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                              
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <header class="panel-heading">
+                        Competencias Necesarias
+                    </header>
+                    <br />
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+                                <tr>
+                                    <th><span>Competencias Cardinales</span></th>
+                                    <th><i class=" "></i> Prioridad</th>
+                                    <th>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" href="#editModal" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.denominacion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PrioridadRequisito.prioridad)
+                                        </td>
+                                        <td>
+                                            <div class="pull-right hidden-phone">
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "Requisitoes", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "Requisitoes", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                                @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
+                                                @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                              
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <header class="panel-heading">
+                        Competencias Especificas
+                    </header>
+                    <br />
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-bordered table-striped table-advance table-hover">
+                            <thead>
+
+                                <tr>
+                                    <th><span>Niveles Ejecutivos</span></th>
+                                    <th><i class=" "></i> Prioridad</th>
+                                    <th>
+                                        <button class="btn btn-danger btn-sm" data-toggle="modal" href="#editModal" type="button">
+                                            <i class="fa fa-plus"></i>
+                                        </button>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.denominacion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PrioridadRequisito.prioridad)
+                                        </td>
+                                        <td>
+                                            <div class="pull-right hidden-phone">
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "Requisitoes", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "Requisitoes", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                                @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
+                                                @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                               
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+                      
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!--end new code-->
+<!--Start JavaScript-->
+@section JavaScript {
+
+    <!--this page plugins-->
+    <script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+    <!--this page  script only-->
+    <script src="~/Content/js/form-component.js"></script>
+
+    <!--select2-->
+    <script type="text/javascript">
+
+    $(document).ready(function () {
+        $(".js-example-basic-single").select2();
+
+        $(".js-example-basic-multiple").select2();
+    });
+    </script>
+
+
+    <script type="text/javascript">
+
+          function mostrar(value_elemento) {
+              var total = 8;
+              var elemento;
+              for (var i = 1; i <= total; i++) {
+                  elemento = document.getElementById('option'+i);
+                  if (i == value_elemento) {
+                      elemento.style.display = "block";
+                  } else {
+                      elemento.style.display = "none";
+                  }
+              }
+          }
+    </script>
+
+
+
+
+}
+<!--End JavaScript-->

@@ -5,64 +5,142 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Create</h2>
 
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Requisito</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.denominacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.denominacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.denominacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
+<!--Corregido-->
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+              Requisito
+            </header>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.idTipoRequisito, "idTipoRequisito", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idTipoRequisito", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.idTipoRequisito, "", new { @class = "text-danger" })
-            </div>
-        </div>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form"  method="Post" action="/Requisitoes/Create">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.idcriterios, "idcriterios", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idcriterios", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.idcriterios, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group ">
+                            <label for="procedimiento" class="control-label col-lg-2">Denominacion</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" id="denominacion" name="denominacion" rows="3"> </textarea>
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.idPrioridadRequisito, "idPrioridadRequisito", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idPrioridadRequisito", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.idPrioridadRequisito, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group ">
+                            <label for="procedimiento" class="control-label col-lg-2">Tipo de Requisito</label>
+                            <div class="col-lg-10">
+                                @Html.DropDownList("idTipoRequisito", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="objetivoI" class="control-label col-lg-2">Criterio</label>
+                            <div class="col-lg-10">
+                                @Html.DropDownList("idcriterios", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="objetivoF" class="control-label col-lg-2">Prioridad</label>
+                            <div class="col-lg-10">
+                                @Html.DropDownList("idPrioridadRequisito", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.idPerfilContratacion, "idPerfilContratacion", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idPerfilContratacion", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.idPerfilContratacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group ">
+                            <label for="objetivoF" class="control-label col-lg-2">Perfil de Contratacion</label>
+                            <div class="col-lg-10">
+                                @Html.DropDownList("idPerfilContratacion", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                        <div class="form-group">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-danger" type="submit" value="Create">Guardar</button>
+                                <button class="btn btn-default" type="submit" value="Create">Cancelar</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
             </div>
-        </div>
-    </div>
+
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!--Start JavaScript-->
+@section JavaScript {
+    <script src="~/Content/js/ModalFunction.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            EditableTable.init();
+        });
+    </script>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+@*<h2>Create</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Requisito</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.denominacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.denominacion, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.denominacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.idTipoRequisito, "idTipoRequisito", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idTipoRequisito", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.idTipoRequisito, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.idcriterios, "idcriterios", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idcriterios", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.idcriterios, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.idPrioridadRequisito, "idPrioridadRequisito", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idPrioridadRequisito", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.idPrioridadRequisito, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.idPerfilContratacion, "idPerfilContratacion", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("idPerfilContratacion", null, htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.idPerfilContratacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>*@
