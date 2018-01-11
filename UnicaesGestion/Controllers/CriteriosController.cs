@@ -87,7 +87,7 @@ namespace UnicaesGestion.Controllers
             {
                 db.Entry(criterio).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(criterio);
         }
@@ -115,7 +115,7 @@ namespace UnicaesGestion.Controllers
             Criterio criterio = await db.Criterios.FindAsync(id);
             db.Criterios.Remove(criterio);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

@@ -84,7 +84,7 @@ namespace UnicaesGestion.Controllers
             {
                 db.Entry(prioridadRequisito).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(prioridadRequisito);
         }
@@ -112,7 +112,7 @@ namespace UnicaesGestion.Controllers
             PrioridadRequisito prioridadRequisito = db.PrioridadRequisitoes.Find(id);
             db.PrioridadRequisitoes.Remove(prioridadRequisito);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

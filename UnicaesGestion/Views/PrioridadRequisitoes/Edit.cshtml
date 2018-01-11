@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
+@*<h2>Edit</h2>
 
 @using (Html.BeginForm())
 {
@@ -31,8 +31,59 @@
             </div>
         </div>
     </div>
-}
+}*@
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
+
+
+
+<!--main content start-->
+
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <section class="panel tasks-widget">
+                <header class="panel-heading">
+                    Editar Prioridad de Requisito
+                </header>
+                <div class="panel-body">
+
+                    <div class="task-content">
+
+                        <div class="panel-body">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success col-sm-3 col-lg-2" id="agregarCriterio"><i class="fa fa-plus"> Editar</i></button>
+                                    <div class="col-lg-9">
+                                        <div class="input-group m-bot15">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-white"><i class="fa  fa-file-o"></i></button>
+                                            </span>
+                                            @Html.EditorFor(model => model.prioridad, new { htmlAttributes = new { @class = "form-control" } })
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        @*@Html.Partial("_PartialList", new ViewDataDictionary(@ViewBag.lista))*@
+                        @*@{ Html.RenderAction("Index");}*@
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+
+
+
+    </section>
+    <!-- page end-->
+</section>
+
+<!--main content end-->

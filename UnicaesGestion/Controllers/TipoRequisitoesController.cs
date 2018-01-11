@@ -84,7 +84,7 @@ namespace UnicaesGestion.Controllers
             {
                 db.Entry(tipoRequisito).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(tipoRequisito);
         }
@@ -112,7 +112,7 @@ namespace UnicaesGestion.Controllers
             TipoRequisito tipoRequisito = db.TipoRequisitoes.Find(id);
             db.TipoRequisitoes.Remove(tipoRequisito);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)
