@@ -10,18 +10,18 @@ using UnicaesGestion;
 
 namespace UnicaesGestion.Controllers
 {
-    public class FuncionPuestoTrabajoController : Controller
+    public class FuncionPuestoTrabajoesController : Controller
     {
         private GestionEntities db = new GestionEntities();
 
-        // GET: FuncionPuestoTrabajo
+        // GET: FuncionPuestoTrabajoes
         public ActionResult Index()
         {
             var funcionPuestoTrabajoes = db.FuncionPuestoTrabajoes.Include(f => f.PuestoTrabajo);
             return View(funcionPuestoTrabajoes.ToList());
         }
 
-        // GET: FuncionPuestoTrabajo/Details/5
+        // GET: FuncionPuestoTrabajoes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -36,18 +36,18 @@ namespace UnicaesGestion.Controllers
             return View(funcionPuestoTrabajo);
         }
 
-        // GET: FuncionPuestoTrabajo/Create
+        // GET: FuncionPuestoTrabajoes/Create
         public ActionResult Create()
         {
             ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
             return View();
         }
 
-        // POST: FuncionPuestoTrabajo/Create
+        // POST: FuncionPuestoTrabajoes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,funcion,idPuestoTrabajo")] FuncionPuestoTrabajo funcionPuestoTrabajo)
         {
             if (ModelState.IsValid)
@@ -61,7 +61,7 @@ namespace UnicaesGestion.Controllers
             return View(funcionPuestoTrabajo);
         }
 
-        // GET: FuncionPuestoTrabajo/Edit/5
+        // GET: FuncionPuestoTrabajoes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -77,11 +77,11 @@ namespace UnicaesGestion.Controllers
             return View(funcionPuestoTrabajo);
         }
 
-        // POST: FuncionPuestoTrabajo/Edit/5
+        // POST: FuncionPuestoTrabajoes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,funcion,idPuestoTrabajo")] FuncionPuestoTrabajo funcionPuestoTrabajo)
         {
             if (ModelState.IsValid)
@@ -94,7 +94,7 @@ namespace UnicaesGestion.Controllers
             return View(funcionPuestoTrabajo);
         }
 
-        // GET: FuncionPuestoTrabajo/Delete/5
+        // GET: FuncionPuestoTrabajoes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -109,7 +109,7 @@ namespace UnicaesGestion.Controllers
             return View(funcionPuestoTrabajo);
         }
 
-        // POST: FuncionPuestoTrabajo/Delete/5
+        // POST: FuncionPuestoTrabajoes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

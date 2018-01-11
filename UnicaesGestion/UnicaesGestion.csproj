@@ -153,7 +153,8 @@
     <Compile Include="Class\Security.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CriteriosController.cs" />
-    <Compile Include="Controllers\FuncionPuestoTrabajoController.cs" />
+    <Compile Include="Controllers\FuncionPuestoTrabajoesController.cs" />
+    <Compile Include="Controllers\FuncionUnidadsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerfilContratacionsController.cs" />
     <Compile Include="Controllers\PersonalsController.cs" />
@@ -1100,11 +1101,6 @@
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Criterios\_PartialList.cshtml" />
-    <Content Include="Views\FuncionPuestoTrabajo\Create.cshtml" />
-    <Content Include="Views\FuncionPuestoTrabajo\Delete.cshtml" />
-    <Content Include="Views\FuncionPuestoTrabajo\Details.cshtml" />
-    <Content Include="Views\FuncionPuestoTrabajo\Edit.cshtml" />
-    <Content Include="Views\FuncionPuestoTrabajo\Index.cshtml" />
     <Content Include="Views\PerfilContratacions\Create.cshtml" />
     <Content Include="Views\PerfilContratacions\Delete.cshtml" />
     <Content Include="Views\PerfilContratacions\Details.cshtml" />
@@ -1150,6 +1146,16 @@
     <Content Include="Views\Unidads\Details.cshtml" />
     <Content Include="Views\Unidads\Edit.cshtml" />
     <Content Include="Views\Unidads\Index.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajoes\Create.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajoes\Delete.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajoes\Details.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajoes\Edit.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajoes\Index.cshtml" />
+    <Content Include="Views\FuncionUnidads\Create.cshtml" />
+    <Content Include="Views\FuncionUnidads\Delete.cshtml" />
+    <Content Include="Views\FuncionUnidads\Details.cshtml" />
+    <Content Include="Views\FuncionUnidads\Edit.cshtml" />
+    <Content Include="Views\FuncionUnidads\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
