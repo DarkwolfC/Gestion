@@ -5,47 +5,92 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>PerfilContratacion</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.fechaElaboracion)
-        </dt>
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+                Perfil de Contratacion
+            </header>
 
-        <dd>
-            @Html.DisplayFor(model => model.fechaElaboracion)
-        </dd>
+            <header class="panel-heading">
+                <div class="form-group ">
+                    <div class="clearfix">
+                        <!--start-->
+                        <div class="btn-group pull-right">
+                            <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
+                                Herramientas <span class="caret"></span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="#">Imprimir</a></li>
+                                <li><a href="#">Guardar como PDF</a></li>
+                                <li><a href="#">Exportar como Excel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+            </header>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.analista)
-        </dt>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form" method="get" action="/PerfilContratacions/Details">
+                                                                        
+                        <div class="form-group ">
+                            <label class="control-label col-md-3">Fecha de Elaboracion</label>
+                            <div class="col-md-3 col-xs-11">
+                              <h4>@Html.DisplayFor(model => model.fechaElaboracion)</h4> 
+                            </div>
+                        </div>
+                    
 
-        <dd>
-            @Html.DisplayFor(model => model.analista)
-        </dd>
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-3">Analista Responsable</label>
+                            <div class="col-lg-8">
+                                <h4>@Html.DisplayFor(model => model.analista)</h4> 
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-3">Aprobado Por</label>
+                            <div class="col-lg-8">
+                                <h4>@Html.DisplayFor(model => model.aprobadoPor)</h4> 
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.aprobadoPor)
-        </dt>
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Fecha de Aprobacion</label>
+                            <div class="col-md-3 col-xs-11">
+                                <h4>@Html.DisplayFor(model => model.fecha)</h4> 
+                            </div>
+                        </div>                                           
 
-        <dd>
-            @Html.DisplayFor(model => model.aprobadoPor)
-        </dd>
+                    </form>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fecha)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.fecha)
-        </dd>
+       
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+          
+
+           
+
+          
+
+           
+
+          
+
+           
+
+           
+
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
