@@ -1059,23 +1059,23 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\FuncionPuestoTrabajo\AddJob.cshtml" />
-    <Content Include="Views\Requisitoes\AddJobProfile.cshtml" />
-    <Content Include="Views\Procedimientoes\AddProcedure.cshtml" />
-    <Content Include="Views\Unidads\AddUnity.cshtml" />
+    <Content Include="Views\Vistas a eliminar\AddJob.cshtml" />
+    <Content Include="Views\Vistas a eliminar\AddJobProfile.cshtml" />
+    <Content Include="Views\Vistas a eliminar\AddProcedure.cshtml" />
+    <Content Include="Views\Vistas a eliminar\AddUnity.cshtml" />
     <Content Include="Views\Personals\AddUser.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\LockScreen.cshtml" />
     <Content Include="Views\User\Perfil.cshtml" />
     <Content Include="Views\Home\NotFound.cshtml" />
-    <Content Include="Views\Procedimientoes\ReadProcedure.cshtml" />
-    <Content Include="Views\Procedimientoes\EditProcedure.cshtml" />
-    <Content Include="Views\FuncionPuestoTrabajo\ReadJob.cshtml" />
-    <Content Include="Views\FuncionPuestoTrabajo\EditJob.cshtml" />
-    <Content Include="Views\Unidads\ReadUnity.cshtml" />
-    <Content Include="Views\Unidads\EditUnity.cshtml" />
-    <Content Include="Views\Requisitoes\ReadJobProfile.cshtml" />
-    <Content Include="Views\Requisitoes\EditJobProfile.cshtml" />
+    <Content Include="Views\Vistas a eliminar\ReadProcedure.cshtml" />
+    <Content Include="Views\Vistas a eliminar\EditProcedure.cshtml" />
+    <Content Include="Views\Vistas a eliminar\ReadJob.cshtml" />
+    <Content Include="Views\Vistas a eliminar\EditJob.cshtml" />
+    <Content Include="Views\Vistas a eliminar\ReadUnity.cshtml" />
+    <Content Include="Views\Vistas a eliminar\EditUnity.cshtml" />
+    <Content Include="Views\Vistas a eliminar\ReadJobProfile.cshtml" />
+    <Content Include="Views\Vistas a eliminar\EditJobProfile.cshtml" />
     <Content Include="Views\User\Banner.cshtml" />
     <Content Include="Views\User\SearchProcedure.cshtml" />
     <Content Include="Views\User\SearchUnity.cshtml" />
@@ -1100,12 +1100,6 @@
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Criterios\_PartialList.cshtml" />
-    <Content Include="Views\Unidads\Create.cshtml" />
-    <Content Include="Views\Unidads\Delete.cshtml" />
-    <Content Include="Views\Unidads\Details.cshtml" />
-    <Content Include="Views\Unidads\Edit.cshtml" />
-    <Content Include="Views\Unidads\Index.cshtml" />
-    <Content Include="Views\Unidads\_PartialListDependences.cshtml" />
     <Content Include="Views\FuncionPuestoTrabajo\Create.cshtml" />
     <Content Include="Views\FuncionPuestoTrabajo\Delete.cshtml" />
     <Content Include="Views\FuncionPuestoTrabajo\Details.cshtml" />
@@ -1151,6 +1145,11 @@
     <Content Include="Views\PuestoTrabajoes\Details.cshtml" />
     <Content Include="Views\PuestoTrabajoes\Edit.cshtml" />
     <Content Include="Views\PuestoTrabajoes\Index.cshtml" />
+    <Content Include="Views\Unidads\Create.cshtml" />
+    <Content Include="Views\Unidads\Delete.cshtml" />
+    <Content Include="Views\Unidads\Details.cshtml" />
+    <Content Include="Views\Unidads\Edit.cshtml" />
+    <Content Include="Views\Unidads\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

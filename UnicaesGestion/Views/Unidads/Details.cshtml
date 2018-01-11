@@ -1,58 +1,103 @@
 ﻿@model UnicaesGestion.Unidad
 
 @{
-    Layout = null;
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
+@*<h2>Details</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div>
-        <h4>Unidad</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.nombre)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.nombre)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.objetivo)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.objetivo)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.PuestoTrabajo.titulo)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.PuestoTrabajo.titulo)
-            </dd>
-    
-            <dt>
-                @Html.DisplayNameFor(model => model.Unidad2.nombre)
-            </dt>
-    
-            <dd>
-                @Html.DisplayFor(model => model.Unidad2.nombre)
-            </dd>
-    
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
-</body>
-</html>
+<div>
+    <h4>Unidad</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objetivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objetivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PuestoTrabajo.titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PuestoTrabajo.titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unidad2.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unidad2.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
+
+
+<!--Corregido-->
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+                Unidad
+            </header>
+
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="/Unidads/Details">
+
+                        <div class="form-group row">
+                            <label for="procedimiento" class="control-label col-lg-2">Unidad</label>
+                            <div class="col-lg-10">
+                                <h4> @Html.DisplayFor(model => model.nombre)</h4>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="objetivoI" class="control-label col-lg-2">Objetivo</label>
+                            <div class="col-lg-10">
+                               @Html.DisplayFor(model => model.nombre)
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="objetivoF" class="control-label col-lg-2">Depende</label>
+                            <div class="col-lg-10">
+                                @Html.DisplayFor(model => model.Unidad2.nombre)
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="objetivoF" class="control-label col-lg-2">Responsable</label>
+                            <div class="col-lg-10">
+                              <h4>@Html.DisplayFor(model => model.PuestoTrabajo.titulo)</h4>
+                            </div>
+                        </div>                      
+
+                    </form>
+                </div>
+            </div>
+
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->

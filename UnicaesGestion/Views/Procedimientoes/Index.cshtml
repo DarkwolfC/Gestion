@@ -5,42 +5,135 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.objetivoInicial)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.objetvioFinal)
-        </th>
-        <th></th>
-    </tr>
+<link href="~/Content/css/tasks.css" rel="stylesheet">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.objetivoInicial)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.objetvioFinal)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <section class="panel tasks-widget">
+                <header class="panel-heading">
+                    Buscar Procedimiento
+                </header>
+                <div class="panel-body">
+
+                    <div class="task-content">
+
+                        <div class="panel-body">
+                            <form class="form-horizontal" role="form">
+                                <div class="form-group">
+                                    @*<label class="col-sm-3 control-label col-lg-3">Buscar</label>*@
+                                    <button type="button" class="btn btn-success col-sm-3 col-lg-2"><i class="fa fa-eye"> Mostrar Todo</i></button>
+                                    <div class="col-lg-7  col-xs-8">
+                                        <div class="input-group m-bot15">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-white"><i class="fa fa-search"></i></button>
+                                            </span>
+                                            <input type="text" id="myInput" onkeyup="buscar()" class="form-control">
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <ul id="myUL" class="task-list">                       
+                          
+                            @foreach (var item in Model)
+                            {
+                                <li>
+
+                                    <div class="task-title">
+                                        <span class="task-title-sp"><a>@Html.DisplayFor(modelItem => item.nombre)</a></span>
+
+                                        <div class="pull-right hidden-phone">
+                                            <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "Procedimientoes", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                            <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "Procedimientoes", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                            @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
+                                            @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                        </div>
+                                    </div>
+                                </li>
+
+                            }                          
+
+                        </ul>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </section>
+    <!-- page end-->
+</section>
+
+<!--main content end-->
+<!--Start JavaScript-->
+@section JavaScript {
+
+    <script>
+        function buscar() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            ul = document.getElementById("myUL");
+            li = ul.getElementsByTagName("li");
+            for (i = 0; i < li.length; i++) {
+                a = li[i].getElementsByTagName("a")[0];
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    li[i].style.display = "";
+                } else {
+                    li[i].style.display = "none";
+
+                }
+            }
+        }
+    </script>
+
 }
+<!--End JavaScript-->
 
-</table>
+
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.objetivoInicial)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.objetvioFinal)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.objetivoInicial)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.objetvioFinal)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            </td>
+        </tr>
+    }
+
+    </table>*@

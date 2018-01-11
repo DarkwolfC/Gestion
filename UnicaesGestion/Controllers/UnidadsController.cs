@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using UnicaesGestion;
-using UnicaesGestion.Models;
 
 namespace UnicaesGestion.Controllers
 {
@@ -18,8 +17,8 @@ namespace UnicaesGestion.Controllers
         // GET: Unidads
         public ActionResult Index()
         {
-            //var unidads = db.Unidads.Include(u => u.PuestoTrabajo).Include(u => u.Unidad2);
-            return View("_PartialListDependences",  db.Unidads);
+            var unidads = db.Unidads.Include(u => u.PuestoTrabajo).Include(u => u.Unidad2);
+            return View(unidads.ToList());
         }
 
         // GET: Unidads/Details/5
@@ -38,7 +37,7 @@ namespace UnicaesGestion.Controllers
         }
 
         // GET: Unidads/Create
-        public ActionResult AddUnity()
+        public ActionResult Create()
         {
             ViewBag.idPuestoResponsableTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
             ViewBag.depende = new SelectList(db.Unidads, "id", "nombre");
@@ -49,41 +48,19 @@ namespace UnicaesGestion.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddUnity([Bind(Include = "id,nombre,objetivo,depende,idPuestoResponsableTrabajo,unidadFunciones")] FuncionUnidadViewModel funcionUnidad)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "id,nombre,objetivo,depende,idPuestoResponsableTrabajo")] Unidad unidad)
         {
             if (ModelState.IsValid)
             {
-                Unidad unidad = new Unidad()
-                {
-                    id = funcionUnidad.id,
-                    nombre = funcionUnidad.nombre,
-                    objetivo = funcionUnidad.objetivo,
-                    depende=funcionUnidad.depende,
-                    idPuestoResponsableTrabajo=funcionUnidad.idPuestoResponsableTrabajo                   
-                };
-                
                 db.Unidads.Add(unidad);
                 db.SaveChanges();
-
-                String[] cadenas = funcionUnidad.unidadFunciones.Split('.');
-                foreach (var cadena in cadenas)
-                {
-                    FuncionUnidad descripcion = new FuncionUnidad
-                    {
-                        idUnidad = unidad.id,
-                        descripcion= cadena
-                    };
-                    db.FuncionUnidads.Add(descripcion);
-                    //db.Funcion.Add(descripcion);
-                }
-                db.SaveChanges();
-                return RedirectToAction("ReadUnity");
+                return RedirectToAction("Index");
             }
 
-            //ViewBag.idPuestoResponsableTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo", unidad.idPuestoResponsableTrabajo);
-            //ViewBag.depende = new SelectList(db.Unidads, "id", "nombre", unidad.depende);
-            return View(funcionUnidad);
+            ViewBag.idPuestoResponsableTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo", unidad.idPuestoResponsableTrabajo);
+            ViewBag.depende = new SelectList(db.Unidads, "id", "nombre", unidad.depende);
+            return View(unidad);
         }
 
         // GET: Unidads/Edit/5
@@ -107,7 +84,7 @@ namespace UnicaesGestion.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,nombre,objetivo,depende,idPuestoResponsableTrabajo")] Unidad unidad)
         {
             if (ModelState.IsValid)

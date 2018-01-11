@@ -36,7 +36,7 @@ namespace UnicaesGestion.Controllers
         }
 
         // GET: Procedimientoes/Create
-        public ActionResult AddProcedure()
+        public ActionResult Create()
         {
             return View();
         }
@@ -45,8 +45,8 @@ namespace UnicaesGestion.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AddProcedure([Bind(Include = "id,nombre,objetivoInicial,objetvioFinal")] Procedimiento procedimiento)
+        //[ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "id,nombre,objetivoInicial,objetvioFinal")] Procedimiento procedimiento)
         {
             if (ModelState.IsValid)
             {
@@ -77,7 +77,7 @@ namespace UnicaesGestion.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,nombre,objetivoInicial,objetvioFinal")] Procedimiento procedimiento)
         {
             if (ModelState.IsValid)

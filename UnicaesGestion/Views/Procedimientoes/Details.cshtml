@@ -5,39 +5,106 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Procedimiento</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+                Procedimiento
+            </header>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.objetivoInicial)
-        </dt>
+            <header class="panel-heading">
+                <div class="form-group ">
+                    <div class="clearfix">
+                        <!--in-->
+                        <div class="btn-group pull-right">
+                            <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
+                                Herramientas <span class="caret"></span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="#">Imprimir</a></li>
+                                <li><a href="#">Guardar como PDF</a></li>
+                                <li><a href="#">Exportar como Excel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+            </header>
 
-        <dd>
-            @Html.DisplayFor(model => model.objetivoInicial)
-        </dd>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
+                      
+                        <div class="form-group row">
+                            <label for="procedimiento" class="control-label col-lg-2">Procedimiento</label>
+                            <div class="col-lg-10">
+                               <h4>@Html.DisplayFor(model => model.nombre)</h4> 
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="objetivoI" class="control-label col-lg-2">Objetivo Inicial</label>
+                            <div class="col-lg-10">
+                                @Html.DisplayFor(model => model.objetivoInicial)
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="objetivoF" class="control-label col-lg-2">Objetivo Final</label>
+                            <div class="col-lg-10">
+                                @Html.DisplayFor(model => model.objetvioFinal)
+                            </div>
+                        </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.objetvioFinal)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.objetvioFinal)
-        </dd>
+                    </form>
+                </div>
+            </div>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!--common script for all pages-->
+
+
+@*<h2>Details</h2>
+
+    <div>
+        <h4>Procedimiento</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.objetivoInicial)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.objetivoInicial)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.objetvioFinal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.objetvioFinal)
+            </dd>
+
+        </dl>
+    </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>*@
