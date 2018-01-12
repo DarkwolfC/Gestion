@@ -1,0 +1,168 @@
+﻿@model IEnumerable<UnicaesGestion.Paso>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+               Procedimiento Funciones
+            </header>         
+
+
+
+
+            <div class="panel-body">
+                <div class="adv-table editable-table ">
+                    <div class="clearfix">
+                        <div class="btn-group">
+                            <button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button">
+                                Agregar Paso <i class="fa fa-plus"></i>
+                            </button>
+                        </div>
+                    </div>
+
+
+                    <div class="space15"></div>
+
+                    <div class="table-responsive">
+
+                        <table class="table table-striped table-hover table-bordered" id="editable-sample">
+                            <thead>
+                                <tr>
+                                    <th>Paso</th>
+                                    <th>Resposable</th>
+                                    <th>Descripción</th>
+                                    <th>Predecesor</th>
+                                    <th>Figura</th>
+                                    <th>Controles      </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.numero)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.PuestoTrabajo.titulo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.descripcion)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.predecesores)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.TipoPaso.tipoPaso1)
+                                        </td>
+                                        
+                                       
+                                        
+                                        <td>
+                                            <div class="pull-right hidden-phone">
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "Pasoes", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                                <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "Pasoes", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                                @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
+                                                @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+
+                      
+
+                    </div>
+                </div>
+            </div>
+
+
+            
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+<!--Start JavaScript-->
+@section JavaScript {
+    <script src="~/Content/js/ModalFunction.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            EditableTable.init();
+        });
+    </script>
+}
+<!--End JavaScript-->
+
+@*<h2>Index</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descripcion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.predecesores)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Procedimiento.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PuestoTrabajo.titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoPaso.tipoPaso1)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.numero)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.descripcion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.predecesores)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Procedimiento.nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PuestoTrabajo.titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoPaso.tipoPaso1)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            </td>
+        </tr>
+    }
+
+    </table>*@

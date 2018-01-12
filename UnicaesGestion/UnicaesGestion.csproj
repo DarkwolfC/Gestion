@@ -156,6 +156,7 @@
     <Compile Include="Controllers\FuncionPuestoTrabajoesController.cs" />
     <Compile Include="Controllers\FuncionUnidadsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PasoesController.cs" />
     <Compile Include="Controllers\PerfilContratacionsController.cs" />
     <Compile Include="Controllers\PersonalsController.cs" />
     <Compile Include="Controllers\PrioridadRequisitoesController.cs" />
@@ -1064,7 +1065,7 @@
     <Content Include="Views\Vistas a eliminar\AddJobProfile.cshtml" />
     <Content Include="Views\Vistas a eliminar\AddProcedure.cshtml" />
     <Content Include="Views\Vistas a eliminar\AddUnity.cshtml" />
-    <Content Include="Views\Personals\AddUser.cshtml" />
+    <Content Include="Views\Vistas a eliminar\AddUser.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\LockScreen.cshtml" />
     <Content Include="Views\User\Perfil.cshtml" />
@@ -1082,8 +1083,8 @@
     <Content Include="Views\User\SearchUnity.cshtml" />
     <Content Include="Views\User\SearchJob.cshtml" />
     <Content Include="Views\User\SearchJobProfile.cshtml" />
-    <Content Include="Views\Personals\ReadUser.cshtml" />
-    <Content Include="Views\Personals\EditUser.cshtml" />
+    <Content Include="Views\Vistas a eliminar\ReadUser.cshtml" />
+    <Content Include="Views\Vistas a eliminar\EditUser.cshtml" />
     <Content Include="Views\Criterios\Create.cshtml" />
     <Content Include="Views\Criterios\Delete.cshtml" />
     <Content Include="Views\Criterios\Details.cshtml" />
@@ -1156,6 +1157,11 @@
     <Content Include="Views\FuncionUnidads\Details.cshtml" />
     <Content Include="Views\FuncionUnidads\Edit.cshtml" />
     <Content Include="Views\FuncionUnidads\Index.cshtml" />
+    <Content Include="Views\Pasoes\Create.cshtml" />
+    <Content Include="Views\Pasoes\Delete.cshtml" />
+    <Content Include="Views\Pasoes\Details.cshtml" />
+    <Content Include="Views\Pasoes\Edit.cshtml" />
+    <Content Include="Views\Pasoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

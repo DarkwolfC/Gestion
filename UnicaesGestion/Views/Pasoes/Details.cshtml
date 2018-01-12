@@ -1,0 +1,67 @@
+﻿@model UnicaesGestion.Paso
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Paso</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.numero)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.numero)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.predecesores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.predecesores)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Procedimiento.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Procedimiento.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PuestoTrabajo.titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PuestoTrabajo.titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoPaso.tipoPaso1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoPaso.tipoPaso1)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
