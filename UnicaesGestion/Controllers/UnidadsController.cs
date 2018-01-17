@@ -41,6 +41,7 @@ namespace UnicaesGestion.Controllers
         {
             ViewBag.idPuestoResponsableTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
             ViewBag.depende = new SelectList(db.Unidads, "id", "nombre");
+            ViewBag.idUnidad = new SelectList(db.Unidads, "id", "nombre");
             return View();
         }
 

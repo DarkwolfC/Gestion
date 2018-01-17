@@ -50,6 +50,7 @@
                             <div class="col-lg-offset-2 col-lg-10">
                                 <button class="btn btn-danger" type="submit" value="Create">Guardar</button>
                                 <button class="btn btn-default" type="submit" value="Create">Cancelar</button>
+                                <button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-plus "> Funcion</i></button>
                             </div>
                         </div>
 
@@ -76,57 +77,53 @@
 <!--End JavaScript-->
 
 
-
-@*<h2>Create</h2>
-
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
-
-        <div class="form-horizontal">
-            <h4>Unidad</h4>
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-                @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
-                </div>
+<!-- Modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Editar Criterio</h4>
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.objetivo, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.objetivo, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.objetivo, "", new { @class = "text-danger" })
+            <div class="modal-body">
+                <!--body start-->
+                <div class="form">
+                       
+                        @*@Html.Partial("_Paso")*@
+                        @{
+                            var a = ViewBag.idUnidad;
+                            Html.RenderPartial("_Paso", new ViewDataDictionary { { "idUnidad", a } });
+                        }
+
+
+
                 </div>
+
+                <!--body end-->
             </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.depende, "depende", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("depende", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.depende, "", new { @class = "text-danger" })
-                </div>
-            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                <button class="btn btn-success" onclick="Enviar()" type="button">Guardar</button>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.idPuestoResponsableTrabajo, "idPuestoResponsableTrabajo", htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    @Html.DropDownList("idPuestoResponsableTrabajo", null, htmlAttributes: new { @class = "form-control" })
-                    @Html.ValidationMessageFor(model => model.idPuestoResponsableTrabajo, "", new { @class = "text-danger" })
-                </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Create" class="btn btn-default" />
-                </div>
             </div>
         </div>
+    </div>
+</div>
+<!-- modal -->
+
+
+
+<script>
+    function Enviar() {
+        console.log('asasasasa');
+        console.log($('#funcion'));
+        $('#funcion')[0].submit(function (event) {
+            cons.log("loodsodosodosdos");
+            alert("Handler for .submit() called.");
+            event.preventDefault();
+        });
     }
 
-    <div>
-        @Html.ActionLink("Back to List", "Index")
-    </div>*@
+</script>

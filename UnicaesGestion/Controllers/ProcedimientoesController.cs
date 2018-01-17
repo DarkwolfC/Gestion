@@ -50,6 +50,7 @@ namespace UnicaesGestion.Controllers
         {
             if (ModelState.IsValid)
             {
+                
                 db.Procedimientoes.Add(procedimiento);
                 db.SaveChanges();
                 return RedirectToAction("Index");
