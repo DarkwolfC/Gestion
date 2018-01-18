@@ -1163,6 +1163,7 @@
     <Content Include="Views\Pasoes\Edit.cshtml" />
     <Content Include="Views\Pasoes\Index.cshtml" />
     <Content Include="Views\Unidads\_Paso.cshtml" />
+    <Content Include="Views\Procedimientoes\_Paso.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

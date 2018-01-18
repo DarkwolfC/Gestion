@@ -38,6 +38,9 @@ namespace UnicaesGestion.Controllers
         // GET: Procedimientoes/Create
         public ActionResult Create()
         {
+            ViewBag.idProcedimiento = new SelectList(db.Procedimientoes, "id", "nombre"); //agregado
+            ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");//agregado
+            ViewBag.idTipoPaso = new SelectList(db.TipoPasoes, "id", "tipoPaso1");//agregado
             return View();
         }
 
