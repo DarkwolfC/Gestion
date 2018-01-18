@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-
+<link rel="stylesheet" href="~/Content/assets/data-tables/DT_bootstrap.css" />
 <!--Corregido-->
 <!--main content start-->
 <section id="main-content">
@@ -13,7 +13,7 @@
         <!-- page start-->
         <section class="panel">
             <header class="panel-heading">
-                Nuevo Procedimiento
+                Nueva Unidad
             </header>
 
             <div class="panel-body">
@@ -45,12 +45,28 @@
                                 @Html.DropDownList("idPuestoResponsableTrabajo", null, htmlAttributes: new { @class = "form-control" })
                             </div>
                         </div>
+                        <div class="form-group row">                           
+                            <div class="col-lg-10">
+                                <button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-plus "> Agregar Funcion</i></button>
+                            </div>
+                        </div>
+
+                        @*<div class="form-group row">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-danger" type="submit" value="Create">Guardar</button>
+                                <button class="btn btn-default" type="submit" value="Create">Cancelar</button>
+                                <button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-plus "> Funcion</i></button>
+                            </div>
+                        </div>*@
+
+                        @{ Html.RenderAction("Index","FuncionUnidads");}
+
 
                         <div class="form-group row">
                             <div class="col-lg-offset-2 col-lg-10">
                                 <button class="btn btn-danger" type="submit" value="Create">Guardar</button>
                                 <button class="btn btn-default" type="submit" value="Create">Cancelar</button>
-                                <button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-plus "> Funcion</i></button>
+                                @*<button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-plus "> Funcion</i></button>*@
                             </div>
                         </div>
 
@@ -64,17 +80,12 @@
     </section>
 </section>
 <!--main content end-->
-<!--Start JavaScript-->
-@section JavaScript {
-    <script src="~/Content/js/ModalFunction.js"></script>
 
-    <script>
-        $(document).ready(function () {
-            EditableTable.init();
-        });
-    </script>
-}
-<!--End JavaScript-->
+
+
+
+
+
 
 
 <!-- Modal -->
@@ -90,13 +101,11 @@
                 <!--body start-->
                 <div class="form">
                        
-                        @*@Html.Partial("_Paso")*@
+                       
                         @{
                             var a = ViewBag.idUnidad;
                             Html.RenderPartial("_Paso", new ViewDataDictionary { { "idUnidad", a } });
                         }
-
-
 
                 </div>
 
@@ -115,15 +124,39 @@
 
 
 
-<script>
-    function Enviar() {
-        console.log('asasasasa');
-        console.log($('#funcion'));
-        $('#funcion')[0].submit(function (event) {
-            cons.log("loodsodosodosdos");
-            alert("Handler for .submit() called.");
-            event.preventDefault();
-        });
-    }
 
-</script>
+
+<!--Start JavaScript-->
+@section JavaScript {
+    <script src="~/Content/js/ModalFunction.js"></script>
+
+    @*<script>
+        $(document).ready(function () {
+            EditableTable.init();
+        });
+    </script>*@
+
+<script type="text/javascript" src="~/Content/assets/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+    <script>
+        jQuery(document).ready(function () {
+            EditableColumn.init();
+        });
+    </script>
+
+    <script>
+            function Enviar() {
+                //console.log('asasasasa');
+                //console.log($('#funcion'));
+                $('#funcion')[0].submit(function (event) {
+                    //cons.log("loodsodosodosdos");
+                    alert("Handler for .submit() called.");
+                    event.preventDefault();
+                });
+            }
+
+    </script>
+
+
+}
+<!--End JavaScript-->
