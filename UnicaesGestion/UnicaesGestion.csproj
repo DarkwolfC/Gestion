@@ -1164,6 +1164,7 @@
     <Content Include="Views\Pasoes\Index.cshtml" />
     <Content Include="Views\Unidads\_Paso.cshtml" />
     <Content Include="Views\Procedimientoes\_Paso.cshtml" />
+    <Content Include="Views\PuestoTrabajoes\_funciones.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

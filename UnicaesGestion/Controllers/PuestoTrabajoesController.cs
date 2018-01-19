@@ -43,6 +43,7 @@ namespace UnicaesGestion.Controllers
             ViewBag.jefeInmediato = new SelectList(db.PuestoTrabajoes, "id", "titulo");
             ViewBag.idTipoPuesto = new SelectList(db.TipoPuestoes, "id", "tipo");
             ViewBag.idUnidad = new SelectList(db.Unidads, "id", "nombre");
+            ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo"); //agregado
             return View();
         }
 

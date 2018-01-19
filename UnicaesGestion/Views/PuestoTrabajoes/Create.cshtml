@@ -66,6 +66,15 @@
                         </div>
 
                         <div class="form-group row">
+                            <div class="col-lg-10">
+                                <button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-plus "> Agregar Funcion</i></button>
+                            </div>
+                        </div>
+
+
+                        @{ Html.RenderAction("Index", "FuncionPuestoTrabajoes");}
+
+                        <div class="form-group row">
                             <div class="col-lg-offset-2 col-lg-10">
                                 <button class="btn btn-danger" type="submit" value="Create">Guardar</button>
                                 <button class="btn btn-default" type="submit" value="Create">Cancelar</button>
@@ -83,8 +92,64 @@
     </section>
 </section>
 <!--main content end-->
+
+
+<!-- Modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Agregar Funcion</h4>
+            </div>
+
+            <div class="modal-body">
+                <!--body start-->
+                <div class="form">
+
+
+                    @{
+                        //var funcionTrabajo = ViewBag.idPuestoTrabajo;
+                        var funcionTrabajo= ViewBag.jefeInmediato;
+                        Html.RenderPartial("_funciones", new ViewDataDictionary { { "idPuestoTrabajo", funcionTrabajo }});
+                    }
+
+                </div>
+
+                <!--body end-->
+            </div>
+
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                <button class="btn btn-success" onclick="Enviar()" type="button">Guardar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+
+
+
+
+
+
 <!--Start JavaScript-->
 @section JavaScript {
+
+    <script>
+                function Enviar() {
+                    //console.log('asasasasa');
+                    //console.log($('#funcion'));
+                    $('#funcion')[0].submit(function (event) {
+                        //cons.log("loodsodosodosdos");
+                        alert("Handler for .submit() called.");
+                        event.preventDefault();
+                    });
+                }
+
+    </script>
+
     <script>
         $(document).ready(function () {
             EditableColumn.init();
@@ -92,6 +157,12 @@
     </script>
 }
 <!--End JavaScript-->
+
+
+
+
+
+
 
 
 @*<h2>Create</h2>
