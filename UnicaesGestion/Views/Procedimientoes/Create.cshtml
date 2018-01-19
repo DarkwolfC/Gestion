@@ -80,16 +80,16 @@
                 <h4 class="modal-title">Editar Criterio</h4>
             </div>
 
-            <div class="modal-body">""
+            <div class="modal-body">
                 <!--body start-->
                 <div class="form">
 
 
                     @{
-//var procedimiento = ViewBag.idProcedimiento;
-//var paso = ViewBag.idTipoPaso;
-//var responsable = ViewBag.idPuestoTrabajo;
-//Html.RenderPartial("_Paso", new ViewDataDictionary { { "idProcedimiento", "idTipoPaso", "idPuestoTrabajo", procedimiento,paso,responsable } });
+                        var procedimiento = ViewBag.idProcedimiento;
+                        var paso = ViewBag.idTipoPaso;
+                        var responsable = ViewBag.idPuestoTrabajo;
+                        Html.RenderPartial("_Paso", new ViewDataDictionary { { "idProcedimiento", procedimiento} , { "idTipoPaso", paso},{ "idPuestoTrabajo",responsable } });
                     }
 
                 </div>
