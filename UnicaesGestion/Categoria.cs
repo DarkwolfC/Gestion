@@ -12,23 +12,20 @@ namespace UnicaesGestion
     using System;
     using System.Collections.Generic;
     
-    public partial class PerfilContratacion
+    public partial class Categoria
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PerfilContratacion()
+        public Categoria()
         {
-            this.PuestoTrabajoes = new HashSet<PuestoTrabajo>();
+            this.CatalogoCompetencias = new HashSet<CatalogoCompetencia>();
             this.Requisitoes = new HashSet<Requisito>();
         }
     
         public int id { get; set; }
-        public System.DateTime fechaElaboracion { get; set; }
-        public string analista { get; set; }
-        public string aprobadoPor { get; set; }
-        public Nullable<System.DateTime> fecha { get; set; }
+        public string categoria1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PuestoTrabajo> PuestoTrabajoes { get; set; }
+        public virtual ICollection<CatalogoCompetencia> CatalogoCompetencias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Requisito> Requisitoes { get; set; }
     }

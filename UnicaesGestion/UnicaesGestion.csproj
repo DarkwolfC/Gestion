@@ -150,24 +150,27 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="CatalogoCompetencia.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Categoria.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class\Security.cs" />
+    <Compile Include="CompetenciaPuestoTrabajo.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CriteriosController.cs" />
     <Compile Include="Controllers\FuncionPuestoTrabajoesController.cs" />
     <Compile Include="Controllers\FuncionUnidadsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PasoesController.cs" />
-    <Compile Include="Controllers\PerfilContratacionsController.cs" />
     <Compile Include="Controllers\PersonalsController.cs" />
-    <Compile Include="Controllers\PrioridadRequisitoesController.cs" />
     <Compile Include="Controllers\ProcedimientoesController.cs" />
-    <Compile Include="Controllers\PuestoTrabajoesController.cs" />
-    <Compile Include="Controllers\RequisitoesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TipoPasoesController.cs" />
     <Compile Include="Controllers\TipoPuestoesController.cs" />
-    <Compile Include="Controllers\TipoRequisitoesController.cs" />
-    <Compile Include="Controllers\UnidadsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Credential.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -211,13 +214,7 @@
     <Compile Include="Paso.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="PerfilContratacion.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="Personal.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="PrioridadRequisito.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Procedimiento.cs">
@@ -237,9 +234,6 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="TipoPuesto.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="TipoRequisito.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Unidad.cs">
@@ -1102,11 +1096,6 @@
     <Content Include="Views\Roles\Edit.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Criterios\_PartialList.cshtml" />
-    <Content Include="Views\PerfilContratacions\Create.cshtml" />
-    <Content Include="Views\PerfilContratacions\Delete.cshtml" />
-    <Content Include="Views\PerfilContratacions\Details.cshtml" />
-    <Content Include="Views\PerfilContratacions\Edit.cshtml" />
-    <Content Include="Views\PerfilContratacions\Index.cshtml" />
     <Content Include="Views\Procedimientoes\Create.cshtml" />
     <Content Include="Views\Procedimientoes\Delete.cshtml" />
     <Content Include="Views\Procedimientoes\Details.cshtml" />
@@ -1142,11 +1131,6 @@
     <Content Include="Views\PuestoTrabajoes\Details.cshtml" />
     <Content Include="Views\PuestoTrabajoes\Edit.cshtml" />
     <Content Include="Views\PuestoTrabajoes\Index.cshtml" />
-    <Content Include="Views\Unidads\Create.cshtml" />
-    <Content Include="Views\Unidads\Delete.cshtml" />
-    <Content Include="Views\Unidads\Details.cshtml" />
-    <Content Include="Views\Unidads\Edit.cshtml" />
-    <Content Include="Views\Unidads\Index.cshtml" />
     <Content Include="Views\FuncionPuestoTrabajoes\Create.cshtml" />
     <Content Include="Views\FuncionPuestoTrabajoes\Delete.cshtml" />
     <Content Include="Views\FuncionPuestoTrabajoes\Details.cshtml" />
@@ -1162,7 +1146,6 @@
     <Content Include="Views\Pasoes\Details.cshtml" />
     <Content Include="Views\Pasoes\Edit.cshtml" />
     <Content Include="Views\Pasoes\Index.cshtml" />
-    <Content Include="Views\Unidads\_Paso.cshtml" />
     <Content Include="Views\Procedimientoes\_Paso.cshtml" />
   </ItemGroup>
   <ItemGroup />

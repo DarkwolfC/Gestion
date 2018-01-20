@@ -21,30 +21,34 @@ namespace UnicaesGestion
             this.Pasoes = new HashSet<Paso>();
             this.Personals = new HashSet<Personal>();
             this.PuestoTrabajo1 = new HashSet<PuestoTrabajo>();
-            this.Unidads = new HashSet<Unidad>();
+            this.CompetenciaPuestoTrabajoes = new HashSet<CompetenciaPuestoTrabajo>();
+            this.Requisitoes = new HashSet<Requisito>();
         }
     
         public int id { get; set; }
         public string titulo { get; set; }
         public string objetivo { get; set; }
         public Nullable<int> jefeInmediato { get; set; }
-        public Nullable<int> idUnidad { get; set; }
-        public Nullable<int> idPerfilContratacion { get; set; }
+        public int idUnidad { get; set; }
         public Nullable<int> idTipoPuesto { get; set; }
+        public System.DateTime fechaCreacion { get; set; }
+        public bool activo { get; set; }
+        public bool aprobado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FuncionPuestoTrabajo> FuncionPuestoTrabajoes { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Paso> Pasoes { get; set; }
-        public virtual PerfilContratacion PerfilContratacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Personal> Personals { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PuestoTrabajo> PuestoTrabajo1 { get; set; }
         public virtual PuestoTrabajo PuestoTrabajo2 { get; set; }
-        public virtual TipoPuesto TipoPuesto { get; set; }
-        public virtual Unidad Unidad { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Unidad> Unidads { get; set; }
+        public virtual ICollection<CompetenciaPuestoTrabajo> CompetenciaPuestoTrabajoes { get; set; }
+        public virtual TipoPuesto TipoPuesto { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Requisito> Requisitoes { get; set; }
+        public virtual Unidad Unidad { get; set; }
     }
 }

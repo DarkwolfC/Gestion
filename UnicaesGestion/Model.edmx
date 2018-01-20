@@ -5,6 +5,31 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="GestionModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CatalogoCompetencias">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="competencia" Type="varchar(max)" Nullable="false" />
+          <Property Name="idTipoPuesto" Type="int" Nullable="false" />
+          <Property Name="idCategoria" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoria" Type="varchar(max)" />
+        </EntityType>
+        <EntityType Name="CompetenciaPuestoTrabajo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="idCompetencia" Type="int" Nullable="false" />
+          <Property Name="idPuestoTrabajo" Type="int" Nullable="false" />
+          <Property Name="escencial" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="Credentials">
           <Key>
             <PropertyRef Name="idPersonal" />
@@ -51,16 +76,6 @@
           <Property Name="idTipoPaso" Type="int" />
           <Property Name="idPuestoTrabajo" Type="int" />
         </EntityType>
-        <EntityType Name="PerfilContratacion">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="fechaElaboracion" Type="date" Nullable="false" />
-          <Property Name="analista" Type="varchar(max)" Nullable="false" />
-          <Property Name="aprobadoPor" Type="varchar(max)" Nullable="false" />
-          <Property Name="fecha" Type="date" />
-        </EntityType>
         <EntityType Name="Personal">
           <Key>
             <PropertyRef Name="id" />
@@ -70,13 +85,6 @@
           <Property Name="apellido" Type="varchar(max)" Nullable="false" />
           <Property Name="foto" Type="image" />
           <Property Name="idPuestoTrabajo" Type="int" />
-        </EntityType>
-        <EntityType Name="PrioridadRequisito">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="prioridad" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="Procedimiento">
           <Key>
@@ -103,20 +111,20 @@
           <Property Name="titulo" Type="varchar(max)" Nullable="false" />
           <Property Name="objetivo" Type="varchar(max)" Nullable="false" />
           <Property Name="jefeInmediato" Type="int" />
-          <Property Name="idUnidad" Type="int" />
-          <Property Name="idPerfilContratacion" Type="int" />
+          <Property Name="idUnidad" Type="int" Nullable="false" />
           <Property Name="idTipoPuesto" Type="int" />
+          <Property Name="fechaCreacion" Type="date" Nullable="false" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="aprobado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Requisito">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="denominacion" Type="varchar(max)" />
-          <Property Name="idTipoRequisito" Type="int" />
-          <Property Name="idcriterios" Type="int" />
-          <Property Name="idPrioridadRequisito" Type="int" />
-          <Property Name="idPerfilContratacion" Type="int" />
+          <Property Name="descripcion" Type="varchar(max)" />
+          <Property Name="idPuestoTrabajo" Type="int" />
+          <Property Name="idCategoria" Type="int" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -134,17 +142,10 @@
         </EntityType>
         <EntityType Name="TipoPuesto">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tipo" Type="varchar(max)" />
-        </EntityType>
-        <EntityType Name="TipoRequisito">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="tipo" Type="varchar(max)" />
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="tipo" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Unidad">
           <Key>
@@ -154,17 +155,53 @@
           <Property Name="nombre" Type="varchar(max)" Nullable="false" />
           <Property Name="objetivo" Type="varchar(max)" />
           <Property Name="depende" Type="int" />
-          <Property Name="idPuestoResponsableTrabajo" Type="int" />
+          <Property Name="idPuestoResponsableTrabajo" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="criterios_requisito">
-          <End Role="Criterios" Type="Self.Criterios" Multiplicity="0..1" />
-          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
+        <Association Name="FK_CatalogoCompetencias_ToCategoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="CatalogoCompetencias" Type="Self.CatalogoCompetencias" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Criterios">
+            <Principal Role="Categoria">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="Requisito">
-              <PropertyRef Name="idcriterios" />
+            <Dependent Role="CatalogoCompetencias">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatalogoCompetencias_ToTipoPuesto">
+          <End Role="TipoPuesto" Type="Self.TipoPuesto" Multiplicity="1" />
+          <End Role="CatalogoCompetencias" Type="Self.CatalogoCompetencias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPuesto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogoCompetencias">
+              <PropertyRef Name="idTipoPuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompetenciaPuestoTrabajo_ToCompetencia">
+          <End Role="CatalogoCompetencias" Type="Self.CatalogoCompetencias" Multiplicity="1" />
+          <End Role="CompetenciaPuestoTrabajo" Type="Self.CompetenciaPuestoTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogoCompetencias">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompetenciaPuestoTrabajo">
+              <PropertyRef Name="idCompetencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompetenciaPuestoTrabajo_ToPuestoTrabajo">
+          <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="1" />
+          <End Role="CompetenciaPuestoTrabajo" Type="Self.CompetenciaPuestoTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PuestoTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CompetenciaPuestoTrabajo">
+              <PropertyRef Name="idPuestoTrabajo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -189,6 +226,30 @@
             </Principal>
             <Dependent Role="Credentials">
               <PropertyRef Name="idRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requisito_ToCategoria">
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="0..1" />
+          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Requisito">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requisito_ToPuestoTrabajo">
+          <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="0..1" />
+          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PuestoTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Requisito">
+              <PropertyRef Name="idPuestoTrabajo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -288,18 +349,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="puestoTrabajo_perfilContratacion">
-          <End Role="PerfilContratacion" Type="Self.PerfilContratacion" Multiplicity="0..1" />
-          <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PerfilContratacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PuestoTrabajo">
-              <PropertyRef Name="idPerfilContratacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="puestoTrabajo_puestoTrabajo">
           <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="0..1" />
           <End Role="PuestoTrabajo1" Type="Self.PuestoTrabajo" Multiplicity="*" />
@@ -317,7 +366,7 @@
           <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoPuesto">
-              <PropertyRef Name="id" />
+              <PropertyRef Name="Id" />
             </Principal>
             <Dependent Role="PuestoTrabajo">
               <PropertyRef Name="idTipoPuesto" />
@@ -325,7 +374,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="puestoTrabajo_unidad">
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="0..1" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="1" />
           <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Unidad">
@@ -333,54 +382,6 @@
             </Principal>
             <Dependent Role="PuestoTrabajo">
               <PropertyRef Name="idUnidad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="requisito_perfilContratacion">
-          <End Role="PerfilContratacion" Type="Self.PerfilContratacion" Multiplicity="0..1" />
-          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PerfilContratacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Requisito">
-              <PropertyRef Name="idPerfilContratacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="requisito_prioridadRequisito">
-          <End Role="PrioridadRequisito" Type="Self.PrioridadRequisito" Multiplicity="0..1" />
-          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PrioridadRequisito">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Requisito">
-              <PropertyRef Name="idPrioridadRequisito" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="requisito_tipoRequisito">
-          <End Role="TipoRequisito" Type="Self.TipoRequisito" Multiplicity="0..1" />
-          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoRequisito">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Requisito">
-              <PropertyRef Name="idTipoRequisito" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="unidad_puestoTrabajo">
-          <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="0..1" />
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PuestoTrabajo">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Unidad">
-              <PropertyRef Name="idPuestoResponsableTrabajo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -397,14 +398,15 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="GestionModelStoreContainer">
+          <EntitySet Name="CatalogoCompetencias" EntityType="Self.CatalogoCompetencias" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CompetenciaPuestoTrabajo" EntityType="Self.CompetenciaPuestoTrabajo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Credentials" EntityType="Self.Credentials" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Criterios" EntityType="Self.Criterios" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FuncionPuestoTrabajo" EntityType="Self.FuncionPuestoTrabajo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="FuncionUnidad" EntityType="Self.FuncionUnidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Paso" EntityType="Self.Paso" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PerfilContratacion" EntityType="Self.PerfilContratacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Personal" EntityType="Self.Personal" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PrioridadRequisito" EntityType="Self.PrioridadRequisito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Procedimiento" EntityType="Self.Procedimiento" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProcedimientoUnidad" EntityType="Self.ProcedimientoUnidad" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PuestoTrabajo" EntityType="Self.PuestoTrabajo" Schema="dbo" store:Type="Tables" />
@@ -412,11 +414,22 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoPaso" EntityType="Self.TipoPaso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TipoPuesto" EntityType="Self.TipoPuesto" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="TipoRequisito" EntityType="Self.TipoRequisito" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Unidad" EntityType="Self.Unidad" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="criterios_requisito" Association="Self.criterios_requisito">
-            <End Role="Criterios" EntitySet="Criterios" />
-            <End Role="Requisito" EntitySet="Requisito" />
+          <AssociationSet Name="FK_CatalogoCompetencias_ToCategoria" Association="Self.FK_CatalogoCompetencias_ToCategoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="CatalogoCompetencias" EntitySet="CatalogoCompetencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatalogoCompetencias_ToTipoPuesto" Association="Self.FK_CatalogoCompetencias_ToTipoPuesto">
+            <End Role="TipoPuesto" EntitySet="TipoPuesto" />
+            <End Role="CatalogoCompetencias" EntitySet="CatalogoCompetencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompetenciaPuestoTrabajo_ToCompetencia" Association="Self.FK_CompetenciaPuestoTrabajo_ToCompetencia">
+            <End Role="CatalogoCompetencias" EntitySet="CatalogoCompetencias" />
+            <End Role="CompetenciaPuestoTrabajo" EntitySet="CompetenciaPuestoTrabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompetenciaPuestoTrabajo_ToPuestoTrabajo" Association="Self.FK_CompetenciaPuestoTrabajo_ToPuestoTrabajo">
+            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajo" />
+            <End Role="CompetenciaPuestoTrabajo" EntitySet="CompetenciaPuestoTrabajo" />
           </AssociationSet>
           <AssociationSet Name="FK_Credentials_Personal" Association="Self.FK_Credentials_Personal">
             <End Role="Personal" EntitySet="Personal" />
@@ -425,6 +438,14 @@
           <AssociationSet Name="FK_Credentials_Roles" Association="Self.FK_Credentials_Roles">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Credentials" EntitySet="Credentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requisito_ToCategoria" Association="Self.FK_Requisito_ToCategoria">
+            <End Role="Categoria" EntitySet="Categoria" />
+            <End Role="Requisito" EntitySet="Requisito" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requisito_ToPuestoTrabajo" Association="Self.FK_Requisito_ToPuestoTrabajo">
+            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajo" />
+            <End Role="Requisito" EntitySet="Requisito" />
           </AssociationSet>
           <AssociationSet Name="funcionPuestoTrabajo_puestoTrabajo" Association="Self.funcionPuestoTrabajo_puestoTrabajo">
             <End Role="PuestoTrabajo" EntitySet="PuestoTrabajo" />
@@ -458,10 +479,6 @@
             <End Role="Unidad" EntitySet="Unidad" />
             <End Role="ProcedimientoUnidad" EntitySet="ProcedimientoUnidad" />
           </AssociationSet>
-          <AssociationSet Name="puestoTrabajo_perfilContratacion" Association="Self.puestoTrabajo_perfilContratacion">
-            <End Role="PerfilContratacion" EntitySet="PerfilContratacion" />
-            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajo" />
-          </AssociationSet>
           <AssociationSet Name="puestoTrabajo_puestoTrabajo" Association="Self.puestoTrabajo_puestoTrabajo">
             <End Role="PuestoTrabajo" EntitySet="PuestoTrabajo" />
             <End Role="PuestoTrabajo1" EntitySet="PuestoTrabajo" />
@@ -473,22 +490,6 @@
           <AssociationSet Name="puestoTrabajo_unidad" Association="Self.puestoTrabajo_unidad">
             <End Role="Unidad" EntitySet="Unidad" />
             <End Role="PuestoTrabajo" EntitySet="PuestoTrabajo" />
-          </AssociationSet>
-          <AssociationSet Name="requisito_perfilContratacion" Association="Self.requisito_perfilContratacion">
-            <End Role="PerfilContratacion" EntitySet="PerfilContratacion" />
-            <End Role="Requisito" EntitySet="Requisito" />
-          </AssociationSet>
-          <AssociationSet Name="requisito_prioridadRequisito" Association="Self.requisito_prioridadRequisito">
-            <End Role="PrioridadRequisito" EntitySet="PrioridadRequisito" />
-            <End Role="Requisito" EntitySet="Requisito" />
-          </AssociationSet>
-          <AssociationSet Name="requisito_tipoRequisito" Association="Self.requisito_tipoRequisito">
-            <End Role="TipoRequisito" EntitySet="TipoRequisito" />
-            <End Role="Requisito" EntitySet="Requisito" />
-          </AssociationSet>
-          <AssociationSet Name="unidad_puestoTrabajo" Association="Self.unidad_puestoTrabajo">
-            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajo" />
-            <End Role="Unidad" EntitySet="Unidad" />
           </AssociationSet>
           <AssociationSet Name="unidad_unidad" Association="Self.unidad_unidad">
             <End Role="Unidad" EntitySet="Unidad" />
@@ -505,7 +506,6 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="criterio1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Requisitoes" Relationship="Self.criterios_requisito" FromRole="Criterios" ToRole="Requisito" />
         </EntityType>
         <EntityType Name="FuncionPuestoTrabajo">
           <Key>
@@ -523,7 +523,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="idUnidad" Type="Int32" />
-          <NavigationProperty Name="Unidad" Relationship="Self.funcionUnidad_unidad" FromRole="FuncionUnidad" ToRole="Unidad" />
+          <NavigationProperty Name="Unidad" Relationship="GestionModel.funcionUnidad_unidad" FromRole="FuncionUnidad" ToRole="Unidad" />
         </EntityType>
         <EntityType Name="Paso">
           <Key>
@@ -540,18 +540,6 @@
           <NavigationProperty Name="PuestoTrabajo" Relationship="Self.paso_puestoTrabajo" FromRole="Paso" ToRole="PuestoTrabajo" />
           <NavigationProperty Name="TipoPaso" Relationship="Self.paso_tipoPaso" FromRole="Paso" ToRole="TipoPaso" />
         </EntityType>
-        <EntityType Name="PerfilContratacion">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fechaElaboracion" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="analista" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="aprobadoPor" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="fecha" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="PuestoTrabajoes" Relationship="Self.puestoTrabajo_perfilContratacion" FromRole="PerfilContratacion" ToRole="PuestoTrabajo" />
-          <NavigationProperty Name="Requisitoes" Relationship="Self.requisito_perfilContratacion" FromRole="PerfilContratacion" ToRole="Requisito" />
-        </EntityType>
         <EntityType Name="Personal">
           <Key>
             <PropertyRef Name="id" />
@@ -563,14 +551,6 @@
           <Property Name="idPuestoTrabajo" Type="Int32" />
           <NavigationProperty Name="PuestoTrabajo" Relationship="Self.personal_puestoTrabajo" FromRole="Personal" ToRole="PuestoTrabajo" />
           <NavigationProperty Name="Credential" Relationship="GestionModel.FK_Credentials_Personal" FromRole="Personal" ToRole="Credential" />
-        </EntityType>
-        <EntityType Name="PrioridadRequisito">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="prioridad" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Requisitoes" Relationship="Self.requisito_prioridadRequisito" FromRole="PrioridadRequisito" ToRole="Requisito" />
         </EntityType>
         <EntityType Name="Procedimiento">
           <Key>
@@ -591,33 +571,20 @@
           <Property Name="titulo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="objetivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="jefeInmediato" Type="Int32" />
-          <Property Name="idUnidad" Type="Int32" />
-          <Property Name="idPerfilContratacion" Type="Int32" />
+          <Property Name="idUnidad" Type="Int32" Nullable="false" />
           <Property Name="idTipoPuesto" Type="Int32" />
           <NavigationProperty Name="FuncionPuestoTrabajoes" Relationship="Self.funcionPuestoTrabajo_puestoTrabajo" FromRole="PuestoTrabajo" ToRole="FuncionPuestoTrabajo" />
           <NavigationProperty Name="Pasoes" Relationship="Self.paso_puestoTrabajo" FromRole="PuestoTrabajo" ToRole="Paso" />
-          <NavigationProperty Name="PerfilContratacion" Relationship="Self.puestoTrabajo_perfilContratacion" FromRole="PuestoTrabajo" ToRole="PerfilContratacion" />
           <NavigationProperty Name="Personals" Relationship="Self.personal_puestoTrabajo" FromRole="PuestoTrabajo" ToRole="Personal" />
           <NavigationProperty Name="PuestoTrabajo1" Relationship="Self.puestoTrabajo_puestoTrabajo" FromRole="PuestoTrabajo" ToRole="PuestoTrabajo1" />
           <NavigationProperty Name="PuestoTrabajo2" Relationship="Self.puestoTrabajo_puestoTrabajo" FromRole="PuestoTrabajo1" ToRole="PuestoTrabajo" />
-          <NavigationProperty Name="TipoPuesto" Relationship="Self.puestoTrabajo_tipoPuesto" FromRole="PuestoTrabajo" ToRole="TipoPuesto" />
-          <NavigationProperty Name="Unidad" Relationship="Self.puestoTrabajo_unidad" FromRole="PuestoTrabajo" ToRole="Unidad" />
-          <NavigationProperty Name="Unidads" Relationship="Self.unidad_puestoTrabajo" FromRole="PuestoTrabajo" ToRole="Unidad" />
-        </EntityType>
-        <EntityType Name="Requisito">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="denominacion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="idTipoRequisito" Type="Int32" />
-          <Property Name="idcriterios" Type="Int32" />
-          <Property Name="idPrioridadRequisito" Type="Int32" />
-          <Property Name="idPerfilContratacion" Type="Int32" />
-          <NavigationProperty Name="Criterio" Relationship="Self.criterios_requisito" FromRole="Requisito" ToRole="Criterios" />
-          <NavigationProperty Name="PerfilContratacion" Relationship="Self.requisito_perfilContratacion" FromRole="Requisito" ToRole="PerfilContratacion" />
-          <NavigationProperty Name="PrioridadRequisito" Relationship="Self.requisito_prioridadRequisito" FromRole="Requisito" ToRole="PrioridadRequisito" />
-          <NavigationProperty Name="TipoRequisito" Relationship="Self.requisito_tipoRequisito" FromRole="Requisito" ToRole="TipoRequisito" />
+          <Property Name="fechaCreacion" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="aprobado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CompetenciaPuestoTrabajoes" Relationship="GestionModel.FK_CompetenciaPuestoTrabajo_ToPuestoTrabajo" FromRole="PuestoTrabajo" ToRole="CompetenciaPuestoTrabajo" />
+          <NavigationProperty Name="TipoPuesto" Relationship="GestionModel.puestoTrabajo_tipoPuesto" FromRole="PuestoTrabajo" ToRole="TipoPuesto" />
+          <NavigationProperty Name="Requisitoes" Relationship="GestionModel.FK_Requisito_ToPuestoTrabajo" FromRole="PuestoTrabajo" ToRole="Requisito" />
+          <NavigationProperty Name="Unidad" Relationship="GestionModel.puestoTrabajo_unidad" FromRole="PuestoTrabajo" ToRole="Unidad" />
         </EntityType>
         <EntityType Name="TipoPaso">
           <Key>
@@ -627,50 +594,6 @@
           <Property Name="tipoPaso1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Pasoes" Relationship="Self.paso_tipoPaso" FromRole="TipoPaso" ToRole="Paso" />
         </EntityType>
-        <EntityType Name="TipoPuesto">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="PuestoTrabajoes" Relationship="Self.puestoTrabajo_tipoPuesto" FromRole="TipoPuesto" ToRole="PuestoTrabajo" />
-        </EntityType>
-        <EntityType Name="TipoRequisito">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tipo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Requisitoes" Relationship="Self.requisito_tipoRequisito" FromRole="TipoRequisito" ToRole="Requisito" />
-        </EntityType>
-        <EntityType Name="Unidad">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="objetivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="depende" Type="Int32" />
-          <Property Name="idPuestoResponsableTrabajo" Type="Int32" />
-          <NavigationProperty Name="FuncionUnidads" Relationship="Self.funcionUnidad_unidad" FromRole="Unidad" ToRole="FuncionUnidad" />
-          <NavigationProperty Name="PuestoTrabajoes" Relationship="Self.puestoTrabajo_unidad" FromRole="Unidad" ToRole="PuestoTrabajo" />
-          <NavigationProperty Name="PuestoTrabajo" Relationship="Self.unidad_puestoTrabajo" FromRole="Unidad" ToRole="PuestoTrabajo" />
-          <NavigationProperty Name="Unidad1" Relationship="Self.unidad_unidad" FromRole="Unidad" ToRole="Unidad1" />
-          <NavigationProperty Name="Unidad2" Relationship="Self.unidad_unidad" FromRole="Unidad1" ToRole="Unidad" />
-          <NavigationProperty Name="Procedimientoes" Relationship="GestionModel.ProcedimientoUnidad" FromRole="Unidad" ToRole="Procedimiento" />
-        </EntityType>
-        <Association Name="criterios_requisito">
-          <End Role="Criterios" Type="Self.Criterio" Multiplicity="0..1" />
-          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Criterios">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Requisito">
-              <PropertyRef Name="idcriterios" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="funcionPuestoTrabajo_puestoTrabajo">
           <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="0..1" />
           <End Role="FuncionPuestoTrabajo" Type="Self.FuncionPuestoTrabajo" Multiplicity="*" />
@@ -680,18 +603,6 @@
             </Principal>
             <Dependent Role="FuncionPuestoTrabajo">
               <PropertyRef Name="idPuestoTrabajo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="funcionUnidad_unidad">
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="0..1" />
-          <End Role="FuncionUnidad" Type="Self.FuncionUnidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Unidad">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="FuncionUnidad">
-              <PropertyRef Name="idUnidad" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -731,30 +642,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="puestoTrabajo_perfilContratacion">
-          <End Role="PerfilContratacion" Type="Self.PerfilContratacion" Multiplicity="0..1" />
-          <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PerfilContratacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PuestoTrabajo">
-              <PropertyRef Name="idPerfilContratacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="requisito_perfilContratacion">
-          <End Role="PerfilContratacion" Type="Self.PerfilContratacion" Multiplicity="0..1" />
-          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PerfilContratacion">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Requisito">
-              <PropertyRef Name="idPerfilContratacion" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="personal_puestoTrabajo">
           <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="0..1" />
           <End Role="Personal" Type="Self.Personal" Multiplicity="*" />
@@ -764,18 +651,6 @@
             </Principal>
             <Dependent Role="Personal">
               <PropertyRef Name="idPuestoTrabajo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="requisito_prioridadRequisito">
-          <End Role="PrioridadRequisito" Type="Self.PrioridadRequisito" Multiplicity="0..1" />
-          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PrioridadRequisito">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Requisito">
-              <PropertyRef Name="idPrioridadRequisito" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -791,92 +666,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="puestoTrabajo_tipoPuesto">
-          <End Role="TipoPuesto" Type="Self.TipoPuesto" Multiplicity="0..1" />
-          <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoPuesto">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PuestoTrabajo">
-              <PropertyRef Name="idTipoPuesto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="puestoTrabajo_unidad">
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="0..1" />
-          <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Unidad">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="PuestoTrabajo">
-              <PropertyRef Name="idUnidad" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="unidad_puestoTrabajo">
-          <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="0..1" />
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="PuestoTrabajo">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Unidad">
-              <PropertyRef Name="idPuestoResponsableTrabajo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="requisito_tipoRequisito">
-          <End Role="TipoRequisito" Type="Self.TipoRequisito" Multiplicity="0..1" />
-          <End Role="Requisito" Type="Self.Requisito" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TipoRequisito">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Requisito">
-              <PropertyRef Name="idTipoRequisito" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="unidad_unidad">
-          <End Role="Unidad" Type="Self.Unidad" Multiplicity="0..1" />
-          <End Role="Unidad1" Type="Self.Unidad" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Unidad">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Unidad1">
-              <PropertyRef Name="depende" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="GestionEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Criterios" EntityType="Self.Criterio" />
           <EntitySet Name="FuncionPuestoTrabajoes" EntityType="Self.FuncionPuestoTrabajo" />
           <EntitySet Name="FuncionUnidads" EntityType="Self.FuncionUnidad" />
           <EntitySet Name="Pasoes" EntityType="Self.Paso" />
-          <EntitySet Name="PerfilContratacions" EntityType="Self.PerfilContratacion" />
           <EntitySet Name="Personals" EntityType="Self.Personal" />
-          <EntitySet Name="PrioridadRequisitoes" EntityType="Self.PrioridadRequisito" />
           <EntitySet Name="Procedimientoes" EntityType="Self.Procedimiento" />
           <EntitySet Name="PuestoTrabajoes" EntityType="Self.PuestoTrabajo" />
-          <EntitySet Name="Requisitoes" EntityType="Self.Requisito" />
           <EntitySet Name="TipoPasoes" EntityType="Self.TipoPaso" />
-          <EntitySet Name="TipoPuestoes" EntityType="Self.TipoPuesto" />
-          <EntitySet Name="TipoRequisitoes" EntityType="Self.TipoRequisito" />
-          <EntitySet Name="Unidads" EntityType="Self.Unidad" />
-          <AssociationSet Name="criterios_requisito" Association="Self.criterios_requisito">
-            <End Role="Criterios" EntitySet="Criterios" />
-            <End Role="Requisito" EntitySet="Requisitoes" />
-          </AssociationSet>
           <AssociationSet Name="funcionPuestoTrabajo_puestoTrabajo" Association="Self.funcionPuestoTrabajo_puestoTrabajo">
             <End Role="PuestoTrabajo" EntitySet="PuestoTrabajoes" />
             <End Role="FuncionPuestoTrabajo" EntitySet="FuncionPuestoTrabajoes" />
-          </AssociationSet>
-          <AssociationSet Name="funcionUnidad_unidad" Association="Self.funcionUnidad_unidad">
-            <End Role="Unidad" EntitySet="Unidads" />
-            <End Role="FuncionUnidad" EntitySet="FuncionUnidads" />
           </AssociationSet>
           <AssociationSet Name="paso_procedimiento" Association="Self.paso_procedimiento">
             <End Role="Procedimiento" EntitySet="Procedimientoes" />
@@ -890,49 +691,13 @@
             <End Role="TipoPaso" EntitySet="TipoPasoes" />
             <End Role="Paso" EntitySet="Pasoes" />
           </AssociationSet>
-          <AssociationSet Name="puestoTrabajo_perfilContratacion" Association="Self.puestoTrabajo_perfilContratacion">
-            <End Role="PerfilContratacion" EntitySet="PerfilContratacions" />
-            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajoes" />
-          </AssociationSet>
-          <AssociationSet Name="requisito_perfilContratacion" Association="Self.requisito_perfilContratacion">
-            <End Role="PerfilContratacion" EntitySet="PerfilContratacions" />
-            <End Role="Requisito" EntitySet="Requisitoes" />
-          </AssociationSet>
           <AssociationSet Name="personal_puestoTrabajo" Association="Self.personal_puestoTrabajo">
             <End Role="PuestoTrabajo" EntitySet="PuestoTrabajoes" />
             <End Role="Personal" EntitySet="Personals" />
           </AssociationSet>
-          <AssociationSet Name="requisito_prioridadRequisito" Association="Self.requisito_prioridadRequisito">
-            <End Role="PrioridadRequisito" EntitySet="PrioridadRequisitoes" />
-            <End Role="Requisito" EntitySet="Requisitoes" />
-          </AssociationSet>
           <AssociationSet Name="puestoTrabajo_puestoTrabajo" Association="Self.puestoTrabajo_puestoTrabajo">
             <End Role="PuestoTrabajo" EntitySet="PuestoTrabajoes" />
             <End Role="PuestoTrabajo1" EntitySet="PuestoTrabajoes" />
-          </AssociationSet>
-          <AssociationSet Name="puestoTrabajo_tipoPuesto" Association="Self.puestoTrabajo_tipoPuesto">
-            <End Role="TipoPuesto" EntitySet="TipoPuestoes" />
-            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajoes" />
-          </AssociationSet>
-          <AssociationSet Name="puestoTrabajo_unidad" Association="Self.puestoTrabajo_unidad">
-            <End Role="Unidad" EntitySet="Unidads" />
-            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajoes" />
-          </AssociationSet>
-          <AssociationSet Name="unidad_puestoTrabajo" Association="Self.unidad_puestoTrabajo">
-            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajoes" />
-            <End Role="Unidad" EntitySet="Unidads" />
-          </AssociationSet>
-          <AssociationSet Name="requisito_tipoRequisito" Association="Self.requisito_tipoRequisito">
-            <End Role="TipoRequisito" EntitySet="TipoRequisitoes" />
-            <End Role="Requisito" EntitySet="Requisitoes" />
-          </AssociationSet>
-          <AssociationSet Name="unidad_unidad" Association="Self.unidad_unidad">
-            <End Role="Unidad" EntitySet="Unidads" />
-            <End Role="Unidad1" EntitySet="Unidads" />
-          </AssociationSet>
-          <AssociationSet Name="ProcedimientoUnidad" Association="GestionModel.ProcedimientoUnidad">
-            <End Role="Procedimiento" EntitySet="Procedimientoes" />
-            <End Role="Unidad" EntitySet="Unidads" />
           </AssociationSet>
           <EntitySet Name="Credentials" EntityType="GestionModel.Credential" />
           <EntitySet Name="Roles" EntityType="GestionModel.Role" />
@@ -944,11 +709,57 @@
             <End Role="Role" EntitySet="Roles" />
             <End Role="Credential" EntitySet="Credentials" />
           </AssociationSet>
+          <EntitySet Name="CatalogoCompetencias" EntityType="GestionModel.CatalogoCompetencia" />
+          <EntitySet Name="Categorias" EntityType="GestionModel.Categoria" />
+          <EntitySet Name="CompetenciaPuestoTrabajoes" EntityType="GestionModel.CompetenciaPuestoTrabajo" />
+          <EntitySet Name="TipoPuestoes" EntityType="GestionModel.TipoPuesto" />
+          <AssociationSet Name="FK_CatalogoCompetencias_ToCategoria" Association="GestionModel.FK_CatalogoCompetencias_ToCategoria">
+            <End Role="Categoria" EntitySet="Categorias" />
+            <End Role="CatalogoCompetencia" EntitySet="CatalogoCompetencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CatalogoCompetencias_ToTipoPuesto" Association="GestionModel.FK_CatalogoCompetencias_ToTipoPuesto">
+            <End Role="TipoPuesto" EntitySet="TipoPuestoes" />
+            <End Role="CatalogoCompetencia" EntitySet="CatalogoCompetencias" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompetenciaPuestoTrabajo_ToCompetencia" Association="GestionModel.FK_CompetenciaPuestoTrabajo_ToCompetencia">
+            <End Role="CatalogoCompetencia" EntitySet="CatalogoCompetencias" />
+            <End Role="CompetenciaPuestoTrabajo" EntitySet="CompetenciaPuestoTrabajoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CompetenciaPuestoTrabajo_ToPuestoTrabajo" Association="GestionModel.FK_CompetenciaPuestoTrabajo_ToPuestoTrabajo">
+            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajoes" />
+            <End Role="CompetenciaPuestoTrabajo" EntitySet="CompetenciaPuestoTrabajoes" />
+          </AssociationSet>
+          <AssociationSet Name="puestoTrabajo_tipoPuesto" Association="GestionModel.puestoTrabajo_tipoPuesto">
+            <End Role="TipoPuesto" EntitySet="TipoPuestoes" />
+            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajoes" />
+          </AssociationSet>
+          <EntitySet Name="Requisitoes" EntityType="GestionModel.Requisito" />
+          <AssociationSet Name="FK_Requisito_ToCategoria" Association="GestionModel.FK_Requisito_ToCategoria">
+            <End Role="Categoria" EntitySet="Categorias" />
+            <End Role="Requisito" EntitySet="Requisitoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Requisito_ToPuestoTrabajo" Association="GestionModel.FK_Requisito_ToPuestoTrabajo">
+            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajoes" />
+            <End Role="Requisito" EntitySet="Requisitoes" />
+          </AssociationSet>
+          <EntitySet Name="Unidads" EntityType="GestionModel.Unidad" />
+          <AssociationSet Name="funcionUnidad_unidad" Association="GestionModel.funcionUnidad_unidad">
+            <End Role="Unidad" EntitySet="Unidads" />
+            <End Role="FuncionUnidad" EntitySet="FuncionUnidads" />
+          </AssociationSet>
+          <AssociationSet Name="puestoTrabajo_unidad" Association="GestionModel.puestoTrabajo_unidad">
+            <End Role="Unidad" EntitySet="Unidads" />
+            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajoes" />
+          </AssociationSet>
+          <AssociationSet Name="unidad_unidad" Association="GestionModel.unidad_unidad">
+            <End Role="Unidad" EntitySet="Unidads" />
+            <End Role="Unidad1" EntitySet="Unidads" />
+          </AssociationSet>
+          <AssociationSet Name="ProcedimientoUnidad" Association="GestionModel.ProcedimientoUnidad">
+            <End Role="Procedimiento" EntitySet="Procedimientoes" />
+            <End Role="Unidad" EntitySet="Unidads" />
+          </AssociationSet>
         </EntityContainer>
-        <Association Name="ProcedimientoUnidad">
-          <End Type="GestionModel.Procedimiento" Role="Procedimiento" Multiplicity="*" />
-          <End Type="GestionModel.Unidad" Role="Unidad" Multiplicity="*" />
-        </Association>
         <EntityType Name="Credential">
           <Key>
             <PropertyRef Name="idPersonal" />
@@ -993,6 +804,197 @@
               <PropertyRef Name="idRol" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CatalogoCompetencia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="competencia" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idTipoPuesto" Type="Int32" Nullable="false" />
+          <Property Name="idCategoria" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Categoria" Relationship="GestionModel.FK_CatalogoCompetencias_ToCategoria" FromRole="CatalogoCompetencia" ToRole="Categoria" />
+          <NavigationProperty Name="TipoPuesto" Relationship="GestionModel.FK_CatalogoCompetencias_ToTipoPuesto" FromRole="CatalogoCompetencia" ToRole="TipoPuesto" />
+          <NavigationProperty Name="CompetenciaPuestoTrabajoes" Relationship="GestionModel.FK_CompetenciaPuestoTrabajo_ToCompetencia" FromRole="CatalogoCompetencia" ToRole="CompetenciaPuestoTrabajo" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoria1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CatalogoCompetencias" Relationship="GestionModel.FK_CatalogoCompetencias_ToCategoria" FromRole="Categoria" ToRole="CatalogoCompetencia" />
+          <NavigationProperty Name="Requisitoes" Relationship="GestionModel.FK_Requisito_ToCategoria" FromRole="Categoria" ToRole="Requisito" />
+        </EntityType>
+        <EntityType Name="CompetenciaPuestoTrabajo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="idCompetencia" Type="Int32" Nullable="false" />
+          <Property Name="idPuestoTrabajo" Type="Int32" Nullable="false" />
+          <Property Name="escencial" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="CatalogoCompetencia" Relationship="GestionModel.FK_CompetenciaPuestoTrabajo_ToCompetencia" FromRole="CompetenciaPuestoTrabajo" ToRole="CatalogoCompetencia" />
+          <NavigationProperty Name="PuestoTrabajo" Relationship="GestionModel.FK_CompetenciaPuestoTrabajo_ToPuestoTrabajo" FromRole="CompetenciaPuestoTrabajo" ToRole="PuestoTrabajo" />
+        </EntityType>
+        <EntityType Name="TipoPuesto">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="tipo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CatalogoCompetencias" Relationship="GestionModel.FK_CatalogoCompetencias_ToTipoPuesto" FromRole="TipoPuesto" ToRole="CatalogoCompetencia" />
+          <NavigationProperty Name="PuestoTrabajoes" Relationship="GestionModel.puestoTrabajo_tipoPuesto" FromRole="TipoPuesto" ToRole="PuestoTrabajo" />
+        </EntityType>
+        <Association Name="FK_CatalogoCompetencias_ToCategoria">
+          <End Type="GestionModel.Categoria" Role="Categoria" Multiplicity="1" />
+          <End Type="GestionModel.CatalogoCompetencia" Role="CatalogoCompetencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CatalogoCompetencia">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CatalogoCompetencias_ToTipoPuesto">
+          <End Type="GestionModel.TipoPuesto" Role="TipoPuesto" Multiplicity="1" />
+          <End Type="GestionModel.CatalogoCompetencia" Role="CatalogoCompetencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPuesto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CatalogoCompetencia">
+              <PropertyRef Name="idTipoPuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompetenciaPuestoTrabajo_ToCompetencia">
+          <End Type="GestionModel.CatalogoCompetencia" Role="CatalogoCompetencia" Multiplicity="1" />
+          <End Type="GestionModel.CompetenciaPuestoTrabajo" Role="CompetenciaPuestoTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CatalogoCompetencia">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CompetenciaPuestoTrabajo">
+              <PropertyRef Name="idCompetencia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CompetenciaPuestoTrabajo_ToPuestoTrabajo">
+          <End Type="GestionModel.PuestoTrabajo" Role="PuestoTrabajo" Multiplicity="1" />
+          <End Type="GestionModel.CompetenciaPuestoTrabajo" Role="CompetenciaPuestoTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PuestoTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="CompetenciaPuestoTrabajo">
+              <PropertyRef Name="idPuestoTrabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="puestoTrabajo_tipoPuesto">
+          <End Type="GestionModel.TipoPuesto" Role="TipoPuesto" Multiplicity="0..1" />
+          <End Type="GestionModel.PuestoTrabajo" Role="PuestoTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoPuesto">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PuestoTrabajo">
+              <PropertyRef Name="idTipoPuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Requisito">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="idPuestoTrabajo" Type="Int32" />
+          <Property Name="idCategoria" Type="Int32" />
+          <NavigationProperty Name="Categoria" Relationship="GestionModel.FK_Requisito_ToCategoria" FromRole="Requisito" ToRole="Categoria" />
+          <NavigationProperty Name="PuestoTrabajo" Relationship="GestionModel.FK_Requisito_ToPuestoTrabajo" FromRole="Requisito" ToRole="PuestoTrabajo" />
+        </EntityType>
+        <Association Name="FK_Requisito_ToCategoria">
+          <End Type="GestionModel.Categoria" Role="Categoria" Multiplicity="0..1" />
+          <End Type="GestionModel.Requisito" Role="Requisito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Categoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Requisito">
+              <PropertyRef Name="idCategoria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Requisito_ToPuestoTrabajo">
+          <End Type="GestionModel.PuestoTrabajo" Role="PuestoTrabajo" Multiplicity="0..1" />
+          <End Type="GestionModel.Requisito" Role="Requisito" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PuestoTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Requisito">
+              <PropertyRef Name="idPuestoTrabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Unidad">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="objetivo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="depende" Type="Int32" />
+          <Property Name="idPuestoResponsableTrabajo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="FuncionUnidads" Relationship="GestionModel.funcionUnidad_unidad" FromRole="Unidad" ToRole="FuncionUnidad" />
+          <NavigationProperty Name="PuestoTrabajoes" Relationship="GestionModel.puestoTrabajo_unidad" FromRole="Unidad" ToRole="PuestoTrabajo" />
+          <NavigationProperty Name="Unidad1" Relationship="GestionModel.unidad_unidad" FromRole="Unidad" ToRole="Unidad1" />
+          <NavigationProperty Name="Unidad2" Relationship="GestionModel.unidad_unidad" FromRole="Unidad1" ToRole="Unidad" />
+          <NavigationProperty Name="Procedimientoes" Relationship="GestionModel.ProcedimientoUnidad" FromRole="Unidad" ToRole="Procedimiento" />
+        </EntityType>
+        <Association Name="funcionUnidad_unidad">
+          <End Type="GestionModel.Unidad" Role="Unidad" Multiplicity="0..1" />
+          <End Type="GestionModel.FuncionUnidad" Role="FuncionUnidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unidad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="FuncionUnidad">
+              <PropertyRef Name="idUnidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="puestoTrabajo_unidad">
+          <End Type="GestionModel.Unidad" Role="Unidad" Multiplicity="1" />
+          <End Type="GestionModel.PuestoTrabajo" Role="PuestoTrabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unidad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="PuestoTrabajo">
+              <PropertyRef Name="idUnidad" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="unidad_unidad">
+          <End Type="GestionModel.Unidad" Role="Unidad" Multiplicity="0..1" />
+          <End Type="GestionModel.Unidad" Role="Unidad1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Unidad">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Unidad1">
+              <PropertyRef Name="depende" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProcedimientoUnidad">
+          <End Type="GestionModel.Procedimiento" Role="Procedimiento" Multiplicity="*" />
+          <End Type="GestionModel.Unidad" Role="Unidad" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -1039,17 +1041,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PerfilContratacions">
-            <EntityTypeMapping TypeName="GestionModel.PerfilContratacion">
-              <MappingFragment StoreEntitySet="PerfilContratacion">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="fechaElaboracion" ColumnName="fechaElaboracion" />
-                <ScalarProperty Name="analista" ColumnName="analista" />
-                <ScalarProperty Name="aprobadoPor" ColumnName="aprobadoPor" />
-                <ScalarProperty Name="fecha" ColumnName="fecha" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Personals">
             <EntityTypeMapping TypeName="GestionModel.Personal">
               <MappingFragment StoreEntitySet="Personal">
@@ -1058,14 +1049,6 @@
                 <ScalarProperty Name="apellido" ColumnName="apellido" />
                 <ScalarProperty Name="foto" ColumnName="foto" />
                 <ScalarProperty Name="idPuestoTrabajo" ColumnName="idPuestoTrabajo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PrioridadRequisitoes">
-            <EntityTypeMapping TypeName="GestionModel.PrioridadRequisito">
-              <MappingFragment StoreEntitySet="PrioridadRequisito">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="prioridad" ColumnName="prioridad" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1082,25 +1065,15 @@
           <EntitySetMapping Name="PuestoTrabajoes">
             <EntityTypeMapping TypeName="GestionModel.PuestoTrabajo">
               <MappingFragment StoreEntitySet="PuestoTrabajo">
+                <ScalarProperty Name="aprobado" ColumnName="aprobado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="titulo" ColumnName="titulo" />
                 <ScalarProperty Name="objetivo" ColumnName="objetivo" />
                 <ScalarProperty Name="jefeInmediato" ColumnName="jefeInmediato" />
                 <ScalarProperty Name="idUnidad" ColumnName="idUnidad" />
-                <ScalarProperty Name="idPerfilContratacion" ColumnName="idPerfilContratacion" />
                 <ScalarProperty Name="idTipoPuesto" ColumnName="idTipoPuesto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Requisitoes">
-            <EntityTypeMapping TypeName="GestionModel.Requisito">
-              <MappingFragment StoreEntitySet="Requisito">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="denominacion" ColumnName="denominacion" />
-                <ScalarProperty Name="idTipoRequisito" ColumnName="idTipoRequisito" />
-                <ScalarProperty Name="idcriterios" ColumnName="idcriterios" />
-                <ScalarProperty Name="idPrioridadRequisito" ColumnName="idPrioridadRequisito" />
-                <ScalarProperty Name="idPerfilContratacion" ColumnName="idPerfilContratacion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1112,41 +1085,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TipoPuestoes">
-            <EntityTypeMapping TypeName="GestionModel.TipoPuesto">
-              <MappingFragment StoreEntitySet="TipoPuesto">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TipoRequisitoes">
-            <EntityTypeMapping TypeName="GestionModel.TipoRequisito">
-              <MappingFragment StoreEntitySet="TipoRequisito">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="tipo" ColumnName="tipo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Unidads">
-            <EntityTypeMapping TypeName="GestionModel.Unidad">
-              <MappingFragment StoreEntitySet="Unidad">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="objetivo" ColumnName="objetivo" />
-                <ScalarProperty Name="depende" ColumnName="depende" />
-                <ScalarProperty Name="idPuestoResponsableTrabajo" ColumnName="idPuestoResponsableTrabajo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="ProcedimientoUnidad" TypeName="GestionModel.ProcedimientoUnidad" StoreEntitySet="ProcedimientoUnidad">
-            <EndProperty Name="Unidad">
-              <ScalarProperty Name="id" ColumnName="idUnidad" />
-            </EndProperty>
-            <EndProperty Name="Procedimiento">
-              <ScalarProperty Name="id" ColumnName="idProcedimiento" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="Credentials">
             <EntityTypeMapping TypeName="GestionModel.Credential">
               <MappingFragment StoreEntitySet="Credentials">
@@ -1167,6 +1105,71 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CatalogoCompetencias">
+            <EntityTypeMapping TypeName="GestionModel.CatalogoCompetencia">
+              <MappingFragment StoreEntitySet="CatalogoCompetencias">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idTipoPuesto" ColumnName="idTipoPuesto" />
+                <ScalarProperty Name="competencia" ColumnName="competencia" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categorias">
+            <EntityTypeMapping TypeName="GestionModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="categoria1" ColumnName="categoria" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CompetenciaPuestoTrabajoes">
+            <EntityTypeMapping TypeName="GestionModel.CompetenciaPuestoTrabajo">
+              <MappingFragment StoreEntitySet="CompetenciaPuestoTrabajo">
+                <ScalarProperty Name="escencial" ColumnName="escencial" />
+                <ScalarProperty Name="idPuestoTrabajo" ColumnName="idPuestoTrabajo" />
+                <ScalarProperty Name="idCompetencia" ColumnName="idCompetencia" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoPuestoes">
+            <EntityTypeMapping TypeName="GestionModel.TipoPuesto">
+              <MappingFragment StoreEntitySet="TipoPuesto">
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Requisitoes">
+            <EntityTypeMapping TypeName="GestionModel.Requisito">
+              <MappingFragment StoreEntitySet="Requisito">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="idPuestoTrabajo" ColumnName="idPuestoTrabajo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Unidads">
+            <EntityTypeMapping TypeName="GestionModel.Unidad">
+              <MappingFragment StoreEntitySet="Unidad">
+                <ScalarProperty Name="idPuestoResponsableTrabajo" ColumnName="idPuestoResponsableTrabajo" />
+                <ScalarProperty Name="depende" ColumnName="depende" />
+                <ScalarProperty Name="objetivo" ColumnName="objetivo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ProcedimientoUnidad" TypeName="GestionModel.ProcedimientoUnidad" StoreEntitySet="ProcedimientoUnidad">
+            <EndProperty Name="Unidad">
+              <ScalarProperty Name="id" ColumnName="idUnidad" />
+            </EndProperty>
+            <EndProperty Name="Procedimiento">
+              <ScalarProperty Name="id" ColumnName="idProcedimiento" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

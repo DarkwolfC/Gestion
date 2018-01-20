@@ -27,13 +27,12 @@ namespace UnicaesGestion
         public string nombre { get; set; }
         public string objetivo { get; set; }
         public Nullable<int> depende { get; set; }
-        public Nullable<int> idPuestoResponsableTrabajo { get; set; }
+        public int idPuestoResponsableTrabajo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FuncionUnidad> FuncionUnidads { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PuestoTrabajo> PuestoTrabajoes { get; set; }
-        public virtual PuestoTrabajo PuestoTrabajo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Unidad> Unidad1 { get; set; }
         public virtual Unidad Unidad2 { get; set; }

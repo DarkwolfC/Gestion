@@ -15,15 +15,11 @@ namespace UnicaesGestion
     public partial class Requisito
     {
         public int id { get; set; }
-        public string denominacion { get; set; }
-        public Nullable<int> idTipoRequisito { get; set; }
-        public Nullable<int> idcriterios { get; set; }
-        public Nullable<int> idPrioridadRequisito { get; set; }
-        public Nullable<int> idPerfilContratacion { get; set; }
+        public string descripcion { get; set; }
+        public Nullable<int> idPuestoTrabajo { get; set; }
+        public Nullable<int> idCategoria { get; set; }
     
-        public virtual Criterio Criterio { get; set; }
-        public virtual PerfilContratacion PerfilContratacion { get; set; }
-        public virtual PrioridadRequisito PrioridadRequisito { get; set; }
-        public virtual TipoRequisito TipoRequisito { get; set; }
+        public virtual Categoria Categoria { get; set; }
+        public virtual PuestoTrabajo PuestoTrabajo { get; set; }
     }
 }

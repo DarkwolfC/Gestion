@@ -29,17 +29,17 @@ namespace UnicaesGestion
         public virtual DbSet<FuncionPuestoTrabajo> FuncionPuestoTrabajoes { get; set; }
         public virtual DbSet<FuncionUnidad> FuncionUnidads { get; set; }
         public virtual DbSet<Paso> Pasoes { get; set; }
-        public virtual DbSet<PerfilContratacion> PerfilContratacions { get; set; }
         public virtual DbSet<Personal> Personals { get; set; }
-        public virtual DbSet<PrioridadRequisito> PrioridadRequisitoes { get; set; }
         public virtual DbSet<Procedimiento> Procedimientoes { get; set; }
         public virtual DbSet<PuestoTrabajo> PuestoTrabajoes { get; set; }
-        public virtual DbSet<Requisito> Requisitoes { get; set; }
         public virtual DbSet<TipoPaso> TipoPasoes { get; set; }
-        public virtual DbSet<TipoPuesto> TipoPuestoes { get; set; }
-        public virtual DbSet<TipoRequisito> TipoRequisitoes { get; set; }
-        public virtual DbSet<Unidad> Unidads { get; set; }
         public virtual DbSet<Credential> Credentials { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<CatalogoCompetencia> CatalogoCompetencias { get; set; }
+        public virtual DbSet<Categoria> Categorias { get; set; }
+        public virtual DbSet<CompetenciaPuestoTrabajo> CompetenciaPuestoTrabajoes { get; set; }
+        public virtual DbSet<TipoPuesto> TipoPuestoes { get; set; }
+        public virtual DbSet<Requisito> Requisitoes { get; set; }
+        public virtual DbSet<Unidad> Unidads { get; set; }
     }
 }

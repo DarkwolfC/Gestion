@@ -12,9 +12,14 @@ namespace UnicaesGestion
     using System;
     using System.Collections.Generic;
     
-    public partial class Criterio
+    public partial class CompetenciaPuestoTrabajo
     {
-        public int id { get; set; }
-        public string criterio1 { get; set; }
+        public int Id { get; set; }
+        public int idCompetencia { get; set; }
+        public int idPuestoTrabajo { get; set; }
+        public bool escencial { get; set; }
+    
+        public virtual CatalogoCompetencia CatalogoCompetencia { get; set; }
+        public virtual PuestoTrabajo PuestoTrabajo { get; set; }
     }
 }

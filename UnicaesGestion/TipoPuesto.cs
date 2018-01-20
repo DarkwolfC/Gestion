@@ -17,12 +17,15 @@ namespace UnicaesGestion
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public TipoPuesto()
         {
+            this.CatalogoCompetencias = new HashSet<CatalogoCompetencia>();
             this.PuestoTrabajoes = new HashSet<PuestoTrabajo>();
         }
     
-        public int id { get; set; }
+        public int Id { get; set; }
         public string tipo { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CatalogoCompetencia> CatalogoCompetencias { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PuestoTrabajo> PuestoTrabajoes { get; set; }
     }

@@ -12,18 +12,22 @@ namespace UnicaesGestion
     using System;
     using System.Collections.Generic;
     
-    public partial class PrioridadRequisito
+    public partial class CatalogoCompetencia
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PrioridadRequisito()
+        public CatalogoCompetencia()
         {
-            this.Requisitoes = new HashSet<Requisito>();
+            this.CompetenciaPuestoTrabajoes = new HashSet<CompetenciaPuestoTrabajo>();
         }
     
-        public int id { get; set; }
-        public string prioridad { get; set; }
+        public int Id { get; set; }
+        public string competencia { get; set; }
+        public int idTipoPuesto { get; set; }
+        public int idCategoria { get; set; }
     
+        public virtual Categoria Categoria { get; set; }
+        public virtual TipoPuesto TipoPuesto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Requisito> Requisitoes { get; set; }
+        public virtual ICollection<CompetenciaPuestoTrabajo> CompetenciaPuestoTrabajoes { get; set; }
     }
 }
