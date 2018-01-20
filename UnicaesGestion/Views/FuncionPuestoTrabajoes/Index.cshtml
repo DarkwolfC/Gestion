@@ -2,7 +2,8 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
+    //"~/Views/Shared/_Layout.cshtml"
 }
 
 @*<h2>Index</h2>
@@ -44,13 +45,13 @@
 <link rel="stylesheet" href="~/Content/assets/data-tables/DT_bootstrap.css" />
 
 <!--main content start-->
-<section id="main-content">
-    <section class="wrapper site-min-height">
+@*<section id="main-content">
+    <section class="wrapper site-min-height">*@
         <!-- page start-->
-        <section class="panel">
+        @*<section class="panel">
             <header class="panel-heading">
               Funcion Puesto Trabajo
-            </header>
+            </header>*@
 
 
 
@@ -59,11 +60,11 @@
                 <div class="adv-table editable-table ">
                     <div class="clearfix">
 
-                        <div class="btn-group">
+                        @*<div class="btn-group">
                             <button id="edit-table-button" class="btn green btn-danger">
                                 Nueva Función <i class="fa fa-plus"></i>
                             </button>
-                        </div>
+                        </div>*@
 
                         @*<div class="btn-group pull-right">
                                 <button class="btn dropdown-toggle" data-toggle="dropdown">
@@ -111,10 +112,10 @@
                     </div>
                 </div>
             </div>
-        </section>
+        @*</section>*@
         <!-- page end-->
-    </section>
-</section>
+    @*</section>
+</section>*@
 <!--main content end-->
 <!--Start JavaScript-->
 @section JavaScript {
