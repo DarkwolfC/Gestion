@@ -166,6 +166,7 @@
     <Compile Include="Controllers\FuncionUnidadsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PasoesController.cs" />
+    <Compile Include="Controllers\PerfilTrabajoController.cs" />
     <Compile Include="Controllers\PersonalsController.cs" />
     <Compile Include="Controllers\ProcedimientoesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
@@ -1148,6 +1149,11 @@
     <Content Include="Views\Pasoes\Index.cshtml" />
     <Content Include="Views\Procedimientoes\_Paso.cshtml" />
     <Content Include="Views\PuestoTrabajoes\_funciones.cshtml" />
+    <Content Include="Views\PerfilTrabajo\Create.cshtml" />
+    <Content Include="Views\PerfilTrabajo\Delete.cshtml" />
+    <Content Include="Views\PerfilTrabajo\Details.cshtml" />
+    <Content Include="Views\PerfilTrabajo\Edit.cshtml" />
+    <Content Include="Views\PerfilTrabajo\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

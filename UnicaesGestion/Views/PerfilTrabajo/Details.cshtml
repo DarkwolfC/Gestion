@@ -1,0 +1,83 @@
+﻿@model UnicaesGestion.PuestoTrabajo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>PuestoTrabajo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objetivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objetivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.fechaCreacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.fechaCreacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.aprobado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.aprobado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PuestoTrabajo2.titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PuestoTrabajo2.titulo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoPuesto.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoPuesto.tipo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unidad.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unidad.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
