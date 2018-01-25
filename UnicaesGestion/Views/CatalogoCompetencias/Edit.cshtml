@@ -1,0 +1,125 @@
+﻿@model UnicaesGestion.CatalogoCompetencia
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>CatalogoCompetencia</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.competencia, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.competencia, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.competencia, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idTipoPuesto, "idTipoPuesto", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idTipoPuesto", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.idTipoPuesto, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.idCategoria, "idCategoria", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("idCategoria", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.idCategoria, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+                Editar Competencia
+            </header>
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="panel-body">
+                @*<div class="form">
+                    <form class="cmxform form-horizontal tasi-form" method="post" action="/PuestoTrabajoes/Create">*@
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group row">
+                        <label for="unidad" class="control-label col-lg-2">Competencia</label>
+                        <div class="col-lg-10">
+                            @Html.EditorFor(model => model.competencia, new { htmlAttributes = new { @class = "form-control" } })
+                        </div>
+                    </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="control-label col-lg-2">Tipo de Puesto</label>
+                            <div class="col-lg-10">
+                                @Html.DropDownList("idTipoPuesto", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="control-label col-lg-2">Categoria</label>
+                            <div class="col-lg-10">
+                                @Html.DropDownList("idCategoria", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        
+
+
+                       
+
+                        <div class="form-group row">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-danger" type="submit" value="Save">Guardar</button>
+                                <button class="btn btn-default" type="submit" value="Create">Cancelar</button>
+                            </div>
+                        </div>
+
+                        @*</form>
+                            </div>*@
+                }
+            </div>
+
+
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->

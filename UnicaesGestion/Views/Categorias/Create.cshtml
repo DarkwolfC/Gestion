@@ -1,4 +1,4 @@
-﻿@model UnicaesGestion.TipoPuesto
+﻿@model UnicaesGestion.Categoria
 
 @{
     ViewBag.Title = "Create";
@@ -7,19 +7,20 @@
 
 @*<h2>Create</h2>
 
+
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>TipoPuesto</h4>
+        <h4>Categoria</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
-            @Html.LabelFor(model => model.tipo, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.categoria1, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tipo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.categoria1, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.categoria1, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -29,14 +30,17 @@
             </div>
         </div>
     </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }*@
 
-@*<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
 
-
-<!--start new code-->
 
 <link href="~/Content/css/tasks.css" rel="stylesheet">
 
@@ -48,7 +52,7 @@
         <div class="row">
             <section class="panel tasks-widget">
                 <header class="panel-heading">
-                    Agregar Tipo de Puesto
+                   Categoria 
                 </header>
                 <div class="panel-body">
 
@@ -66,7 +70,7 @@
                                             <span class="input-group-btn">
                                                 <button class="btn btn-white"><i class="fa  fa-file-o"></i></button>
                                             </span>
-                                            @Html.EditorFor(model => model.tipo, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.EditorFor(model => model.categoria1, new { htmlAttributes = new { @class = "form-control" } })
                                         </div>
 
                                     </div>
@@ -94,4 +98,3 @@
 
 }
 <!--End JavaScript-->
-<!--end new code-->

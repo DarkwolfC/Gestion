@@ -39,6 +39,7 @@ namespace UnicaesGestion.Controllers
         // GET: PerfilTrabajo/Create
         public ActionResult Create()
         {
+            ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");//Agregado
             ViewBag.jefeInmediato = new SelectList(db.PuestoTrabajoes, "id", "titulo");
             ViewBag.idTipoPuesto = new SelectList(db.TipoPuestoes, "Id", "tipo");
             ViewBag.idUnidad = new SelectList(db.Unidads, "id", "nombre");
@@ -49,7 +50,7 @@ namespace UnicaesGestion.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,titulo,objetivo,jefeInmediato,idUnidad,idTipoPuesto,fechaCreacion,activo,aprobado")] PuestoTrabajo puestoTrabajo)
         {
             if (ModelState.IsValid)
@@ -87,7 +88,7 @@ namespace UnicaesGestion.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,titulo,objetivo,jefeInmediato,idUnidad,idTipoPuesto,fechaCreacion,activo,aprobado")] PuestoTrabajo puestoTrabajo)
         {
             if (ModelState.IsValid)

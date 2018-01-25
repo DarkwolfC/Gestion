@@ -161,6 +161,9 @@
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\CatalogoCompetenciasController.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\CompetenciaPuestoController.cs" />
     <Compile Include="Controllers\CriteriosController.cs" />
     <Compile Include="Controllers\FuncionPuestoTrabajoesController.cs" />
     <Compile Include="Controllers\FuncionUnidadsController.cs" />
@@ -169,9 +172,12 @@
     <Compile Include="Controllers\PerfilTrabajoController.cs" />
     <Compile Include="Controllers\PersonalsController.cs" />
     <Compile Include="Controllers\ProcedimientoesController.cs" />
+    <Compile Include="Controllers\RequisitosController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TipoPasoesController.cs" />
+    <Compile Include="Controllers\TipoPuestoController.cs" />
     <Compile Include="Controllers\TipoPuestoesController.cs" />
+    <Compile Include="Controllers\UnidadsController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Credential.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -1148,12 +1154,42 @@
     <Content Include="Views\Pasoes\Edit.cshtml" />
     <Content Include="Views\Pasoes\Index.cshtml" />
     <Content Include="Views\Procedimientoes\_Paso.cshtml" />
-    <Content Include="Views\PuestoTrabajoes\_funciones.cshtml" />
+    <Content Include="Views\PerfilTrabajo\_funciones.cshtml" />
     <Content Include="Views\PerfilTrabajo\Create.cshtml" />
     <Content Include="Views\PerfilTrabajo\Delete.cshtml" />
     <Content Include="Views\PerfilTrabajo\Details.cshtml" />
     <Content Include="Views\PerfilTrabajo\Edit.cshtml" />
     <Content Include="Views\PerfilTrabajo\Index.cshtml" />
+    <Content Include="Views\Unidads\Create.cshtml" />
+    <Content Include="Views\Unidads\Delete.cshtml" />
+    <Content Include="Views\Unidads\Details.cshtml" />
+    <Content Include="Views\Unidads\Edit.cshtml" />
+    <Content Include="Views\Unidads\Index.cshtml" />
+    <Content Include="Views\TipoPuesto\Create.cshtml" />
+    <Content Include="Views\TipoPuesto\Delete.cshtml" />
+    <Content Include="Views\TipoPuesto\Details.cshtml" />
+    <Content Include="Views\TipoPuesto\Edit.cshtml" />
+    <Content Include="Views\TipoPuesto\Index.cshtml" />
+    <Content Include="Views\Categorias\Create.cshtml" />
+    <Content Include="Views\Categorias\Delete.cshtml" />
+    <Content Include="Views\Categorias\Details.cshtml" />
+    <Content Include="Views\Categorias\Edit.cshtml" />
+    <Content Include="Views\Categorias\Index.cshtml" />
+    <Content Include="Views\CatalogoCompetencias\Create.cshtml" />
+    <Content Include="Views\CatalogoCompetencias\Delete.cshtml" />
+    <Content Include="Views\CatalogoCompetencias\Details.cshtml" />
+    <Content Include="Views\CatalogoCompetencias\Edit.cshtml" />
+    <Content Include="Views\CatalogoCompetencias\Index.cshtml" />
+    <Content Include="Views\CompetenciaPuesto\Create.cshtml" />
+    <Content Include="Views\CompetenciaPuesto\Delete.cshtml" />
+    <Content Include="Views\CompetenciaPuesto\Details.cshtml" />
+    <Content Include="Views\CompetenciaPuesto\Edit.cshtml" />
+    <Content Include="Views\CompetenciaPuesto\Index.cshtml" />
+    <Content Include="Views\Requisitos\Create.cshtml" />
+    <Content Include="Views\Requisitos\Delete.cshtml" />
+    <Content Include="Views\Requisitos\Details.cshtml" />
+    <Content Include="Views\Requisitos\Edit.cshtml" />
+    <Content Include="Views\Requisitos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

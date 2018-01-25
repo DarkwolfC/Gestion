@@ -1,0 +1,43 @@
+﻿@model UnicaesGestion.CatalogoCompetencia
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CatalogoCompetencia</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.competencia)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.competencia)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria.categoria1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.categoria1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TipoPuesto.tipo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TipoPuesto.tipo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

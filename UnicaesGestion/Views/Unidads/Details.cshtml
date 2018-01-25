@@ -1,0 +1,51 @@
+﻿@model UnicaesGestion.Unidad
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Unidad</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.objetivo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.objetivo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.idPuestoResponsableTrabajo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.idPuestoResponsableTrabajo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Unidad2.nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Unidad2.nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

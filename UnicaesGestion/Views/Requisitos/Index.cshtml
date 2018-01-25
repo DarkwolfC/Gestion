@@ -1,0 +1,111 @@
+﻿@model IEnumerable<UnicaesGestion.Requisito>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+    //"~/Views/Shared/_Layout.cshtml"
+}
+
+@*<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.descripcion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Categoria.categoria1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PuestoTrabajo.titulo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Categoria.categoria1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PuestoTrabajo.titulo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>*@
+
+
+<div class="panel-body">
+    <div class="adv-table editable-table ">
+        <header class="panel-heading">
+            Complementos
+        </header>
+        <br />
+
+        <div class="space15"></div>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped table-advance table-hover">
+                <thead>
+                    <tr>
+                        <th><span>Descripción</span></th>
+                        <th>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" href="#myModal" type="button">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.descripcion)
+                            </td>
+                            <td>
+                                <div class="pull-right hidden-phone">
+                                    <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "Requisitoes", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                    <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "Requisitoes", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                    @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
+                                    @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+
+
+                    @*<tr>
+                            <td><a>Maestria</a></td>
+
+                            <td>
+                                <button class="btn btn-success btn-xs"><i class="fa fa-check"></i></button>
+                                    <button class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                                <button class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>
+                            </td>
+                        </tr>*@
+
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>

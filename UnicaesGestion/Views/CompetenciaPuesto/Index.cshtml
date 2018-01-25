@@ -1,0 +1,157 @@
+﻿@model IEnumerable<UnicaesGestion.CompetenciaPuestoTrabajo>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = null;
+    //"~/Views/Shared/_Layout.cshtml"
+}
+
+@*<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.escencial)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CatalogoCompetencia.competencia)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PuestoTrabajo.titulo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.escencial)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CatalogoCompetencia.competencia)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PuestoTrabajo.titulo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>*@
+
+<div class="panel-body">
+    <div class="adv-table editable-table ">
+        <header class="panel-heading">
+            COMPETENCIAS NECESARIAS
+        </header>
+        <br />
+
+        <div class="space15"></div>
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped table-advance table-hover">
+                <thead>
+                    <tr>
+                        <th><span>Competencia</span></th>
+                        <th><span>Esencial</span></th>
+                        <th>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" href="#myModal" type="button">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CatalogoCompetencia.competencia)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.escencial)
+                            </td>
+                            <td>
+                                <div class="pull-right hidden-phone">
+                                    <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "CompetenciaPuesto", new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                    <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "CompetenciaPuesto", new { id=item.Id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                    @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
+                                    @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+        <!--Tabla2-->
+
+        <div class="table-responsive">
+
+            <table class="table table-bordered table-striped table-advance table-hover">
+                <thead>
+                    <tr>
+                        <th><span>Competencia</span></th>
+                        <th><span>Esencial</span></th>
+                        <th>
+                            <button class="btn btn-danger btn-sm" data-toggle="modal" href="#myModal" type="button">
+                                <i class="fa fa-plus"></i>
+                            </button>
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.CatalogoCompetencia.competencia)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.escencial)
+                            </td>
+                            <td>
+                                <div class="pull-right hidden-phone">
+                                    <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "CompetenciaPuesto", new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                    <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "CompetenciaPuesto", new { id=item.Id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                    @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
+                                    @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                </div>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+
+        </div>
+        <!--End-->
+
+
+
+
+
+
+
+
+
+    </div>
+</div>
