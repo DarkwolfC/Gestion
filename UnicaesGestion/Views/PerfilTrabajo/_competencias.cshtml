@@ -1,0 +1,63 @@
+﻿
+@model UnicaesGestion.PuestoTrabajo
+
+<!--main content start-->
+@*<section id="main-content">
+    <section class="wrapper site-min-height">*@
+        <!-- page start-->
+        @*<section class="panel">
+            <header class="panel-heading">
+                Competencias Cardinales y Especificas
+            </header>*@
+
+
+
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form" id="competencias" method="post" action="/CompetenciaPuesto/Create">
+
+
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Puesto Trabajo</label>
+                            <div class="col-lg-10">
+                                @Html.DropDownList("idPuestoTrabajo", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="control-label col-lg-2">Competencia</label>
+                            <div class="col-lg-10">
+                                @Html.DropDownList("idCompetencia", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Esencial</label>
+                            <div class="col-lg-10">
+                                @*@Html.EditorFor(model => model.escencial)*@
+                                <input type="radio" name="escencial" id="escencial"/>
+                            </div>
+                        </div>
+
+
+
+                        @*<div class="form-group row">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-danger" type="submit" value="Create">Agregar</button>
+                                <button class="btn btn-default" type="submit" value="Create">Cancelar</button>
+                            </div>
+                        </div>*@
+
+                    </form>
+
+                    @*@{ Html.RenderAction("Index", "CatalogoCompetencias");}*@
+                </div>
+            </div>
+
+
+
+        @*</section>*@
+        <!-- page end-->
+    @*</section>
+</section>*@
+<!--main content end-->

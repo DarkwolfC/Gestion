@@ -1,0 +1,35 @@
+﻿@model UnicaesGestion.FuncionPuestoTrabajo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>FuncionPuestoTrabajo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.funcion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.funcion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PuestoTrabajo.titulo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PuestoTrabajo.titulo)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,204 @@
+﻿@model UnicaesGestion.Unidad
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<h2>Create</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Unidad</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.nombre, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.nombre, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.objetivo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.objetivo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.objetivo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.depende, "depende", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("depende", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.depende, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}*@
+
+
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+              Nueva Unidad
+            </header>
+
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form" method="post" action="/Unidades/Create">
+
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Unidad</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" id="nombre" name="nombre" type="text" />
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="objetivo" class="control-label col-lg-2">Objetivo</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" id="objetivo" name="objetivo" rows="3"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="control-label col-lg-2">Depende de</label>
+                            <div class="col-lg-10">
+                                @Html.DropDownList("depende", null, htmlAttributes: new { @class = "form-control" })
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group row">
+                            <div class="col-lg-10">
+                                <button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-plus "> Agregar Funcion</i></button>
+                            </div>
+                        </div>
+
+
+
+                        @{ Html.RenderAction("Index", "FuncionUnidads");}
+
+                      
+
+                        <div class="form-group row">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-danger" type="submit" value="Create">Guardar</button>
+                                <button class="btn btn-default" type="submit" value="Create">Cancelar</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
+
+
+<!-- Modal Funciones -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Agregar Funcion</h4>
+            </div>
+
+            <div class="modal-body">
+                <!--body start-->
+                <div class="form">
+
+
+                    @{
+                        //var funcionTrabajo = ViewBag.idPuestoTrabajo;
+                        var funcionUnidad = ViewBag.idUnidad;
+                        Html.RenderPartial("_funciones", new ViewDataDictionary { { "idUnidad", funcionUnidad } });
+                    }
+
+                </div>
+
+                <!--body end-->
+            </div>
+
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                <button class="btn btn-success" onclick="Enviar()" type="button">Guardar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+
+
+
+
+<!--Start JavaScript-->
+@section JavaScript {
+
+    <!--this page plugins-->
+    <script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+    <!--this page  script only-->
+    <script src="~/Content/js/form-component.js"></script>
+
+
+    <script>
+        function Enviar() {
+            //console.log('asasasasa');
+            //console.log($('#funcion'));
+            $('#funcion')[0].submit(function (event) {
+                //cons.log("loodsodosodosdos");
+                alert("Handler for .submit() called.");
+                event.preventDefault();
+            });
+        }
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            EditableColumn.init();
+        });
+    </script>
+
+
+    <!--select2-->
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".js-example-basic-single").select2();
+
+            $(".js-example-basic-multiple").select2();
+        });
+    </script>
+}
+<!--End JavaScript-->

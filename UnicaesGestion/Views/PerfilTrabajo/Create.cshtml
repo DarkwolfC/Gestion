@@ -140,7 +140,7 @@
 <!--main content end-->
 
 
-<!-- Modal -->
+<!-- Modal Funciones ok-->
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -155,8 +155,8 @@
 
 
                     @{
-                        //var funcionTrabajo = ViewBag.idPuestoTrabajo;
-                        var funcionTrabajo = ViewBag.jefeInmediato;
+                       
+                        var funcionTrabajo = ViewBag.idPuestoTrabajo;
                         Html.RenderPartial("_funciones", new ViewDataDictionary { { "idPuestoTrabajo", funcionTrabajo } });
                     }
 
@@ -175,7 +175,7 @@
 </div>
 <!-- modal -->
 
-<!-- Modal -->
+<!-- Modal Requisitos ok-->
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal2" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -190,9 +190,8 @@
 
 
                     @{
-//var funcionTrabajo = ViewBag.idPuestoTrabajo;
-//var funcionTrabajo = ViewBag.jefeInmediato;
-//Html.RenderPartial("_funciones", new ViewDataDictionary { { "idPuestoTrabajo", funcionTrabajo } });
+                        var requisito = ViewBag.idCategoria;
+                        Html.RenderPartial("_Requisitos", new ViewDataDictionary { { "idPuestoTrabajo", funcionTrabajo }, { "idCategoria", requisito } });
                     }
 
                 </div>
@@ -210,7 +209,7 @@
 </div>
 <!-- modal -->
 
-<!-- Modal -->
+<!-- Modal Competencias-->
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal3" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -225,9 +224,9 @@
 
 
                     @{
-//var funcionTrabajo = ViewBag.idPuestoTrabajo;
-//var funcionTrabajo = ViewBag.jefeInmediato;
-//Html.RenderPartial("_funciones", new ViewDataDictionary { { "idPuestoTrabajo", funcionTrabajo } });
+                      
+                        var competencia = ViewBag.idCompetencia;
+                        Html.RenderPartial("_competencias", new ViewDataDictionary { { "idPuestoTrabajo", funcionTrabajo }, { "idCompetencia", competencia } });
                     }
 
                 </div>

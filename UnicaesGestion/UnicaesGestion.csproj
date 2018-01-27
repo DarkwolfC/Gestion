@@ -164,7 +164,7 @@
     <Compile Include="Controllers\CatalogoCompetenciasController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\CompetenciaPuestoController.cs" />
-    <Compile Include="Controllers\CriteriosController.cs" />
+    <Compile Include="Controllers\FuncionPuestoTrabajoController.cs" />
     <Compile Include="Controllers\FuncionPuestoTrabajoesController.cs" />
     <Compile Include="Controllers\FuncionUnidadsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -177,12 +177,9 @@
     <Compile Include="Controllers\TipoPasoesController.cs" />
     <Compile Include="Controllers\TipoPuestoController.cs" />
     <Compile Include="Controllers\TipoPuestoesController.cs" />
-    <Compile Include="Controllers\UnidadsController.cs" />
+    <Compile Include="Controllers\UnidadesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Credential.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Criterio.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="FuncionPuestoTrabajo.cs">
@@ -907,8 +904,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model.Context.cs</LastGenOutput>
       <DependentUpon>Model.edmx</DependentUpon>
+      <LastGenOutput>Model.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -1160,11 +1157,6 @@
     <Content Include="Views\PerfilTrabajo\Details.cshtml" />
     <Content Include="Views\PerfilTrabajo\Edit.cshtml" />
     <Content Include="Views\PerfilTrabajo\Index.cshtml" />
-    <Content Include="Views\Unidads\Create.cshtml" />
-    <Content Include="Views\Unidads\Delete.cshtml" />
-    <Content Include="Views\Unidads\Details.cshtml" />
-    <Content Include="Views\Unidads\Edit.cshtml" />
-    <Content Include="Views\Unidads\Index.cshtml" />
     <Content Include="Views\TipoPuesto\Create.cshtml" />
     <Content Include="Views\TipoPuesto\Delete.cshtml" />
     <Content Include="Views\TipoPuesto\Details.cshtml" />
@@ -1190,6 +1182,19 @@
     <Content Include="Views\Requisitos\Details.cshtml" />
     <Content Include="Views\Requisitos\Edit.cshtml" />
     <Content Include="Views\Requisitos\Index.cshtml" />
+    <Content Include="Views\Unidades\Create.cshtml" />
+    <Content Include="Views\Unidades\Delete.cshtml" />
+    <Content Include="Views\Unidades\Details.cshtml" />
+    <Content Include="Views\Unidades\Edit.cshtml" />
+    <Content Include="Views\Unidades\Index.cshtml" />
+    <Content Include="Views\Unidades\_Funciones.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajo\Create.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajo\Delete.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajo\Details.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajo\Edit.cshtml" />
+    <Content Include="Views\FuncionPuestoTrabajo\Index.cshtml" />
+    <Content Include="Views\PerfilTrabajo\_Requisitos.cshtml" />
+    <Content Include="Views\PerfilTrabajo\_competencias.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

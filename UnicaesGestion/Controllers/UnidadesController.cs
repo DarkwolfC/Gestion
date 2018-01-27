@@ -10,109 +10,115 @@ using UnicaesGestion;
 
 namespace UnicaesGestion.Controllers
 {
-    public class TipoPuestoController : Controller
+    public class UnidadesController : Controller
     {
         private GestionEntities db = new GestionEntities();
 
-        // GET: TipoPuesto
+        // GET: Unidades
         public ActionResult Index()
         {
-            return View(db.TipoPuestoes.ToList());
+            var unidads = db.Unidads.Include(u => u.Unidad2);
+            return View(unidads.ToList());
         }
 
-        // GET: TipoPuesto/Details/5
+        // GET: Unidades/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoPuesto tipoPuesto = db.TipoPuestoes.Find(id);
-            if (tipoPuesto == null)
+            Unidad unidad = db.Unidads.Find(id);
+            if (unidad == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoPuesto);
+            return View(unidad);
         }
 
-        // GET: TipoPuesto/Create
+        // GET: Unidades/Create
         public ActionResult Create()
         {
+            ViewBag.idUnidad = new SelectList(db.Unidads, "id", "nombre");//Agregado para las funciones
+            ViewBag.depende = new SelectList(db.Unidads, "id", "nombre");
             return View();
         }
 
-        // POST: TipoPuesto/Create
+        // POST: Unidades/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,tipo")] TipoPuesto tipoPuesto)
+        public ActionResult Create([Bind(Include = "id,nombre,objetivo,depende")] Unidad unidad)
         {
             if (ModelState.IsValid)
             {
-                db.TipoPuestoes.Add(tipoPuesto);
+                db.Unidads.Add(unidad);
                 db.SaveChanges();
-                return RedirectToAction("Create");
+                return RedirectToAction("Index");
             }
 
-            return View(tipoPuesto);
+            ViewBag.depende = new SelectList(db.Unidads, "id", "nombre", unidad.depende);
+            return View(unidad);
         }
 
-        // GET: TipoPuesto/Edit/5
+        // GET: Unidades/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoPuesto tipoPuesto = db.TipoPuestoes.Find(id);
-            if (tipoPuesto == null)
+            Unidad unidad = db.Unidads.Find(id);
+            if (unidad == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoPuesto);
+            ViewBag.depende = new SelectList(db.Unidads, "id", "nombre", unidad.depende);
+            return View(unidad);
         }
 
-        // POST: TipoPuesto/Edit/5
+        // POST: Unidades/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,tipo")] TipoPuesto tipoPuesto)
+        public ActionResult Edit([Bind(Include = "id,nombre,objetivo,depende")] Unidad unidad)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tipoPuesto).State = EntityState.Modified;
+                db.Entry(unidad).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Create");
+                return RedirectToAction("Index");
             }
-            return View(tipoPuesto);
+            ViewBag.depende = new SelectList(db.Unidads, "id", "nombre", unidad.depende);
+            return View(unidad);
         }
 
-        // GET: TipoPuesto/Delete/5
+        // GET: Unidades/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            TipoPuesto tipoPuesto = db.TipoPuestoes.Find(id);
-            if (tipoPuesto == null)
+            Unidad unidad = db.Unidads.Find(id);
+            if (unidad == null)
             {
                 return HttpNotFound();
             }
-            return View(tipoPuesto);
+            return View(unidad);
         }
 
-        // POST: TipoPuesto/Delete/5
+        // POST: Unidades/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            TipoPuesto tipoPuesto = db.TipoPuestoes.Find(id);
-            db.TipoPuestoes.Remove(tipoPuesto);
+            Unidad unidad = db.Unidads.Find(id);
+            db.Unidads.Remove(unidad);
             db.SaveChanges();
-            return RedirectToAction("Create");
+            return RedirectToAction("Index");
         }
 
         protected override void Dispose(bool disposing)
