@@ -10,8 +10,11 @@
 <link href="~/Content/assets/bootstrap-timepicker/compiled/timepicker.css" rel="stylesheet" />
 <link href="~/Content/assets/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" />
 <link href="~/Content/assets/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" />
-
-
+<style>
+    .oculta {
+        display: none;
+    }
+</style>
 
 <!--main content start-->
 <section id="main-content">
@@ -95,14 +98,24 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <div class="col-lg-10">
-                                <button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-plus "> Agregar Funcion</i></button>
+
+                        <div class="modal-footer row">
+                            <div class="col-lg-offset-2 col-lg-10">
+                                <button class="btn btn-danger" type="submit" value="Create">Guardar y Continuar</button>
+                                <button class="btn btn-default" >Cancelar</button>
                             </div>
                         </div>
 
+                        @*<div class="form-group row" id="ejemplo" >
+                            <div class="col-lg-10">
+                                <button class="btn btn-danger" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-plus "> Agregar Funcion</i></button>
+                            </div>
+                        </div>*@
 
-                        @{ Html.RenderAction("Index", "FuncionPuestoTrabajoes");}
+
+
+
+                        @*@{ Html.RenderAction("Index", "FuncionPuestoTrabajo");}*@
 
                         @*<div class="form-group row">
                             <div class="col-lg-10">
@@ -120,12 +133,7 @@
 
                         @{ Html.RenderAction("Index", "CompetenciaPuesto");}
 
-                        <div class="form-group row">
-                            <div class="col-lg-offset-2 col-lg-10">
-                                <button class="btn btn-danger" type="submit" value="Create">Guardar</button>
-                                <button class="btn btn-default" type="submit" value="Create">Cancelar</button>
-                            </div>
-                        </div>
+                        
 
                     </form>
                 </div>
@@ -258,8 +266,13 @@
     <!--this page  script only-->
     <script src="~/Content/js/form-component.js"></script>
 
+    <script>
+        function visualizar() {
+            $("#ejemplo").removeClass("oculta")
+        }
+    </script>
 
-       <script>
+    <script>
           function Enviar() {
               //console.log('asasasasa');
               //console.log($('#funcion'));
@@ -272,7 +285,7 @@
        </script>
 
 
-        <script>
+    <script>
           $(document).ready(function () {
               EditableColumn.init();
           });

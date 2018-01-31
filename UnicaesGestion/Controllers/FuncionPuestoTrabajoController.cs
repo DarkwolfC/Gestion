@@ -17,8 +17,18 @@ namespace UnicaesGestion.Controllers
         // GET: FuncionPuestoTrabajo
         public ActionResult Index()
         {
-            var funcionPuestoTrabajoes = db.FuncionPuestoTrabajoes.Include(f => f.PuestoTrabajo);
-            return View(funcionPuestoTrabajoes.ToList());
+            if (Request.Cookies["llave"]!=null)
+            {
+                int llave;
+                if (Request.Cookies["llave"]["idPuestoTrabajo"] != null)
+                { llave = int.Parse(Request.Cookies["llave"]["idPuestoTrabajo"].ToString());
+                    var funcionPuestoTrabajoes = db.FuncionPuestoTrabajoes.Where(f => f.PuestoTrabajo.id == llave);
+                    return View(funcionPuestoTrabajoes.ToList());
+                }
+            }
+
+            return View();
+
         }
 
         // GET: FuncionPuestoTrabajo/Details/5
@@ -37,9 +47,17 @@ namespace UnicaesGestion.Controllers
         }
 
         // GET: FuncionPuestoTrabajo/Create
-        public ActionResult Create()
+        public ActionResult Create(int idPuestoTrabajo=0)
         {
-            ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
+            if (idPuestoTrabajo==0)
+            {
+                ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
+            }
+            else
+            {
+              ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes.Where(x => x.id == idPuestoTrabajo), "id", "titulo");
+            }
+           
             return View();
         }
 
@@ -47,14 +65,14 @@ namespace UnicaesGestion.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "id,funcion,idPuestoTrabajo")] FuncionPuestoTrabajo funcionPuestoTrabajo)
         {
             if (ModelState.IsValid)
             {
                 db.FuncionPuestoTrabajoes.Add(funcionPuestoTrabajo);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo", funcionPuestoTrabajo.idPuestoTrabajo);
@@ -81,7 +99,7 @@ namespace UnicaesGestion.Controllers
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,funcion,idPuestoTrabajo")] FuncionPuestoTrabajo funcionPuestoTrabajo)
         {
             if (ModelState.IsValid)

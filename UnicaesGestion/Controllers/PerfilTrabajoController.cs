@@ -59,7 +59,9 @@ namespace UnicaesGestion.Controllers
             {
                 db.PuestoTrabajoes.Add(puestoTrabajo);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                Response.Cookies["llave"]["idPuestoTrabajo"]=puestoTrabajo.id.ToString();
+                Response.Cookies["llave"].Expires = DateTime.Now.AddMinutes(5);
+                return RedirectToAction("Create", "FuncionPuestoTrabajo", new { idPuestoTrabajo=puestoTrabajo.id});
             }
 
             ViewBag.jefeInmediato = new SelectList(db.PuestoTrabajoes, "id", "titulo", puestoTrabajo.jefeInmediato);
