@@ -17,8 +17,18 @@ namespace UnicaesGestion.Controllers
         // GET: Pasoes
         public ActionResult Index()
         {
-            var pasoes = db.Pasoes.Include(p => p.Procedimiento).Include(p => p.PuestoTrabajo).Include(p => p.TipoPaso);
-            return View(pasoes.ToList());
+            if (Request.Cookies["llave"] != null)
+            {
+                int llave;
+                if (Request.Cookies["llave"]["idProcedimiento"] != null)
+                {
+                    llave = int.Parse(Request.Cookies["llave"]["idProcedimiento"].ToString());                   
+                    var pasoes = db.Pasoes.Where(p => p.Procedimiento.id==llave).Include(p => p.PuestoTrabajo).Include(p => p.TipoPaso);
+                    return View(pasoes.ToList());
+                }
+            }
+            //var pasoes = db.Pasoes.Include(p => p.Procedimiento).Include(p => p.PuestoTrabajo).Include(p => p.TipoPaso);
+            return View();
         }
 
         // GET: Pasoes/Details/5
@@ -39,9 +49,24 @@ namespace UnicaesGestion.Controllers
         // GET: Pasoes/Create
         public ActionResult Create()
         {
-            ViewBag.idProcedimiento = new SelectList(db.Procedimientoes, "id", "nombre");
-            ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
-            ViewBag.idTipoPaso = new SelectList(db.TipoPasoes, "id", "tipoPaso1");
+            if (Request.Cookies["llave"] != null)
+            {
+                int llave;
+                if (Request.Cookies["llave"]["idProcedimiento"] != null)
+                {
+                    llave = int.Parse(Request.Cookies["llave"]["idProcedimiento"].ToString());
+                    ViewBag.idProcedimiento = new SelectList(db.Procedimientoes.Where(x => x.id == llave), "id", "nombre");
+                    ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
+                    ViewBag.idTipoPaso = new SelectList(db.TipoPasoes, "id", "tipoPaso1");
+                }
+                else
+                {
+                    ViewBag.idProcedimiento = new SelectList(db.Procedimientoes, "id", "nombre");
+                    ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
+                    ViewBag.idTipoPaso = new SelectList(db.TipoPasoes, "id", "tipoPaso1");
+                }
+            }
+            
             return View();
         }
 
@@ -56,7 +81,7 @@ namespace UnicaesGestion.Controllers
             {
                 db.Pasoes.Add(paso);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.idProcedimiento = new SelectList(db.Procedimientoes, "id", "nombre", paso.idProcedimiento);

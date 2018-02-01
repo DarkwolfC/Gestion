@@ -56,7 +56,9 @@ namespace UnicaesGestion.Controllers
                 
                 db.Procedimientoes.Add(procedimiento);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                Response.Cookies["llave"]["idProcedimiento"] = procedimiento.id.ToString();
+                Response.Cookies["llave"].Expires = DateTime.Now.AddMinutes(45);
+                return RedirectToAction("Create","Pasoes", new { idPuestoTrabajo = procedimiento.id });
             }
 
             return View(procedimiento);
