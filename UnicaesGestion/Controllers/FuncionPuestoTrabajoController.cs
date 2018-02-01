@@ -47,17 +47,24 @@ namespace UnicaesGestion.Controllers
         }
 
         // GET: FuncionPuestoTrabajo/Create
-        public ActionResult Create(int idPuestoTrabajo=0)
+        public ActionResult Create()
         {
-            if (idPuestoTrabajo==0)
+
+            if (Request.Cookies["llave"] != null)
             {
-                ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
+                int llave;
+                if (Request.Cookies["llave"]["idPuestoTrabajo"] != null)
+                {
+                    llave = int.Parse(Request.Cookies["llave"]["idPuestoTrabajo"].ToString());
+                    ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes.Where(x => x.id == llave), "id", "titulo");
+                   
+                }
+                else
+                {
+                    ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
+                }
             }
-            else
-            {
-              ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes.Where(x => x.id == idPuestoTrabajo), "id", "titulo");
-            }
-           
+            
             return View();
         }
 
