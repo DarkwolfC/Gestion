@@ -17,8 +17,19 @@ namespace UnicaesGestion.Controllers
         // GET: FuncionUnidads
         public ActionResult Index()
         {
-            var funcionUnidads = db.FuncionUnidads.Include(f => f.Unidad);
-            return View(funcionUnidads.ToList());
+            if (Request.Cookies["llave"] != null)
+            {
+                int llave;
+                if (Request.Cookies["llave"]["idUnidad"] != null)
+                {
+                    llave = int.Parse(Request.Cookies["llave"]["idUnidad"].ToString());
+                    var funcionUnidads = db.FuncionUnidads.Where(f => f.Unidad.id == llave);
+                    return View(funcionUnidads.ToList());
+                }
+            }
+            return View();
+            //var funcionUnidads = db.FuncionUnidads.Include(f => f.Unidad);
+            
         }
 
         // GET: FuncionUnidads/Details/5
@@ -39,7 +50,22 @@ namespace UnicaesGestion.Controllers
         // GET: FuncionUnidads/Create
         public ActionResult Create()
         {
-            ViewBag.idUnidad = new SelectList(db.Unidads, "id", "nombre");
+            if (Request.Cookies["llave"] != null)
+            {
+                int llave;
+                if (Request.Cookies["llave"]["idUnidad"] != null)
+                {
+                    llave = int.Parse(Request.Cookies["llave"]["idUnidad"].ToString());
+                    ViewBag.idUnidad = new SelectList(db.Unidads.Where(x => x.id == llave), "id", "nombre");
+
+                }
+                else
+                {
+                    ViewBag.idUnidad = new SelectList(db.Unidads, "id", "nombre");
+                }
+            }
+            
+            //ViewBag.idUnidad = new SelectList(db.Unidads, "id", "nombre");
             return View();
         }
 
@@ -54,7 +80,7 @@ namespace UnicaesGestion.Controllers
             {
                 db.FuncionUnidads.Add(funcionUnidad);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.idUnidad = new SelectList(db.Unidads, "id", "nombre", funcionUnidad.idUnidad);

@@ -55,7 +55,9 @@ namespace UnicaesGestion.Controllers
             {
                 db.Unidads.Add(unidad);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                Response.Cookies["llave"]["idUnidad"] = unidad.id.ToString();
+                Response.Cookies["llave"].Expires = DateTime.Now.AddMinutes(45);
+                return RedirectToAction("Create","FuncionUnidads", new { idPuestoTrabajo = unidad.id });
             }
 
             ViewBag.depende = new SelectList(db.Unidads, "id", "nombre", unidad.depende);

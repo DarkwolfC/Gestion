@@ -60,7 +60,7 @@ namespace UnicaesGestion.Controllers
                 db.PuestoTrabajoes.Add(puestoTrabajo);
                 db.SaveChanges();
                 Response.Cookies["llave"]["idPuestoTrabajo"]=puestoTrabajo.id.ToString();
-                Response.Cookies["llave"].Expires = DateTime.Now.AddMinutes(5);
+                Response.Cookies["llave"].Expires = DateTime.Now.AddMinutes(45);
                 return RedirectToAction("Create", "FuncionPuestoTrabajo", new { idPuestoTrabajo=puestoTrabajo.id});
             }
 
