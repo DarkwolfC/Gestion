@@ -17,8 +17,19 @@ namespace UnicaesGestion.Controllers
         // GET: Requisitos
         public ActionResult Index()
         {
-            var requisitoes = db.Requisitoes.Include(r => r.Categoria).Include(r => r.PuestoTrabajo);
-            return View(requisitoes.ToList());
+            if (Request.Cookies["llave"] != null)
+            {
+                int llave;
+                if (Request.Cookies["llave"]["idPuestoTrabajo"] != null)
+                {
+                    llave = int.Parse(Request.Cookies["llave"]["idPuestoTrabajo"].ToString());
+                    var requisitoes = db.Requisitoes.Include(r => r.Categoria).Where(r => r.PuestoTrabajo.id==llave);
+                    return View(requisitoes.ToList());
+                }
+            }
+            //var requisitoes = db.Requisitoes.Include(r => r.Categoria).Include(r => r.PuestoTrabajo);
+            //return View(requisitoes.ToList());
+            return View();
         }
 
         // GET: Requisitos/Details/5
@@ -39,8 +50,24 @@ namespace UnicaesGestion.Controllers
         // GET: Requisitos/Create
         public ActionResult Create()
         {
-            ViewBag.idCategoria = new SelectList(db.Categorias, "id", "categoria1");
-            ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
+            if (Request.Cookies["llave"] != null)
+            {
+                int llave;
+                if (Request.Cookies["llave"]["idPuestoTrabajo"] != null)
+                {
+                    llave = int.Parse(Request.Cookies["llave"]["idPuestoTrabajo"].ToString());
+                    ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes.Where(x => x.id == llave), "id", "titulo");
+                    ViewBag.idCategoria = new SelectList(db.Categorias, "id", "categoria1");
+                }
+                else
+                {
+                    ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
+                    ViewBag.idCategoria = new SelectList(db.Categorias, "id", "categoria1");
+                }
+            }
+
+          
+           
             return View();
         }
 
@@ -55,7 +82,7 @@ namespace UnicaesGestion.Controllers
             {
                 db.Requisitoes.Add(requisito);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.idCategoria = new SelectList(db.Categorias, "id", "categoria1", requisito.idCategoria);
