@@ -6,6 +6,19 @@
     //"~/Views/Shared/_Layout.cshtml"
 }
 
+<style>
+    .oculta {
+        display: none;
+    }
+</style>
+
+<style>
+    .eliminar{
+
+    }
+</style>
+
+
 @*<h2>Index</h2>
 
 <p>
@@ -93,20 +106,24 @@
 
                         
                             <tr>
+                                <td class="oculta">
+                                    @Html.DisplayFor(modelItem => item.id)
+                                </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.funcion)
                                 </td>
                                 <td>
                                     <div class="pull-right hidden-phone">
-                                        <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                        <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "FuncionPuestoTrabajo", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                        <button class="btn btn-danger btn-xs " data-toggle="modal" href="#myModal" type="button"><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)"  type="button"><i class="fa fa-trash-o "></i></button>
                                         @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
-                                        @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                        
                                     </div>
                                 </td>
                             </tr>
 
-                        
+                        //data - toggle = "modal" href = "#myModal"
+
 
                     }
 
@@ -133,3 +150,5 @@
 
 }
 <!--End JavaScript-->
+
+

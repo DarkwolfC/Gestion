@@ -102,13 +102,130 @@
     </section>
 </section>
 <!--main content end-->
+
+
+<!-- Modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Eliminar</h4>
+            </div>
+
+            <div class="modal-body">
+                <!--body start-->
+                <div class="form">
+
+
+                    @{
+//var procedimiento = ViewBag.idProcedimiento;
+//var paso = ViewBag.idTipoPaso;
+//var responsable = ViewBag.idPuestoTrabajo;
+//Html.RenderPartial("_Paso", new ViewDataDictionary { { "idProcedimiento", procedimiento }, { "idTipoPaso", paso }, { "idPuestoTrabajo", responsable } });
+                    }
+
+                </div>
+
+                <!--body end-->
+            </div>
+
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Eliminar</button>
+                @*<button class="btn btn-success" onclick="Enviar()" type="button">Guardar</button>*@
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+
+
+
+
+
 <!--Start JavaScript-->
 @section JavaScript {
     <script src="~/Content/js/ModalFunction.js"></script>
+@*<script>
+   function Enviar() {               
+    $('#funcion')[0].submit(function (event) {                  
+     alert("Handler for .submit() called.");
+     event.preventDefault();
+    });
+  }
+
+</script>*@
 
     <script>
         $(document).ready(function () {
             EditableTable.init();
         });
     </script>
+
+
+
+    <script>
+        $(".eliminar").click(function () {           
+             var clave = $(this).data("funcion-id")           
+             var valor = { "id": clave }
+
+             
+             var nuevo = $($($(this).parent()).parent()).parent()
+             $(this).closest('tr').remove();    
+                 console.log(nuevo)
+
+            $.ajax({
+                type: "Post",
+                url: "/FuncionPuestoTrabajo/Delete",                
+                data: valor,
+                success: function () {
+                    console.log("ok")
+                },
+                error: function () { }
+
+            })
+        })
+        
+    </script>
+
+
+
 }
+
+
+<!-- Modal -->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Agregar Proceso</h4>
+            </div>
+
+            <div class="modal-body">
+                <!--body start-->
+                <div class="form">
+
+
+                    @{
+//var procedimiento = ViewBag.idProcedimiento;
+//var paso = ViewBag.idTipoPaso;
+//var responsable = ViewBag.idPuestoTrabajo;
+//Html.RenderPartial("_Paso", new ViewDataDictionary { { "idProcedimiento", procedimiento }, { "idTipoPaso", paso }, { "idPuestoTrabajo", responsable } });
+                    }
+
+                </div>
+
+                <!--body end-->
+            </div>
+
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                <button class="btn btn-success" onclick="Enviar()" type="button">Guardar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
