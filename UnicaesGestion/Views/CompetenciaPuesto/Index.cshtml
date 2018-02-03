@@ -6,6 +6,19 @@
     //"~/Views/Shared/_Layout.cshtml"
 }
 
+<style>
+    .oculta {
+        display: none;
+    }
+
+    /*solo para utilizar el boton eliminar Post*/
+    .eliminar {
+    }
+</style>
+
+
+
+
 @*<h2>Index</h2>
 
 <p>
@@ -86,7 +99,7 @@
                             <td>
                                 <div class="pull-right hidden-phone">
                                     <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "CompetenciaPuesto", new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                    <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "CompetenciaPuesto", new { id=item.Id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                    <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.Id)" type="button"><i class="fa fa-trash-o "></i></button>
                                     @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
                                     @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
                                 </div>
@@ -134,7 +147,7 @@
                             <td>
                                 <div class="pull-right hidden-phone">
                                     <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "CompetenciaPuesto", new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                    <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "CompetenciaPuesto", new { id=item.Id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                    <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.Id)" type="button"><i class="fa fa-trash-o "></i></button>
                                     @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
                                     @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
                                 </div>

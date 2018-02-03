@@ -80,7 +80,7 @@
                         <div class="form-group ">
                             <label for="objetivoI" class="control-label col-lg-2">Criterio</label>
                             <div class="col-lg-10">
-                                @Html.DropDownList("idCategoria", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.DropDownList("idCategoria", null, string.Empty, htmlAttributes: new { @class = "form-control" })
                             </div>
                         </div>
 
@@ -127,4 +127,31 @@
             EditableTable.init();
         });
     </script>
+
+<script>
+        $(".eliminar").click(function () {
+            var clave = $(this).data("funcion-id")
+            var valor = { "id": clave }
+
+
+            var nuevo = $($($(this).parent()).parent()).parent()
+            $(this).closest('tr').remove();
+            console.log(nuevo)
+
+            $.ajax({
+                type: "Post",
+                url: "/Requisitos/Delete",
+                data: valor,
+                success: function () {
+                    console.log("ok")
+                },
+                error: function () { }
+
+            })
+        })
+
+</script>
 }
+
+
+

@@ -135,3 +135,27 @@
     </section>
 </section>
 <!--main content end-->
+
+@section JavaScript {
+<script>
+        $(".eliminar").click(function () {
+             var clave = $(this).data("funcion-id")
+             var valor = { "id": clave }
+             var nuevo = $($($(this).parent()).parent()).parent()
+             $(this).closest('tr').remove();
+                 console.log(nuevo)
+
+            $.ajax({
+                type: "Post",
+                url: "/CompetenciaPuesto/Delete",
+                data: valor,
+                success: function () {
+                    console.log("ok")
+                },
+                error: function () { }
+
+            })
+        })
+
+</script>
+}

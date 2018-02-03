@@ -17,8 +17,20 @@ namespace UnicaesGestion.Controllers
         // GET: CompetenciaPuesto
         public ActionResult Index()
         {
-            var competenciaPuestoTrabajoes = db.CompetenciaPuestoTrabajoes.Include(c => c.CatalogoCompetencia).Include(c => c.PuestoTrabajo);
-            return View(competenciaPuestoTrabajoes.ToList());
+            if (Request.Cookies["llave"] != null)
+            {
+                int llave;
+                if (Request.Cookies["llave"]["idPuestoTrabajo"] != null)
+                {
+                    llave = int.Parse(Request.Cookies["llave"]["idPuestoTrabajo"].ToString());
+                    var competenciaPuestoTrabajoes = db.CompetenciaPuestoTrabajoes.Include(c => c.CatalogoCompetencia).Where(r => r.PuestoTrabajo.id == llave);
+                    return View(competenciaPuestoTrabajoes.ToList());
+                }
+            }
+            return View();
+
+            //var competenciaPuestoTrabajoes = db.CompetenciaPuestoTrabajoes.Include(c => c.CatalogoCompetencia).Include(c => c.PuestoTrabajo);
+           
         }
 
         // GET: CompetenciaPuesto/Details/5
@@ -39,8 +51,24 @@ namespace UnicaesGestion.Controllers
         // GET: CompetenciaPuesto/Create
         public ActionResult Create()
         {
-            ViewBag.idCompetencia = new SelectList(db.CatalogoCompetencias, "Id", "competencia");
-            ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
+            if (Request.Cookies["llave"] != null)
+            {
+                int llave;
+                if (Request.Cookies["llave"]["idPuestoTrabajo"] != null)
+                {
+                    llave = int.Parse(Request.Cookies["llave"]["idPuestoTrabajo"].ToString());
+                    ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes.Where(x => x.id == llave), "id", "titulo");
+                    ViewBag.idCompetencia = new SelectList(db.CatalogoCompetencias, "Id", "competencia");
+                }
+                else
+                {
+                    ViewBag.idCompetencia = new SelectList(db.CatalogoCompetencias, "Id", "competencia");
+                    ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
+                }
+            }
+
+            //ViewBag.idCompetencia = new SelectList(db.CatalogoCompetencias, "Id", "competencia");
+            //ViewBag.idPuestoTrabajo = new SelectList(db.PuestoTrabajoes, "id", "titulo");
             return View();
         }
 
@@ -55,7 +83,7 @@ namespace UnicaesGestion.Controllers
             {
                 db.CompetenciaPuestoTrabajoes.Add(competenciaPuestoTrabajo);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             ViewBag.idCompetencia = new SelectList(db.CatalogoCompetencias, "Id", "competencia", competenciaPuestoTrabajo.idCompetencia);
@@ -115,7 +143,7 @@ namespace UnicaesGestion.Controllers
 
         // POST: CompetenciaPuesto/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             CompetenciaPuestoTrabajo competenciaPuestoTrabajo = db.CompetenciaPuestoTrabajoes.Find(id);

@@ -142,7 +142,7 @@ namespace UnicaesGestion.Controllers
 
         // POST: Requisitos/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Requisito requisito = db.Requisitoes.Find(id);
