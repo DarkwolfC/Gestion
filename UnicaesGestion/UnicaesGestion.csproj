@@ -160,12 +160,12 @@
     <Compile Include="CompetenciaPuestoTrabajo.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="eliminar controllers\AdminController.cs" />
     <Compile Include="Controllers\CatalogoCompetenciasController.cs" />
     <Compile Include="Controllers\CategoriasController.cs" />
     <Compile Include="Controllers\CompetenciaPuestoController.cs" />
     <Compile Include="Controllers\FuncionPuestoTrabajoController.cs" />
-    <Compile Include="Controllers\FuncionPuestoTrabajoesController.cs" />
+    <Compile Include="eliminar controllers\FuncionPuestoTrabajoesController.cs" />
     <Compile Include="Controllers\FuncionUnidadsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PasoesController.cs" />
@@ -176,7 +176,7 @@
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\TipoPasoesController.cs" />
     <Compile Include="Controllers\TipoPuestoController.cs" />
-    <Compile Include="Controllers\TipoPuestoesController.cs" />
+    <Compile Include="eliminar controllers\TipoPuestoesController.cs" />
     <Compile Include="Controllers\UnidadesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Credential.cs">

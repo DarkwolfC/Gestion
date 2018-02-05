@@ -87,6 +87,53 @@
 <!--main content end-->
 
 
+<!--Start JavaScript-->
+@section JavaScript {
+    <script src="~/Content/js/ModalFunction.js"></script>
+    @*<script>
+           function Enviar() {
+            $('#funcion')[0].submit(function (event) {
+             alert("Handler for .submit() called.");
+             event.preventDefault();
+            });
+          }
+
+        </script>*@
+
+    <script>
+        $(document).ready(function () {
+            EditableTable.init();
+        });
+    </script>
+
+
+
+    <script>
+        $(".eliminar").click(function () {
+             var clave = $(this).data("funcion-id")
+             var valor = { "id": clave }
+
+
+             var nuevo = $($($(this).parent()).parent()).parent()
+             $(this).closest('tr').remove();
+                 console.log(nuevo)
+
+            $.ajax({
+                type: "Post",
+                url: "/Pasoes/Delete",
+                data: valor,
+                success: function () {
+                    console.log("ok")
+                },
+                error: function () { }
+
+            })
+        })
+
+    </script>
+
+}
+
 @*<h2>Create</h2>
 
     @using (Html.BeginForm())
