@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using UnicaesGestion;
+using UnicaesGestion.Models;
 
 namespace UnicaesGestion.Controllers
 {
@@ -73,38 +74,44 @@ namespace UnicaesGestion.Controllers
         // GET: PerfilTrabajo/Edit/5
         public ActionResult Edit(int? id)
         {
+            EditPuestroTrabajoViewModel modelo = new EditPuestroTrabajoViewModel();
+          
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             PuestoTrabajo puestoTrabajo = db.PuestoTrabajoes.Find(id);
+            modelo.puesto = puestoTrabajo;
+            
             if (puestoTrabajo == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.jefeInmediato = new SelectList(db.PuestoTrabajoes, "id", "titulo", puestoTrabajo.jefeInmediato);
-            ViewBag.idTipoPuesto = new SelectList(db.TipoPuestoes, "Id", "tipo", puestoTrabajo.idTipoPuesto);
-            ViewBag.idUnidad = new SelectList(db.Unidads, "id", "nombre", puestoTrabajo.idUnidad);
-            return View(puestoTrabajo);
+            modelo.Id = puestoTrabajo.id;
+            modelo.funciones = db.FuncionPuestoTrabajoes.Where(r => r.idPuestoTrabajo == id).ToList();
+            modelo.requisitos = db.Requisitoes.Where(r => r.idPuestoTrabajo == id).ToList();
+            modelo.competencias = db.CompetenciaPuestoTrabajoes.Where(r => r.idPuestoTrabajo == id).ToList();
+            
+            modelo.cmbTipoPuesto = db.TipoPuestoes.ToList();
+            modelo.cmbJefeInmediato = db.PuestoTrabajoes.ToList();
+            modelo.cmbUnidades = db.Unidads.ToList();
+
+            return View(modelo);
         }
 
-        // POST: PerfilTrabajo/Edit/5
-        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
-        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+       
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,titulo,objetivo,jefeInmediato,idUnidad,idTipoPuesto,fechaCreacion,activo,aprobado")] PuestoTrabajo puestoTrabajo)
+        public ActionResult SaveEdit(EditPuestroTrabajoViewModel modelo)
         {
-            if (ModelState.IsValid)
-            {
-                db.Entry(puestoTrabajo).State = EntityState.Modified;
+            int id = modelo.Id;
+            PuestoTrabajo puesto = db.PuestoTrabajoes.SingleOrDefault(r => r.id == id);
+            if (puesto != null) {
+                puesto.titulo = modelo.puesto.titulo;
                 db.SaveChanges();
-                return RedirectToAction("Index");
             }
-            ViewBag.jefeInmediato = new SelectList(db.PuestoTrabajoes, "id", "titulo", puestoTrabajo.jefeInmediato);
-            ViewBag.idTipoPuesto = new SelectList(db.TipoPuestoes, "Id", "tipo", puestoTrabajo.idTipoPuesto);
-            ViewBag.idUnidad = new SelectList(db.Unidads, "id", "nombre", puestoTrabajo.idUnidad);
-            return View(puestoTrabajo);
+
+            return  RedirectToAction("Index");
         }
 
         // GET: PerfilTrabajo/Delete/5

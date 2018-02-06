@@ -1,97 +1,142 @@
-﻿@model UnicaesGestion.PuestoTrabajo
+﻿@using UnicaesGestion.Models;
+@model UnicaesGestion.Models.EditPuestroTrabajoViewModel
 
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<link href="~/Content/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-timepicker/compiled/timepicker.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" />
+<link href="~/Content/assets/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" />
+<style>
+    .oculta {
+        display: none;
+    }
+</style>
 
-<h2>Edit</h2>
 
-
-@using (Html.BeginForm())
+@using (Html.BeginForm("SaveEdit", "PerfilTrabajo", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>PuestoTrabajo</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.Id)
+    @*<input type="hidden" name="id" value="@Model.Id" />*@
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.titulo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.titulo, "", new { @class = "text-danger" })
-            </div>
-        </div>
+      <section id="main-content">
+        <section class="wrapper site-min-height">
+            <!-- page start-->
+            <section class="panel">
+                <header class="panel-heading">
+                    Nuevo Perfil de Trabajo
+                </header>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.objetivo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.objetivo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.objetivo, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="panel-body">
+                    <div class="form">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.jefeInmediato, "jefeInmediato", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("jefeInmediato", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.jefeInmediato, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Titulo del Puesto</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="puesto.titulo" id="titulo" value="@Model.puesto.titulo" type="text" />
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.idUnidad, "idUnidad", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idUnidad", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.idUnidad, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group ">
+                            <label for="objetivo" class="control-label col-lg-2">Objetivo</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" id="objetivo" name="pues.objetivo" rows="3">@Model.puesto.objetivo</textarea>
+                            </div>
+                        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.idTipoPuesto, "idTipoPuesto", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("idTipoPuesto", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.idTipoPuesto, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Jefe Inmediato</label>
+                            <div class="col-lg-10">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.fechaCreacion, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fechaCreacion, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fechaCreacion, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                                @Html.DropDownListFor(lst => lst.Id, (Model.cmbJefeInmediato).Select(m => new SelectListItem { Text = m.titulo, Value = m.id.ToString() }), htmlAttributes: new { @class = "form-control" })
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.activo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.activo)
-                    @Html.ValidationMessageFor(model => model.activo, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="control-label col-lg-2">Unidad Organizativa</label>
+                            <div class="col-lg-10">
+
+                                <select id="idUnidad" name="puesto.idUnidad">
+                                    @foreach (Unidad u in Model.cmbUnidades)
+                                    {
+                                        if (u.id == Model.puesto.idUnidad) {
+                                            <option selected value="@u.id">@u.nombre</option>
+                                        }
+                                        else
+                                        {
+                                            <option value="@u.id">@u.nombre</option>
+                                        }
+
+                                    }
+                                </select>
+                                @*@Html.DropDownList("idUnidad", null, string.Empty, htmlAttributes: new { @class = "form-control" })*@
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Tipo de Puesto</label>
+                            <div class="col-lg-10">
+                                @*@Html.DropDownList("idTipoPuesto", null, string.Empty, htmlAttributes: new { @class = "form-control" })*@
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3">Fecha de Aprobacion</label>
+                            <div class="col-md-3 col-xs-11">
+                                <div id="fechaAprobacion" data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012"
+                                     class="input-append date dpYears">
+                                    <input type="text" readonly="" id="fechaCreacion" name="fechaCreacion" value="12-02-2018" size="16" class="form-control">
+                                    <span class="input-group-btn add-on">
+                                        <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                    </span>
+                                </div>
+                                <span class="help-block">Seleccionar fecha</span>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Activo</label>
+                            <div class="col-lg-10">
+                                @*@Html.EditorFor(model => model.activo)*@
+                            </div>
+                        </div>
+
+                        <div class="form-group ">
+                            <label for="password" class="control-label col-lg-2">Aprobado</label>
+                            <div class="col-lg-10">
+                                @*@Html.EditorFor(model => model.aprobado)*@
+                            </div>
+                        </div>
+
+
+                        <div class="modal-footer row">
+                            <div class="col-lg-offset-2 col-lg-10">
+
+                                <button class="btn btn-danger" type="submit" value="Create">Guardar y Continuar</button>
+                                <button class="btn btn-default">Cancelar</button>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.aprobado, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.aprobado)
-                    @Html.ValidationMessageFor(model => model.aprobado, "", new { @class = "text-danger" })
-                </div>
-            </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
+
+            </section>
+            <!-- page end-->
+        </section>
+    </section>
+
 }
 
 <div>
@@ -100,4 +145,155 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+    <!--this page plugins-->
+    <script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+    <!--this page  script only-->
+    <script src="~/Content/js/form-component.js"></script>
+
+    <script>
+        function visualizar() {
+            $("#ejemplo").removeClass("oculta")
+        }
+    </script>
+
+    <script>
+        function Enviar() {
+            //console.log('asasasasa');
+            //console.log($('#funcion'));
+            $('#funcion')[0].submit(function (event) {
+                //cons.log("loodsodosodosdos");
+                alert("Handler for .submit() called.");
+                event.preventDefault();
+            });
+        }
+    </script>
+
+
+    <script>
+        $(document).ready(function () {
+            EditableColumn.init();
+        });
+    </script>
+
+
+    <!--select2-->
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+            $(".js-example-basic-single").select2();
+
+            $(".js-example-basic-multiple").select2();
+        });
+    </script>
+}
+
+
+
+<!-- Modal Funciones ok-->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Agregar Funcion</h4>
+            </div>
+
+            <div class="modal-body">
+                <!--body start-->
+                <div class="form">
+
+
+                    @*@{
+
+                            var funcionTrabajo = ViewBag.idPuestoTrabajo;
+                            Html.RenderPartial("_funciones", new ViewDataDictionary { { "idPuestoTrabajo", funcionTrabajo } });
+                        }*@
+
+                </div>
+
+                <!--body end-->
+            </div>
+
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                <button class="btn btn-success" onclick="Enviar()" type="button">Guardar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+<!-- Modal Requisitos ok-->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal2" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Requisito</h4>
+            </div>
+
+            <div class="modal-body">
+                <!--body start-->
+                <div class="form">
+
+
+                    @*@{
+                            var requisito = ViewBag.idCategoria;
+                            Html.RenderPartial("_Requisitos", new ViewDataDictionary { { "idPuestoTrabajo", funcionTrabajo }, { "idCategoria", requisito } });
+                        }*@
+
+                </div>
+
+                <!--body end-->
+            </div>
+
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                <button class="btn btn-success" onclick="Enviar()" type="button">Guardar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+<!-- Modal Competencias-->
+<div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModal3" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title">Competencias</h4>
+            </div>
+
+            <div class="modal-body">
+                <!--body start-->
+                <div class="form">
+
+
+                    @*@{
+
+                            var competencia = ViewBag.idCompetencia;
+                            Html.RenderPartial("_competencias", new ViewDataDictionary { { "idPuestoTrabajo", funcionTrabajo }, { "idCompetencia", competencia } });
+                        }*@
+
+                </div>
+
+                <!--body end-->
+            </div>
+
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                <button class="btn btn-success" onclick="Enviar()" type="button">Guardar</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- modal -->
+<!--Start JavaScript-->
+@section JavaScript {
+
+
 }

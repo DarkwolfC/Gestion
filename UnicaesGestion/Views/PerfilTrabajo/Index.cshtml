@@ -5,79 +5,6 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.titulo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.objetivo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.fechaCreacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.activo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.aprobado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PuestoTrabajo2.titulo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TipoPuesto.tipo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Unidad.nombre)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.objetivo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.fechaCreacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.activo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.aprobado)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PuestoTrabajo2.titulo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TipoPuesto.tipo)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Unidad.nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
-</table>*@
-
-
-
-
 <link href="~/Content/css/tasks.css" rel="stylesheet">
 
 <!--main content start-->
@@ -121,9 +48,9 @@
                                         <span class="task-title-sp"><a>@Html.DisplayFor(modelItem => item.titulo)</a></span>
 
                                         <div class="pull-right hidden-phone">
-                                            <button onclick="location.href='@Url.Action("Details", "Unidades", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-eye"></i> </button>
-                                            <button onclick="location.href='@Url.Action("Edit", "Unidades", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                            <button onclick="location.href='@Url.Action("Delete", "Unidades", new { id=item.id})'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                           
+                                            <button onclick="location.href='@Url.Action("Edit", "PerfilTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                            <button onclick="location.href='@Url.Action("Delete", "PerfilTrabajo", new { id=item.id})'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
 
                                             @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
                                         </div>
