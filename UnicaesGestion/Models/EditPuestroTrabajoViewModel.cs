@@ -28,5 +28,7 @@ namespace UnicaesGestion.Models
 
         public List<Unidad> cmbUnidades { get; set; }
 
+        public List<Categoria> cmbCategoria { get; set; }
+
     }
 }
