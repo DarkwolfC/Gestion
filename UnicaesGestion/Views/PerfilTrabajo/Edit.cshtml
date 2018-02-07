@@ -98,16 +98,20 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 control-label">Activo</label>
-                                    <div class="col-lg-10">
-                                        <input class=" form-control" name="puesto.activo" id="activo" value="@Model.puesto.activo" type="radio" />
+                                    <label class="col-lg-2 control-label">Estado</label>
+                                    <div class="radios col-lg-10">
+                                        <label class="label_radio" for="radio-01"> Activo
+                                            <input class=" form-control" name="puesto.activo" id="activo" value="@Model.puesto.activo" type="radio" />
+                                        </label>                                       
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 control-label">Aprobado</label>
-                                    <div class="col-lg-10">
-                                        <input class=" form-control" name="puesto.aprobado" id="aprobado" value="@Model.puesto.aprobado" type="radio" />
-                                    </div>
+                                    <label class="col-lg-2 control-label">Validado</label>
+                                    <div class="radios col-lg-10">
+                                        <label class="label_radio" for="radio-01"> Aprobado                                           
+                                            <input class=" form-control" name="puesto.aprobado" id="aprobado" value="@Model.puesto.aprobado" type="radio" />                                            
+                                        </label>
+                                   </div>
                                 </div>
 
                             </fieldset>
@@ -115,9 +119,10 @@
 
                             <fieldset title="Paso 2" class="step" id="default-step-1">
                                 <legend> </legend>
+                                <!--Agregar Nueva Funcion-->
                                 <div class="panel-body">
                                     <div class="form">
-                                        <form class="cmxform form-horizontal tasi-form" id="signupForm" method="Post" action="/FuncionPuestoTrabajo/Create">
+                                        <form class="cmxform form-horizontal tasi-form"  method="Post" action="/FuncionPuestoTrabajo/Create">
 
                                             <div class="form-group ">
                                                 <label for="objetivoF" class="control-label col-lg-2">Puesto de Trabajo</label>
@@ -130,56 +135,58 @@
                                                 <label for="procedimiento" class="control-label col-lg-2">Funcion</label>
                                                 <div class="col-lg-10">
                                                     <textarea class="form-control" id="funcion" name="funcion" rows="3"> </textarea>
-                                                </div>
-                                            </div>
-
-                                            <div class="modal-footer">
-                                                <div class="col-lg-offset-2 col-lg-10">
-                                                    <button class="btn btn-danger" type="submit" value="Create">Guardar</button>                                                 
-                                                </div>
+                                                    <br />
+                                                    <button class="btn btn-danger" type="submit" value="Create">Guardar</button>
+                                                </div>                                                                                               
                                             </div>
 
                                         </form>
                                     </div>
+                                    <!--Fin-->
+
+                                    <!--Tabla de Funciones-->
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-striped table-advance table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th><span>Descripción</span></th>
+                                                    <th><span>Controles</span></th>                                                    
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+
+                                                @foreach (var item in Model.funciones)
+                                                {
+                                                    <tr>
+                                                        <td class="oculta">
+                                                            @Html.DisplayFor(modelItem => item.id)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.funcion)
+                                                        </td>
+                                                        <td>
+                                                            <div class="pull-right hidden-phone">
+                                                                <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                                                <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)" type="button"><i class="fa fa-trash-o "></i></button>                                                              
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }
 
 
+                                            </tbody>
+                                        </table>
 
-                                </div>
-                           
+                                    </div>
+
+                                </div>                           
                             </fieldset>
+
 
                             <fieldset title="Paso 3" class="step" id="default-step-2">
                                 <legend> </legend>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">Nombre Completo</label>
-                                    <div class="col-lg-10">
-                                        <p class="form-control-static">José Vásquez</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">Puesto de Trabajo</label>
-                                    <div class="col-lg-10">
-                                        <p class="form-control-static">Contador</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">Usuario</label>
-                                    <div class="col-lg-10">
-                                        <p class="form-control-static">2013VC601</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">Correo</label>
-                                    <div class="col-lg-10">
-                                        <p class="form-control-static">Jose.vasquez@gmail.es</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">Contraseña</label>
-                                    <div class="col-lg-10">
-                                        <p class="form-control-static">123456</p>
-                                    </div>
-                                </div>
+                             
                             
                             </fieldset>
 
@@ -199,12 +206,16 @@
 
 
 @section Scripts {
+
     @Scripts.Render("~/bundles/jqueryval")
 
 <!--this page plugins-->
 <script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 <!--this page  script only-->
- <script src="~/Content/js/form-component.js"></script>
+<script src="~/Content/js/form-component.js"></script>
+
+ <!--script for this page-->
+<script src="~/Content/js/jquery.stepy.js"></script>
 
  <!--Form Validation-->
 <script src="~/Content/js/bootstrap-validator.min.js" type="text/javascript"></script>
@@ -267,8 +278,8 @@
 
 </script>
 
-<!--script for this page-->
-<script src="~/Content/js/jquery.stepy.js"></script>
+
+
     <script>
         function visualizar() {
             $("#ejemplo").removeClass("oculta")

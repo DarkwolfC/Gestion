@@ -95,6 +95,7 @@ namespace UnicaesGestion.Controllers
             modelo.cmbTipoPuesto = db.TipoPuestoes.ToList();
             modelo.cmbJefeInmediato = db.PuestoTrabajoes.ToList();
             modelo.cmbUnidades = db.Unidads.ToList();
+            modelo.cmbPuesto = db.PuestoTrabajoes.ToList();
 
             return View(modelo);
         }
