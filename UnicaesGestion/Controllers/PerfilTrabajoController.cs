@@ -131,7 +131,7 @@ namespace UnicaesGestion.Controllers
 
         // POST: PerfilTrabajo/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             PuestoTrabajo puestoTrabajo = db.PuestoTrabajoes.Find(id);

@@ -24,6 +24,8 @@ namespace UnicaesGestion.Models
 
         public List<PuestoTrabajo> cmbJefeInmediato { get; set; }
 
+        public List<PuestoTrabajo> cmbPuesto { get; set; }
+
         public List<Unidad> cmbUnidades { get; set; }
 
     }

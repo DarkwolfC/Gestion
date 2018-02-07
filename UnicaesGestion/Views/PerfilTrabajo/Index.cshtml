@@ -7,6 +7,16 @@
 
 <link href="~/Content/css/tasks.css" rel="stylesheet">
 
+<style>
+    .oculta {
+        display: none;
+    }
+
+    .eliminar {
+    }
+</style>
+
+
 <!--main content start-->
 <section id="main-content">
     <section class="wrapper">
@@ -50,7 +60,7 @@
                                         <div class="pull-right hidden-phone">
                                            
                                             <button onclick="location.href='@Url.Action("Edit", "PerfilTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                            <button onclick="location.href='@Url.Action("Delete", "PerfilTrabajo", new { id=item.id})'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
+                                            <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)" type="button"><i class="fa fa-trash-o "></i></button>
 
                                             @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
                                         </div>
@@ -73,31 +83,55 @@
 
 
 
-
-
-
-
 <!--Start JavaScript-->
 @section JavaScript {
 
-    <script>
-        function buscar() {
-            var input, filter, ul, li, a, i;
-            input = document.getElementById("myInput");
-            filter = input.value.toUpperCase();
-            ul = document.getElementById("myUL");
-            li = ul.getElementsByTagName("li");
-            for (i = 0; i < li.length; i++) {
-                a = li[i].getElementsByTagName("a")[0];
-                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
+<script>
+/*buscar en una lista*/
+  function buscar() {
+    var input, filter, ul, li, a, i;
+     input = document.getElementById("myInput");
+       filter = input.value.toUpperCase();
+       ul = document.getElementById("myUL");
+       li = ul.getElementsByTagName("li");
+       for (i = 0; i < li.length; i++) {
+        a = li[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+              li[i].style.display = "";
+          } else {
+              li[i].style.display = "none";
 
                 }
             }
         }
     </script>
+
+<script>
+/*obtener id del boton cliqueado*/
+   $(".eliminar").click(function () {
+     var clave = $(this).data("funcion-id")
+     var valor = { "id": clave }
+
+
+    var nuevo = $($($(this).parent()).parent()).parent()
+     $(this).closest('tr').remove();
+     console.log(nuevo)
+/*peticion para borrar*/
+     $.ajax({
+     type: "Post",
+     url: "/PerfilTrabajo/Delete",
+     data: valor,
+     success: function () {
+     console.log("ok")
+        },
+      error: function () { }
+
+       })
+     })
+
+</script>
+
+
 
 }
 <!--End JavaScript-->

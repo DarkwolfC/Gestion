@@ -115,34 +115,37 @@
 
                             <fieldset title="Paso 2" class="step" id="default-step-1">
                                 <legend> </legend>
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">Usuario</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" class="form-control" placeholder="Usuario">
-                                    </div>
-                                </div>
+                                <div class="panel-body">
+                                    <div class="form">
+                                        <form class="cmxform form-horizontal tasi-form" id="signupForm" method="Post" action="/FuncionPuestoTrabajo/Create">
 
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">Correo Electronico</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" class="form-control" placeholder="Correo Electronico">
-                                    </div>
-                                </div>
+                                            <div class="form-group ">
+                                                <label for="objetivoF" class="control-label col-lg-2">Puesto de Trabajo</label>
+                                                <div class="col-lg-10">
+                                                    @Html.DropDownListFor(lst => lst.Id, (Model.cmbPuesto).Select(m => new SelectListItem { Text = m.titulo, Value = m.id.ToString() }), htmlAttributes: new { @class = "form-control" })
+                                                </div>
+                                            </div>
 
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">Contraseña</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" class="form-control" placeholder="Contraseña">
-                                    </div>
-                                </div>
+                                            <div class="form-group ">
+                                                <label for="procedimiento" class="control-label col-lg-2">Funcion</label>
+                                                <div class="col-lg-10">
+                                                    <textarea class="form-control" id="funcion" name="funcion" rows="3"> </textarea>
+                                                </div>
+                                            </div>
 
-                                <div class="form-group">
-                                    <label class="col-lg-2 control-label">Confirmar Contraseña</label>
-                                    <div class="col-lg-10">
-                                        <input type="text" class="form-control" placeholder="Confirmar Contraseña">
-                                    </div>
-                                </div>
+                                            <div class="modal-footer">
+                                                <div class="col-lg-offset-2 col-lg-10">
+                                                    <button class="btn btn-danger" type="submit" value="Create">Guardar</button>                                                 
+                                                </div>
+                                            </div>
 
+                                        </form>
+                                    </div>
+
+
+
+                                </div>
+                           
                             </fieldset>
 
                             <fieldset title="Paso 3" class="step" id="default-step-2">
@@ -406,8 +409,4 @@
     </div>
 </div>
 <!-- modal -->
-<!--Start JavaScript-->
-@section JavaScript {
 
-
-}
