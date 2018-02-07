@@ -10,6 +10,8 @@
 <link href="~/Content/assets/bootstrap-timepicker/compiled/timepicker.css" rel="stylesheet" />
 <link href="~/Content/assets/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" />
 <link href="~/Content/assets/bootstrap-datetimepicker/css/datetimepicker.css" rel="stylesheet" />
+<!--Form Wizard-->
+<link rel="stylesheet" type="text/css" href="~/Content/css/jquery.steps.css" />
 <style>
     .oculta {
         display: none;
@@ -17,141 +19,253 @@
 </style>
 
 
-@using (Html.BeginForm("SaveEdit", "PerfilTrabajo", FormMethod.Post))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-    @Html.HiddenFor(model => model.Id)
-    @*<input type="hidden" name="id" value="@Model.Id" />*@
-
-      <section id="main-content">
-        <section class="wrapper site-min-height">
-            <!-- page start-->
-            <section class="panel">
-                <header class="panel-heading">
-                    Nuevo Perfil de Trabajo
-                </header>
-
-                <div class="panel-body">
-                    <div class="form">
-
-                        <div class="form-group ">
-                            <label for="unidad" class="control-label col-lg-2">Titulo del Puesto</label>
-                            <div class="col-lg-10">
-                                <input class=" form-control" name="puesto.titulo" id="titulo" value="@Model.puesto.titulo" type="text" />
-                            </div>
+<!--wizard start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Perfil de contratación
+                    </header>
+                    <div class="panel-body">
+                        <div class="stepy-tab">
+                            <ul id="default-titles" class="stepy-titles clearfix">
+                                <li id="default-title-0" class="current-step">
+                                    <div>Paso 1</div>
+                                </li>
+                                <li id="default-title-1" class="">
+                                    <div>Paso 2</div>
+                                </li>
+                                <li id="default-title-2" class="">
+                                    <div>Paso 3</div>
+                                </li>
+                            </ul>
                         </div>
+                        @*<form class="form-horizontal" id="default">*@
 
-                        <div class="form-group ">
-                            <label for="objetivo" class="control-label col-lg-2">Objetivo</label>
-                            <div class="col-lg-10">
-                                <textarea class="form-control" id="objetivo" name="pues.objetivo" rows="3">@Model.puesto.objetivo</textarea>
-                            </div>
-                        </div>
+                        @using (Html.BeginForm("SaveEdit", "PerfilTrabajo", FormMethod.Post, new { @class = "form-horizontal", id= "default" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.Id)
 
-                        <div class="form-group ">
-                            <label for="password" class="control-label col-lg-2">Jefe Inmediato</label>
-                            <div class="col-lg-10">
-
-                                @Html.DropDownListFor(lst => lst.Id, (Model.cmbJefeInmediato).Select(m => new SelectListItem { Text = m.titulo, Value = m.id.ToString() }), htmlAttributes: new { @class = "form-control" })
-
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password" class="control-label col-lg-2">Unidad Organizativa</label>
-                            <div class="col-lg-10">
-
-                                <select id="idUnidad" name="puesto.idUnidad">
-                                    @foreach (Unidad u in Model.cmbUnidades)
-                                    {
-                                        if (u.id == Model.puesto.idUnidad) {
-                                            <option selected value="@u.id">@u.nombre</option>
-                                        }
-                                        else
-                                        {
-                                            <option value="@u.id">@u.nombre</option>
-                                        }
-
-                                    }
-                                </select>
-                                @*@Html.DropDownList("idUnidad", null, string.Empty, htmlAttributes: new { @class = "form-control" })*@
-                            </div>
-                        </div>
-
-
-
-                        <div class="form-group ">
-                            <label for="password" class="control-label col-lg-2">Tipo de Puesto</label>
-                            <div class="col-lg-10">
-                                @*@Html.DropDownList("idTipoPuesto", null, string.Empty, htmlAttributes: new { @class = "form-control" })*@
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="control-label col-md-3">Fecha de Aprobacion</label>
-                            <div class="col-md-3 col-xs-11">
-                                <div id="fechaAprobacion" data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012"
-                                     class="input-append date dpYears">
-                                    <input type="text" readonly="" id="fechaCreacion" name="fechaCreacion" value="12-02-2018" size="16" class="form-control">
-                                    <span class="input-group-btn add-on">
-                                        <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
-                                    </span>
+                            <fieldset title="Paso 1" class="step" id="default-step-0">
+                                <legend> </legend>
+                                <div class="form-group row">
+                                    <label class="col-lg-2 control-label">Titulo</label>
+                                    <div class="col-lg-10">
+                                        <input class=" form-control" name="puesto.titulo" id="titulo" value="@Model.puesto.titulo" type="text" />
+                                    </div>
                                 </div>
-                                <span class="help-block">Seleccionar fecha</span>
-                            </div>
-                        </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-2 control-label">Objetivo</label>
+                                    <div class="col-lg-10">
+                                        <textarea class="form-control" id="objetivo" name="pues.objetivo" rows="3">@Model.puesto.objetivo</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Jefe Inmediato</label>
+                                    <div class="col-lg-10">
+                                        @Html.DropDownListFor(lst => lst.Id, (Model.cmbJefeInmediato).Select(m => new SelectListItem { Text = m.titulo, Value = m.id.ToString() }), htmlAttributes: new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Unidad</label>
+                                    <div class="col-lg-10">
+                                        @Html.DropDownListFor(lst => lst.Id, (Model.cmbUnidades).Select(m => new SelectListItem { Text = m.nombre, Value = m.id.ToString() }), htmlAttributes: new { @class = "form-control" })
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-sm-2 control-label col-lg-2" for="inputSuccess">Tipo de Puesto</label>
+                                    <div class="col-lg-10">
+                                        @Html.DropDownListFor(lst => lst.Id, (Model.cmbTipoPuesto).Select(m => new SelectListItem { Text = m.tipo, Value = m.Id.ToString() }), htmlAttributes: new { @class = "form-control" })
+                                    </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label class="control-label col-md-3">Fecha de Aprobacion</label>
+                                    <div class="col-md-3 col-xs-11">
+                                        <div id="fechaAprobacion" data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012"
+                                             class="input-append date dpYears">
+                                            <input type="text" readonly="" id="fechaCreacion" name="puesto.fechaCreacion" value="@Model.puesto.fechaCreacion" size="16" class="form-control">
+                                            <span class="input-group-btn add-on">
+                                                <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
+                                            </span>
+                                        </div>
+                                        <span class="help-block">Seleccionar fecha</span>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-2 control-label">Activo</label>
+                                    <div class="col-lg-10">
+                                        <input class=" form-control" name="puesto.activo" id="activo" value="@Model.puesto.activo" type="radio" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-lg-2 control-label">Aprobado</label>
+                                    <div class="col-lg-10">
+                                        <input class=" form-control" name="puesto.aprobado" id="aprobado" value="@Model.puesto.aprobado" type="radio" />
+                                    </div>
+                                </div>
+
+                            </fieldset>
 
 
+                            <fieldset title="Paso 2" class="step" id="default-step-1">
+                                <legend> </legend>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Usuario</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" placeholder="Usuario">
+                                    </div>
+                                </div>
 
-                        <div class="form-group ">
-                            <label for="password" class="control-label col-lg-2">Activo</label>
-                            <div class="col-lg-10">
-                                @*@Html.EditorFor(model => model.activo)*@
-                            </div>
-                        </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Correo Electronico</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" placeholder="Correo Electronico">
+                                    </div>
+                                </div>
 
-                        <div class="form-group ">
-                            <label for="password" class="control-label col-lg-2">Aprobado</label>
-                            <div class="col-lg-10">
-                                @*@Html.EditorFor(model => model.aprobado)*@
-                            </div>
-                        </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Contraseña</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" placeholder="Contraseña">
+                                    </div>
+                                </div>
 
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Confirmar Contraseña</label>
+                                    <div class="col-lg-10">
+                                        <input type="text" class="form-control" placeholder="Confirmar Contraseña">
+                                    </div>
+                                </div>
 
-                        <div class="modal-footer row">
-                            <div class="col-lg-offset-2 col-lg-10">
+                            </fieldset>
 
-                                <button class="btn btn-danger" type="submit" value="Create">Guardar y Continuar</button>
-                                <button class="btn btn-default">Cancelar</button>
-                            </div>
-                        </div>
+                            <fieldset title="Paso 3" class="step" id="default-step-2">
+                                <legend> </legend>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Nombre Completo</label>
+                                    <div class="col-lg-10">
+                                        <p class="form-control-static">José Vásquez</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Puesto de Trabajo</label>
+                                    <div class="col-lg-10">
+                                        <p class="form-control-static">Contador</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Usuario</label>
+                                    <div class="col-lg-10">
+                                        <p class="form-control-static">2013VC601</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Correo</label>
+                                    <div class="col-lg-10">
+                                        <p class="form-control-static">Jose.vasquez@gmail.es</p>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Contraseña</label>
+                                    <div class="col-lg-10">
+                                        <p class="form-control-static">123456</p>
+                                    </div>
+                                </div>
+                            
+                            </fieldset>
 
+                            <input type="submit" class="finish btn btn-danger" value="Finalizar" />
+                        }
+                       
                     </div>
-                </div>
-
-
-
-            </section>
-            <!-- page end-->
-        </section>
+                </section>
+            </div>
+        </div>
+        <!-- page end-->
     </section>
+</section>
+<!--wizard end-->
 
-}
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 
-    <!--this page plugins-->
-    <script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<!--this page plugins-->
+<script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+<!--this page  script only-->
+ <script src="~/Content/js/form-component.js"></script>
 
-    <!--this page  script only-->
-    <script src="~/Content/js/form-component.js"></script>
+ <!--Form Validation-->
+<script src="~/Content/js/bootstrap-validator.min.js" type="text/javascript"></script>
 
+<!--Form Wizard-->
+<script src="~/Content/js/jquery.steps.min.js" type="text/javascript"></script>
+<script src="~/Content/js/jquery.validate.min.js" type="text/javascript"></script>
+
+
+<script>
+
+    //step wizard
+
+    $(function () {
+        $('#default').stepy({
+            backLabel: 'Atras',
+            block: true,
+            nextLabel: 'Siguiente',
+            titleClick: true,
+            titleTarget: '.stepy-tab'
+        });
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var form = $("#wizard-validation-form");
+        form.validate({
+            errorPlacement: function errorPlacement(error, element) {
+                element.after(error);
+            }
+        });
+        form.children("div").steps({
+            headerTag: "h3",
+            bodyTag: "section",
+            transitionEffect: "slideLeft",
+            onStepChanging: function (event, currentIndex, newIndex) {
+                form.validate().settings.ignore = ":disabled,:hidden";
+                return form.valid();
+            },
+            onFinishing: function (event, currentIndex) {
+                form.validate().settings.ignore = ":disabled";
+                return form.valid();
+            },
+            onFinished: function (event, currentIndex) {
+                alert("Submitted!");
+            }
+        }).validate({
+            errorPlacement: function errorPlacement(error, element) {
+                element.after(error);
+            },
+            rules: {
+                confirm: {
+                    equalTo: "#password"
+                }
+            }
+        });
+    });
+
+
+</script>
+
+<!--script for this page-->
+<script src="~/Content/js/jquery.stepy.js"></script>
     <script>
         function visualizar() {
             $("#ejemplo").removeClass("oculta")
