@@ -6,16 +6,16 @@ using System.Web;
 
 namespace UnicaesGestion.Models
 {
-    public class EditPuestroTrabajoViewModel
+    public class PuestoTrabajoViewModel
     {
-        public int Id { get; set; }
-        public PuestoTrabajo puesto{ get; set; }
+        public int Id { get; set; } 
+        public PuestoTrabajo puesto{ get; set; } 
 
-        public List<FuncionPuestoTrabajo> funciones{ get; set; }
+        public List<FuncionPuestoTrabajo> funciones{ get; set; } 
 
         public List<Requisito> requisitos { get; set; }
 
-        public TipoPuesto tipoPuesto { get; set; }
+        public TipoPuesto tipoPuesto { get; set; }      
 
        
         public List<CompetenciaPuestoTrabajo> competencias { get; set; }
@@ -29,6 +29,8 @@ namespace UnicaesGestion.Models
         public List<Unidad> cmbUnidades { get; set; }
 
         public List<Categoria> cmbCategoria { get; set; }
+
+        public List<CatalogoCompetencia> cmbCatalogoCompetencia { get; set; }
 
     }
 }

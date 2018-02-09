@@ -74,7 +74,7 @@ namespace UnicaesGestion.Controllers
         // GET: PerfilTrabajo/Edit/5
         public ActionResult Edit(int? id)
         {
-            EditPuestroTrabajoViewModel modelo = new EditPuestroTrabajoViewModel();
+            PuestoTrabajoViewModel modelo = new PuestoTrabajoViewModel();
           
             if (id == null)
             {
@@ -91,12 +91,13 @@ namespace UnicaesGestion.Controllers
             modelo.funciones = db.FuncionPuestoTrabajoes.Where(r => r.idPuestoTrabajo == id).ToList();
             modelo.requisitos = db.Requisitoes.Where(r => r.idPuestoTrabajo == id).ToList();
             modelo.competencias = db.CompetenciaPuestoTrabajoes.Where(r => r.idPuestoTrabajo == id).ToList();
-            
+
             modelo.cmbTipoPuesto = db.TipoPuestoes.ToList();
             modelo.cmbJefeInmediato = db.PuestoTrabajoes.ToList();
             modelo.cmbUnidades = db.Unidads.ToList();
             modelo.cmbPuesto = db.PuestoTrabajoes.ToList();
             modelo.cmbCategoria = db.Categorias.ToList();
+            modelo.cmbCatalogoCompetencia = db.CatalogoCompetencias.ToList();
 
             return View(modelo);
         }
@@ -104,7 +105,7 @@ namespace UnicaesGestion.Controllers
        
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult SaveEdit(EditPuestroTrabajoViewModel modelo)
+        public ActionResult SaveEdit(PuestoTrabajoViewModel modelo)
         {
             int id = modelo.Id;
             PuestoTrabajo puesto = db.PuestoTrabajoes.SingleOrDefault(r => r.id == id);

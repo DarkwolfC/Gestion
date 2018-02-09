@@ -106,7 +106,7 @@ namespace UnicaesGestion.Controllers
 
         // POST: TipoPuesto/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             TipoPuesto tipoPuesto = db.TipoPuestoes.Find(id);

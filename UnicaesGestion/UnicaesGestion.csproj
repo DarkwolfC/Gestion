@@ -206,16 +206,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\CriteriosModel.cs" />
-    <Compile Include="Models\EditPuestroTrabajoViewModel.cs" />
-    <Compile Include="Models\FuncionTrabajoViewModel.cs" />
-    <Compile Include="Models\FuncionUnidadViewModel.cs" />
+    <Compile Include="Models\PuestoTrabajoViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
-    <Compile Include="Models\PerfilContratacionModel.cs" />
-    <Compile Include="Models\PerfilContratacionViewModel.cs" />
-    <Compile Include="Models\PrioridadRequisitoModel.cs" />
-    <Compile Include="Models\RequisitoModel.cs" />
-    <Compile Include="Models\TipoRequisitoModel.cs" />
     <Compile Include="Paso.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -857,6 +849,7 @@
     <Content Include="Content\js\form-validation-script.js" />
     <Content Include="Content\js\ga.js" />
     <Content Include="Content\js\Get-value-table.js" />
+    <Content Include="Content\js\Get-values-form.js" />
     <Content Include="Content\js\gmaps-scripts.js" />
     <Content Include="Content\js\gmaps.js" />
     <Content Include="Content\js\gritter.js" />

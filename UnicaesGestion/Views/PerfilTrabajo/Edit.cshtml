@@ -44,6 +44,9 @@
                                 <li id="default-title-2" class="">
                                     <div>Paso 3</div>
                                 </li>
+                                <li id="default-title-3" class="">
+                                    <div>Paso 4</div>
+                                </li>
                             </ul>
                         </div>
                         @*<form class="form-horizontal" id="default">*@
@@ -238,6 +241,67 @@
                                 </div>
                                 <!--fin tabla-->
                             
+                            </fieldset>
+
+                            <fieldset title="Step 4" class="step" id="default-step-3">
+                                <legend> </legend>
+                                <div class="form-group ">
+                                    <label for="objetivoF" class="control-label col-lg-2">Puesto de Trabajo</label>
+                                    <div class="col-lg-10">
+                                        @Html.DropDownListFor(lst => lst.Id, (Model.cmbPuesto).Select(m => new SelectListItem { Text = m.titulo, Value = m.id.ToString() }), htmlAttributes: new { @class = "form-control" })
+                                    </div>
+                                </div>
+                              
+                                <!--Tabla de Funciones-->
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped table-advance table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th><span>Competencia</span></th>
+                                                <th><span>Esencial</span></th>
+                                                <th><span>Controles</span></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+                                            @foreach (var item in Model.competencias)
+                                            {
+                                                <tr>                                                   
+                                                    <td>
+                                                        <div class="form-group row">                                                            
+                                                            <div class="col-lg-10">
+                                                                <input class=" form-control" name="competencias.idcompetencia" id="idcompetencia" value="@item.idCompetencia" type="text" />
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        @*@Html.DisplayFor(modelItem => item.escencial)*@
+                                                        <div class="form-group row">
+                                                            @*<label class="col-lg-2 control-label">Validado</label>*@
+                                                            <div class="radios col-lg-10">
+                                                                <label class="label_radio" for="radio-01">
+                                                                    Esencial
+                                                                    <input class=" form-control" name="competencias.esencial" id="Esencial" value="@item.escencial" type="radio" />
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <div class="pull-right hidden-phone">
+                                                            <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                                            <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.Id)" type="button"><i class="fa fa-trash-o "></i></button>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!--fin tabla-->
+
                             </fieldset>
 
                             <input type="submit" class="finish btn btn-danger" value="Finish" />

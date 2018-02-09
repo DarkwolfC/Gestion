@@ -106,7 +106,7 @@ namespace UnicaesGestion.Controllers
 
         // POST: Categorias/Delete/5
         [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
             Categoria categoria = db.Categorias.Find(id);
