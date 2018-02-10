@@ -5,39 +5,66 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>Unidad</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre)
-        </dt>
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+                Unidad
+            </header>
 
-        <dd>
-            @Html.DisplayFor(model => model.nombre)
-        </dd>
+            <header class="panel-heading">
+                <div class="form-group ">
+                    <div class="clearfix">
+                        <!--in-->
+                        <div class="btn-group pull-right">
+                            <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
+                                Herramientas <span class="caret"></span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="#">Imprimir</a></li>
+                                <li><a href="#">Guardar como PDF</a></li>
+                                <li><a href="#">Exportar como Excel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+            </header>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.objetivo)
-        </dt>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form">
 
-        <dd>
-            @Html.DisplayFor(model => model.objetivo)
-        </dd>
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Unidad</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="" id="" value="@Html.DisplayFor(model => model.nombre)" type="text" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 control-label">Objetivo</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" id="" name="" rows="3" disabled> @Html.DisplayFor(model => model.objetivo)</textarea>
+                            </div>
+                        </div>                       
+                        <div class="form-group ">
+                            <label class="control-label col-lg-2">Depende</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="" id="" value="@Html.DisplayFor(model => model.Unidad2.nombre) " type="text" disabled />
+                            </div>
+                        </div>
+                        
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Unidad2.nombre)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Unidad2.nombre)
-        </dd>
+                    </form>
+                </div>
+            </div>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->

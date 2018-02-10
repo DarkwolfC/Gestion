@@ -5,31 +5,40 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>FuncionPuestoTrabajo</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.funcion)
-        </dt>
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+                Funcion de Puesto de Trabajo
+            </header>
 
-        <dd>
-            @Html.DisplayFor(model => model.funcion)
-        </dd>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PuestoTrabajo.titulo)
-        </dt>
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Puesto de Trabajo</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="" id="" value="  @Html.DisplayNameFor(model => model.PuestoTrabajo.titulo)" type="text" disabled />
+                            </div>
+                        </div> 
+                        <!--Change for a table-->
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Funciones</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="" id="" value="  @Html.DisplayFor(model => model.funcion)" type="text" disabled />
+                            </div>
+                        </div>
+                                               
+                    </form>
+                </div>
+            </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.PuestoTrabajo.titulo)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->

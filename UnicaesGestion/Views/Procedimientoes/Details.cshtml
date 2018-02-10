@@ -40,21 +40,21 @@
                     <form class="cmxform form-horizontal tasi-form" id="signupForm" method="get" action="">
                       
                         <div class="form-group row">
-                            <label for="procedimiento" class="control-label col-lg-2">Procedimiento</label>
+                            <label class="col-lg-2 control-label">Procedimiento</label>
                             <div class="col-lg-10">
-                               <h5>@Html.DisplayFor(model => model.nombre)</h5> 
+                                <textarea class="form-control" id="" name="" rows="3" disabled> @Html.DisplayFor(model => model.nombre)</textarea>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="objetivoI" class="control-label col-lg-2">Objetivo Inicial</label>
+                            <label class="col-lg-2 control-label">Objetivo Inicial</label>
                             <div class="col-lg-10">
-                                @Html.DisplayFor(model => model.objetivoInicial)
+                                <textarea class="form-control" id="" name="" rows="3" disabled> @Html.DisplayFor(model => model.objetivoInicial)</textarea>
                             </div>
                         </div>
-                        <div class="form-group ">
-                            <label for="objetivoF" class="control-label col-lg-2">Objetivo Final</label>
+                        <div class="form-group row">
+                            <label class="col-lg-2 control-label">Objetivo Inicial</label>
                             <div class="col-lg-10">
-                                @Html.DisplayFor(model => model.objetvioFinal)
+                                <textarea class="form-control" id="" name="" rows="3" disabled> @Html.DisplayFor(model => model.objetvioFinal)</textarea>
                             </div>
                         </div>
 
@@ -63,49 +63,10 @@
                 </div>
               
             </div>
-            @{ Html.RenderAction("Index", "Pasoes");}
+            @*@{ Html.RenderAction("Index", "Pasoes");}*@
 
         </section>
         <!-- page end-->
     </section>
 </section>
 <!--main content end-->
-<!--common script for all pages-->
-
-
-@*<h2>Details</h2>
-
-    <div>
-        <h4>Procedimiento</h4>
-        <hr />
-        <dl class="dl-horizontal">
-            <dt>
-                @Html.DisplayNameFor(model => model.nombre)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.nombre)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.objetivoInicial)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.objetivoInicial)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.objetvioFinal)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.objetvioFinal)
-            </dd>
-
-        </dl>
-    </div>
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>*@

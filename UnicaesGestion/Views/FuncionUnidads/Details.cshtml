@@ -5,31 +5,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>FuncionUnidad</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.descripcion)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.descripcion)
-        </dd>
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+               Funcion de Unidad
+            </header>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Unidad.nombre)
-        </dt>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form">
 
-        <dd>
-            @Html.DisplayFor(model => model.Unidad.nombre)
-        </dd>
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Puesto de Trabajo</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="" id="" value="@Html.DisplayFor(model => model.Unidad.nombre)" type="text" disabled />
+                            </div>
+                        </div>
+                        <!--Change for a table-->
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Funciones</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="" id="" value="@Html.DisplayFor(model => model.descripcion)" type="text" disabled />
+                            </div>
+                        </div>
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                    </form>
+                </div>
+            </div>
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->

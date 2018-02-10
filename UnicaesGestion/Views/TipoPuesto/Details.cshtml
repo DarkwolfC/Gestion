@@ -5,23 +5,33 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>TipoPuesto</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.tipo)
-        </dt>
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+                Tipo de Puesto
+            </header>
 
-        <dd>
-            @Html.DisplayFor(model => model.tipo)
-        </dd>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form">
 
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Tipo de Puesto</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="" id="" value=" @Html.DisplayFor(model => model.tipo)" type="text" disabled />
+                            </div>
+                        </div>                       
+
+                    </form>
+                </div>
+            </div>
+
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->

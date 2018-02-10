@@ -5,79 +5,102 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
 
-<div>
-    <h4>PuestoTrabajo</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.titulo)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.titulo)
-        </dd>
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <section class="panel">
+            <header class="panel-heading">
+              Perfil de Trabajo
+            </header>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.objetivo)
-        </dt>
+            <header class="panel-heading">
+                <div class="form-group ">
+                    <div class="clearfix">
+                        <!--in-->
+                        <div class="btn-group pull-right">
+                            <button data-toggle="dropdown" class="btn btn-group pull-right btn-primary dropdown-toggle " type="button">
+                                Herramientas <span class="caret"></span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li><a href="#">Imprimir</a></li>
+                                <li><a href="#">Guardar como PDF</a></li>
+                                <li><a href="#">Exportar como Excel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--end-->
+            </header>
 
-        <dd>
-            @Html.DisplayFor(model => model.objetivo)
-        </dd>
+            <div class="panel-body">
+                <div class="form">
+                    <form class="cmxform form-horizontal tasi-form">
 
-        <dt>
-            @Html.DisplayNameFor(model => model.fechaCreacion)
-        </dt>
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Puesto de Trabajo</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="" id="" value="@Html.DisplayFor(model => model.titulo)" type="text" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 control-label">Objetivo</label>
+                            <div class="col-lg-10">
+                                <textarea class="form-control" id="" name="" rows="3" disabled> @Html.DisplayFor(model => model.objetivo)</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Unidad</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="" id="" value=" @Html.DisplayFor(model => model.Unidad.nombre)" type="text" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label col-lg-2">Tipo de Puesto</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="" id="" value=" @Html.DisplayFor(model => model.TipoPuesto.tipo) " type="text" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label class="control-label col-lg-2">Responsable</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="" id="" value="@Html.DisplayFor(model => model.PuestoTrabajo2.titulo)" type="text" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group ">
+                            <label for="unidad" class="control-label col-lg-2">Fecha</label>
+                            <div class="col-lg-10">
+                                <input class=" form-control" name="" id="" value=" @Html.DisplayFor(model => model.fechaCreacion)" type="text" disabled />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 control-label">Validado</label>
+                            <div class="radios col-lg-10">
+                                <label class="label_radio" for="radio-01">
+                                    Aprobado
+                                    <input class=" form-control" value="@Html.DisplayFor(model => model.aprobado)" type="radio" />
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-lg-2 control-label">Estado</label>
+                            <div class="radios col-lg-10">
+                                <label class="label_radio" for="radio-01">
+                                    Activo
+                                    <input class=" form-control" value="@Html.DisplayFor(model => model.activo)" type="radio" />
+                                </label>
+                            </div>
+                        </div>
+                       
 
-        <dd>
-            @Html.DisplayFor(model => model.fechaCreacion)
-        </dd>
+                    </form>
+                </div>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.activo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.activo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.aprobado)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.aprobado)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PuestoTrabajo2.titulo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PuestoTrabajo2.titulo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TipoPuesto.tipo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TipoPuesto.tipo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Unidad.nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Unidad.nombre)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+        </section>
+        <!-- page end-->
+    </section>
+</section>
+<!--main content end-->
