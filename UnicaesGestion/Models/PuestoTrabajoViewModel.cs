@@ -17,7 +17,8 @@ namespace UnicaesGestion.Models
 
         public TipoPuesto tipoPuesto { get; set; }      
 
-       
+        //competencia
+        public CompetenciaPuestoTrabajo competencia { get; set; }
         public List<CompetenciaPuestoTrabajo> competencias { get; set; }
 
         public List<TipoPuesto>  cmbTipoPuesto { get; set; }

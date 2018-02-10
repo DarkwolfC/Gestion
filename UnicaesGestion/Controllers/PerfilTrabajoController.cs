@@ -111,6 +111,14 @@ namespace UnicaesGestion.Controllers
             PuestoTrabajo puesto = db.PuestoTrabajoes.SingleOrDefault(r => r.id == id);
             if (puesto != null) {
                 puesto.titulo = modelo.puesto.titulo;
+                puesto.objetivo = modelo.puesto.objetivo;
+                puesto.jefeInmediato = modelo.puesto.jefeInmediato;
+                puesto.idUnidad = modelo.puesto.idUnidad;
+                puesto.idTipoPuesto = modelo.puesto.idTipoPuesto;
+                puesto.fechaCreacion = modelo.puesto.fechaCreacion;
+                puesto.activo = modelo.puesto.activo;
+                puesto.aprobado = modelo.puesto.aprobado;
+                
                 db.SaveChanges();
             }
 

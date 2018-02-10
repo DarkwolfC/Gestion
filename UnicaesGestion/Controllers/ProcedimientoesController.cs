@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using UnicaesGestion;
+using UnicaesGestion.Models;
 
 namespace UnicaesGestion.Controllers
 {
@@ -67,6 +68,7 @@ namespace UnicaesGestion.Controllers
         // GET: Procedimientoes/Edit/5
         public ActionResult Edit(int? id)
         {
+            ProcedimientoViewModel modelo = new ProcedimientoViewModel();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -76,7 +78,13 @@ namespace UnicaesGestion.Controllers
             {
                 return HttpNotFound();
             }
-            return View(procedimiento);
+            modelo.id = procedimiento.id;
+            modelo.pasos = db.Pasoes.Where(r => r.idProcedimiento == id).ToList();
+
+            modelo.cmbProcedimiento = db.Procedimientoes.ToList();
+            modelo.cmbtipoPasos = db.TipoPasoes.ToList();
+            modelo.cmbPuestos = db.PuestoTrabajoes.ToList();
+            return View(modelo);
         }
 
         // POST: Procedimientoes/Edit/5
@@ -84,15 +92,20 @@ namespace UnicaesGestion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,objetivoInicial,objetvioFinal")] Procedimiento procedimiento)
+        public ActionResult Edit(ProcedimientoViewModel modelo)
         {
-            if (ModelState.IsValid)
+            int id = modelo.id;
+            Procedimiento procedimiento = db.Procedimientoes.SingleOrDefault(r => r.id == id);
+            if (procedimiento!=null)
             {
-                db.Entry(procedimiento).State = EntityState.Modified;
+                procedimiento.nombre = modelo.procedimiento.nombre;
+                procedimiento.objetivoInicial = modelo.procedimiento.objetivoInicial;
+                procedimiento.objetvioFinal = modelo.procedimiento.objetvioFinal;
+
                 db.SaveChanges();
-                return RedirectToAction("Index");
+             
             }
-            return View(procedimiento);
+            return RedirectToAction("Index");
         }
 
         // GET: Procedimientoes/Delete/5

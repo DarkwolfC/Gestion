@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using UnicaesGestion;
+using UnicaesGestion.Models;
 
 namespace UnicaesGestion.Controllers
 {
@@ -67,6 +68,7 @@ namespace UnicaesGestion.Controllers
         // GET: Unidades/Edit/5
         public ActionResult Edit(int? id)
         {
+            UnidadViewModel modelo = new UnidadViewModel();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -76,8 +78,9 @@ namespace UnicaesGestion.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.depende = new SelectList(db.Unidads, "id", "nombre", unidad.depende);
-            return View(unidad);
+            modelo.FuncionUnidades = db.FuncionUnidads.Where(r => r.idUnidad == id).ToList();
+            //modelo.FuncionUnidades = db.FuncionUnidads.ToList();
+            return View(modelo);
         }
 
         // POST: Unidades/Edit/5
@@ -85,16 +88,21 @@ namespace UnicaesGestion.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         //[ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,nombre,objetivo,depende")] Unidad unidad)
+        public ActionResult Edit(UnidadViewModel modelo)
         {
-            if (ModelState.IsValid)
+            int id = modelo.id;
+            Unidad unidad = db.Unidads.SingleOrDefault(r => r.id == id);
+            if (unidad !=null)
             {
-                db.Entry(unidad).State = EntityState.Modified;
+                unidad.nombre = modelo.unidad.nombre;
+                unidad.objetivo = modelo.unidad.objetivo;
+                unidad.depende = modelo.unidad.depende;
+                //modelo.FuncionUnidades = ;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+              
             }
-            ViewBag.depende = new SelectList(db.Unidads, "id", "nombre", unidad.depende);
-            return View(unidad);
+
+            return RedirectToAction("Index");
         }
 
         // GET: Unidades/Delete/5

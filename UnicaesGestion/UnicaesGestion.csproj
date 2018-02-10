@@ -206,8 +206,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Model.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProcedimientoViewModel.cs" />
     <Compile Include="Models\PuestoTrabajoViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\UnidadViewModel.cs" />
     <Compile Include="Paso.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
