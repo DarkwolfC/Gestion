@@ -9,18 +9,15 @@ namespace UnicaesGestion.Models
     public class PuestoTrabajoViewModel
     {
         public int Id { get; set; } 
-        public PuestoTrabajo puesto{ get; set; } 
+        public PuestoTrabajo puesto{ get; set; }
 
-        public List<FuncionPuestoTrabajo> funciones{ get; set; } 
-
-        public List<Requisito> requisitos { get; set; }
-
-        public TipoPuesto tipoPuesto { get; set; }      
-
-        //competencia
-        public CompetenciaPuestoTrabajo competencia { get; set; }
-        public List<CompetenciaPuestoTrabajo> competencias { get; set; }
-
+        public PuestoTrabajoViewModel()
+        {
+            puesto = new PuestoTrabajo();
+            
+        }
+        
+        /* Dropdowns de la vista */
         public List<TipoPuesto>  cmbTipoPuesto { get; set; }
 
         public List<PuestoTrabajo> cmbJefeInmediato { get; set; }

@@ -1148,7 +1148,6 @@
     <Content Include="Views\Pasoes\Index.cshtml" />
     <Content Include="Views\Procedimientoes\_Paso.cshtml" />
     <Content Include="Views\PerfilTrabajo\_funciones.cshtml" />
-    <Content Include="Views\PerfilTrabajo\Create.cshtml" />
     <Content Include="Views\PerfilTrabajo\Delete.cshtml" />
     <Content Include="Views\PerfilTrabajo\Details.cshtml" />
     <Content Include="Views\PerfilTrabajo\Index.cshtml" />
@@ -1195,7 +1194,7 @@
     <Content Include="Views\TipoPuesto\Details.cshtml" />
     <Content Include="Views\TipoPuesto\Edit.cshtml" />
     <Content Include="Views\TipoPuesto\Index.cshtml" />
-    <Content Include="Views\PerfilTrabajo\Edit.cshtml" />
+    <Content Include="Views\PerfilTrabajo\GestionPuestoTrabajo.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

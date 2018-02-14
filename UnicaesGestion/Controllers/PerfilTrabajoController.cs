@@ -76,28 +76,28 @@ namespace UnicaesGestion.Controllers
         {
             PuestoTrabajoViewModel modelo = new PuestoTrabajoViewModel();
           
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PuestoTrabajo puestoTrabajo = db.PuestoTrabajoes.Find(id);
-            modelo.puesto = puestoTrabajo;
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //PuestoTrabajo puestoTrabajo = db.PuestoTrabajoes.Find(id);
+            //modelo.puesto = puestoTrabajo;
             
-            if (puestoTrabajo == null)
-            {
-                return HttpNotFound();
-            }
-            modelo.Id = puestoTrabajo.id;
-            modelo.funciones = db.FuncionPuestoTrabajoes.Where(r => r.idPuestoTrabajo == id).ToList();
-            modelo.requisitos = db.Requisitoes.Where(r => r.idPuestoTrabajo == id).ToList();
-            modelo.competencias = db.CompetenciaPuestoTrabajoes.Where(r => r.idPuestoTrabajo == id).ToList();
+            //if (puestoTrabajo == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //modelo.Id = puestoTrabajo.id;
+            //modelo.funciones = db.FuncionPuestoTrabajoes.Where(r => r.idPuestoTrabajo == id).ToList();
+            //modelo.requisitos = db.Requisitoes.Where(r => r.idPuestoTrabajo == id).ToList();
+            //modelo.competencias = db.CompetenciaPuestoTrabajoes.Where(r => r.idPuestoTrabajo == id).ToList();
 
-            modelo.cmbTipoPuesto = db.TipoPuestoes.ToList();
-            modelo.cmbJefeInmediato = db.PuestoTrabajoes.ToList();
-            modelo.cmbUnidades = db.Unidads.ToList();
-            modelo.cmbPuesto = db.PuestoTrabajoes.ToList();
-            modelo.cmbCategoria = db.Categorias.ToList();
-            modelo.cmbCatalogoCompetencia = db.CatalogoCompetencias.ToList();
+            //modelo.cmbTipoPuesto = db.TipoPuestoes.ToList();
+            //modelo.cmbJefeInmediato = db.PuestoTrabajoes.ToList();
+            //modelo.cmbUnidades = db.Unidads.ToList();
+            //modelo.cmbPuesto = db.PuestoTrabajoes.ToList();
+            //modelo.cmbCategoria = db.Categorias.ToList();
+            //modelo.cmbCatalogoCompetencia = db.CatalogoCompetencias.ToList();
 
             return View(modelo);
         }
@@ -159,5 +159,39 @@ namespace UnicaesGestion.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult GestionPuestoTrabajo(int? id) {
+            PuestoTrabajoViewModel modelo = new PuestoTrabajoViewModel();
+           
+            modelo.cmbTipoPuesto = db.TipoPuestoes.ToList();
+            modelo.cmbJefeInmediato = db.PuestoTrabajoes.ToList();
+            modelo.cmbUnidades = db.Unidads.ToList();
+            modelo.cmbPuesto = db.PuestoTrabajoes.ToList();
+            modelo.cmbCategoria = db.Categorias.ToList();
+            modelo.cmbCatalogoCompetencia = db.CatalogoCompetencias.ToList();
+
+
+            if (id != null)
+            {
+                PuestoTrabajo puestoTrabajo = db.PuestoTrabajoes.Find(id);
+                if (puestoTrabajo == null)
+                    return HttpNotFound();
+                modelo.puesto = puestoTrabajo;
+                modelo.Id = puestoTrabajo.id;                
+            }
+                  
+            /*
+            modelo.funciones = db.FuncionPuestoTrabajoes.Where(r => r.idPuestoTrabajo == id).ToList();
+            modelo.requisitos = db.Requisitoes.Where(r => r.idPuestoTrabajo == id).ToList();
+            modelo.competencias = db.CompetenciaPuestoTrabajoes.Where(r => r.idPuestoTrabajo == id).ToList();
+            */        
+
+            return View(modelo);
+           
+        }
+
+
+
+
     }
 }
