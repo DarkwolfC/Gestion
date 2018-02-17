@@ -162,14 +162,15 @@ namespace UnicaesGestion.Controllers
 
         public ActionResult GestionPuestoTrabajo(int? id) {
             PuestoTrabajoViewModel modelo = new PuestoTrabajoViewModel();
-           
-            modelo.cmbTipoPuesto = db.TipoPuestoes.ToList();
             modelo.cmbJefeInmediato = db.PuestoTrabajoes.ToList();
             modelo.cmbUnidades = db.Unidads.ToList();
+            modelo.cmbTipoPuesto = db.TipoPuestoes.ToList();
+
+            /*
             modelo.cmbPuesto = db.PuestoTrabajoes.ToList();
             modelo.cmbCategoria = db.Categorias.ToList();
             modelo.cmbCatalogoCompetencia = db.CatalogoCompetencias.ToList();
-
+            */
 
             if (id != null)
             {

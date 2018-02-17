@@ -17,6 +17,10 @@
     .oculta {
         display: none;
     }
+
+    .form-control {
+        border-color: #d5d4d4;
+    }
 </style>
 
 
@@ -47,75 +51,84 @@
                                 </li>
                             </ul>
                         </div>
-                        @*<form class="form-horizontal" id="default">*@
 
-                        @using (Html.BeginForm("Create", "PerfilTrabajo", FormMethod.Post, new { @class = "form-horizontal", id = "default" }))
-                        {
-                            @Html.AntiForgeryToken()
-                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                            @*@Html.HiddenFor(model => model.Id)*@
-
+                        <!--INICIA PASO 1-->
+                        <form id="default" class="form-horizontal">
                             <fieldset title="Paso 1" class="step" id="default-step-0">
                                 <legend> </legend>
                                 <div class="form-group ">
-                                    <label class="control-label col-lg-2">Titulo del Puesto</label>
-                                    <div class="col-lg-10">
-                                        <input class=" form-control" id="titulo" name="titulo" type="text" />
+                                    <label class="control-label col-lg-2">Titulo del Puesto:</label>
+                                    <div class="col-md-8">
+                                        <input class=" form-control" id="titulo" name="titulo" type="text" value="@Model.puesto.titulo" />
                                     </div>
                                 </div>
                                 <div class="form-group ">
-                                    <label class="control-label col-lg-2">Objetivo</label>
-                                    <div class="col-lg-10">
-                                        <textarea class="form-control" id="objetivo" name="objetivo" rows="3"></textarea>
+                                    <label class="control-label col-lg-2">Objetivo:</label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" id="objetivo" name="objetivo" rows="3">@Model.puesto.objetivo</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group ">
-                                    <label for="password" class="control-label col-lg-2">Jefe Inmediato</label>
-                                    <div class="col-lg-10">
-                                       
+                                    <label for="password" class="control-label col-lg-2">Jefe Inmediato:</label>
+                                    <div class="col-md-6">
                                         <select class="form-control" name="puesto.jefeInmediato" id="cmbjefeinmediato">
-                                            @foreach (var jefe in Model.cmbJefeInmediato) {
-                                                if (Model.puesto.jefeInmediato == jefe.id)
-                                                {
-                                                <option value="@jefe.id" selected>@jefe.titulo</option>
-                                                }
-                                                else
-                                                {
-                                                <option value="@jefe.id" >@jefe.titulo</option>
-                                                }
-                                            }
+                                            <option value="0">Seleccione un Jefe Inmediato</option>
+                                            @foreach (var jefe in Model.cmbJefeInmediato)
+                    {
+                        string selected = "";
+                        if (Model.puesto.jefeInmediato != null)
+                        {
+                            selected = (Model.puesto.jefeInmediato.Value == jefe.id) ? "selected" : "";
+                        }
+
+                        <option @selected value="@jefe.id">@jefe.titulo</option>
+}
                                         </select>
 
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="password" class="control-label col-lg-2">Unidad Organizativa</label>
-                                    <div class="col-lg-10">
-                                        @*@Html.DropDownList("idUnidad", null, string.Empty, htmlAttributes: new { @class = "form-control", id = "idUnidad" })*@
+                                    <label for="password" class="control-label col-lg-2">Unidad Organizativa:</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="puesto.jefeInmediato" id="cmbjefeinmediato">
+                                            <option value="0">Seleccione la unidad organizativa</option>
+                                            @foreach (var unidad in Model.cmbUnidades)
+                    {
+                        var selected = (Model.puesto.idUnidad == unidad.id) ? "selected" : "";
+                        <option @selected value="@unidad.id">@unidad.nombre</option>
+}
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group ">
-                                    <label for="password" class="control-label col-lg-2">Tipo de Puesto</label>
-                                    <div class="col-lg-10">
-                                        @*@Html.DropDownList("idTipoPuesto", null, string.Empty, htmlAttributes: new { @class = "form-control", id = "idTipoPuesto" })*@
+                                    <label for="password" class="control-label col-lg-2">Tipo de Puesto:</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="puesto.jefeInmediato" id="cmbjefeinmediato">
+                                            <option value="0">Seleccione el tipo de puesto</option>
+                                            @foreach (var tpuesto in Model.cmbTipoPuesto)
+                    {
+                        var selected = (Model.puesto.idTipoPuesto == tpuesto.Id) ? "selected" : "";
+                        <option @selected value="@tpuesto.Id">@tpuesto.tipo</option>
+}
+                                        </select>
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="control-label col-md-3">Fecha de Aprobacion</label>
-                                    <div class="col-md-3 col-xs-11">
+                                    <label class="control-label col-md-2">Fecha de Aprobacion:</label>
+                                    <div class="col-md-4">
                                         <div id="fecha" data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012"
                                              class="input-append date dpYears">
-                                            <input type="text" readonly="" id="fechaCreacion" name="fechaCreacion" value="" size="16" class="form-control">
+                                            <input type="text" placeholder="Seleccione una fecha" readonly="" id="fechaCreacion" name="fechaCreacion" value="" size="16" class="form-control">
                                             <span class="input-group-btn add-on">
                                                 <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
                                             </span>
                                         </div>
-                                        <span class="help-block">Seleccionar fecha</span>
+
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-lg-2 control-label">Estado</label>
+                                    <label class="col-lg-2 control-label">Estado:</label>
                                     <div class="radios col-lg-10">
                                         <label class="label_radio" for="radio-01">
                                             Activo
@@ -133,9 +146,13 @@
                                     </div>
                                 </div>
 
-                                @*<input onclick="ObtenerDatos()" type="button"/>*@
+
 
                             </fieldset>
+
+                            <!-- FINALIZA PASO 1-->
+
+
 
 
                             <fieldset title="Paso 2" class="step" id="default-step-1">
@@ -173,22 +190,22 @@
 
 
                                             @*@foreach (var item in Model.funciones)
-                                                {
-                                                    <tr>
-                                                        <td class="oculta">
-                                                            @Html.DisplayFor(modelItem => item.id)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.funcion)
-                                                        </td>
-                                                        <td>
-                                                            <div class="pull-right hidden-phone">
-                                                                <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                                                <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)" type="button"><i class="fa fa-trash-o "></i></button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                }*@
+                        {
+                            <tr>
+                                <td class="oculta">
+                                    @Html.DisplayFor(modelItem => item.id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.funcion)
+                                </td>
+                                <td>
+                                    <div class="pull-right hidden-phone">
+                                        <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                        <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)" type="button"><i class="fa fa-trash-o "></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }*@
 
 
                                         </tbody>
@@ -234,22 +251,22 @@
                                         <tbody>
 
                                             @*@foreach (var item in Model.requisitos)
-                                                {
-                                                    <tr>
-                                                        <td class="oculta">
-                                                            @Html.DisplayFor(modelItem => item.id)
-                                                        </td>
-                                                        <td>
-                                                            @Html.DisplayFor(modelItem => item.descripcion)
-                                                        </td>
-                                                        <td>
-                                                            <div class="pull-right hidden-phone">
-                                                                <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                                                <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)" type="button"><i class="fa fa-trash-o "></i></button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                }*@
+                        {
+                            <tr>
+                                <td class="oculta">
+                                    @Html.DisplayFor(modelItem => item.id)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.descripcion)
+                                </td>
+                                <td>
+                                    <div class="pull-right hidden-phone">
+                                        <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                        <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)" type="button"><i class="fa fa-trash-o "></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }*@
 
 
                                         </tbody>
@@ -282,35 +299,35 @@
                                         <tbody>
 
                                             @*@foreach (var item in Model.competencias)
-                                                {
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-group row">
-                                                                <div class="col-lg-10">
+                        {
+                            <tr>
+                                <td>
+                                    <div class="form-group row">
+                                        <div class="col-lg-10">
 
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
 
-                                                            <div class="form-group row">
+                                    <div class="form-group row">
 
-                                                                <div class="radios col-lg-10">
-                                                                    <label class="label_radio" for="radio-01">
-                                                                        Esencial
-                                                                        <input class=" form-control" name="competencias.esencial" id="Esencial" value="@item.escencial" type="radio" />
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="pull-right hidden-phone">
-                                                                <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                                                <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.Id)" type="button"><i class="fa fa-trash-o "></i></button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                }*@
+                                        <div class="radios col-lg-10">
+                                            <label class="label_radio" for="radio-01">
+                                                Esencial
+                                                <input class=" form-control" name="competencias.esencial" id="Esencial" value="@item.escencial" type="radio" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pull-right hidden-phone">
+                                        <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                        <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.Id)" type="button"><i class="fa fa-trash-o "></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        }*@
 
 
                                         </tbody>
@@ -321,7 +338,7 @@
                             </fieldset>
 
                             <input type="submit" class="finish btn btn-danger" value="Finish" />
-                        }
+                        </form>
 
                     </div>
                 </section>
