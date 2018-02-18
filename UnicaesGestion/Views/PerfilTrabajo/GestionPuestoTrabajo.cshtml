@@ -35,27 +35,30 @@
                         Perfil de contratación
                     </header>
                     <div class="panel-body">
-                        <div class="stepy-tab">
-                            <ul id="default-titles" class="stepy-titles clearfix">
-                                <li id="default-title-0" class="current-step">
-                                    <div>Paso 1</div>
-                                </li>
-                                <li id="default-title-1" class="">
-                                    <div>Paso 2</div>
-                                </li>
-                                <li id="default-title-2" class="">
-                                    <div>Paso 3</div>
-                                </li>
-                                <li id="default-title-3" class="">
-                                    <div>Paso 4</div>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="stepy-tab">
+                        <ul id="default-titles" class="stepy-titles clearfix">
+                            <li id="default-title-0" class="current-step" >
+                                <div>Paso 1</div>
+                            </li>
+                            <li id="default-title-1" >
+                                <div>Paso 2</div>
+                            </li>
+                            <li id="default-title-2" class="">
+                                <div>Paso 3</div>
+                            </li>
+                            <li id="default-title-3" class="">
+                                <div>Paso 4</div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="stepy-tab" style="display: none;"></div>
 
                         <!--INICIA PASO 1-->
-                        <form id="default" class="form-horizontal">
-                            <fieldset title="Paso 1" class="step" id="default-step-0">
-                                <legend> </legend>
+                        <form id="wfrmpuesto" class="form-horizontal">
+                            <fieldset title="" class="stepy-step" id="default-step-0">
+                                <legend class="stepy-legend"></legend>
+                                
+                                <form id="frmstep1"> 
                                 <div class="form-group ">
                                     <label class="control-label col-lg-2">Titulo del Puesto:</label>
                                     <div class="col-md-8">
@@ -71,18 +74,18 @@
                                 <div class="form-group ">
                                     <label for="password" class="control-label col-lg-2">Jefe Inmediato:</label>
                                     <div class="col-md-6">
-                                        <select class="form-control" name="puesto.jefeInmediato" id="cmbjefeinmediato">
+                                        <select class="form-control" name="cmbjefeinmediato" id="cmbjefeinmediato">
                                             <option value="0">Seleccione un Jefe Inmediato</option>
                                             @foreach (var jefe in Model.cmbJefeInmediato)
-                    {
-                        string selected = "";
-                        if (Model.puesto.jefeInmediato != null)
-                        {
-                            selected = (Model.puesto.jefeInmediato.Value == jefe.id) ? "selected" : "";
-                        }
+                                            {
+                                                string selected = "";
+                                                if (Model.puesto.jefeInmediato != null)
+                                                {
+                                                    selected = (Model.puesto.jefeInmediato.Value == jefe.id) ? "selected" : "";
+                                                }
 
-                        <option @selected value="@jefe.id">@jefe.titulo</option>
-}
+                                                <option @selected value="@jefe.id">@jefe.titulo</option>
+                                            }
                                         </select>
 
                                     </div>
@@ -90,26 +93,34 @@
                                 <div class="form-group row">
                                     <label for="password" class="control-label col-lg-2">Unidad Organizativa:</label>
                                     <div class="col-md-6">
-                                        <select class="form-control" name="puesto.jefeInmediato" id="cmbjefeinmediato">
+                                        <select class="form-control" name="cmbunidad" id="cmbunidad">
                                             <option value="0">Seleccione la unidad organizativa</option>
                                             @foreach (var unidad in Model.cmbUnidades)
-                    {
-                        var selected = (Model.puesto.idUnidad == unidad.id) ? "selected" : "";
-                        <option @selected value="@unidad.id">@unidad.nombre</option>
-}
+                                            {
+                                                string selected = "";
+                                                if (Model.puesto.idUnidad != 0)
+                                                {
+                                                    selected = (Model.puesto.idUnidad == unidad.id) ? "selected" : "";
+                                                }
+                                                <option @selected value="@unidad.id">@unidad.nombre</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group ">
                                     <label for="password" class="control-label col-lg-2">Tipo de Puesto:</label>
                                     <div class="col-md-6">
-                                        <select class="form-control" name="puesto.jefeInmediato" id="cmbjefeinmediato">
+                                        <select class="form-control" name="cmbtipopuesto" id="cmbtipopuesto">
                                             <option value="0">Seleccione el tipo de puesto</option>
                                             @foreach (var tpuesto in Model.cmbTipoPuesto)
-                    {
-                        var selected = (Model.puesto.idTipoPuesto == tpuesto.Id) ? "selected" : "";
-                        <option @selected value="@tpuesto.Id">@tpuesto.tipo</option>
-}
+                                            {
+                                                string selected = "";
+                                                if (Model.puesto.idTipoPuesto != 0)
+                                                {
+                                                   selected = (Model.puesto.idTipoPuesto == tpuesto.Id) ? "selected" : "";
+                                                }
+                                                <option @selected value="@tpuesto.Id">@tpuesto.tipo</option>
+                                            }
                                         </select>
                                     </div>
                                 </div>
@@ -118,8 +129,8 @@
                                     <label class="control-label col-md-2">Fecha de Aprobacion:</label>
                                     <div class="col-md-4">
                                         <div id="fecha" data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012"
-                                             class="input-append date dpYears">
-                                            <input type="text" placeholder="Seleccione una fecha" readonly="" id="fechaCreacion" name="fechaCreacion" value="" size="16" class="form-control">
+                                             class="input-append date">
+                                            <input type="text" placeholder="Seleccione una fecha" readonly="" id="fechaaprobacion" name="fechaaprobacion" value="" size="16" class="form-control">
                                             <span class="input-group-btn add-on">
                                                 <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
                                             </span>
@@ -129,30 +140,30 @@
                                 </div>
                                 <div class="form-group row">
                                     <label class="col-md-2 control-label">Estado:</label>
-                                    
-                                        <div class="col-md-6 btn-group" data-toggle="buttons">
-                                            <label class="btn btn-primary active">
-                                                <input name="estado" value="activo" type="radio"> Activo
-                                            </label>
-                                            <label class="btn btn-primary active">
-                                                <input name="estado" value="inactivo" type="radio"> Inactivo
-                                            </label>                                            
-                                        </div>                                    
-                                </div>
-                                <div class="form-group row">
-                                    <label class="col-md-2 control-label">Estado:</label>
 
                                     <div class="col-md-6 btn-group" data-toggle="buttons">
                                         <label class="btn btn-primary active">
-                                            <input name="estado" value="activo" type="radio"> Activo
+                                            <input name="estado" value="activo" type="radio" checked="checked" > Activo
                                         </label>
-                                        <label class="btn btn-primary active">
+                                        <label class="btn btn-primary">
                                             <input name="estado" value="inactivo" type="radio"> Inactivo
                                         </label>
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 control-label">Aprobación:</label>
 
+                                    <div class="col-md-6 btn-group" data-toggle="buttons">
+                                        <label class="btn btn-primary ">
+                                            <input name="aprobacion" value="activo" type="radio" > Aprobado
+                                        </label>
+                                        <label class="btn btn-primary active">
+                                            <input name="aprobacion" value="inactivo" type="radio" checked="checked"> Pendiente
+                                        </label>
+                                    </div>
+                                </div>
 
+                                </form>
 
                             </fieldset>
 
@@ -161,8 +172,8 @@
 
 
 
-                            <fieldset title="Paso 2" class="step" id="default-step-1">
-                                <legend> </legend>
+                            <fieldset title="" class="stepy-step" id="default-step-1">
+                                <legend class="stepy-legend"></legend>
                                 <!--Agregar Nueva Funcion-->
                                 <div class="form-group ">
                                     <label for="objetivoF" class="control-label col-lg-2">Puesto de Trabajo</label>
@@ -196,22 +207,22 @@
 
 
                                             @*@foreach (var item in Model.funciones)
-                        {
-                            <tr>
-                                <td class="oculta">
-                                    @Html.DisplayFor(modelItem => item.id)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.funcion)
-                                </td>
-                                <td>
-                                    <div class="pull-right hidden-phone">
-                                        <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                        <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)" type="button"><i class="fa fa-trash-o "></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        }*@
+                    {
+                        <tr>
+                            <td class="oculta">
+                                @Html.DisplayFor(modelItem => item.id)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.funcion)
+                            </td>
+                            <td>
+                                <div class="pull-right hidden-phone">
+                                    <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                    <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)" type="button"><i class="fa fa-trash-o "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    }*@
 
 
                                         </tbody>
@@ -222,8 +233,8 @@
                             </fieldset>
 
 
-                            <fieldset title="Paso 3" class="step" id="default-step-2">
-                                <legend> </legend>
+                            <fieldset title="" class="stepy-step" id="default-step-2">
+                                <legend class="stepy-legend"></legend>
                                 <div class="form-group ">
                                     <label for="objetivoF" class="control-label col-lg-2">Puesto de Trabajo</label>
                                     <div class="col-lg-10">
@@ -257,22 +268,22 @@
                                         <tbody>
 
                                             @*@foreach (var item in Model.requisitos)
-                        {
-                            <tr>
-                                <td class="oculta">
-                                    @Html.DisplayFor(modelItem => item.id)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.descripcion)
-                                </td>
-                                <td>
-                                    <div class="pull-right hidden-phone">
-                                        <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                        <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)" type="button"><i class="fa fa-trash-o "></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        }*@
+                                                {
+                                                    <tr>
+                                                        <td class="oculta">
+                                                            @Html.DisplayFor(modelItem => item.id)
+                                                        </td>
+                                                        <td>
+                                                            @Html.DisplayFor(modelItem => item.descripcion)
+                                                        </td>
+                                                        <td>
+                                                            <div class="pull-right hidden-phone">
+                                                                <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                                                <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)" type="button"><i class="fa fa-trash-o "></i></button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }*@
 
 
                                         </tbody>
@@ -282,68 +293,70 @@
 
                             </fieldset>
 
-                            <fieldset title="Step 4" class="step" id="default-step-3">
-                                <legend> </legend>
-                                <div class="form-group ">
-                                    <label for="objetivoF" class="control-label col-lg-2">Puesto de Trabajo</label>
-                                    <div class="col-lg-10">
-                                        @*@Html.DropDownListFor(lst => lst.Id, (Model.cmbPuesto).Select(m => new SelectListItem { Text = m.titulo, Value = m.id.ToString() }), htmlAttributes: new { @class = "form-control" })*@
-                                    </div>
+                        <fieldset title="" class="stepy-step" id="default-step-3">
+                            <legend class="stepy-legend"></legend>
+                            <div class="form-group ">
+                                <label for="objetivoF" class="control-label col-lg-2">Puesto de Trabajo</label>
+                                <div class="col-lg-10">
+                                    @*@Html.DropDownListFor(lst => lst.Id, (Model.cmbPuesto).Select(m => new SelectListItem { Text = m.titulo, Value = m.id.ToString() }), htmlAttributes: new { @class = "form-control" })*@
                                 </div>
+                            </div>
 
-                                <!--Tabla de Funciones-->
-                                <div class="table-responsive">
-                                    <table class="table table-bordered table-striped table-advance table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th><span>Competencia</span></th>
-                                                <th><span>Esencial</span></th>
-                                                <th><span>Controles</span></th>
+                            <!--Tabla de Funciones-->
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-striped table-advance table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th><span>Competencia</span></th>
+                                        <th><span>Esencial</span></th>
+                                        <th><span>Controles</span></th>
 
-                                            </tr>
-                                        </thead>
-                                        <tbody>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
 
-                                            @*@foreach (var item in Model.competencias)
-                        {
-                            <tr>
-                                <td>
-                                    <div class="form-group row">
-                                        <div class="col-lg-10">
+                                    @*@foreach (var item in Model.competencias)
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-group row">
+                                                                <div class="col-lg-10">
 
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
 
-                                    <div class="form-group row">
+                                                            <div class="form-group row">
 
-                                        <div class="radios col-lg-10">
-                                            <label class="label_radio" for="radio-01">
-                                                Esencial
-                                                <input class=" form-control" name="competencias.esencial" id="Esencial" value="@item.escencial" type="radio" />
-                                            </label>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="pull-right hidden-phone">
-                                        <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                        <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.Id)" type="button"><i class="fa fa-trash-o "></i></button>
-                                    </div>
-                                </td>
-                            </tr>
-                        }*@
+                                                                <div class="radios col-lg-10">
+                                                                    <label class="label_radio" for="radio-01">
+                                                                        Esencial
+                                                                        <input class=" form-control" name="competencias.esencial" id="Esencial" value="@item.escencial" type="radio" />
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="pull-right hidden-phone">
+                                                                <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                                                <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.Id)" type="button"><i class="fa fa-trash-o "></i></button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }*@
 
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!--fin tabla-->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!--fin tabla-->
 
-                            </fieldset>
+                        </fieldset>
 
-                            <input type="submit" class="finish btn btn-danger" value="Finish" />
+                            <a id="btnback" class="stepy-back btn btn-danger button-back">back</a>
+                            <a class="stepy-next btn btn-danger button-next">next</a>
+                            <input type="submit" class="finish btn btn-danger stepy-finish" value="Finish" />
                         </form>
 
                     </div>
@@ -478,19 +491,41 @@
 
     <!--step wizard-->
     <script>
-        $(function () {
-            $('#default').stepy({
+        $(function() {
+            $('#wfrmpuesto').stepy({
                 backLabel: 'Atras',
                 block: true,
                 nextLabel: 'Siguiente',
                 titleClick: true,
-                titleTarget: '.stepy-tab'
+                titleTarget: "#stepy-tab",
+                legend: false,
+                next: function(index, total) {
+                    var dt = index;
+                    var element = "#default-title-" + dt;
+                    $("#default-title-" + dt).addClass("current-step");
+                    dt = dt - 1;
+                    $("#default-title-" + dt).removeClass("current-step");
+
+                    switch (index) {
+                    case 1:
+                        EnviarPaso1();
+                    }
+                },
+                back: function(index, total) {
+                    var dt = index;
+                    var element = "#default-title-" + dt;
+                    $("#default-title-" + dt).addClass("current-step");
+                    dt = dt + 1;
+                    $("#default-title-" + dt).removeClass("current-step");
+                }, validate: function() {
+                    return !invalido;
+                }
             });
         });
     </script>
 
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             var form = $("#wizard-validation-form");
             form.validate({
                 errorPlacement: function errorPlacement(error, element) {
@@ -501,15 +536,15 @@
                 headerTag: "h3",
                 bodyTag: "section",
                 transitionEffect: "slideLeft",
-                onStepChanging: function (event, currentIndex, newIndex) {
+                onStepChanging: function(event, currentIndex, newIndex) {
                     form.validate().settings.ignore = ":disabled,:hidden";
                     return form.valid();
                 },
-                onFinishing: function (event, currentIndex) {
+                onFinishing: function(event, currentIndex) {
                     form.validate().settings.ignore = ":disabled";
                     return form.valid();
                 },
-                onFinished: function (event, currentIndex) {
+                onFinished: function(event, currentIndex) {
                     alert("Submitted!");
                 }
             }).validate({
@@ -527,36 +562,91 @@
 
     </script>
     <!--end wizard-->
-    <!--remove Class-->
-    <script>
-        function visualizar() {
-            $("#ejemplo").removeClass("oculta")
-        }
-    </script>
-
-    <!--Boton enviar-->
-    <script>
-        function Enviar() {
-            $('#funcion')[0].submit(function (event) {
-                alert("Handler for .submit() called.");
-                event.preventDefault();
-            });
-        }
-    </script>
-
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             EditableColumn.init();
         });
     </script>
 
     <!--select2-->
     <script type="text/javascript">
-        $(document).ready(function () {
+        $(document).ready(function() {
             $(".js-example-basic-single").select2();
             $(".js-example-basic-multiple").select2();
         });
+    </script>
+
+
+
+    <script>
+        var invalido = false;
+
+        function EnviarPaso1() {
+            var validator = $("#wfrmpuesto").validate();
+            invalido = false;
+            var titulo = $("#titulo").val();
+            if (titulo.length === 0) {
+                validator.showErrors({
+                    'titulo': "<span style='color:red;'>Campo requerido</span>"
+                });
+                invalido = true;
+            }
+            var objetivo = $("#objetivo").val();
+            if (objetivo.length === 0) {
+                validator.showErrors({
+                    'objetivo': "<span style='color:red;'>Campo requerido</span>"
+                });
+                invalido = true;
+            }
+
+            var jefe = $("#cmbjefeinmediato").val();
+
+            var unidad = $("#cmbunidad").val();
+              
+            if (unidad === "0") {
+                validator.showErrors({
+                    'cmbunidad': "<span style='color:red;'>Campo requerido</span>"
+                });
+                invalido = true;
+            }
+
+            var tipo = $("#cmbtipopuesto").val();
+            if (tipo === 0) {
+                validator.showErrors({
+                    'cmbtipopuesto': "<span style='color:red;'>Campo requerido</span>"
+                });
+                invalido = true;
+            }
+
+
+            var fecha = $("#fechaaprobacion").val();
+            if (fecha === 0) {
+                validator.showErrors({
+                    'fechaaprobacion': "<span style='color:red;'>Campo requerido</span>"
+                });
+                invalido = true;
+            }
+
+
+            var estado = $("input[name=estado]:checked").val();
+            var aprobacion = $("input[name=aprobacion]:checked").val();
+
+            if (invalido) {
+                alert("invalido");
+                $("#default-title-0").addClass("current-step");
+                $("#default-title-1").removeClass("current-step");
+                $("#btnback").click();
+            }
+        }
+
+        function validationError(control) {
+            var validator = $("#wfrmpuesto").validate();
+            validator.showErrors({
+                control: "<span style='color:red;'>Campo requerido</span>"
+            });
+        }
+
     </script>
 
 }

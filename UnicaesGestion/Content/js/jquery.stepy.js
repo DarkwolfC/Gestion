@@ -1,343 +1,460 @@
-/*!
- * jQuery Stepy - A Wizard Plugin - http://wbotelhos.com/stepy
- * ------------------------------------------------------------------------------------
+﻿/*!
+ * jQuery Stepy - A Wizard Plugin
  *
- * jQuery Stepy is a plugin based on FormToWizard that generates a customizable wizard.
- * 
- * Licensed under The MIT License
- * 
- * @version        1.0.0
- * @since          2010.07.03
- * @author         Washington Botelho
- * @documentation  wbotelhos.com/stepy
- * @twitter        twitter.com/wbotelhos
- * 
- * Usage with default values:
- * ------------------------------------------------------------------------------------
- * $('#step').stepy();
+ * The MIT License
  *
- *	<form id="step">
- *		<fieldset title="Step 1">
- *			<legend>description one</legend>
- *			<!-- input fields -->
- *		</fieldset>
- *
- *		<fieldset title="Step 2">
- *			<legend>description one</legend>
- *			<!-- input fields -->
- *		</fieldset>
- *
- *		<input type="submit" class="finish" value="Finish!"/>
- *	</form>
+ * @author:  Washington Botelho
+ * @doc:     wbotelhos.com/stepy
+ * @version: 1.1.0
  *
  */
 
 ;(function($) {
+  'use strict';
 
-	var methods = {
-		init: function(options) {
-			return this.each(function() {
+  var methods = {
+    init: function(settings) {
+      return this.each(function() {
+        methods.destroy.call(this);
 
-				var opt		= $.extend({}, $.fn.stepy.defaults, options),
-					$this	= $(this).data('options', opt),
-					id		= $this.attr('id');
+        this.stepyOptions = $.extend({}, $.fn.stepy.defaults, settings);
 
-				if (id === undefined || id == '') {
-					id = 'stepy-' + $('.' + $this.attr('class')).index(this);
-					$this.attr('id', id); 
-				}
+        var self = $(this);
 
-				var $titlesWrapper = $('<ul/>', { id: id + '-titles', 'class': 'stepy-titles clearfix' });
+        methods._generateId.call(this);
 
-				if (opt.titleTarget) {
-					$(opt.titleTarget).html($titlesWrapper);
-				} else {
-					$titlesWrapper.insertBefore($this);
-				}
+        if (this.stepyOptions.header) {
+          this.header = methods._header.call(this);
+        }
 
-		        if (opt.validate) {
-		        	jQuery.validator.setDefaults({ ignore: opt.ignore });
+        this.steps = self.find('.' + this.stepyOptions.stepClass);
 
-		        	$this.append('<div class="stepy-error clearfix"/>');
-		        }
+        var that = this;
 
-		        var	$steps		= $this.children('fieldset'),
-		        	$step		= undefined,
-		        	$legend		= undefined,
-		        	description	= '',
-		        	title		= '';
+        this.steps.each(function(index) {
+          var self = $(this);
 
-		        $steps.each(function(index) {
-		        	$step = $(this);
+          self.addClass(that.stepyOptions.stepClass);
 
-		        	$step
-		        	.addClass('step')
-		        	.attr('id', id + '-step-' + index)
-		        	.append('<p id="' + id + '-buttons-' + index + '" class="' + id + '-buttons"/>');
+          if (index === 0) {
+            self.addClass('stepy-active');
+          }
 
-		        	$legend = $step.children('legend');
+          if (that.stepyOptions.header) {
+            methods._createHead.call(that, this, index);
+          }
+        });
 
-		        	if (!opt.legend) {
-		        		$legend.hide();
-		        	}
+        methods._bindNextButton.call(this);
+        methods._bindBackButton.call(this);
+        methods._bindFinishButton.call(this);
 
-		        	description = '';
+        if (this.stepyOptions.header) {
+          methods._bindHeader.call(this);
+        }
 
-		        	if (opt.description) {
-		        		if ($legend.length) {
-		        			description = '<span>' + $legend.html() + '</span>';
-		        		} else {
-		        			$.error(id + ': the legend element of the step ' + (index + 1) + ' is required to set the description!');
-		        		}
-		        	}
+        if (this.stepyOptions.enter) {
+          methods._bindEnter.call(this);
+        }
 
-		        	title = $step.attr('title');
-		        	title = (title != '') ? '<div>' + title + '</div>': '--';
+        this.steps.first().find(':input:visible:enabled:first').trigger('select').trigger('focus');
 
-		        	$titlesWrapper.append('<li id="' + id + '-title-' + index + '">' + title + description + '</li>');
+        methods._setState.call(this, { settings: this.stepyOptions, index: 0, stepy: true });
 
-		        	if (index == 0) {
-		        		if ($steps.length > 1) {
-		        			methods.createNextButton.call($this, index);
-		        		}
-		        	} else {
-		        		methods.createBackButton.call($this, index);
+        methods._stateButton.call(this, this.steps);
+      });
+    },
 
-		        		$step.hide();
+    _bindBackButton: function() {
+      var button = $(this).find(this.stepyOptions.backButton);
 
-		        		if (index < $steps.length - 1) {
-		        			methods.createNextButton.call($this, index);
-			        	}
-		        	}
-		        });
+      if (!button.length) {
+        return;
+      }
 
-		        var $titles	= $titlesWrapper.children();
+      button.on('click.stepy', function(e) {
+        e.preventDefault();
 
-		        $titles.first().addClass('current-step');
+        var index = $(this).data('index') - 1;
 
-		        var $finish = $this.children('.finish');
+        if (index >= 0 && (!this.stepyOptions.back || methods._execute.call(this, this.stepyOptions.back, index, this.steps.length))) {
+          methods.step.call(this, index);
+        }
+      }.bind(this));
+    },
 
-				if (opt.finishButton) {
-			        if ($finish.length) {
-			        	var isForm		= $this.is('form'),
-			        		onSubmit	= undefined;
+    _bindEnter: function() {
+      var that = this;
 
-			        	if (opt.finish && isForm) {
-			        		onSubmit = $this.attr('onsubmit');
-			        		$this.attr('onsubmit', 'return false;');
-			        	}
+      this.steps.find('input:not(:button, :submit)').on('keypress.stepy', function(evt) {
+        var key = (evt.keyCode ? evt.keyCode : evt.which);
 
-		        		$finish.click(function(evt) {
-		    				if (opt.finish && !methods.execute.call($this, opt.finish, $steps.length - 1)) {
-		   						evt.preventDefault();
-		    				} else {
-		    					if (isForm) {
-		    						if (onSubmit) {
-		    							$this.attr('onsubmit', onSubmit);
-		    						} else {
-		    							$this.removeAttr('onsubmit');
-		    						}
+        if (key === 13) {
+          evt.preventDefault();
 
-		    						var isSubmit = $finish.attr('type') == 'submit';
+          var
+            step    = $(this).closest('.' + that.stepyOptions.stepClass),
+            hasNext = step.next('.' + that.stepyOptions.stepClass).length;
 
-		    						if (!isSubmit && (!opt.validate || methods.validate.call($this, $steps.length - 1))) {
-		    							$this.submit();
-		    						}
-		    					}
-		    				}
-		        		});
+          if (hasNext) {
+            step.find(that.stepyOptions.nextButton).trigger('click');
+          } else if (that.finishButton) {
+            that.finishButton.trigger('click');
+          }
+        }
+      });
+    },
 
-		        		$finish.appendTo($this.find('p:last'));
-			        } else {
-			        	$.error(id + ': element with class name "finish" missing!');
-			        }
-		        }
+    _bindFinishButton: function() {
+      this.finishButton = $(this).find(this.stepyOptions.finishButton);
 
-		        if (opt.titleClick) {
-		        	$titles.click(function() {
-		        		var	array	= $titles.filter('.current-step').attr('id').split('-'), // TODO: try keep the number in an attribute.
-			        		current	= parseInt(array[array.length - 1], 10),
-			        		clicked	= $(this).index();
+      if (!this.finishButton.length) {
+        return $.error('submit button "' + this.stepyOptions.finishButton + '" missing.');
+      }
 
-		        		if (clicked > current) {
-							if (opt.next && !methods.execute.call($this, opt.next, clicked)) {
-								return false;
-							}
-						} else if (clicked < current) {
-							if (opt.back && !methods.execute.call($this, opt.back, clicked)) {
-								return false;
-							}
-						}
+      this.finishButton.on('click.stepy', methods._onFinishButton.bind(this));
+    },
 
-						if (clicked != current) {
-							methods.step.call($this, (clicked) + 1);
-						}
-		        	});
-		    	} else {
-		    		$titles.css('cursor', 'default');
-		    	}
+    _bindHeader: function() {
+      this.heads = this.header.find('li');
 
-		        $steps.delegate('input[type="text"], input[type="password"]', 'keypress', function(evt) {
-		        	var key = (evt.keyCode ? evt.keyCode : evt.which);
+      this.heads.first().addClass('stepy-active');
 
-		        	if (key == 13) {
-		        		evt.preventDefault();
+      if (this.stepyOptions.titleClick) {
+        var that = this;
 
-		        		var $buttons = $(this).parent().children('.' + id + '-buttons');
+        this.heads.on('click', function() {
+          methods._bindHeaderHandler.call(that, this);
+        });
+      } else {
+        this.heads.css('cursor', 'default');
+      }
+    },
 
-		        		if ($buttons.length) {
-		        			var $next = $buttons.children('.button-next');
+    _bindHeaderHandler: function(head) {
+      var
+        current = parseInt($(this.heads).filter('.stepy-active')[0].id.match(/\d/)[0], 10),
+        clicked = parseInt(head.id.match(/\d/)[0], 10);
 
-		        			if ($next.length) {
-		        				$next.click();
-		        			} else {
-			        			var $finish = $buttons.children('.finish');
-		
-			        			if ($finish.length) {
-			        				$finish.click();
-			        			}
-		        			}
-		        		}
-		        	}
-		        });
+      if (clicked > current) {
+        if (this.stepyOptions.next && !methods._execute.call(this, this.stepyOptions.next, clicked)) {
+          return false;
+        }
+      } else if (clicked < current) {
+        if (this.stepyOptions.back && !methods._execute.call(this, this.stepyOptions.back, clicked)) {
+          return false;
+        }
+      }
 
-		        $steps.first().find(':input:visible:enabled').first().select().focus();
-			});
-		}, createBackButton: function(index) {
-			var $this	= this,
-				id		= this.attr('id'),
-				opt		= this.data('options');
+      if (clicked != current) {
+        methods.step.call(this, clicked);
+      }
+    },
 
-        	$('<a/>', { id: id + '-back-' + index, href: 'javascript:void(0);', 'class': 'button-back btn btn-info', html: opt.backLabel }).click(function() {
-        		if (!opt.back || methods.execute.call($this, opt.back, index - 1)) {
-        			methods.step.call($this, (index - 1) + 1);
-        		}
-            }).appendTo($('#' + id + '-buttons-' + index));
-        }, createNextButton: function(index) {
-			var $this	= this,
-				id		= this.attr('id'),
-				opt		= this.data('options');
+    _bindNextButton: function() {
+      var button = $(this).find(this.stepyOptions.nextButton);
 
-        	$('<a/>', { id: id + '-next-' + index, href: 'javascript:void(0);', 'class': 'button-next  btn btn-info', html: opt.nextLabel }).click(function() {
-        		if (!opt.next || methods.execute.call($this, opt.next, index + 1)) {
-					methods.step.call($this, (index + 1) + 1);
-        		}
-            }).appendTo($('#' + id + '-buttons-' + index));
-        }, execute: function(callback, index) {
-        	var isValid = callback.call(this, index + 1);
+      if (!button.length) {
+        return;
+      }
 
-        	return isValid || isValid === undefined;
-        }, step: function(index) {
-        	index--;
+      button.on('click.stepy', function(e) {
+        e.preventDefault();
 
-			var $steps = this.children('fieldset');
+        var index = $(this).data('index') + 1;
 
-			if (index > $steps.length - 1) {
-				index = $steps.length - 1;
-			}
+        if (index < this.steps.length && (!this.stepyOptions.next || methods._execute.call(this, this.stepyOptions.next, index, this.steps.length))) {
+          methods.step.call(this, index);
+        }
+      }.bind(this));
+    },
 
-			var opt = this.data('options');
-				max	= index;
+    _createHead: function(step, index) {
+      var
+        step = $(step).attr('id', this.getAttribute('id') + '-step-' + index),
+        head = methods._head.call(this, index);
 
-	    	if (opt.validate) {
-	    		var isValid = true;
+      head.append(methods._title.call(this, step));
 
-	        	for (var i = 0; i < index; i++) {
-					isValid &= methods.validate.call(this, i);
+      if (this.stepyOptions.description) {
+        var description = methods._description.call(this, step);
 
-					if (opt.block && !isValid) {
-						max = i;
-						break;
-					}
-				}
-	    	}
+        if (description.length) {
+          head.append(description);
+        }
+      }
 
-			$steps.hide().eq(max).show();
+      this.header.append(head);
+    },
 
-			var $titles	= $('#' + this.attr('id') + '-titles').children();
+    _description: function(step) {
+      var legend = step.find('.' + this.stepyOptions.legendClass);
 
-			$titles.removeClass('current-step').eq(max).addClass('current-step');
+      if (!this.stepyOptions.legend) {
+        legend.hide();
+      }
 
-			if (this.is('form')) {
-				var $fields = undefined;
+      if (!legend.length) {
+        return null;
+      }
 
-		        if (max == index) {
-		        	$fields = $steps.eq(max).find(':input:enabled:visible');
-		        } else {
-		        	$fields = $steps.eq(max).find('.error').select().focus();
-		        }
+      return $('<span />', { html: legend.html() });
+    },
 
-		        $fields.first().select().focus();
-	        }
+    _execute: function(callback, index, totalSteps) {
+      if (callback === undefined) {
+        return true;
+      }
 
-	        if (opt.select) {
-				opt.select.call(this, max + 1);
-			}
+      var isValid = callback.call(this, index, totalSteps);
 
-	        return this;
-		}, validate: function(index) {
-			if (!this.is('form')) {
-				return true;
-			}
+      return isValid || isValid === undefined;
+    },
 
-			var $step		= this.children('fieldset').eq(index),
-				isValid		= true,
-				$title		= $('#' + this.attr('id') + '-titles').children().eq(index),
-				opt			= this.data('options'),
-				$validate	= this.validate();
+    _generateId: function() {
+      var id = this.getAttribute('id');
 
-			$($step.find(':input:enabled').get().reverse()).each(function() {
-				var fieldIsValid = $validate.element($(this));
+      if (id === undefined || id === '') {
+        $(this).attr('id', 'stepy-' + Math.random().toString().substring(2));
+      }
+    },
 
-				if (fieldIsValid === undefined) {
-					fieldIsValid = true;
-				}
+    _head: function(index) {
+      return $('<li />', { id: this.getAttribute('id') + '-head-' + index });
+    },
 
-				isValid &= fieldIsValid;
+    _header: function() {
+      var header = $('<ul />', { id: this.getAttribute('id') + '-header', 'class': 'stepy-header' });
 
-				if (isValid) {
-					if (opt.errorImage) {
-						$title.removeClass('error-image');
-					}
-				} else {
-					if (opt.errorImage) {
-						$title.addClass('error-image');
-					}
+      if (this.stepyOptions.titleTarget) {
+        header.appendTo(this.stepyOptions.titleTarget);
+      } else {
+        header.insertBefore(this);
+      }
 
-					$validate.focusInvalid();
-				}
-			});
+      return header;
+    },
 
-			return isValid;
-		}
-	};
+    _onFinishButton: function(evt) {
+      var onSubmit = undefined;
 
-	$.fn.stepy = function(method) {
-		if (methods[method]) {
-			return methods[method].apply(this, Array.prototype.slice.call(arguments, 1));
-		} else if (typeof method === 'object' || !method) {
-			return methods.init.apply(this, arguments);
-		} else {
-			$.error('Method ' + method + ' does not exist!');
-		} 
-	};
+      if (this.tagName === 'FORM') {
+        onSubmit = this.getAttribute('onsubmit');
 
-	$.fn.stepy.defaults = {
-		back:			undefined,
-		backLabel:		'&lt; Back',
-		block:			false,
-		description:	true,
-		errorImage:		false,
-		finish:			undefined,
-		finishButton:	true,
-		legend:			true,
-		ignore:			'',
-		next:			undefined,
-		nextLabel:		'Next &gt;',
-		titleClick:		false,
-		titleTarget:	undefined,
-		validate:		false,
-		select: 		undefined
-	};
+        this.setAttribute('onsubmit', 'return false;');
+      }
+
+      if (!methods._execute.call(this, this.stepyOptions.finish, this.steps.length - 1)) {
+        evt.preventDefault();
+      } else if (this.tagName === 'FORM') {
+        if (onSubmit) {
+          this.setAttribute('onsubmit', onSubmit);
+        } else {
+          this.removeAttribute('onsubmit');
+        }
+
+        var isSubmit = this.finishButton.attr('type') === 'submit';
+
+        if (isSubmit && (!this.stepyOptions.validate || methods.validate.call(this, this.steps.length - 1))) {
+          this.submit();
+        }
+      }
+    },
+
+    _setState: function(data) {
+      var self = $(this);
+
+      self.data($.extend({}, self.data(), data));
+    },
+
+    _stateButton: function(steps) {
+      var
+        self  = $(this),
+        index = self.data('index');
+
+      if (index === 0) {
+        self.find(this.stepyOptions.backButton).removeClass('stepy-active');
+        self.find(this.stepyOptions.finishButton).removeClass('stepy-active');
+        self.find(this.stepyOptions.nextButton).addClass('stepy-active');
+      } else if (index === steps.length - 1) {
+        self.find(this.stepyOptions.backButton).addClass('stepy-active');
+        self.find(this.stepyOptions.finishButton).addClass('stepy-active');
+        self.find(this.stepyOptions.nextButton).removeClass('stepy-active');
+      } else {
+        self.find(this.stepyOptions.backButton).addClass('stepy-active');
+        self.find(this.stepyOptions.finishButton).removeClass('stepy-active');
+        self.find(this.stepyOptions.nextButton).addClass('stepy-active');
+      }
+    },
+
+    _title: function(step) {
+      return $('<div />', { html: step.attr('title') || '--' });
+    },
+
+    _transition: function(max) {
+      var
+        from = this.steps.eq($(this).data('index')),
+        to   = this.steps.eq(max);
+
+      if (this.stepyOptions.transition === 'fade') {
+        from.animate({ opacity: 0 }, this.stepyOptions.duration, function() {
+          from.removeClass('stepy-active');
+
+          to.addClass('stepy-active').animate({ opacity: 1 }, this.stepyOptions.duration);
+        }.bind(this));
+      } else if (this.stepyOptions.transition === 'slide') {
+        var
+          forward = from.index() < to.index(),
+          one     = (forward ? -1 : 1) * from.outerWidth(),
+          two     = (forward ? 1 : -1) * to.outerWidth(),
+          three   = 0;
+
+        from.animate({ 'margin-left': one }, this.stepyOptions.duration, function() {
+          from.removeClass('stepy-active');
+
+          to.animate({ 'margin-left': two }, 0).addClass('stepy-active').animate({ 'margin-left': three }, this.stepyOptions.duration);
+        }.bind(this));
+      }
+    },
+
+    destroy: function() {
+      return $(this).each(function() {
+        var self = $(this);
+
+        if (self.data('stepy')) {
+          var steps = self.data('stepy', false).find('.stepy-active').removeClass('stepy-active');
+
+          self.find('.stepy-errors').remove();
+        }
+      });
+    },
+
+    step: function(index) {
+      var
+        max   = index,
+        self  = $(this),
+        steps = self.find('.' + this.stepyOptions.stepClass);
+
+      if (index > steps.length) {
+        index = steps.length;
+      }
+
+      if (this.stepyOptions.validate) {
+        var isValid = true;
+
+        for (var i = 0; i < index; i++) {
+          isValid &= methods.validate.call(this, i);
+
+          if (this.stepyOptions.block && !isValid) {
+            max = i;
+            break;
+          }
+        }
+      }
+
+      if (this.stepyOptions.transition) {
+        methods._transition.call(this, max);
+      } else {
+        steps.removeClass('stepy-active').eq(max).addClass('stepy-active');
+      }
+
+      if (this.stepyOptions.header) {
+        this.heads.removeClass('stepy-active').eq(max).addClass('stepy-active');
+      }
+
+      if (this.tagName === 'FORM') {
+        var fields = steps.eq(max);
+
+        if (max === index) {
+          fields = fields.find(':input:enabled:visible');
+        } else {
+          fields = fields.find('.error').trigger('select').trigger('focus');
+        }
+
+        fields.first().trigger('select').trigger('focus');
+      }
+
+      if (this.stepyOptions.select) {
+        this.stepyOptions.select.call(this, max, steps.length);
+      }
+
+      methods._setState.call(this, { index: max });
+      methods._stateButton.call(this, steps);
+
+      return self;
+    },
+
+    validate: function(index) {
+      var self = $(this);
+
+      if (!this.tagName === 'FORM') {
+        return true;
+      }
+
+      var
+        that     = this,
+        step     = self.find('.' + this.stepyOptions.stepClass).eq(index),
+        isValid  = true,
+        title    = $('#' + this.getAttribute('id') + '-header').children().eq(index);
+
+      $(step.find(':input:enabled').get().reverse()).each(function() {
+        var fieldIsValid = that.stepyOptions.validate.call(that, this);
+
+        if (fieldIsValid === undefined) {
+          fieldIsValid = true;
+        }
+
+        isValid = isValid && fieldIsValid;
+
+        if (isValid) {
+          if (that.stepyOptions.errorImage) {
+            title.removeClass('stepy-error');
+          }
+        } else {
+          if (that.stepyOptions.errorImage) {
+            title.addClass('stepy-error');
+          }
+
+          this.focus();
+        }
+      });
+
+      return isValid;
+    }
+  };
+
+  $.fn.stepy = function(method) {
+    if (methods[method]) {
+      return methods[method].apply(this[0], Array.prototype.slice.call(arguments, 1));
+    } else if (typeof method === 'object' || !method) {
+      return methods.init.apply(this, arguments);
+    } else {
+      $.error('Method ' + method + ' does not exist!');
+    }
+  };
+
+  $.fn.stepy.defaults = {
+    back:         undefined,
+    backButton:   '.stepy-back',
+    block:        false,
+    description:  true,
+    duration:     0,
+    enter:        true,
+    errorImage:   false,
+    finish:       undefined,
+    finishButton: '.stepy-finish',
+    header:       true,
+    ignore:       '',
+    legend:       true,
+    legendClass:  'stepy-legend',
+    next:         undefined,
+    nextButton:   '.stepy-next',
+    select:       undefined,
+    stepClass:    'stepy-step',
+    titleClick:   false,
+    titleTarget:  undefined,
+    transition:   undefined,
+    validate:     undefined
+  };
 
 })(jQuery);
