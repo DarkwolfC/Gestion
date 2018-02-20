@@ -2,7 +2,8 @@
 
 $(document).ready(init);
 
-function init() {    
+function init() {  
+    $("#date").datepicker();
     init_stepy();
 }
 
@@ -13,33 +14,11 @@ function init_stepy() {
             nextLabel: 'Siguiente',
             titleClick: true,
             titleTarget: "#stepy-tab",
-            legend: false,
-            next: function (index, total) {
-                var dt = index;
-                var element = "#default-title-" + dt;
-                $("#default-title-" + dt).addClass("current-step");
-                dt = dt - 1;
-                $("#default-title-" + dt).removeClass("current-step");
-
-                switch (index) {
-                    case 1:
-                        EnviarPaso1();
-                }
-            },
-            back: function (index, total) {
-                var dt = index;
-                var element = "#default-title-" + dt;
-                $("#default-title-" + dt).addClass("current-step");
-                dt = dt + 1;
-                $("#default-title-" + dt).removeClass("current-step");
-            },            
-            validate: function () {
-                return $("#")
-            }
+            legend: false               
         });   
 }
 
-function validacion_paso1() {
+function ProcesarPaso1() {
     $("#wfrmpuesto").validate({
         rules: {
             titulo: {
@@ -77,7 +56,23 @@ function validacion_paso1() {
         },
         submitHandler: function (form) {
             //cuando el formulario es válido.
-            alert("process");
+            loading($("#loading1"));
+            $("#btnsiguiente1").hide();
+            var data = $(form).serialize();
+
+            $.ajax({
+                url: "",
+                method: "POST",
+                data: data,
+                success: function (data) {
+                    Next1();
+                }, error: function () {
+
+                }
+            });
+
+           
+           
         },
         invalidHandler: function (event, validator) {
             //cuando el formulario tiene errores. 
@@ -89,13 +84,20 @@ function validacion_paso1() {
             $(element).closest(".form-group").removeClass("has-error");
         }
     });
+    var d = $("#wfrmpuesto").submit();
 
 }
 
+function Next1() {
+    $("#default-title-1").addClass("current-step");
+    $("#default-title-0").removeClass("current-step");
+    $('#wfrmpuesto').stepy('step', 1);
+
+}
 
 function EnviarPaso1() {
     validacion_paso1();
-    var d = $("#wfrmpuesto").submit();
+    
     alert(d);
 
     //invalido = false;
@@ -154,9 +156,10 @@ function EnviarPaso1() {
     //}
 }
 
-function validationError(control) {
-    var validator = $("#wfrmpuesto").validate();
-    validator.showErrors({
-        control: "<span style='color:red;'>Campo requerido</span>"
-    });
+function loading(obj) {
+    $(obj).html("<div style='text-align:right;'><br/><img src='/Content/img/loading.gif' alt='cargando..' width='45' height='45' /> procesando..</div>");
+}
+
+function showError(obj) {
+
 }

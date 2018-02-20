@@ -571,6 +571,7 @@
     <Content Include="Content\img\green-bg.jpg" />
     <Content Include="Content\img\input-spinner.gif" />
     <Content Include="Content\img\left-arrow.png" />
+    <Content Include="Content\img\loading.gif" />
     <Content Include="Content\img\lock-bg.jpg" />
     <Content Include="Content\img\logou.png" />
     <Content Include="Content\img\mail-avatar.jpg" />

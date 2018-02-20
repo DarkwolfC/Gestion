@@ -21,11 +21,11 @@
     .form-control {
         border-color: #d5d4d4;
     }
+
     .error {
-        color:red;
+        color: red;
         font-weight: 300;
     }
-
 </style>
 
 
@@ -62,8 +62,7 @@
                         <form id="wfrmpuesto" method="post" class="form-horizontal">
                             <fieldset title="" class="stepy-step" id="default-step-0">
                                 <legend class="stepy-legend"></legend>
-
-          
+                                                                                                 
                                     <div class="form-group ">
                                         <label class="control-label col-lg-2">Titulo del Puesto:</label>
                                         <div class="col-md-8">
@@ -133,7 +132,7 @@
                                     <div class="form-group">
                                         <label class="control-label col-md-2">Fecha de Aprobacion:</label>
                                         <div class="col-md-4">
-                                            <div id="fecha" data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012" class="input-append date">
+                                            <div id="fecha"  data-date-viewmode="years" data-date-format="dd-mm-yyyy" data-date="12-02-2012" data-provide="datepicker" class="input-append date dpYears">
                                                 <input type="text" placeholder="Seleccione una fecha" readonly="" id="fechaaprobacion" name="fechaaprobacion" value="" size="16" class="form-control">
                                                 <span class="input-group-btn add-on">
                                                     <button class="btn btn-danger" type="button"><i class="fa fa-calendar"></i></button>
@@ -165,9 +164,9 @@
                                             </label>
                                         </div>
                                     </div>
-
-                          
-
+                                    <div id="loading1"></div>
+                                    <a class="btn btn-danger button-next" id="btnsiguiente1" onclick="ProcesarPaso1()">Siguiente</a>
+                             
                             </fieldset>
 
                             <!-- FINALIZA PASO 1-->
@@ -357,9 +356,9 @@
 
                             </fieldset>
 
-                            <a id="btnback" class="stepy-back btn btn-danger button-back">back</a>
-                            <a class="stepy-next btn btn-danger button-next">next</a>
-                            <input type="submit" class="finish btn btn-danger stepy-finish" value="Finish" />
+                                <a id="btnback" class="stepy-back btn btn-danger button-back" style="display:none;">back</a>
+                                <a class="stepy-next btn btn-danger button-next" style="display:none;">next</a>
+                                <input type="submit" class="finish btn btn-danger stepy-finish" value="Finish" style="display:none;" />
                         </form>
 
                     </div>
@@ -491,7 +490,7 @@
     <script src="~/Content/js/jquery.stepy.js"></script>
 
 
-      <script src="~/Scripts/views/GestionPuestoTrabajo.js"></script>
+    <script src="~/Scripts/views/GestionPuestoTrabajo.js"></script>
 
 
 }
