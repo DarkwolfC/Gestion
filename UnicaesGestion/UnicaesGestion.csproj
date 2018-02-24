@@ -209,6 +209,7 @@
     <Compile Include="Models\ProcedimientoViewModel.cs" />
     <Compile Include="Models\PuestoTrabajoViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
+    <Compile Include="Models\RequisitosPuestoViewModel.cs" />
     <Compile Include="Models\UnidadViewModel.cs" />
     <Compile Include="Paso.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -1197,6 +1198,8 @@
     <Content Include="Views\TipoPuesto\Edit.cshtml" />
     <Content Include="Views\TipoPuesto\Index.cshtml" />
     <Content Include="Views\PerfilTrabajo\GestionPuestoTrabajo.cshtml" />
+    <Content Include="Views\PerfilTrabajo\FuncionesPuestoTrabajo.cshtml" />
+    <Content Include="Views\PerfilTrabajo\RequisitosPuestoTrabajo.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
