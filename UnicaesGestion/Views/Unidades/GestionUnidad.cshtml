@@ -1,0 +1,203 @@
+﻿@using UnicaesGestion.Models;
+@model UnicaesGestion.Models.UnidadViewModel
+
+@{
+    ViewBag.Title = "GestionUnidad";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--Form Wizard-->
+<link rel="stylesheet" type="text/css" href="~/Content/css/jquery.steps.css" />
+
+<style>
+    .oculta {
+        display: none;
+    }
+
+    .form-control {
+        border-color: #d5d4d4;
+    }
+
+    .error {
+        color: red;
+        font-weight: 300;
+    }
+</style>
+
+<!--wizard start-->
+<section id="main-content">
+    <section class="wrapper site-min-height">
+        <!-- page start-->
+        <div class="row">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Perfil de contratación
+                    </header>
+                    <input type="hidden" value="@Model.id" name="unidadid" id="unidadid" />
+                    <div class="panel-body">
+                        <div class="stepy-tab">
+                            <ul id="default-titles" class="stepy-titles clearfix">
+                                <li id="default-title-0" class="current-step">
+                                    <div>Paso 1</div>
+                                </li>
+                                <li id="default-title-1">
+                                    <div>Paso 2</div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div id="stepy-tab" style="display: none;"></div>
+
+
+                        <form id="wfrmpuesto" method="post" class="form-horizontal">
+
+                            <!--INICIA PASO 1-->
+                            <fieldset title="" class="stepy-step" id="default-step-0">
+                                <legend class="stepy-legend"></legend>
+
+                                <div class="form-group clearfix">
+                                    <label class="control-label col-lg-2">Unidad</label>
+                                    <div class="col-md-8">
+                                        <input class=" form-control" id="nombre" name="nombre" type="text" value="@Model.unidad.nombre" />
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">Objetivo</label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" id="objetivo" name="objetivo" rows="3">@Model.unidad.objetivo</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label for="password" class="control-label col-lg-2">Depende:</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="cmbunidad" id="cmbunidad">
+                                            <option value="0">Seleccione la unidad de la que depende</option>
+                                            @foreach (var dependencia in Model.cmbUnidad)
+                                            {
+                                                string selected = "";
+                                                if (Model.unidad.depende != null)
+                                                {
+                                                    selected = (Model.unidad.depende.Value == dependencia.id) ? "selected" : "";
+                                                }
+
+                                            <option @selected value="@dependencia.id">@dependencia.nombre</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div id="loading1"></div>
+                                <a class="btn btn-danger button-next" id="btnsiguiente1" onclick="ProcesarPaso1()">Siguiente</a>
+                            </fieldset>
+                            <!-- FINALIZA PASO 1-->
+                            <!--INICIA PASO 2-->
+                            <fieldset title="" class="stepy-step" id="default-step-1">
+                                <legend class="stepy-legend"></legend>
+                                <h5>Funciones del Puesto de Trabajo</h5>
+                                <a class="btn btn-success" data-toggle="modal" style="float: right;" onclick="dlgaddfuncion()">Agregar función</a>
+                                <div style="clear: both;"></div>
+                                <br />
+                                <!--Tabla de Funciones-->
+                                <div id="funciones_unidad">
+
+                                </div>
+                                <!--fin tabla-->
+                                <div id="loading2"></div>
+                                <a class="btn btn-danger button-next" id="btnsiguiente2" onclick="Next2();">Siguiente</a>
+                                <a class="btn btn-danger button-back" id="btnatras2" onclick="Back2();">Anterior</a>
+
+
+                            </fieldset>
+                            <!--FINALIZA PASO 2-->
+
+
+
+
+
+                            <a id="btnback" class="stepy-back btn btn-danger button-back" style="display: none;">back</a>
+                            <a class="stepy-next btn btn-danger button-next" style="display: none;">next</a>
+                            <input type="submit" class="finish btn btn-danger stepy-finish" value="Finish" style="display: none;" />
+                        </form>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+        <!-- page end-->
+    </section>
+</section>
+<!--wizard end-->
+
+<!-- MODALES -->
+<div class="modal fade" id="mdaddfuncion" tabindex="-1" role="dialog" aria-labelledby="Agregar función" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Agregar función</h4>
+            </div>
+            <div class="modal-body">
+                <form id="frmfunciones" name="frmfunciones" method="post">
+                    <input type="hidden" name="idfuncion" id="idfuncion" value="0" />
+                    <div class="form-group clearfix">
+                        <label class="control-label col-lg-2">Función</label>
+                        <div class="col-md-8">
+                            <textarea class="form-control" id="txtfuncion" name="txtfuncion" rows="3"></textarea>
+                        </div>
+                    </div>
+                </form>
+                <br /><br />
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                <button class="btn btn-success" type="button" onclick="GuardarFuncion();">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mddelfuncion" tabindex="-1" role="dialog" aria-labelledby="Agregar función" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Eliminar Función</h4>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" name="idfunciondel" id="idfunciondel" value="0" />
+                <label>Esta seguro que desea eliminar la función?</label>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                <button class="btn btn-success" type="button" onclick="confirmarEliminar();">Eliminar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--Start JavaScript-->
+@section JavaScript {
+    @Scripts.Render("~/bundles/jqueryval")
+    <!--this page plugins-->
+    <script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+
+    <!--this page  script only-->
+    <script src="~/Content/js/form-component.js"></script>
+
+    <!--Form Validation-->
+    <script src="~/Content/js/bootstrap-validator.min.js" type="text/javascript"></script>
+
+    <!--Form Wizard-->
+    <script src="~/Content/js/jquery.steps.min.js" type="text/javascript"></script>
+    <script src="~/Content/js/jquery.validate.min.js" type="text/javascript"></script>
+
+    <!--script for this page-->
+    <script src="~/Content/js/jquery.stepy.js"></script>
+
+    <script src="~/Scripts/views/GestionUnidad.js"></script>
+
+
+
+}
+<!--End JavaScript-->

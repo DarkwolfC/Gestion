@@ -139,5 +139,171 @@ namespace UnicaesGestion.Controllers
             }
             base.Dispose(disposing);
         }
+
+        //Mi codigo
+
+        public ActionResult GestionUnidad(int? id)
+        {
+            UnidadViewModel modelo = new UnidadViewModel();
+            modelo.cmbUnidad = db.Unidads.ToList();       
+            
+            if (id != null)
+            {
+                Unidad unidad = db.Unidads.Find(id);
+                if (unidad == null)
+                    return HttpNotFound();
+                modelo.unidad = unidad;
+                modelo.id= unidad.id;
+            }
+            
+            return View(modelo);
+
+        }
+
+        public ActionResult CrearUnidad(string nombre, string objetivo, string depende)
+        {
+            try
+            {
+                Unidad u = new Unidad();
+                u.nombre = nombre;
+                u.objetivo = objetivo;
+                if (int.Parse(depende) != 0)
+                    u.depende = int.Parse(depende);              
+                db.Unidads.Add(u);
+
+                if (db.SaveChanges() > 0)
+                    return Json(new { result = "success", data = u.id }, JsonRequestBehavior.AllowGet);
+                else
+                    return Json(new { result = "fail", data = "Error creando la nueva unidad" }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", data = "Error creando la nueva unidad.." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult ModificarUnidad(int id, string nombre, string objetivo, string depende)
+        {
+            try
+            {
+                Unidad u = db.Unidads.FirstOrDefault(r => r.id == id);
+                
+                if (u != null)
+                {
+                    u.nombre = nombre;
+                    u.objetivo = objetivo;
+                    if (int.Parse(depende) != 0)
+                        u.depende = int.Parse(depende);
+                    db.SaveChanges();
+                    return Json(new { result = "success", data = id }, JsonRequestBehavior.AllowGet);
+
+                }
+                else
+                    return Json(new { result = "fail", data = "Error actualizando unidad" }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", data = "Error creando la nueva unidad.." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult FuncionesUnidad(int? id)
+        {
+            List<FuncionUnidad> lst = new List<FuncionUnidad>();
+            if (id != null)
+                lst = db.FuncionUnidads.Where(r => r.idUnidad == id).ToList();
+            return View(lst);
+        }
+
+        public ActionResult AgregarFuncion(int idunidad, String funcion)
+        {
+            try
+            {
+                Unidad u = db.Unidads.FirstOrDefault(r => r.id == idunidad);
+                
+                if (u != null)
+                {
+                    FuncionUnidad f = new FuncionUnidad
+                    {
+                        
+                        idUnidad = idunidad,
+                        descripcion = funcion
+                    };
+
+                    db.FuncionUnidads.Add(f);
+
+                    if (db.SaveChanges() > 0)
+                        return Json(new { result = "success", data = "Funcion de puesto de trabajo agregada satisfactoriamente. " }, JsonRequestBehavior.AllowGet);
+                    else
+                        return Json(new { result = "fail", data = "Error agregando funcion de unidad.Identificador de unidad no válido. " }, JsonRequestBehavior.AllowGet);
+
+                }
+                else
+                {
+                    return Json(new { result = "fail", data = "Error agregando funcion de unidad.Identificador de unidad no válido.  " }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", data = "Error agregando funcion de la unidad.." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+        public ActionResult EditarFuncion(int idfuncion, string funcion)
+        {
+            FuncionUnidad f = db.FuncionUnidads.FirstOrDefault(r => r.id == idfuncion);           
+            try
+            {
+                if (f != null)
+                {
+                    f.descripcion = funcion;
+                    db.SaveChanges();
+                    return Json(
+                        new { result = "success", data = "Funcion de puesto de unidad editada satisfactoriamente. " },
+                        JsonRequestBehavior.AllowGet);
+                }
+                else
+                    return Json(
+                        new
+                        {
+                            result = "fail",
+                            data =
+                                "Error editando funcion de unidad.Identificador de unidad no válido. "
+                        }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", data = "Error editando funcion de unidad. " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult EliminarFuncion(int id)
+        {
+            try
+            {
+                FuncionUnidad f = db.FuncionUnidads.FirstOrDefault(r => r.id == id);               
+                if (f != null)
+                {
+                    db.FuncionUnidads.Remove(f);
+                    db.SaveChanges();
+                    return Json(new { result = "success", data = "Funcion eliminada satisfactoriamente. " }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { result = "fail", data = "Error eliminando funcion de unidad.Identificador no válido. " }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", data = "Error eliminando funcion de unidad. " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+
     }
 }

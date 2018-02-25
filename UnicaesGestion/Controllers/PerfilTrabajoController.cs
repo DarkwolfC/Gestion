@@ -95,6 +95,8 @@ namespace UnicaesGestion.Controllers
             base.Dispose(disposing);
         }
 
+
+
         public ActionResult GestionPuestoTrabajo(int? id) {
             PuestoTrabajoViewModel modelo = new PuestoTrabajoViewModel();
             modelo.cmbJefeInmediato = db.PuestoTrabajoes.ToList();
