@@ -24,6 +24,9 @@
     }
 </style>
 
+
+
+
 <!--wizard start-->
 <section id="main-content">
     <section class="wrapper site-min-height">
@@ -32,7 +35,7 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        Perfil de contratación
+                       Unidad
                     </header>
                     <input type="hidden" value="@Model.id" name="unidadid" id="unidadid" />
                     <div class="panel-body">
@@ -44,13 +47,19 @@
                                 <li id="default-title-1">
                                     <div>Paso 2</div>
                                 </li>
+                                <li id="default-title-2" class="">
+                                    <div>Paso 3</div>
+                                </li>
+                                <li id="default-title-3" class="">
+                                    <div>Paso 4</div>
+                                </li>
                             </ul>
                         </div>
                         <div id="stepy-tab" style="display: none;"></div>
 
 
                         <form id="wfrmpuesto" method="post" class="form-horizontal">
-
+                         
                             <!--INICIA PASO 1-->
                             <fieldset title="" class="stepy-step" id="default-step-0">
                                 <legend class="stepy-legend"></legend>
@@ -80,7 +89,7 @@
                                                     selected = (Model.unidad.depende.Value == dependencia.id) ? "selected" : "";
                                                 }
 
-                                            <option @selected value="@dependencia.id">@dependencia.nombre</option>
+                                                <option @selected value="@dependencia.id">@dependencia.nombre</option>
                                             }
                                         </select>
                                     </div>
@@ -90,10 +99,11 @@
                                 <a class="btn btn-danger button-next" id="btnsiguiente1" onclick="ProcesarPaso1()">Siguiente</a>
                             </fieldset>
                             <!-- FINALIZA PASO 1-->
+
                             <!--INICIA PASO 2-->
                             <fieldset title="" class="stepy-step" id="default-step-1">
                                 <legend class="stepy-legend"></legend>
-                                <h5>Funciones del Puesto de Trabajo</h5>
+                                <h5>Funciones de unidad</h5>
                                 <a class="btn btn-success" data-toggle="modal" style="float: right;" onclick="dlgaddfuncion()">Agregar función</a>
                                 <div style="clear: both;"></div>
                                 <br />
@@ -109,11 +119,7 @@
 
                             </fieldset>
                             <!--FINALIZA PASO 2-->
-
-
-
-
-
+                            
                             <a id="btnback" class="stepy-back btn btn-danger button-back" style="display: none;">back</a>
                             <a class="stepy-next btn btn-danger button-next" style="display: none;">next</a>
                             <input type="submit" class="finish btn btn-danger stepy-finish" value="Finish" style="display: none;" />
@@ -174,6 +180,7 @@
         </div>
     </div>
 </div>
+
 
 
 <!--Start JavaScript-->

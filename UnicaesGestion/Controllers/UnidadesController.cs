@@ -78,7 +78,7 @@ namespace UnicaesGestion.Controllers
             {
                 return HttpNotFound();
             }
-            modelo.FuncionUnidades = db.FuncionUnidads.Where(r => r.idUnidad == id).ToList();
+            //modelo.FuncionUnidades = db.FuncionUnidads.Where(r => r.idUnidad == id).ToList();
             //modelo.FuncionUnidades = db.FuncionUnidads.ToList();
             return View(modelo);
         }

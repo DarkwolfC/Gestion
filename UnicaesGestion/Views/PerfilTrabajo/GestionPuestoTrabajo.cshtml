@@ -8,6 +8,9 @@
 <!--Form Wizard-->
 <link rel="stylesheet" type="text/css" href="~/Content/css/jquery.steps.css" />
 
+<!--toastr-->
+<link href="~/Content/assets/toastr-master/toastr.css" rel="stylesheet" />
+
 <link href="~/Content/assets/bootstrap-wysihtml5/bootstrap-wysihtml5.css" rel="stylesheet" />
 <link href="~/Content/assets/bootstrap-datepicker/css/datepicker.css" rel="stylesheet" />
 <link href="~/Content/assets/bootstrap-timepicker/compiled/timepicker.css" rel="stylesheet" />
@@ -137,7 +140,7 @@
                                     <div class="col-md-4">
                                         <div id="fecha" data-date-viewmode="years" data-date-format="yyyy-mm-dd" data-provide="datepicker" class="input-append date dpYears">
                                             @{
-                                                var fecha = (Model.Id!=0)? Model.puesto.fechaCreacion.ToString("yyyy-MM-dd") : "";
+                                                var fecha = (Model.Id != 0) ? Model.puesto.fechaCreacion.ToString("yyyy-MM-dd") : "";
                                             }
                                             <input type="text" placeholder="Seleccione una fecha" readonly="" id="fechaaprobacion" name="fechaaprobacion" value="@fecha" size="16" class="form-control">
                                             <span class="input-group-btn add-on">
@@ -180,7 +183,7 @@
                             <fieldset title="" class="stepy-step" id="default-step-1">
                                 <legend class="stepy-legend"></legend>
                                 <h5>Funciones del Puesto de Trabajo</h5>
-                                <a class="btn btn-success" data-toggle="modal" style="float: right;" onclick="dlgaddfuncion()" >Agregar función</a>
+                                <a class="btn btn-success" data-toggle="modal" style="float: right;" onclick="dlgaddfuncion()">Agregar función</a>
                                 <div style="clear: both;"></div>
                                 <br />
                                 <!--Tabla de Funciones-->
@@ -195,21 +198,20 @@
 
                             </fieldset>
 
-                        <!--FINALIZA PASO 2-->
-
+                            <!--FINALIZA PASO 2-->
                             <!-- INICIA PASO 3-->
                             <fieldset title="" class="stepy-step" id="default-step-2">
                                 <legend class="stepy-legend"></legend>
                                 <h4>Requisitos Puesto de Trabajo </h4>
-                                <br/><br/>
-                                
-                                
+                                <br /><br />
+
+
 
                             </fieldset>
                             <!-- FINALIZA PASO 3-->
-                        
 
-                        <fieldset title="" class="stepy-step" id="default-step-3">
+
+                            <fieldset title="" class="stepy-step" id="default-step-3">
                                 <legend class="stepy-legend"></legend>
                                 <div class="form-group ">
                                     <label for="objetivoF" class="control-label col-lg-2">Puesto de Trabajo</label>
@@ -283,7 +285,6 @@
     </section>
 </section>
 <!--wizard end-->
-
 <!-- MODALES -->
 <div class="modal fade" id="mdaddfuncion" tabindex="-1" role="dialog" aria-labelledby="Agregar función" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
@@ -320,7 +321,7 @@
                 <h4 class="modal-title">Eliminar Función</h4>
             </div>
             <div class="modal-body">
-                <input type="hidden" name="idfunciondel" id="idfunciondel" value="0"  />
+                <input type="hidden" name="idfunciondel" id="idfunciondel" value="0" />
                 <label>Esta seguro que desea eliminar la función?</label>
             </div>
             <div class="modal-footer">
@@ -334,6 +335,10 @@
 <!--Start JavaScript-->
 @section JavaScript {
     @Scripts.Render("~/bundles/jqueryval")
+    <!--toastr-->
+    <script src="~/Content/assets/toastr-master/toastr.js"></script>
+    <script src="~/Content/js/Toast.js"></script>
+
     <!--this page plugins-->
     <script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 

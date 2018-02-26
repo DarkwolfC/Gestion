@@ -9,7 +9,13 @@ namespace UnicaesGestion.Models
     {
         public int id { get; set; }
         public Unidad unidad { get; set; }
-        public List<Unidad> cmbUnidad { get; set; }     
-        public List<FuncionUnidad> FuncionUnidades { get; set; }
+       
+
+        public UnidadViewModel()
+        {
+            unidad = new Unidad();
+        }
+
+        public List<Unidad> cmbUnidad { get; set; }
     }
 }
