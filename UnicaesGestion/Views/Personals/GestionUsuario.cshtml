@@ -1,14 +1,16 @@
 ﻿@using UnicaesGestion.Models;
-@model UnicaesGestion.Models.UnidadViewModel
+@model UnicaesGestion.Models.UsuarioViewModel
 
-@{
-    ViewBag.Title = "GestionUnidad";
+@{ 
+    ViewBag.Title = "GestionUsuario";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!--Form Wizard-->
 <link rel="stylesheet" type="text/css" href="~/Content/css/jquery.steps.css" />
 
+<!--toastr-->
+<link href="~/Content/assets/toastr-master/toastr.css" rel="stylesheet" />
 <style>
     .oculta {
         display: none;
@@ -24,9 +26,6 @@
     }
 </style>
 
-
-
-
 <!--wizard start-->
 <section id="main-content">
     <section class="wrapper site-min-height">
@@ -35,9 +34,9 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                       Unidad
+                        Crear Usuario
                     </header>
-                    <input type="hidden" value="@Model.id" name="unidadid" id="unidadid" />
+                    <input type="hidden" value="@Model.Id" name="usuarioid" id="usuarioid" />
                     <div class="panel-body">
                         <div class="stepy-tab">
                             <ul id="default-titles" class="stepy-titles clearfix">
@@ -50,65 +49,65 @@
                                 <li id="default-title-2" class="">
                                     <div>Paso 3</div>
                                 </li>
-                                <li id="default-title-3" class="">
+                                @*<li id="default-title-3" class="">
                                     <div>Paso 4</div>
-                                </li>
+                                </li>*@
                             </ul>
                         </div>
                         <div id="stepy-tab" style="display: none;"></div>
 
 
                         <form id="wfrmpuesto" method="post" class="form-horizontal">
-                         
+
                             <!--INICIA PASO 1-->
                             <fieldset title="" class="stepy-step" id="default-step-0">
                                 <legend class="stepy-legend"></legend>
 
-                                <div class="form-group clearfix">
-                                    <label class="control-label col-lg-2">Unidad</label>
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">Nombres</label>
                                     <div class="col-md-8">
-                                        <input class=" form-control" id="nombre" name="nombre" type="text" value="@Model.unidad.nombre" />
+                                        <input class=" form-control" id="nombre" name="nombre" type="text" value="@Model.personal.nombre"/>
                                     </div>
                                 </div>
                                 <div class="form-group ">
-                                    <label class="control-label col-lg-2">Objetivo</label>
+                                    <label class="control-label col-lg-2">Apellidos</label>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" id="objetivo" name="objetivo" rows="3">@Model.unidad.objetivo</textarea>
+                                        <textarea class="form-control" id="apellido" name="apellido" rows="3">@Model.personal.apellido</textarea>
                                     </div>
-                                </div>
-                                <div class="form-group ">
-                                    <label for="password" class="control-label col-lg-2">Depende:</label>
+                                </div>                              
+                                <div class="form-group row">
+                                    <label for="password" class="control-label col-lg-2">Puesto de Trabajo</label>
                                     <div class="col-md-6">
-                                        <select class="form-control" name="cmbunidad" id="cmbunidad">
-                                            <option value="0">Seleccione la unidad de la que depende</option>
-                                            @foreach (var dependencia in Model.cmbUnidad)
+                                        <select class="form-control" name="cmbPuesto" id="cmbPuesto">
+                                            <option value="0">Seleccione el puesto de trabajo</option>
+                                            @foreach (var puesto in Model.cmbPuesto)
                                             {
                                                 string selected = "";
-                                                if (Model.unidad.depende != null)
+                                                if (Model.personal.idPuestoTrabajo!= 0)
                                                 {
-                                                    selected = (Model.unidad.depende.Value == dependencia.id) ? "selected" : "";
+                                                    selected = (Model.personal.idPuestoTrabajo== puesto.id) ? "selected" : "";
                                                 }
-
-                                                <option @selected value="@dependencia.id">@dependencia.nombre</option>
+                                                <option @selected value="@puesto.id">@puesto.titulo</option>
                                             }
                                         </select>
                                     </div>
                                 </div>
-
+                                
                                 <div id="loading1"></div>
                                 <a class="btn btn-danger button-next" id="btnsiguiente1" onclick="ProcesarPaso1()">Siguiente</a>
+
                             </fieldset>
                             <!-- FINALIZA PASO 1-->
 
                             <!--INICIA PASO 2-->
                             <fieldset title="" class="stepy-step" id="default-step-1">
                                 <legend class="stepy-legend"></legend>
-                                <h5>Funciones de unidad</h5>
+                                <h5>Funciones del Puesto de Trabajo</h5>
                                 <a class="btn btn-success" data-toggle="modal" style="float: right;" onclick="dlgaddfuncion()">Agregar función</a>
                                 <div style="clear: both;"></div>
                                 <br />
                                 <!--Tabla de Funciones-->
-                                <div id="funciones_unidad">
+                                <div id="funciones_puesto">
 
                                 </div>
                                 <!--fin tabla-->
@@ -119,7 +118,21 @@
 
                             </fieldset>
                             <!--FINALIZA PASO 2-->
-                            
+
+                            <!-- INICIA PASO 3-->
+                            <fieldset title="" class="stepy-step" id="default-step-2">
+                                <legend class="stepy-legend"></legend>
+                                <h4>Requisitos Puesto de Trabajo </h4>
+                                <br /><br />
+
+
+
+                            </fieldset>
+                            <!-- FINALIZA PASO 3-->
+
+
+                       
+
                             <a id="btnback" class="stepy-back btn btn-danger button-back" style="display: none;">back</a>
                             <a class="stepy-next btn btn-danger button-next" style="display: none;">next</a>
                             <input type="submit" class="finish btn btn-danger stepy-finish" value="Finish" style="display: none;" />
@@ -145,10 +158,10 @@
             <div class="modal-body">
                 <form id="frmfunciones" name="frmfunciones" method="post">
                     <input type="hidden" name="idfuncion" id="idfuncion" value="0" />
-                    <div class="form-group clearfix">
-                        <label class="control-label col-lg-2">Función</label>
-                        <div class="col-md-8">
-                            <textarea class="form-control" id="txtfuncion" name="txtfuncion" rows="3"></textarea>                       
+                    <div class="form-group ">
+                        <label class="control-label col-lg-2">Función:</label>
+                        <div class="col-md-10">
+                            <input class=" form-control" id="txtfuncion" name="txtfuncion" type="text" />
                         </div>
                     </div>
                 </form>
@@ -181,11 +194,13 @@
     </div>
 </div>
 
-
-
 <!--Start JavaScript-->
 @section JavaScript {
     @Scripts.Render("~/bundles/jqueryval")
+    <!--toastr-->
+    <script src="~/Content/assets/toastr-master/toastr.js"></script>
+    <script src="~/Content/js/Toast.js"></script>
+
     <!--this page plugins-->
     <script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
@@ -202,8 +217,8 @@
     <!--script for this page-->
     <script src="~/Content/js/jquery.stepy.js"></script>
 
-    <script src="~/Scripts/views/GestionUnidad.js"></script>
 
+    <script src="~/Scripts/views/GestionPuestoTrabajo.js"></script>
 
 
 }

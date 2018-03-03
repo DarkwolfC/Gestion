@@ -9,9 +9,16 @@ namespace UnicaesGestion.Models
     {
         public int id { get; set; }
         public Procedimiento procedimiento { get; set; }
-        public List<Procedimiento> cmbProcedimiento { get; set; }
+        public Paso paso { get; set; }
 
-        public List<Paso> pasos { get; set; }
+        public ProcedimientoViewModel()
+        {
+            procedimiento = new Procedimiento();
+            paso = new Paso();
+        }   
+        
+        
+       //dropdown
         public List<PuestoTrabajo> cmbPuestos { get; set; }
         public List<TipoPaso> cmbtipoPasos { get; set; }
 

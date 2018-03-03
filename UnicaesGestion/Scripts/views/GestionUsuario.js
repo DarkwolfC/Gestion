@@ -39,23 +39,23 @@ function ProcesarPaso1() {
             nombre: {
                 required: true
             },
-            objetivo: {
+            apellido: {
                 required: true
             },
-            cmbunidad: {
+            cmbPuestoTrabajo: {
                 min: 1
-            }           
+            }          
         },
         messages: {
             nombre: {
-                required: "Indique el nombre de la unidad"
+                required: "Indique sus nombres"
             },
-            objetivo: {
-                required: "Debe indicar el objetivo de la unidad"
+            apellido: {
+                required: "Indique sus apellidos"
             },
-            cmbunidad: {
-                min: "Debe seleccionar la una unidad"
-            }           
+            cmbPuestoTrabajo: {
+                min: "Debe seleccionar un puesto de trabajo"
+            }            
         },
         submitHandler: function (form) {
             //cuando el formulario es válido.
@@ -81,19 +81,19 @@ function ProcesarPaso1() {
 }
 
 function GuardarPaso1() {
-    var id = $("#unidadid").val();
+    var id = $("#usuarioid").val();
     var nombre = $("#nombre").val();
-    var objetivo = $("#objetivo").val();   
-    var depende = $("#cmbunidad").val();    
+    var apellido = $("#apellido").val();
+    var puesto = $("#cmbPuestoTrabajo").val();   
     var action;
     var data;
 
     if (typeof id == "undefined" || id === "0") {
-        action = "/Unidades/CrearUnidad/";
-        data = { "nombre": nombre, "objetivo": objetivo, "depende": depende }
+        action = "/Personals/CrearUsuario/";
+        data = { "nombre": nombre, "apellido": apellido, "puesto": puesto }
     } else {
-        action = "/Unidades/ModificarUnidad/";
-        data = { "id": id, "nombre": nombre, "objetivo": objetivo, "depende": depende  }
+        action = "/PerfilTrabajo/ModificarUsuario/";
+        data = { "id": id, "nombre": nombre, "apellido": apellido, "puesto": puesto }
     }
 
     $.ajax({
@@ -102,7 +102,7 @@ function GuardarPaso1() {
         data: data,
         success: function (response) {
 
-            $("#unidadid").val(response.data);
+            $("#usuarioid").val(response.data);
             $("#btnsiguiente1").show();
             $("#loading1").html("");
             Next1();
@@ -124,17 +124,17 @@ function Next1() {
 //paso 2
 function obteniendoFunciones() {
 
-    loading($("#funciones_unidad"), "Cargando funciones de puesto de la unidad");
-    var id = $("#unidadid").val();
+    loading($("#funciones_puesto"), "Cargando funciones de puesto de trabajo");
+    var id = $("#puestoid").val();
     $.ajax({
-        url: "/Unidades/FuncionesUnidad",
+        url: "/PerfilTrabajo/FuncionesPuestoTrabajo",
         method: "POST",
         data: { id: id },
         success: function (response) {
-            $("#funciones_unidad").html(response);
+            $("#funciones_puesto").html(response);
         },
         error: function (response) {
-            showError($("#funciones_unidad"), "No se pudieron cargar las funciones de la unidad");
+            showError($("#funciones_puesto"), "No se pudieron cargar las funciones del puesto de trabajo");
         }
     });
 
@@ -174,17 +174,17 @@ function GuardarFuncion() {
 
 function ajaxGuardarFuncion() {
     var idfuncion = $("#idfuncion").val();
-    var idunidad = $("#unidadid").val();
+    var idpuesto = $("#puestoid").val();
     var funcion = $("#txtfuncion").val();
     var action = "";
     var data;
 
     if (idfuncion === "0") {
-        action = "/Unidades/AgregarFuncion";
-        data = { "idunidad": idunidad, "funcion": funcion };
+        action = "/PerfilTrabajo/AgregarFuncion";
+        data = { "idpuesto": idpuesto, "funcion": funcion };
 
     } else {
-        action = "/Unidades/EditarFuncion";
+        action = "/PerfilTrabajo/EditarFuncion";
         data = { "idfuncion": idfuncion, "funcion": funcion };
 
     }
@@ -237,7 +237,7 @@ function confirmarEliminar() {
     loading($("loading2"), "Eliminando función..");
     var idfuncion = $("#idfunciondel").val();
     $.ajax({
-        url: "/Unidades/EliminarFuncion",
+        url: "/PerfilTrabajo/EliminarFuncion",
         method: "POST",
         data: { "id": idfuncion },
         success: function (response) {

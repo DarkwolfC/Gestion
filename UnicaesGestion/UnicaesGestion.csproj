@@ -211,6 +211,7 @@
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RequisitosPuestoViewModel.cs" />
     <Compile Include="Models\UnidadViewModel.cs" />
+    <Compile Include="Models\UsuarioViewModel.cs" />
     <Compile Include="Paso.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -1058,8 +1059,10 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\views\GestionProcedimiento.js" />
     <Content Include="Scripts\views\GestionPuestoTrabajo.js" />
     <Content Include="Scripts\views\GestionUnidad.js" />
+    <Content Include="Scripts\views\GestionUsuario.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -1215,6 +1218,9 @@
     <Content Include="Views\PerfilTrabajo\RequisitosPuestoTrabajo.cshtml" />
     <Content Include="Views\Unidades\GestionUnidad.cshtml" />
     <Content Include="Views\Unidades\FuncionesUnidad.cshtml" />
+    <Content Include="Views\Procedimientoes\GestionProcedimiento.cshtml" />
+    <Content Include="Views\Procedimientoes\PasosProcedimiento.cshtml" />
+    <Content Include="Views\Personals\GestionUsuario.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

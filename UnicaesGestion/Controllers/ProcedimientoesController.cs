@@ -79,9 +79,6 @@ namespace UnicaesGestion.Controllers
                 return HttpNotFound();
             }
             modelo.id = procedimiento.id;
-            modelo.pasos = db.Pasoes.Where(r => r.idProcedimiento == id).ToList();
-
-            modelo.cmbProcedimiento = db.Procedimientoes.ToList();
             modelo.cmbtipoPasos = db.TipoPasoes.ToList();
             modelo.cmbPuestos = db.PuestoTrabajoes.ToList();
             return View(modelo);
@@ -141,6 +138,179 @@ namespace UnicaesGestion.Controllers
                 db.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+
+        public ActionResult GestionProcedimiento(int? id)
+        {
+            ProcedimientoViewModel modelo = new ProcedimientoViewModel();
+            modelo.cmbtipoPasos = db.TipoPasoes.ToList();
+            modelo.cmbPuestos = db.PuestoTrabajoes.ToList();       
+            
+            if (id != null)
+            {
+                Procedimiento procedimiento = db.Procedimientoes.Find(id);               
+                if (procedimiento == null)
+                    return HttpNotFound();
+                modelo.procedimiento = procedimiento;
+                modelo.id = procedimiento.id;
+            }
+            
+            return View(modelo);
+        }
+
+        public ActionResult CrearProcedimiento(string nombre, string objetivoInicial, string objetivoFinal)
+        {
+            try
+            {
+                Procedimiento p = new Procedimiento();
+                p.nombre = nombre;
+                p.objetivoInicial = objetivoInicial;
+                p.objetvioFinal = objetivoFinal;               
+                db.Procedimientoes.Add(p);
+
+                if (db.SaveChanges() > 0)
+                    return Json(new { result = "success", data = p.id }, JsonRequestBehavior.AllowGet);
+                else
+                    return Json(new { result = "fail", data = "Error creando nuevo procedimiento" }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", data = "Error creando nuevo procedimiento.." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        public ActionResult ModificarProcedimiento(int id, string nombre, string objetivoInicial, string objetivoFinal)
+        {
+            try
+            {
+                Procedimiento p = db.Procedimientoes.FirstOrDefault(r => r.id == id);
+                
+                if (p != null)
+                {
+                    p.nombre = nombre;
+                    p.objetivoInicial = objetivoInicial;
+                    p.objetvioFinal = objetivoFinal;                 
+                    db.SaveChanges();
+                    return Json(new { result = "success", data = id }, JsonRequestBehavior.AllowGet);
+
+                }
+                else
+                    return Json(new { result = "fail", data = "Error actualizando procedimiento" }, JsonRequestBehavior.AllowGet);
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", data = "Error creando nuevo procedimiento.." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+        public ActionResult PasosProcedimiento(int? id)
+        {
+            List<Paso> lst = new List<Paso>();           
+            if (id != null)
+                lst = db.Pasoes.Where(r => r.idProcedimiento == id).ToList();
+            return View(lst);
+        }
+
+        public ActionResult AgregarPaso(int idProcedimiento, int numero, string descripcion , string predecesores, int tipoPaso, int puestoTrabajo)
+        {
+            try
+            {
+                Procedimiento p = db.Procedimientoes.FirstOrDefault(r => r.id == idProcedimiento);               
+
+                if (p != null)
+                {
+                    Paso paso = new Paso
+                    {
+                        idProcedimiento = idProcedimiento,
+                        numero=numero,
+                        descripcion=descripcion,
+                        predecesores=predecesores,
+                        idTipoPaso=tipoPaso,                        
+                        idPuestoTrabajo = puestoTrabajo
+                       
+                    };
+
+                    db.Pasoes.Add(paso);
+
+                    if (db.SaveChanges() > 0)
+                        return Json(new { result = "success", data = "Paso agregado satisfactoriamente. " }, JsonRequestBehavior.AllowGet);
+                    else
+                        return Json(new { result = "fail", data = "Error agregando paso.Identificador de procedimiento no válido. " }, JsonRequestBehavior.AllowGet);
+
+                }
+                else
+                {
+                    return Json(new { result = "fail", data = "Error agregando paso.Identificador de procedimiento no válido. " }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", data = "Error agregando paso.." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
+        }
+
+
+        public ActionResult EditarPaso(int idpaso , int numero, string descripcion, string predecesores, int tipoPaso, int puestoTrabajo)
+        {
+
+            Paso p = db.Pasoes.FirstOrDefault(r => r.id == idpaso);
+            try
+            {
+                if (p != null)
+                {
+                    p.numero= numero;
+                    p.descripcion = descripcion;
+                    p.predecesores = predecesores;
+                    p.idTipoPaso = tipoPaso;
+                    p.idPuestoTrabajo = puestoTrabajo;
+                    db.SaveChanges();
+                    return Json(
+                        new { result = "success", data = "Paso agregado satisfactoriamente. " },
+                        JsonRequestBehavior.AllowGet);
+                }
+                else
+                    return Json(
+                        new
+                        {
+                            result = "fail",
+                            data =
+                                "Error agregando paso.Identificador de procedimiento no válido. "
+                        }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", data = "Error editando paso. " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+        public ActionResult EliminarPaso(int id)
+        {
+            try
+            {
+                Paso p = db.Pasoes.FirstOrDefault(r => r.id == id);               
+                if (p != null)
+                {
+                    db.Pasoes.Remove(p);
+                    db.SaveChanges();
+                    return Json(new { result = "success", data = "Paso eliminado satisfactoriamente. " }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { result = "fail", data = "Error agregando paso.Identificador de procedimiento no válido. " }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", data = "Error eliminando paso. " + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
         }
     }
 }

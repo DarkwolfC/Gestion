@@ -1,13 +1,17 @@
 ﻿@using UnicaesGestion.Models;
-@model UnicaesGestion.Models.UnidadViewModel
+@model UnicaesGestion.Models.ProcedimientoViewModel
+
 
 @{
-    ViewBag.Title = "GestionUnidad";
+    ViewBag.Title = "GestionProcedimiento";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <!--Form Wizard-->
 <link rel="stylesheet" type="text/css" href="~/Content/css/jquery.steps.css" />
+
+<!--toastr-->
+<link href="~/Content/assets/toastr-master/toastr.css" rel="stylesheet" />
 
 <style>
     .oculta {
@@ -25,8 +29,6 @@
 </style>
 
 
-
-
 <!--wizard start-->
 <section id="main-content">
     <section class="wrapper site-min-height">
@@ -35,9 +37,9 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                       Unidad
+                        Procedimiento
                     </header>
-                    <input type="hidden" value="@Model.id" name="unidadid" id="unidadid" />
+                    <input type="hidden" value="@Model.id" name="procedimientoid" id="procedimientoid" />
                     <div class="panel-body">
                         <div class="stepy-tab">
                             <ul id="default-titles" class="stepy-titles clearfix">
@@ -59,56 +61,46 @@
 
 
                         <form id="wfrmpuesto" method="post" class="form-horizontal">
-                         
+
                             <!--INICIA PASO 1-->
                             <fieldset title="" class="stepy-step" id="default-step-0">
                                 <legend class="stepy-legend"></legend>
 
-                                <div class="form-group clearfix">
-                                    <label class="control-label col-lg-2">Unidad</label>
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">Procedimiento</label>
                                     <div class="col-md-8">
-                                        <input class=" form-control" id="nombre" name="nombre" type="text" value="@Model.unidad.nombre" />
+                                        <textarea class="form-control" id="nombre" name="nombre" rows="3">@Model.procedimiento.nombre</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group ">
-                                    <label class="control-label col-lg-2">Objetivo</label>
+                                    <label class="control-label col-lg-2">Objetivo Inicial</label>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" id="objetivo" name="objetivo" rows="3">@Model.unidad.objetivo</textarea>
+                                        <textarea class="form-control" id="objetivoInicial" name="objetivoInicial" rows="3">@Model.procedimiento.objetivoInicial</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group ">
-                                    <label for="password" class="control-label col-lg-2">Depende:</label>
-                                    <div class="col-md-6">
-                                        <select class="form-control" name="cmbunidad" id="cmbunidad">
-                                            <option value="0">Seleccione la unidad de la que depende</option>
-                                            @foreach (var dependencia in Model.cmbUnidad)
-                                            {
-                                                string selected = "";
-                                                if (Model.unidad.depende != null)
-                                                {
-                                                    selected = (Model.unidad.depende.Value == dependencia.id) ? "selected" : "";
-                                                }
+                                    <label class="control-label col-lg-2">Objetivo Final</label>
+                                    <div class="col-md-8">
+                                        <textarea class="form-control" id="objetivoFinal" name="objetivoFinal" rows="3">@Model.procedimiento.objetvioFinal</textarea>
+                                    </div>
+                                </div>
 
-                                                <option @selected value="@dependencia.id">@dependencia.nombre</option>
-                                            }
-                                        </select>
-                                    </div>
-                                </div>
 
                                 <div id="loading1"></div>
                                 <a class="btn btn-danger button-next" id="btnsiguiente1" onclick="ProcesarPaso1()">Siguiente</a>
-                            </fieldset>
-                            <!-- FINALIZA PASO 1-->
 
+                            </fieldset>
+
+                            <!-- FINALIZA PASO 1-->
                             <!--INICIA PASO 2-->
                             <fieldset title="" class="stepy-step" id="default-step-1">
                                 <legend class="stepy-legend"></legend>
-                                <h5>Funciones de unidad</h5>
+                                <h5>Procesos</h5>
                                 <a class="btn btn-success" data-toggle="modal" style="float: right;" onclick="dlgaddfuncion()">Agregar función</a>
                                 <div style="clear: both;"></div>
                                 <br />
                                 <!--Tabla de Funciones-->
-                                <div id="funciones_unidad">
+                                <div id="pasos_procedimiento">
 
                                 </div>
                                 <!--fin tabla-->
@@ -118,8 +110,9 @@
 
 
                             </fieldset>
+
                             <!--FINALIZA PASO 2-->
-                            
+
                             <a id="btnback" class="stepy-back btn btn-danger button-back" style="display: none;">back</a>
                             <a class="stepy-next btn btn-danger button-next" style="display: none;">next</a>
                             <input type="submit" class="finish btn btn-danger stepy-finish" value="Finish" style="display: none;" />
@@ -133,24 +126,72 @@
     </section>
 </section>
 <!--wizard end-->
-
 <!-- MODALES -->
 <div class="modal fade" id="mdaddfuncion" tabindex="-1" role="dialog" aria-labelledby="Agregar función" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Agregar función</h4>
+                <h4 class="modal-title">Agregar Proceso</h4>
             </div>
             <div class="modal-body">
-                <form id="frmfunciones" name="frmfunciones" method="post">
-                    <input type="hidden" name="idfuncion" id="idfuncion" value="0" />
-                    <div class="form-group clearfix">
-                        <label class="control-label col-lg-2">Función</label>
-                        <div class="col-md-8">
-                            <textarea class="form-control" id="txtfuncion" name="txtfuncion" rows="3"></textarea>                       
+                <form id="frmpasos" name="frmpasos" method="post">
+                    <input type="hidden" name="idpaso" id="idpaso" value="0" />
+                    <div class="form-group clearfix ">
+                        <label for="procedimiento" class="control-label col-lg-2">Numero</label>
+                        <div class="col-lg-10">
+                            <input type="text" name="numero" id="numero" value="" />
                         </div>
                     </div>
+                    <div class="form-group clearfix">
+                        <label for="procedimiento" class="control-label col-lg-2">Descripcion</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" id="txtpaso" name="txtpaso" rows="3"> </textarea>
+                        </div>
+                    </div>
+                    <div class="form-group clearfix ">
+                        <label for="objetivoI" class="control-label col-lg-2">Predecesores</label>
+                        <div class="col-lg-10">
+                            <textarea class="form-control" id="predecesores" name="predecesores" rows="3"> </textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="password" class="control-label col-lg-2">Tipo paso</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="cmbtipoPasos" id="cmbtipoPasos">
+                                <option value="0">Seleccione el Tipo de paso</option>
+                                @foreach (var tipoPaso in Model.cmbtipoPasos)
+                                {
+                                    string selected = "";
+                                    if (Model.paso.idTipoPaso != 0)
+                                    {
+                                        selected = (Model.paso.idTipoPaso == tipoPaso.id) ? "selected" : "";
+                                    }
+                                    <option @selected value="@tipoPaso.id">@tipoPaso.tipoPaso1</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="password" class="control-label col-lg-2">Responsable</label>
+                        <div class="col-md-6">
+                            <select class="form-control" name="cmbPuestos" id="cmbPuestos">
+                                <option value="0">Seleccione un responsable</option>
+                                @foreach (var responsable in Model.cmbPuestos)
+                                {
+                                    string selected = "";
+                                    if (Model.paso.idPuestoTrabajo != 0)
+                                    {
+                                        selected = (Model.paso.idPuestoTrabajo == responsable.id) ? "selected" : "";
+                                    }
+                                    <option @selected value="@responsable.id">@responsable.titulo</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+
                 </form>
                 <br /><br />
             </div>
@@ -167,11 +208,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                <h4 class="modal-title">Eliminar Función</h4>
+                <h4 class="modal-title">Eliminar Paso</h4>
             </div>
             <div class="modal-body">
                 <input type="hidden" name="idfunciondel" id="idfunciondel" value="0" />
-                <label>Esta seguro que desea eliminar la función?</label>
+                <label>Esta seguro que desea eliminar este paso?</label>
             </div>
             <div class="modal-footer">
                 <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
@@ -181,11 +222,13 @@
     </div>
 </div>
 
-
-
 <!--Start JavaScript-->
 @section JavaScript {
     @Scripts.Render("~/bundles/jqueryval")
+    <!--toastr-->
+    <script src="~/Content/assets/toastr-master/toastr.js"></script>
+    <script src="~/Content/js/Toast.js"></script>
+
     <!--this page plugins-->
     <script src="~/Content/assets/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
@@ -202,8 +245,8 @@
     <!--script for this page-->
     <script src="~/Content/js/jquery.stepy.js"></script>
 
-    <script src="~/Scripts/views/GestionUnidad.js"></script>
 
+    <script src="~/Scripts/views/GestionProcedimiento.js"></script>
 
 
 }

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<UnicaesGestion.Paso>
+
+@{
+    Layout = null;
+}
+
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-advance table-hover">
+        <thead>
+            <tr>
+                <th><span>Numero</span></th>
+                <th><span>Descripción</span></th>
+                <th><span>Responsable</span></th>
+                <th><span>Predecesores</span></th>
+                <th><span>Tipo de Paso</span></th>
+                <th><span>Controles</span></th>
+
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="oculta">
+                        @Html.DisplayFor(modelItem => item.id)                       
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem=>item.numero)
+                    </td>
+                    <td id="paso_@item.id">
+                        @Html.DisplayFor(modelItem=>item.descripcion)                       
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem=>item.idPuestoTrabajo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem=>item.predecesores)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem=>item.TipoPaso)
+                    </td>
+                    <td>
+                        <div class="pull-right hidden-phone">
+                            <button onclick="EditarFuncion(@item.id)" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                            <button class="btn btn-danger btn-xs eliminar" onclick="dlgeliminar(@item.id)" type="button"><i class="fa fa-trash-o "></i></button>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>
+
