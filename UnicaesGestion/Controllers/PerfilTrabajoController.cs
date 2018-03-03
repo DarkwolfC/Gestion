@@ -102,7 +102,7 @@ namespace UnicaesGestion.Controllers
             modelo.cmbJefeInmediato = db.PuestoTrabajoes.ToList();
             modelo.cmbUnidades = db.Unidads.ToList();
             modelo.cmbTipoPuesto = db.TipoPuestoes.ToList();
-
+            modelo.cmbCategoria = db.Categorias.ToList();
             /*
             modelo.cmbPuesto = db.PuestoTrabajoes.ToList();
             modelo.cmbCategoria = db.Categorias.ToList();
@@ -279,16 +279,56 @@ namespace UnicaesGestion.Controllers
             }
 
         }
-
-
-        public ActionResult RequisitosPuestoTrabajo(int idpuesto)
+        
+        public ActionResult RequisitosPuestoTrabajo(int? idpuesto)
         {
-            List<RequisitosPuestoViewModel> lst = (from r in db.Requisitoes
-                join c in db.Categorias on r.idCategoria equals c.id
-                where r.idPuestoTrabajo == idpuesto
-                select new RequisitosPuestoViewModel { IdRequisito= r.id, Descripcion=r.descripcion, IdCategoria=r.idCategoria, Categoria = c.categoria1}).ToList();
+            List<RequisitosPuestoViewModel> lst = new List<RequisitosPuestoViewModel>();
+            if (idpuesto != null)
+            {
+                lst = (from r in db.Requisitoes
+                       join c in db.Categorias on r.idCategoria equals c.id
+                       where r.idPuestoTrabajo == idpuesto
+                       orderby c.id
+                       select new RequisitosPuestoViewModel { IdRequisito = r.id, Descripcion = r.descripcion, IdCategoria = r.idCategoria, Categoria = c.categoria1 }).ToList();
+            }           
             
             return View(lst);
+        }
+
+        public ActionResult AgregarRequisito(int idpuesto, int idcategoria, string descripcion)
+        {
+            try
+            {
+                PuestoTrabajo p = db.PuestoTrabajoes.FirstOrDefault(r => r.id == idpuesto);
+
+                if (p != null)
+                {
+                    Requisito f = new Requisito
+                    {
+                        idPuestoTrabajo = idpuesto,
+                        idCategoria = idcategoria,
+                        descripcion = descripcion
+                    };
+
+                    db.Requisitoes.Add(f);
+
+                    if (db.SaveChanges() > 0)
+                        return Json(new { result = "success", data = "Requisito de puesto de trabajo agregada satisfactoriamente. " }, JsonRequestBehavior.AllowGet);
+                    else
+                        return Json(new { result = "fail", data = "Error agregando requisito de puesto de trabajo.Identificador de puesto de trabajo no válido. " }, JsonRequestBehavior.AllowGet);
+
+                }
+                else
+                {
+                    return Json(new { result = "fail", data = "Error agregando requisito de puesto de trabajo.Identificador de puesto de trabajo no válido. " }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                return Json(new { result = "fail", data = "Error agregando requisito de puesto de trabajo.." + ex.Message }, JsonRequestBehavior.AllowGet);
+            }
+
         }
 
 

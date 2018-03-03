@@ -3,41 +3,22 @@
     Layout = null;
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.IdRequisito)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IdCategoria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Categoria)
-        </th>
-        <th></th>
-    </tr>
 
+<table class="table table-bordered table-striped table-advance table-hover">  
+    @{ 
+        int? catid = 0;
+    }
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdRequisito)
-            </td>
-            <td>
+        if (catid != item.IdCategoria)
+        {
+            catid = item.IdCategoria;           
+             <tr style="background-color:#0988c8; color:#ffffff;"><td colspan="2">@item.Categoria</td></tr>
+        }
+        <tr>            
+            <td >
                 @Html.DisplayFor(modelItem => item.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IdCategoria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Categoria)
-            </td>
+            </td>            
             <td>
                 @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                 @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |

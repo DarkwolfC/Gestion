@@ -204,13 +204,17 @@
                                 <legend class="stepy-legend"></legend>
                                 <h4>Requisitos Puesto de Trabajo </h4>
                                 <br /><br />
+                                <a class="btn btn-success" data-toggle="modal" style="float: right;" onclick="dlgaddRequisito();">Agregar Requisito</a>
+                                <div id="contentRequisitos">
 
-
-
+                                </div>
+                                <div id="loading3"></div>
+                                <a class="btn btn-danger button-next" id="btnsiguiente3" onclick="Next3();">Siguiente</a>
+                                <a class="btn btn-danger button-back" id="btnatras3" onclick="Back3();">Anterior</a>
                             </fieldset>
                             <!-- FINALIZA PASO 3-->
 
-
+                            <!-- INICIA PASO 4 -->
                             <fieldset title="" class="stepy-step" id="default-step-3">
                                 <legend class="stepy-legend"></legend>
                                 <div class="form-group ">
@@ -234,35 +238,35 @@
                                         <tbody>
 
                                             @*@foreach (var item in Model.competencias)
-                                                {
-                                                    <tr>
-                                                        <td>
-                                                            <div class="form-group row">
-                                                                <div class="col-lg-10">
+                    {
+                        <tr>
+                            <td>
+                                <div class="form-group row">
+                                    <div class="col-lg-10">
 
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
 
-                                                            <div class="form-group row">
+                                <div class="form-group row">
 
-                                                                <div class="radios col-lg-10">
-                                                                    <label class="label_radio" for="radio-01">
-                                                                        Esencial
-                                                                        <input class=" form-control" name="competencias.esencial" id="Esencial" value="@item.escencial" type="radio" />
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </td>
-                                                        <td>
-                                                            <div class="pull-right hidden-phone">
-                                                                <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                                                <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.Id)" type="button"><i class="fa fa-trash-o "></i></button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                }*@
+                                    <div class="radios col-lg-10">
+                                        <label class="label_radio" for="radio-01">
+                                            Esencial
+                                            <input class=" form-control" name="competencias.esencial" id="Esencial" value="@item.escencial" type="radio" />
+                                        </label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="pull-right hidden-phone">
+                                    <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                    <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.Id)" type="button"><i class="fa fa-trash-o "></i></button>
+                                </div>
+                            </td>
+                        </tr>
+                    }*@
 
 
                                         </tbody>
@@ -270,8 +274,11 @@
                                 </div>
                                 <!--fin tabla-->
 
-                            </fieldset>
+                                <div id="loading4"></div>                                
+                                <a class="btn btn-danger button-back" id="btnatras4" onclick="Back4();">Anterior</a>
 
+                            </fieldset>
+                            <!-- FINALIZA PASO 4-->
                             <a id="btnback" class="stepy-back btn btn-danger button-back" style="display: none;">back</a>
                             <a class="stepy-next btn btn-danger button-next" style="display: none;">next</a>
                             <input type="submit" class="finish btn btn-danger stepy-finish" value="Finish" style="display: none;" />
@@ -285,7 +292,6 @@
     </section>
 </section>
 <!--wizard end-->
-
 <!-- MODALES -->
 <div class="modal fade" id="mdaddfuncion" tabindex="-1" role="dialog" aria-labelledby="Agregar función" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
@@ -314,7 +320,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="mddelfuncion" tabindex="-1" role="dialog" aria-labelledby="Agregar función" aria-hidden="true" style="display: none;">
+<div class="modal fade" id="mddelfuncion" tabindex="-1" role="dialog" aria-labelledby="Eliminar función" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -332,6 +338,52 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="mdaddRequisitos" tabindex="-1" role="dialog" aria-labelledby="Agregar Requisitos" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title">Agregar Requisitos</h4>
+            </div>
+            <div class="modal-body">
+                <form id="frmrequisitos" name="frmrequisitos" method="post">
+                    <input type="hidden" name="idrequisito" id="idrequisito" value="0" />
+                    <div class="row">
+                        <div class="form-group ">
+                            <label class="control-label col-md-4">Categoría Requisito:</label>
+                            <div class="col-md-8">
+                                <select class="form-control" name="cmbcategoria" id="cmbcategoria">
+                                    <option value="0">Seleccione una categoría</option>
+                                    @foreach (var categoria in Model.cmbCategoria)
+                                    {                                        
+                                        <option value="@categoria.id">@categoria.categoria1</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <br /> <br />
+                    <div class="row">
+                        <div class="form-group ">
+                            <label class="control-label col-md-4">Requisito:</label>
+                            <div class="col-md-8">
+                                <input class=" form-control" id="txtrequisito" name="txtrequisito" type="text" />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <br /><br />
+                <div id="loadingCategoria"></div>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                <button class="btn btn-success" type="button" onclick="guardarRequisito();">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!--Start JavaScript-->
 @section JavaScript {

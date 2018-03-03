@@ -276,8 +276,107 @@ function Next2() {
     $("#default-title-2").addClass("current-step");
     $("#default-title-1").removeClass("current-step");
     $('#wfrmpuesto').stepy("step", 2);
+    cargarRequisitos();
 }
 
 //paso 3
+function cargarRequisitos() {
+    var idpuesto = $("#puestoid").val();
+    var div = $("#contentRequisitos");
+    loading(div, "Cargando requisitos de puesto");
+    $.ajax({
+        url: "/PerfilTrabajo/RequisitosPuestoTrabajo/",
+        data: { "idpuesto": idpuesto },
+        method: "POST",
+        success: function (response) {
+            $(div).html(response);
+        },
+        error: function (error) {
+            showError($(div), "Error cargando categorías");
+        }
+    });
+
+}
 
 
+function dlgaddRequisito() {
+    $("#idrequisito").val("0");
+    $("#cmbcategoria").val("0");
+    $("#txtrequisito").val("")
+    $("#mdaddRequisitos").modal();
+
+}
+
+function guardarRequisito() {
+    $("#frmrequisitos").validate({
+        rules: {
+            cmbcategoria: {
+                min:1
+            },
+            txtrequisito: {
+                required: true
+            }
+        },
+        messages: {
+            cmbcategoria: "Debe indicar la categoría..",
+            txtrequisito: "Debe indicar el requisito.."
+        },
+        submitHandler: function (form) {
+            ajaxGuardarRequisito();
+
+        }, highlight: function (element, errorClass) {
+            $(element).closest(".form-group").addClass("has-error");
+        },
+        unhighlight: function (element, errorClass) {
+            $(element).closest(".form-group").removeClass("has-error");
+        }
+    });
+    $("#frmrequisitos").submit();
+}
+
+function ajaxGuardarRequisito() {
+    var idcategoria = $("#cmbcategoria").val();
+    var requisito = $("#txtrequisito").val();
+    var idrequisito = $("#idrequisito").val();
+    var idpuesto = $("#puestoid").val();
+    var div = $("#loadingCategoria").val();
+    loading(div, "procesando..");
+
+    $.ajax({
+        url: "/PerfilTrabajo/AgregarRequisito",
+        data: { "idpuesto": idpuesto, "idcategoria": idcategoria, "descripcion": requisito },
+        method: "POST",
+        success: function (response) {
+            if (response.result == "success") {
+                $(div).html("");
+                $("#mdaddRequisitos").modal("hide");
+                cargarRequisitos();
+            } else {
+                showError($(div), response.msj);
+            }
+        },
+        error: function (response) {
+            showError($(div), "Error intentando guardar categoria");
+        }
+    })
+
+}
+
+function Next3() {
+    $("#default-title-3").addClass("current-step");
+    $("#default-title-2").removeClass("current-step");
+    $('#wfrmpuesto').stepy("step", 3);
+    
+}
+
+function Back3() {
+    $("#default-title-1").addClass("current-step");
+    $("#default-title-2").removeClass("current-step");
+    $('#wfrmpuesto').stepy("step", 1);
+}
+
+function Back4() {
+    $("#default-title-2").addClass("current-step");
+    $("#default-title-3").removeClass("current-step");
+    $('#wfrmpuesto').stepy("step", 2);
+}
