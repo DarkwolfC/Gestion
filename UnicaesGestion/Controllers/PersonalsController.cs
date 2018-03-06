@@ -140,8 +140,9 @@ namespace UnicaesGestion.Controllers
         public ActionResult GestionUsuario(int? id)
         {
             UsuarioViewModel modelo = new UsuarioViewModel();
-            modelo.cmbRol = db.Roles.ToList();    
-            
+            modelo.cmbRol = db.Roles.ToList();
+            modelo.cmbPuesto = db.PuestoTrabajoes.ToList();
+
             if (id != null)
             {
                 Personal personal = db.Personals.Find(id);

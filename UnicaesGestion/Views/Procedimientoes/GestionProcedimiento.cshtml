@@ -49,12 +49,12 @@
                                 <li id="default-title-1">
                                     <div>Paso 2</div>
                                 </li>
-                                <li id="default-title-2" class="">
-                                    <div>Paso 3</div>
-                                </li>
-                                <li id="default-title-3" class="">
-                                    <div>Paso 4</div>
-                                </li>
+                                @*<li id="default-title-2" class="">
+                                        <div>Paso 3</div>
+                                    </li>
+                                    <li id="default-title-3" class="">
+                                        <div>Paso 4</div>
+                                    </li>*@
                             </ul>
                         </div>
                         <div id="stepy-tab" style="display: none;"></div>
@@ -90,13 +90,12 @@
                                 <a class="btn btn-danger button-next" id="btnsiguiente1" onclick="ProcesarPaso1()">Siguiente</a>
 
                             </fieldset>
-
                             <!-- FINALIZA PASO 1-->
                             <!--INICIA PASO 2-->
                             <fieldset title="" class="stepy-step" id="default-step-1">
                                 <legend class="stepy-legend"></legend>
                                 <h5>Procesos</h5>
-                                <a class="btn btn-success" data-toggle="modal" style="float: right;" onclick="dlgaddfuncion()">Agregar función</a>
+                                <a class="btn btn-success" data-toggle="modal" style="float: right;" onclick="dlgaddfuncion()">Agregar paso</a>
                                 <div style="clear: both;"></div>
                                 <br />
                                 <!--Tabla de Funciones-->
@@ -107,10 +106,7 @@
                                 <div id="loading2"></div>
                                 <a class="btn btn-danger button-next" id="btnsiguiente2" onclick="Next2();">Siguiente</a>
                                 <a class="btn btn-danger button-back" id="btnatras2" onclick="Back2();">Anterior</a>
-
-
                             </fieldset>
-
                             <!--FINALIZA PASO 2-->
 
                             <a id="btnback" class="stepy-back btn btn-danger button-back" style="display: none;">back</a>

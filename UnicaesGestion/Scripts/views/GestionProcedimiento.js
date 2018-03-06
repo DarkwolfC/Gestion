@@ -2,20 +2,20 @@
 
 $(document).ready(init);
 
-function init() {  
+function init() {
     $("#date").datepicker();
     init_stepy();
 }
 
 function init_stepy() {
-        $('#wfrmpuesto').stepy({
-            backLabel: 'Atras',
-            block: true,
-            nextLabel: 'Siguiente',
-            titleClick: true,
-            titleTarget: "#stepy-tab",
-            legend: false               
-        });   
+    $('#wfrmpuesto').stepy({
+        backLabel: 'Atras',
+        block: true,
+        nextLabel: 'Siguiente',
+        titleClick: true,
+        titleTarget: "#stepy-tab",
+        legend: false
+    });
 }
 
 
@@ -37,26 +37,26 @@ function ProcesarPaso1() {
     $("#wfrmpuesto").validate({
         rules: {
             nombre: {
-                required:true
+                required: true
             },
             objetivoInicial: {
-                required:true
-            },            
+                required: true
+            },
             objetivoFinal: {
-                required: true                               
+                required: true
             }
         },
         messages: {
             nombre: {
                 required: "Indique el nombre del procedimiento"
-            }, 
+            },
             objetivoInicial: {
                 required: "Debe indicar el objetivo"
             },
             objetivoFinal: {
                 required: "Debe indicar el objetivo"
             }
-         
+
         },
         submitHandler: function (form) {
             //cuando el formulario es válido.
@@ -85,11 +85,11 @@ function GuardarPaso1() {
     var id = $("#procedimientoid").val();
     var nombre = $("#nombre").val();
     var objetivoInicial = $("#objetivoInicial").val();
-    var objetivoFinal= $("#objetivoFinal").val();  
+    var objetivoFinal = $("#objetivoFinal").val();
     var action;
     var data;
-    
-    if (typeof id == "undefined" ||  id==="0") {
+
+    if (typeof id == "undefined" || id === "0") {
         action = "/Procedimientoes/CrearProcedimiento/";
         data = { "nombre": nombre, "objetivoInicial": objetivoInicial, "objetivoFinal": objetivoFinal }
     } else {
@@ -102,7 +102,7 @@ function GuardarPaso1() {
         method: "POST",
         data: data,
         success: function (response) {
-           
+
             $("#procedimientoid").val(response.data);
             $("#btnsiguiente1").show();
             $("#loading1").html("");
@@ -124,17 +124,16 @@ function Next1() {
 
 //paso 2
 function obteniendoFunciones() {
-    
     loading($("#pasos_procedimiento"), "Cargando Procedimientos");
     var id = $("#procedimientoid").val();
     $.ajax({
         url: "/Procedimientoes/PasosProcedimiento",
         method: "POST",
-        data: { id: id }, 
-        success: function(response) {
+        data: { id: id },
+        success: function (response) {
             $("#pasos_procedimiento").html(response);
         },
-        error: function(response) {
+        error: function (response) {
 
             showError($("#pasos_procedimiento"), "No se pudieron cargar los paso");
         }
@@ -143,21 +142,48 @@ function obteniendoFunciones() {
 }
 
 function dlgaddfuncion() {
+    $("#numero").val("");
     $("#txtpaso").val("");
+    $("#predecesores").val("");
+    $("#cmbtipoPasos").val("");
+    $("#cmbPuestos").val("");
     $("#mdaddfuncion").modal();
     $("#idpaso").val("0");
 }
 
 
 function GuardarFuncion() {
+
+
     $("#frmpasos").validate({
         rules: {
+            numero: {
+                required: true
+            },
             txtpaso: {
                 required: true
+            },
+            cmbtipoPasos: {
+                min: 1
+            },
+            cmbPuestos: {
+                min: 1
             }
         },
         messages: {
-            txtfuncion: "Debe indicar un paso.."
+            numero: {
+                required: "debe indicar un numero.."
+            },
+            txtpaso: {
+                required: "Debe indicar un paso.."
+            },
+            cmbtipoPasos: {
+                min: "Debe indicar el tipo de paso.."
+            },
+            cmbPuestos: {
+                min: "Debe indicar el responsable.."
+            }
+
         },
         submitHandler: function (form) {
             ajaxGuardarFuncion();
@@ -171,7 +197,7 @@ function GuardarFuncion() {
     });
     $("#frmpasos").submit();
 
-  
+
 }
 
 function ajaxGuardarFuncion() {
@@ -187,11 +213,11 @@ function ajaxGuardarFuncion() {
 
     if (idpaso === "0") {
         action = "/Procedimientoes/AgregarPaso";
-        data = { "idProcedimiento": idprocedimiento, "numero":numero ,"descripcion": descripcion,"predecesores": predecesores, "idTipoPaso":idTipoPaso, "idPuestoTrabajo": idPuestoTrabajo };
+        data = { "idProcedimiento": idprocedimiento, "numero": numero, "descripcion": descripcion, "predecesores": predecesores, "idTipoPaso": idTipoPaso, "idPuestoTrabajo": idPuestoTrabajo };
 
     } else {
         action = "/Procedimientoes/EditarPaso";
-        data = { "idPaso":idpaso, "numero": numero, "descripcion": descripcion, "predecesores": predecesores, "idTipoPaso": idTipoPaso, "idPuestoTrabajo": idPuestoTrabajo };
+        data = { "idPaso": idpaso, "numero": numero, "descripcion": descripcion, "predecesores": predecesores, "idTipoPaso": idTipoPaso, "idPuestoTrabajo": idPuestoTrabajo };
 
     }
 
@@ -206,7 +232,7 @@ function ajaxGuardarFuncion() {
             if (response.result === "success") {
                 $("#loading2").html("");
                 obteniendoFunciones();
-                
+
             } else {
                 showError($("#loading2"), response.data);
             }
@@ -244,7 +270,7 @@ function confirmarEliminar() {
     var idfuncion = $("#idfunciondel").val();
     $.ajax({
         url: "/Procedimientoes/EliminarPaso",
-        method: "POST", 
+        method: "POST",
         data: { "id": idfuncion },
         success: function (response) {
             if (response.result === "success") {
@@ -254,7 +280,7 @@ function confirmarEliminar() {
                 showError($("loading2"), response.data);
             }
 
-        }, error: function(response) {
+        }, error: function (response) {
             showError($("loading2"), "Error procesando transacción...");
         }
     });

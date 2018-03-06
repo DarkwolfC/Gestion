@@ -216,23 +216,23 @@ namespace UnicaesGestion.Controllers
             return View(lst);
         }
 
-        public ActionResult AgregarPaso(int idProcedimiento, int numero, string descripcion , string predecesores, int tipoPaso, int puestoTrabajo)
+        public ActionResult AgregarPaso(int idProcedimiento, int numero, string descripcion, string predecesores, string idTipoPaso, string idPuestoTrabajo)
         {
             try
             {
-                Procedimiento p = db.Procedimientoes.FirstOrDefault(r => r.id == idProcedimiento);               
+                Procedimiento p = db.Procedimientoes.FirstOrDefault(r => r.id == idProcedimiento);
 
                 if (p != null)
                 {
                     Paso paso = new Paso
                     {
                         idProcedimiento = idProcedimiento,
-                        numero=numero,
-                        descripcion=descripcion,
-                        predecesores=predecesores,
-                        idTipoPaso=tipoPaso,                        
-                        idPuestoTrabajo = puestoTrabajo
-                       
+                        numero = numero,
+                        descripcion = descripcion,
+                        predecesores = predecesores,
+                        idTipoPaso = int.Parse(idTipoPaso),
+                        idPuestoTrabajo = int.Parse(idPuestoTrabajo)
+
                     };
 
                     db.Pasoes.Add(paso);
@@ -255,7 +255,6 @@ namespace UnicaesGestion.Controllers
             }
 
         }
-
 
         public ActionResult EditarPaso(int idpaso , int numero, string descripcion, string predecesores, int tipoPaso, int puestoTrabajo)
         {
