@@ -5,39 +5,62 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Edit</h2>
 
+<link href="~/Content/assets/toastr-master/toastr.css" rel="stylesheet" />
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>TipoPuesto</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.Id)
+<!--main content start-->
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.tipo, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tipo, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.tipo, "", new { @class = "text-danger" })
-            </div>
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
+
+        <div class="row">
+            <section class="panel tasks-widget">
+                <header class="panel-heading">
+                    Editar el tipo de puesto
+                </header>
+                <div class="panel-body">
+
+                    <div class="task-content">
+
+                        <div class="panel-body">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success col-sm-3 col-lg-2" id="agregarTipoPuesto"><i class="fa fa-plus"> Editar</i></button>
+                                    <div class="col-lg-9">
+                                        <div class="input-group m-bot15">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-white"><i class="fa  fa-file-o"></i></button>
+                                            </span>
+                                            @Html.EditorFor(model => model.tipo, new { htmlAttributes = new { @class = "form-control", id = "tipoPuesto" } })
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        @*@Html.Partial("_PartialList", new ViewDataDictionary(@ViewBag.lista))*@
+                        @*@{ Html.RenderAction("Index");}*@
+
+                    </div>
+                </div>
+            </section>
         </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
+    </section>
+   
+</section>
+<!--main content end-->
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+<!--Start JavaScript-->
+@section JavaScript {
+
+    <script src="~/Content/assets/toastr-master/toastr.js"></script>
+    <script src="~/Scripts/views/Validaciones.js"></script>
+
 }
+<!--End JavaScript-->

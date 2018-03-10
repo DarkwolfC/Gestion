@@ -213,7 +213,6 @@
                                 <a class="btn btn-danger button-back" id="btnatras3" onclick="Back3();">Anterior</a>
                             </fieldset>
                             <!-- FINALIZA PASO 3-->
-
                             <!-- INICIA PASO 4 -->
                             <fieldset title="" class="stepy-step" id="default-step-3">
                                 <legend class="stepy-legend"></legend>
@@ -238,35 +237,35 @@
                                         <tbody>
 
                                             @*@foreach (var item in Model.competencias)
-                    {
-                        <tr>
-                            <td>
-                                <div class="form-group row">
-                                    <div class="col-lg-10">
+                                                {
+                                                    <tr>
+                                                        <td>
+                                                            <div class="form-group row">
+                                                                <div class="col-lg-10">
 
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
 
-                                <div class="form-group row">
+                                                            <div class="form-group row">
 
-                                    <div class="radios col-lg-10">
-                                        <label class="label_radio" for="radio-01">
-                                            Esencial
-                                            <input class=" form-control" name="competencias.esencial" id="Esencial" value="@item.escencial" type="radio" />
-                                        </label>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="pull-right hidden-phone">
-                                    <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                    <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.Id)" type="button"><i class="fa fa-trash-o "></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                    }*@
+                                                                <div class="radios col-lg-10">
+                                                                    <label class="label_radio" for="radio-01">
+                                                                        Esencial
+                                                                        <input class=" form-control" name="competencias.esencial" id="Esencial" value="@item.escencial" type="radio" />
+                                                                    </label>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                        <td>
+                                                            <div class="pull-right hidden-phone">
+                                                                <button onclick="location.href='@Url.Action("Edit", "FuncionPuestoTrabajo",  new { id=item.Id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                                                <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.Id)" type="button"><i class="fa fa-trash-o "></i></button>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                }*@
 
 
                                         </tbody>
@@ -274,7 +273,7 @@
                                 </div>
                                 <!--fin tabla-->
 
-                                <div id="loading4"></div>                                
+                                <div id="loading4"></div>
                                 <a class="btn btn-danger button-back" id="btnatras4" onclick="Back4();">Anterior</a>
 
                             </fieldset>
@@ -356,7 +355,7 @@
                                 <select class="form-control" name="cmbcategoria" id="cmbcategoria">
                                     <option value="0">Seleccione una categoría</option>
                                     @foreach (var categoria in Model.cmbCategoria)
-                                    {                                        
+                                    {
                                         <option value="@categoria.id">@categoria.categoria1</option>
                                     }
                                 </select>
@@ -410,6 +409,7 @@
 
 
     <script src="~/Scripts/views/GestionPuestoTrabajo.js"></script>
+   
 
 
 }

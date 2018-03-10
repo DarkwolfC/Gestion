@@ -16,9 +16,9 @@ namespace UnicaesGestion.Controllers
         private GestionEntities db = new GestionEntities();
 
         // GET: Roles
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
         {
-            return View(await db.Roles.ToListAsync());
+            return View(db.Roles.ToList());
         }
 
         // GET: Roles/Details/5
@@ -46,14 +46,14 @@ namespace UnicaesGestion.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<ActionResult> Create([Bind(Include = "Id,Role1")] Role role)
         {
             if (ModelState.IsValid)
             {
                 db.Roles.Add(role);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(role);
@@ -85,7 +85,7 @@ namespace UnicaesGestion.Controllers
             {
                 db.Entry(role).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(role);
         }
@@ -113,7 +113,7 @@ namespace UnicaesGestion.Controllers
             Role role = await db.Roles.FindAsync(id);
             db.Roles.Remove(role);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

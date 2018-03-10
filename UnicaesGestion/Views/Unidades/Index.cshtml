@@ -25,44 +25,22 @@
                     <div class="task-content">
 
                         <div class="panel-body">
-                            <form class="form-horizontal" role="form">
-                                <div class="form-group">
-                                    @*<label class="col-sm-3 control-label col-lg-3">Buscar</label>*@
-                                    <button type="button" class="btn btn-success col-sm-3 col-lg-2"><i class="fa fa-eye"> Mostrar Todo</i></button>
-                                    <div class="col-lg-9">
-                                        <div class="input-group m-bot15">
-                                            <span class="input-group-btn">
-                                                <button type="button" class="btn btn-white"><i class="fa fa-search"></i></button>
-                                            </span>
-                                            <input type="text" id="myInput" onkeyup="buscar()" class="form-control">
-                                        </div>
-
+                            <div id="FlatTree4" class="tree tree-solid-line">
+                                <div class="tree-folder" style="display:none;">
+                                    <div class="tree-folder-header">
+                                        <i class="fa fa-folder"></i>
+                                        <div class="tree-folder-name "></div>
                                     </div>
+                                    <div class="tree-folder-content"></div>
+                                    <div class="tree-loader" style="display:none"></div>
                                 </div>
-                            </form>
+                                <div class="tree-item" style="display:none;">
+                                    <i class="tree-dot"></i>
+                                    <div class="tree-item-name"></div>
+                                </div>
+                            </div>
                         </div>
 
-                        <ul id="myUL" class="task-list">
-                            @foreach (var item in Model)
-                            {
-                                <li>
-
-                                    <div class="task-title">
-                                        <span class="task-title-sp"><a>@Html.DisplayFor(modelItem => item.nombre)</a></span>
-
-                                        <div class="pull-right hidden-phone">
-                                            <button onclick="location.href='@Url.Action("Details", "Unidades", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-eye"></i> </button>
-                                            <button onclick="location.href='@Url.Action("Edit", "Unidades", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                            <button onclick="location.href='@Url.Action("Delete", "Unidades", new { id=item.id})'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
-
-                                            @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
-                                        </div>
-                                    </div>
-                                </li>
-
-                            }
-                        </ul>
-                       
                     </div>
 
                 </div>

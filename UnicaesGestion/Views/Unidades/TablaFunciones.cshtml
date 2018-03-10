@@ -1,0 +1,39 @@
+﻿@model IEnumerable<UnicaesGestion.FuncionUnidad>
+
+@{
+    Layout = null;
+}
+<style>
+    .oculta {
+        display: none;
+    }
+</style>
+
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-advance table-hover">
+        <thead>
+            <tr>
+                <th class="oculta"><span>Id</span></th>
+                <th><span>Descripción</span></th>
+            </tr>
+        </thead>
+        <tbody id="tbody">
+
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td class="oculta">
+                        @Html.DisplayFor(modelItem => item.id)
+                    </td>
+                    <td id="funcion_@item.id">
+                        @Html.DisplayFor(modelItem => item.descripcion)
+                    </td>
+                </tr>
+            }
+
+
+        </tbody>
+    </table>
+</div>

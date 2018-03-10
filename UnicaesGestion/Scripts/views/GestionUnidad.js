@@ -54,7 +54,7 @@ function ProcesarPaso1() {
                 required: "Debe indicar el objetivo de la unidad"
             },
             cmbunidad: {
-                min: "Debe seleccionar la una unidad"
+                min: "Debe seleccionar la unidad de la que depende"
             }           
         },
         submitHandler: function (form) {
@@ -132,6 +132,7 @@ function obteniendoFunciones() {
         data: { id: id },
         success: function (response) {
             $("#funciones_unidad").html(response);
+            toastr.success('Unidad insertada correctamente'); //toast
         },
         error: function (response) {
             showError($("#funciones_unidad"), "No se pudieron cargar las funciones de la unidad");
@@ -200,7 +201,7 @@ function ajaxGuardarFuncion() {
             if (response.result === "success") {
                 $("#loading2").html("");
                 obteniendoFunciones();
-
+                toastr.success('Función insertada correctamente'); //toast
             } else {
                 showError($("#loading2"), response.data);
             }
@@ -242,7 +243,8 @@ function confirmarEliminar() {
         data: { "id": idfuncion },
         success: function (response) {
             if (response.result === "success") {
-                obteniendoFunciones();
+                obteniendoFunciones();  
+                toastr.success('Función Eliminada correctamente'); //toast
                 $("loading2").html("");
             } else {
                 showError($("loading2"), response.data);
@@ -256,11 +258,16 @@ function confirmarEliminar() {
 }
 
 function Next2() {
-    $("#default-title-2").addClass("current-step");
-    $("#default-title-1").removeClass("current-step");
-    $('#wfrmpuesto').stepy("step", 2);
+   
 }
 
-//paso 3
+// validacion para Caracteres numericos  
+$("#nombre").keyup(function () {
+    var $th = $(this);
+    $th.val($th.val().replace(/[^a-zA-Z ]/g, function (str) {
+        toastr.info('Porfavor no utilice caracteres numericos');
+        return '';
+    }));
+})
 
-
+  

@@ -26,7 +26,7 @@
                             <form class="form-horizontal" role="form">
                                 <div class="form-group">
                                     @*<label class="col-sm-3 control-label col-lg-3">Buscar</label>*@
-                                    <button type="button" class="btn btn-success col-sm-3 col-lg-2"><i class="fa fa-eye"> Mostrar Todo</i></button>
+                                    @*<button type="button" class="btn btn-success col-sm-3 col-lg-2"><i class="fa fa-eye"> Mostrar Todo</i></button>*@
                                     <div class="col-lg-7  col-xs-8">
                                         <div class="input-group m-bot15">
                                             <span class="input-group-btn">
@@ -50,10 +50,9 @@
                                         <span class="task-title-sp"><a>@Html.DisplayFor(modelItem => item.nombre)</a></span>
 
                                         <div class="pull-right hidden-phone">
-                                            <button type="submit" value="Delete" onclick="location.href='@Url.Action("Edit", "Procedimientoes", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                            <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "Procedimientoes", new { id=item.id })'" class="btn btn-primary btn-xs"><i class="fa fa-trash-o"></i></button>
-                                            @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
-                                            @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                            <button type="submit" value="Delete" onclick="location.href='@Url.Action("Details", "Procedimientoes", new { id=item.id })'" class="btn btn-default btn-xs"><i class=" fa fa-eye"></i> </button>
+                                            <button type="submit" value="Delete" onclick="location.href='@Url.Action("GestionProcedimiento", "Procedimientoes", new { id=item.id })'" class="btn btn-primary btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                            <button type="submit" value="Delete" onclick="location.href='@Url.Action("Delete", "Procedimientoes", new { id=item.id })'" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>                                           
                                         </div>
                                     </div>
                                 </li>
@@ -98,42 +97,3 @@
 
 
 
-@*<h2>Index</h2>
-
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.nombre)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.objetivoInicial)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.objetvioFinal)
-            </th>
-            <th></th>
-        </tr>
-
-    @foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.objetivoInicial)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.objetvioFinal)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-                @Html.ActionLink("Details", "Details", new { id=item.id }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.id })
-            </td>
-        </tr>
-    }
-
-    </table>*@

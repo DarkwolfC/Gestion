@@ -1059,6 +1059,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\views\Validaciones.js" />
     <Content Include="Scripts\views\GestionProcedimiento.js" />
     <Content Include="Scripts\views\GestionPuestoTrabajo.js" />
     <Content Include="Scripts\views\GestionUnidad.js" />
@@ -1221,6 +1222,8 @@
     <Content Include="Views\Procedimientoes\GestionProcedimiento.cshtml" />
     <Content Include="Views\Procedimientoes\PasosProcedimiento.cshtml" />
     <Content Include="Views\Personals\GestionUsuario.cshtml" />
+    <Content Include="Views\Procedimientoes\TablaPasos.cshtml" />
+    <Content Include="Views\Unidades\TablaFunciones.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

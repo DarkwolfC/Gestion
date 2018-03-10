@@ -8,7 +8,7 @@
 
 
 
-
+<link href="~/Content/assets/toastr-master/toastr.css" rel="stylesheet" />
 <link href="~/Content/css/tasks.css" rel="stylesheet">
 
 <!--main content start-->
@@ -37,7 +37,7 @@
                                             <span class="input-group-btn">
                                                 <button class="btn btn-white"><i class="fa  fa-file-o"></i></button>
                                             </span>
-                                            @Html.EditorFor(model => model.tipoPaso1, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.EditorFor(model => model.tipoPaso1, new { htmlAttributes = new { @class = "form-control", onkeyup = "validarANSI()", id="ANSI" } })
                                         </div>
 
                                     </div>
@@ -61,7 +61,8 @@
 
 <!--Start JavaScript-->
 @section JavaScript {
-
+<script src="~/Scripts/views/Validaciones.js"></script>
+<script src="~/Content/assets/toastr-master/toastr.js"></script>
 }
 <!--End JavaScript-->
 

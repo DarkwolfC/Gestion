@@ -2,6 +2,14 @@
 
 $(document).ready(init);
 
+$("#titulo").keyup(function () {
+    var $th = $(this);
+    $th.val($th.val().replace(/[^a-zA-Z ]/g, function (str) {
+        toastr.info('Porfavor no utilice caracteres numericos');
+        return '';
+    }));
+})
+
 function init() {  
     $("#date").datepicker();
     init_stepy();

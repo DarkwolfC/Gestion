@@ -305,5 +305,14 @@ namespace UnicaesGestion.Controllers
         }
 
 
+        public ActionResult TablaFunciones(int? id)
+        {
+            List<FuncionUnidad> funciones = new List<FuncionUnidad>();
+            if (id != null)
+                funciones = db.FuncionUnidads.Where(r => r.idUnidad == id).ToList();
+            return View(funciones);
+        }
+
+
     }
 }

@@ -16,6 +16,7 @@
     <link href="/Content/css/bootstrap.min.css" rel="stylesheet">
     <link href="/Content/css/bootstrap-reset.css" rel="stylesheet">
     <link href="/Content/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/assets/fuelux/css/tree-style.css" rel="stylesheet" />
     <!--right slidebar-->
     <link href="/Content/css/slidebars.css" rel="stylesheet">
     <!-- Custom styles for this template -->
@@ -345,7 +346,8 @@
                                 <li><a href="/Categorias/Create">Categoria</a></li>
                                 <li><a href="/CatalogoCompetencias/Create">Catalogo de competencias</a></li>                               
                                 <li><a href="/TipoPasoes/Create">Simbolo ANSI</a></li>
-                                <li><a href="/TipoPuesto/Create">Tipo de Puesto</a></li>                                
+                                <li><a href="/TipoPuesto/Create">Tipo de Puesto</a></li>   
+                                <li><a href="/Roles/Create">Rol</a></li>
                             </ul>
                         </li>
                     @*<li class="sub-menu">
@@ -454,146 +456,36 @@
         <!--main content end-->
         <!-- Right Slidebar start -->
         <div class="sb-slidebar sb-right sb-style-overlay">
-            <h5 class="side-title">Online Customers</h5>
-            <ul class="quick-chat-list">
-                <li class="online">
-                    <div class="media">
-                        <a href="#" class="pull-left media-thumb">
-                            <img alt="" src="/Content/img/chat-avatar2.jpg" class="media-object">
-                        </a>
-                        <div class="media-body">
-                            <strong>John Doe</strong>
-                            <small>Dream Land, AU</small>
-                        </div>
-                    </div><!-- media -->
-                </li>
-                <li class="online">
-                    <div class="media">
-                        <a href="#" class="pull-left media-thumb">
-                            <img alt="" src="/Content/img/chat-avatar.jpg" class="media-object">
-                        </a>
-                        <div class="media-body">
-                            <div class="media-status">
-                                <span class=" badge bg-important">3</span>
+            <h5 class="side-title">Vista Previa</h5>
+            <!--Mi Tree-->
+            <div class="col-md-12">
+                <div class="panel">
+                    <div class="panel-heading">
+                        Unidades
+                        <span class="tools pull-right">
+                            <a href="javascript:;" class="fa fa-chevron-down"></a>
+                            <a href="javascript:;" class="fa fa-times"></a>
+                        </span>
+                    </div>
+                    <div class="panel-body">
+                        <div id="FlatTree4" class="tree tree-solid-line">
+                            <div class="tree-folder" style="display:none;">
+                                <div class="tree-folder-header">
+                                    <i class="fa fa-folder"></i>
+                                    <div class="tree-folder-name"></div>
+                                </div>
+                                <div class="tree-folder-content"></div>
+                                <div class="tree-loader" style="display:none"></div>
                             </div>
-                            <strong>Jonathan Smith</strong>
-                            <small>United States</small>
-                        </div>
-                    </div><!-- media -->
-                </li>
-
-                <li class="online">
-                    <div class="media">
-                        <a href="#" class="pull-left media-thumb">
-                            <img alt="" src="/Content/img/pro-ac-1.png" class="media-object">
-                        </a>
-                        <div class="media-body">
-                            <div class="media-status">
-                                <span class=" badge bg-success">5</span>
-                            </div>
-                            <strong>Jane Doe</strong>
-                            <small>ABC, USA</small>
-                        </div>
-                    </div><!-- media -->
-                </li>
-                <li class="online">
-                    <div class="media">
-                        <a href="#" class="pull-left media-thumb">
-                            <img alt="" src="/Content/img/avatar1.jpg" class="media-object">
-                        </a>
-                        <div class="media-body">
-                            <strong>Anjelina Joli</strong>
-                            <small>Fockland, UK</small>
-                        </div>
-                    </div><!-- media -->
-                </li>
-                <li class="online">
-                    <div class="media">
-                        <a href="#" class="pull-left media-thumb">
-                            <img alt="" src="/Content/img/mail-avatar.jpg" class="media-object">
-                        </a>
-                        <div class="media-body">
-                            <div class="media-status">
-                                <span class=" badge bg-warning">7</span>
-                            </div>
-                            <strong>Mr Tasi</strong>
-                            <small>Dream Land, USA</small>
-                        </div>
-                    </div><!-- media -->
-                </li>
-            </ul>
-            <h5 class="side-title"> pending Task</h5>
-            <ul class="p-task tasks-bar">
-                <li>
-                    <a href="#">
-                        <div class="task-info">
-                            <div class="desc">Dashboard v1.3</div>
-                            <div class="percent">40%</div>
-                        </div>
-                        <div class="progress progress-striped">
-                            <div style="width: 40%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success">
-                                <span class="sr-only">40% Complete (success)</span>
+                            <div class="tree-item" style="display:none;">
+                                <i class="tree-dot"></i>
+                                <div class="tree-item-name"></div>
                             </div>
                         </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="task-info">
-                            <div class="desc">Database Update</div>
-                            <div class="percent">60%</div>
-                        </div>
-                        <div class="progress progress-striped">
-                            <div style="width: 60%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="60" role="progressbar" class="progress-bar progress-bar-warning">
-                                <span class="sr-only">60% Complete (warning)</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="task-info">
-                            <div class="desc">Iphone Development</div>
-                            <div class="percent">87%</div>
-                        </div>
-                        <div class="progress progress-striped">
-                            <div style="width: 87%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="20" role="progressbar" class="progress-bar progress-bar-info">
-                                <span class="sr-only">87% Complete</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="task-info">
-                            <div class="desc">Mobile App</div>
-                            <div class="percent">33%</div>
-                        </div>
-                        <div class="progress progress-striped">
-                            <div style="width: 33%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="80" role="progressbar" class="progress-bar progress-bar-danger">
-                                <span class="sr-only">33% Complete (danger)</span>
-                            </div>
-                        </div>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <div class="task-info">
-                            <div class="desc">Dashboard v1.3</div>
-                            <div class="percent">45%</div>
-                        </div>
-                        <div class="progress progress-striped active">
-                            <div style="width: 45%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="45" role="progressbar" class="progress-bar">
-                                <span class="sr-only">45% Complete</span>
-                            </div>
-                        </div>
-
-                    </a>
-                </li>
-                <li class="external">
-                    <a href="#">See All Tasks</a>
-                </li>
-            </ul>
+                    </div>
+                </div>
+            </div>
+            <!--end -->
         </div>
         <!-- Right Slidebar end -->
         <!--footer start-->
@@ -617,7 +509,9 @@
     <script src="~/Content/js/slidebars.min.js"></script>
     <script src="~/Content/js/jquery.nicescroll.js" type="text/javascript"></script>
     <script src="~/Content/js/respond.min.js"></script>
+    <script src="~/Content/assets/fuelux/js/tree.min.js"></script>   
     <script src="~/Content/js/common-scripts.js"></script>
+    <script src="~/Content/js/tree.js"></script>
     <script src="~/Content/js/jquery-ui-1.9.2.custom.min.js"></script>
     <script src="~/Content/js/jquery-migrate-1.2.1.min.js"></script>
 
@@ -651,6 +545,13 @@
 
     <script type="text/javascript" src="~/Content/assets/data-tables/jquery.dataTables.js"></script>
     <script type="text/javascript" src="~/Content/assets/data-tables/DT_bootstrap.js"></script>
+
+    <!--mi js-->
+    <script>
+        jQuery(document).ready(function () {
+            TreeView.init();
+        });
+    </script>
 
     <!-- END JAVASCRIPTS -->
 

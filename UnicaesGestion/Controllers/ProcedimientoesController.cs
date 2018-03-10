@@ -256,7 +256,7 @@ namespace UnicaesGestion.Controllers
 
         }
 
-        public ActionResult EditarPaso(int idpaso , int numero, string descripcion, string predecesores, int tipoPaso, int puestoTrabajo)
+        public ActionResult EditarPaso(int idpaso , int numero, string descripcion, string predecesores, string idTipoPaso, string idPuestoTrabajo)
         {
 
             Paso p = db.Pasoes.FirstOrDefault(r => r.id == idpaso);
@@ -267,8 +267,8 @@ namespace UnicaesGestion.Controllers
                     p.numero= numero;
                     p.descripcion = descripcion;
                     p.predecesores = predecesores;
-                    p.idTipoPaso = tipoPaso;
-                    p.idPuestoTrabajo = puestoTrabajo;
+                    p.idTipoPaso =int.Parse(idTipoPaso);
+                    p.idPuestoTrabajo =int.Parse(idPuestoTrabajo);
                     db.SaveChanges();
                     return Json(
                         new { result = "success", data = "Paso agregado satisfactoriamente. " },
@@ -310,6 +310,14 @@ namespace UnicaesGestion.Controllers
                 return Json(new { result = "fail", data = "Error eliminando paso. " + ex.Message }, JsonRequestBehavior.AllowGet);
             }
 
+        }
+
+        public ActionResult TablaPasos( int? id)
+        {
+            List<Paso> pasos = new List<Paso>();
+            if (id != null)
+                pasos = db.Pasoes.Where(r => r.idProcedimiento == id).ToList();
+            return View(pasos);
         }
     }
 }

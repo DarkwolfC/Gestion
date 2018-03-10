@@ -2,6 +2,14 @@
 
 $(document).ready(init);
 
+$("#nombre").keyup(function () {
+    var $th = $(this);
+    $th.val($th.val().replace(/[^a-zA-Z ]/g, function (str) {
+        toastr.info('Porfavor no utilice caracteres numericos');
+        return '';
+    }));
+})
+
 function init() {
     $("#date").datepicker();
     init_stepy();
@@ -249,14 +257,18 @@ function ajaxGuardarFuncion() {
 function EditarFuncion(id) {
     $("#idpaso").val(id);
     var paso = $("#paso_" + id).html();
+    $("#numero").val();
     $("#txtpaso").val(paso.trim());
+    $("#predecesores").val();
+    $("#cmbtipoPasos").val();
+    $("#cmbPuestos").val();
     $("#mdaddfuncion").modal();
 }
 
 function Back2() {
     $("#default-title-0").addClass("current-step");
     $("#default-title-1").removeClass("current-step");
-    $('#wfrmpasos').stepy("step", 0);
+    $('#wfrmpuesto').stepy("step", 0);
 }
 
 function dlgeliminar(id) {

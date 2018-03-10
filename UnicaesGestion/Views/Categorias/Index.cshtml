@@ -6,33 +6,7 @@
     //"~/Views/Shared/_Layout.cshtml"
 }
 
-@*<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.categoria1)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.categoria1)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
-</table>*@
 
 
 <ul id="myUL" class="task-list">
@@ -44,11 +18,10 @@
                 <span class="task-title-sp"><a>@Html.DisplayFor(modelItem => item.categoria1)</a></span>
 
                 <div class="pull-right hidden-phone">
-                    <button onclick="location.href='@Url.Action("Edit", "Categorias", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-eye"></i> </button>
-                    <button onclick="location.href='@Url.Action("Delete", "Categorias", new { id=item.id})'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
-                    @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@
-                    <button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>
-                </div>
+                    @*<button onclick="location.href='@Url.Action("Edit", "Categorias", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-eye"></i> </button>*@
+                    <button onclick="location.href='@Url.Action("Edit", "Categorias", new { id=item.id})'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                    <button onclick="location.href='@Url.Action("Delete", "Categorias", new { id=item.id})'" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>           
+               </div>
             </div>
         </li>
 

@@ -46,9 +46,9 @@
                                 <li id="default-title-1">
                                     <div>Paso 2</div>
                                 </li>
-                                <li id="default-title-2" class="">
+                                @*<li id="default-title-2" class="">
                                     <div>Paso 3</div>
-                                </li>
+                                </li>*@
                                 @*<li id="default-title-3" class="">
                                     <div>Paso 4</div>
                                 </li>*@
@@ -72,7 +72,7 @@
                                 <div class="form-group ">
                                     <label class="control-label col-lg-2">Apellidos</label>
                                     <div class="col-md-8">
-                                        <textarea class="form-control" id="apellido" name="apellido" rows="3">@Model.personal.apellido</textarea>
+                                        <input class=" form-control" id="apellido" name="apellido" type="text" value="@Model.personal.apellido" />                                       
                                     </div>
                                 </div>                              
                                 <div class="form-group row">
@@ -102,17 +102,57 @@
                             <!--INICIA PASO 2-->
                             <fieldset title="" class="stepy-step" id="default-step-1">
                                 <legend class="stepy-legend"></legend>
-                                <h5>Funciones del Puesto de Trabajo</h5>
-                                <a class="btn btn-success" data-toggle="modal" style="float: right;" onclick="dlgaddfuncion()">Agregar función</a>
+                                <h5> </h5>
+
+                                <div class="form-group row">
+                                    <label for="password" class="control-label col-lg-2">Rol de Usuario</label>
+                                    <div class="col-md-6">
+                                        <select class="form-control" name="cmbunidad" id="cmbunidad">
+                                            <option value="0">Seleccione el rol del usuario</option>
+                                            @foreach (var rol in Model.cmbRol)
+                                            {
+                                                string selected = "";
+                                                if (Model.credencial.idRol != 0)
+                                                {
+                                                    selected = (Model.credencial.idRol == rol.Id) ? "selected" : "";
+                                                }
+                                                <option @selected value="@rol.Id">@rol.Role1</option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">Usuario</label>
+                                    <div class="col-md-8">
+                                        <input class=" form-control" id="user" name="user" type="text" value="@Model.credencial.user" />
+                                    </div>
+                                </div>
+                                <div class="form-group ">
+                                    <label class="control-label col-lg-2">Contraseña</label>
+                                    <div class="col-md-8">
+                                        <input class=" form-control" id="password" name="password" type="text" value="@Model.credencial.password" />
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label class="col-md-2 control-label">Estado</label>
+
+                                    <div class="col-md-6 btn-group" data-toggle="buttons">
+                                        <label class="btn btn-primary active">
+                                            <input name="enable" value="1" type="radio" checked="checked"> Activo
+                                        </label>
+                                        <label class="btn btn-primary">
+                                            <input name="enable" value="0" type="radio"> Inactivo
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                             
                                 <div style="clear: both;"></div>
                                 <br />
-                                <!--Tabla de Funciones-->
-                                <div id="funciones_puesto">
-
-                                </div>
-                                <!--fin tabla-->
+                               
                                 <div id="loading2"></div>
-                                <a class="btn btn-danger button-next" id="btnsiguiente2" onclick="Next2();">Siguiente</a>
+                                <a class="btn btn-danger button-next" id="btnsiguiente2" onclick="Next2();">Finalizar</a>
                                 <a class="btn btn-danger button-back" id="btnatras2" onclick="Back2();">Anterior</a>
 
 

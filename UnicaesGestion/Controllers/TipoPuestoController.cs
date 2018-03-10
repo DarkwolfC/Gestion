@@ -52,7 +52,7 @@ namespace UnicaesGestion.Controllers
             {
                 db.TipoPuestoes.Add(tipoPuesto);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
 
             return View(tipoPuesto);
@@ -84,7 +84,7 @@ namespace UnicaesGestion.Controllers
             {
                 db.Entry(tipoPuesto).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Create");
             }
             return View(tipoPuesto);
         }
@@ -112,7 +112,7 @@ namespace UnicaesGestion.Controllers
             TipoPuesto tipoPuesto = db.TipoPuestoes.Find(id);
             db.TipoPuestoes.Remove(tipoPuesto);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Create");
         }
 
         protected override void Dispose(bool disposing)

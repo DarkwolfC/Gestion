@@ -5,50 +5,64 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<style>
-    .contenido_mantenimientos {      
-        width: 50%;
-        margin-left: auto;
-        margin-right: auto;
-        padding-top: 80px;
-    }
 
-        .contenido_mantenimientos h3 {
-            color: #0094ff;
-        }
+<link href="~/Content/assets/toastr-master/toastr.css" rel="stylesheet" />
+<link href="~/Content/css/tasks.css" rel="stylesheet">
 
-</style>
-<div class="contenido_mantenimientos" >
-        <h3>Crear nuevo rol</h3> 
+<!--main content start-->
+<section id="main-content">
+    <section class="wrapper">
+        <!-- page start-->
 
-    @using (Html.BeginForm())
-    {
-        @Html.AntiForgeryToken()
+        <div class="row">
+            <section class="panel tasks-widget">
+                <header class="panel-heading">
+                    Rol
+                </header>
+                <div class="panel-body">
 
-        <div class="form-horizontal">         
-            <hr />
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
-             
-                <label  class="control-label col-md-2">Nombre del Rol:</label>
-                <div class="col-md-10">
-                    @Html.EditorFor(model => model.Role1, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Role1, "", new { @class = "text-danger" })
+                    <div class="task-content">
+
+                        <div class="panel-body">
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success col-sm-3 col-lg-2" id="agregarRol"><i class="fa fa-plus"> Agregar</i></button>
+                                    <div class="col-lg-9">
+                                        <div class="input-group m-bot15">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-white"><i class="fa  fa-file-o"></i></button>
+                                            </span>
+                                            @Html.EditorFor(model => model.Role1, new { htmlAttributes = new { @class = "form-control", id = "rol" } })
+                                        </div>
+
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        @{ Html.RenderAction("Index");}
+
+
+                    </div>
                 </div>
-            </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Guardar" class="btn btn-default" />
-                </div>
-            </div>
+            </section>
         </div>
-    }
-    <br/>
-    <div>
-        @Html.ActionLink("Regresar al listado de roles", "Index")
-    </div>
-</div>
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+
+
+
+
+    </section>
+    <!-- page end-->
+</section>
+
+<!--main content end-->
+<!--Start JavaScript-->
+@section JavaScript {
+
+    <script src="~/Scripts/views/Validaciones.js"></script>
+    <script src="~/Content/assets/toastr-master/toastr.js"></script>
+
 }
+<!--End JavaScript-->

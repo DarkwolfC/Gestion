@@ -2,33 +2,26 @@
 
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = null;
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Role1)
-        </th>
-        <th></th>
-    </tr>
+<ul id="myUL" class="task-list">
+    @foreach (var item in Model)
+    {
+        <li>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Role1)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            <div class="task-title">
+                <span class="task-title-sp"><a>@Html.DisplayFor(modelItem => item.Role1)</a></span>
 
-</table>
+                <div class="pull-right hidden-phone">
+                    @*<button onclick="location.href='@Url.Action("Edit", "Categorias", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-eye"></i> </button>*@
+                    <button onclick="location.href='@Url.Action("Edit", "Roles", new { id=item.Id})'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i></button>
+                    <button onclick="location.href='@Url.Action("Delete", "Roles", new { id=item.Id})'" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i></button>
+                    @*<button  onclick="location.href='#myModal'"   class="btn btn-danger btn-xs"><i class="fa fa-trash-o "></i></button>*@                   
+                </div>
+            </div>
+        </li>
+
+    }
+</ul>

@@ -54,13 +54,10 @@
 
                                     <div class="task-title">
                                         <span class="task-title-sp"><a>@Html.DisplayFor(modelItem => item.titulo)</a></span>
-
-                                        <div class="pull-right hidden-phone">
-                                           
-                                            <button onclick="location.href='@Url.Action("Edit", "PerfilTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
-                                            <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)" type="button"><i class="fa fa-trash-o "></i></button>
-
-                                            @*<button class="btn btn-danger btn-xs" data-toggle="modal" href="#myModal" type="button"><i class="fa fa-trash-o "></i></button>*@
+                                        <div class="pull-right hidden-phone">    
+                                            <button onclick="location.href='@Url.Action("Details", "Unidades", new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-eye"></i> </button>
+                                            <button onclick="location.href='@Url.Action("GestionPuestoTrabajo", "PerfilTrabajo",  new { id=item.id })'" class="btn btn-success btn-xs"><i class=" fa fa-pencil"></i> </button>
+                                            <button class="btn btn-danger btn-xs eliminar" data-funcion-id="@Html.DisplayFor(modelItem=> item.id)" type="button"><i class="fa fa-trash-o "></i></button>                                           
                                         </div>
                                     </div>
                                 </li>

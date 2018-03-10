@@ -56,11 +56,11 @@ var TreeView = function () {
 
             var treeDataSource4 = new DataSourceTree({
                 data: [
-                    { name: 'Theme<div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-refresh"></i></div>', type: 'folder', additionalParameters: { id: 'F11' } },
-                    { name: 'Development<div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-refresh"></i></div>', type: 'folder', additionalParameters: { id: 'F12' } },
-                    { name: '<i class="fa fa-user"></i> User <div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-refresh"></i></div><div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-refresh"></i></div>', type: 'item', additionalParameters: { id: 'I11' } },
-                    { name: '<i class="fa fa-calendar"></i> Events <div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-refresh"></i></div>', type: 'item', additionalParameters: { id: 'I12' } },
-                    { name: '<i class="fa  fa-gear "></i> Works <div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-refresh"></i></div>', type: 'item', additionalParameters: { id: 'I12' } }
+                    { name: 'Theme<div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-pencil"></i></div>', type: 'folder', additionalParameters: { id: 'F11' } },
+                    { name: 'Development<div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-pencil"></i></div>', type: 'folder', additionalParameters: { id: 'F12' } },
+                    { name: '<i class="fa fa-user"></i> User <div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-fa-pencil"></i></div><div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-refresh"></i></div>', type: 'item', additionalParameters: { id: 'I11' } },
+                    { name: '<i class="fa fa-calendar"></i> Events <div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-fa-pencil"></i></div>', type: 'item', additionalParameters: { id: 'I12' } },
+                    { name: '<i class="fa  fa-gear "></i> Works <div class="tree-actions"><i class="fa fa-plus"></i><i class="fa fa-trash-o"></i><i class="fa fa-pencil"></i></div>', type: 'item', additionalParameters: { id: 'I12' } }
                 ],
                 delay: 400
             });
@@ -87,26 +87,26 @@ var TreeView = function () {
                 delay: 400
             });
 
-            $('#FlatTree').tree({
-                dataSource: treeDataSource,
-                loadingHTML: '<img src="img/input-spinner.gif"/>',
-            });
+            //$('#FlatTree').tree({
+            //    dataSource: treeDataSource,
+            //    loadingHTML: '<img src="img/input-spinner.gif"/>',
+            //});
 
 
-            $('#FlatTree2').tree({
-                dataSource: treeDataSource2,
-                loadingHTML: '<img src="img/input-spinner.gif"/>',
-            });
+            //$('#FlatTree2').tree({
+            //    dataSource: treeDataSource2,
+            //    loadingHTML: '<img src="img/input-spinner.gif"/>',
+            //});
 
-            $('#FlatTree3').tree({
-                dataSource: treeDataSource3,
-                loadingHTML: '<img src="img/input-spinner.gif"/>',
-            });
+            //$('#FlatTree3').tree({
+            //    dataSource: treeDataSource3,
+            //    loadingHTML: '<img src="img/input-spinner.gif"/>',
+            //});
 
             $('#FlatTree4').tree({
                 selectable: false,
                 dataSource: treeDataSource4,
-                loadingHTML: '<img src="img/input-spinner.gif"/>',
+                loadingHTML: '<img src="/Content/img/input-spinner.gif" />',
             });
 
 

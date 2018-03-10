@@ -5,38 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<h2>Edit</h2>
-
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>TipoPaso</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.tipoPaso1, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.tipoPaso1, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.tipoPaso1, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
-        </div>
-    </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>*@
-
+<link href="~/Content/assets/toastr-master/toastr.css" rel="stylesheet" />
 
 <!--main content start-->
 
@@ -65,7 +34,7 @@
                                             <span class="input-group-btn">
                                                 <button class="btn btn-white"><i class="fa  fa-file-o"></i></button>
                                             </span>
-                                            @Html.EditorFor(model => model.tipoPaso1, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.EditorFor(model => model.tipoPaso1, new { htmlAttributes = new { @class = "form-control", id = "ANSI" } })
                                         </div>
 
                                     </div>
@@ -91,7 +60,8 @@
 
 <!--Start JavaScript-->
 @section JavaScript {
-
+<script src="~/Scripts/views/Validaciones.js"></script>
+<script src="~/Content/assets/toastr-master/toastr.js"></script>
 }
 <!--End JavaScript-->
 <!--end new code-->
