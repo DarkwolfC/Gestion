@@ -210,6 +210,7 @@
     <Compile Include="Models\PuestoTrabajoViewModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\RequisitosPuestoViewModel.cs" />
+    <Compile Include="Models\UnidadTreeNode.cs" />
     <Compile Include="Models\UnidadViewModel.cs" />
     <Compile Include="Models\UsuarioViewModel.cs" />
     <Compile Include="Paso.cs">
@@ -403,6 +404,7 @@
     <Content Include="Content\assets\fuelux\css\tree-style.css" />
     <Content Include="Content\assets\fuelux\css\tree.css" />
     <Content Include="Content\assets\fuelux\img\tree-icons.png" />
+    <Content Include="Content\assets\fuelux\js\fuelux.js" />
     <Content Include="Content\assets\fuelux\js\spinner.js" />
     <Content Include="Content\assets\fuelux\js\spinner.min.js" />
     <Content Include="Content\assets\fuelux\js\tree.js" />
@@ -1059,6 +1061,7 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\views\TreeUnidades.js" />
     <Content Include="Scripts\views\Validaciones.js" />
     <Content Include="Scripts\views\GestionProcedimiento.js" />
     <Content Include="Scripts\views\GestionPuestoTrabajo.js" />

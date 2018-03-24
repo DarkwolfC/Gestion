@@ -303,8 +303,7 @@ namespace UnicaesGestion.Controllers
             }
 
         }
-
-
+        
         public ActionResult TablaFunciones(int? id)
         {
             List<FuncionUnidad> funciones = new List<FuncionUnidad>();
@@ -312,6 +311,29 @@ namespace UnicaesGestion.Controllers
                 funciones = db.FuncionUnidads.Where(r => r.idUnidad == id).ToList();
             return View(funciones);
         }
+
+        public ActionResult GetUnidades (int? parentid)
+        {
+            List<Unidad> lst = new List<Unidad>();
+            List<UnidadTreeNode> jsondata = new List<UnidadTreeNode>();
+
+            if (parentid== null || parentid == 0)
+            {
+               lst= db.Unidads.Where(r => r.depende == null).ToList();
+            }
+            else
+            {
+                lst = db.Unidads.Where(r => r.depende == parentid).ToList();
+            }
+
+            foreach (Unidad u in lst){
+                jsondata.Add(new UnidadTreeNode { id = u.id, nombre = u.nombre });
+            }
+
+            return Json(jsondata,  JsonRequestBehavior.AllowGet);
+
+        }
+
 
 
     }

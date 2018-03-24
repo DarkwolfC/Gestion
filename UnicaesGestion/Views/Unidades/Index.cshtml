@@ -6,8 +6,6 @@
 }
 
 
-
-
 <link href="~/Content/css/tasks.css" rel="stylesheet">
 
 <!--main content start-->
@@ -25,7 +23,7 @@
                     <div class="task-content">
 
                         <div class="panel-body">
-                            <div id="FlatTree4" class="tree tree-solid-line">
+                            <div id="treeUnidades" class="tree tree-solid-line">
                                 <div class="tree-folder" style="display:none;">
                                     <div class="tree-folder-header">
                                         <i class="fa fa-folder"></i>
@@ -39,6 +37,9 @@
                                     <div class="tree-item-name"></div>
                                 </div>
                             </div>
+                            <br/><br/>
+                            <div id="loadingTree"></div>
+
                         </div>
 
                     </div>
@@ -53,6 +54,7 @@
 <!--main content end-->
 <!--Start JavaScript-->
 @section JavaScript {
+<script src="~/Scripts/views/TreeUnidades.js"></script>
 
     <script>
         function buscar() {
