@@ -39,6 +39,7 @@
         <AssociationConnector Association="Model.puestoTrabajo_unidad" ManuallyRouted="false" />
         <AssociationConnector Association="Model.unidad_unidad" ManuallyRouted="false" />
         <AssociationConnector Association="Model.ProcedimientoUnidad" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.unidad_puestoTrabajo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

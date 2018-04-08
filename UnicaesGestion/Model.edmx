@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CatalogoCompetencias">
           <Key>
             <PropertyRef Name="Id" />
@@ -87,6 +87,8 @@
           <Property Name="nombre" Type="varchar(max)" Nullable="false" />
           <Property Name="objetivoInicial" Type="varchar(max)" Nullable="false" />
           <Property Name="objetvioFinal" Type="varchar(max)" Nullable="false" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="aprobado" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProcedimientoUnidad">
           <Key>
@@ -137,7 +139,7 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tipo" Type="varchar(max)" Nullable="false" />
         </EntityType>
         <EntityType Name="Unidad">
@@ -148,6 +150,9 @@
           <Property Name="nombre" Type="varchar(max)" Nullable="false" />
           <Property Name="objetivo" Type="varchar(max)" />
           <Property Name="depende" Type="int" />
+          <Property Name="idPuestoResponsableTrabajo" Type="int" />
+          <Property Name="activo" Type="bit" Nullable="false" />
+          <Property Name="aprobado" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_CatalogoCompetencias_ToCategoria">
           <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
@@ -377,6 +382,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="unidad_puestoTrabajo">
+          <End Role="PuestoTrabajo" Type="Self.PuestoTrabajo" Multiplicity="0..1" />
+          <End Role="Unidad" Type="Self.Unidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PuestoTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Unidad">
+              <PropertyRef Name="idPuestoResponsableTrabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="unidad_unidad">
           <End Role="Unidad" Type="Self.Unidad" Multiplicity="0..1" />
           <End Role="Unidad1" Type="Self.Unidad" Multiplicity="*" />
@@ -482,13 +499,16 @@
             <End Role="Unidad" EntitySet="Unidad" />
             <End Role="PuestoTrabajo" EntitySet="PuestoTrabajo" />
           </AssociationSet>
+          <AssociationSet Name="unidad_puestoTrabajo" Association="Self.unidad_puestoTrabajo">
+            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajo" />
+            <End Role="Unidad" EntitySet="Unidad" />
+          </AssociationSet>
           <AssociationSet Name="unidad_unidad" Association="Self.unidad_unidad">
             <End Role="Unidad" EntitySet="Unidad" />
             <End Role="Unidad1" EntitySet="Unidad" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -592,6 +612,8 @@
           <Property Name="objetvioFinal" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Pasoes" Relationship="Self.paso_procedimiento" FromRole="Procedimiento" ToRole="Paso" />
           <NavigationProperty Name="Unidads" Relationship="Self.ProcedimientoUnidad" FromRole="Procedimiento" ToRole="Unidad" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="aprobado" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="PuestoTrabajo">
           <Key>
@@ -615,6 +637,7 @@
           <NavigationProperty Name="PuestoTrabajo2" Relationship="Self.puestoTrabajo_puestoTrabajo" FromRole="PuestoTrabajo1" ToRole="PuestoTrabajo" />
           <NavigationProperty Name="TipoPuesto" Relationship="Self.puestoTrabajo_tipoPuesto" FromRole="PuestoTrabajo" ToRole="TipoPuesto" />
           <NavigationProperty Name="Unidad" Relationship="Self.puestoTrabajo_unidad" FromRole="PuestoTrabajo" ToRole="Unidad" />
+          <NavigationProperty Name="Unidads" Relationship="Model.unidad_puestoTrabajo" FromRole="PuestoTrabajo" ToRole="Unidad" />
         </EntityType>
         <EntityType Name="Requisito">
           <Key>
@@ -665,6 +688,10 @@
           <NavigationProperty Name="Unidad1" Relationship="Self.unidad_unidad" FromRole="Unidad" ToRole="Unidad1" />
           <NavigationProperty Name="Unidad2" Relationship="Self.unidad_unidad" FromRole="Unidad1" ToRole="Unidad" />
           <NavigationProperty Name="Procedimientoes" Relationship="Self.ProcedimientoUnidad" FromRole="Unidad" ToRole="Procedimiento" />
+          <Property Name="idPuestoResponsableTrabajo" Type="Int32" />
+          <Property Name="activo" Type="Boolean" Nullable="false" />
+          <Property Name="aprobado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PuestoTrabajo" Relationship="Model.unidad_puestoTrabajo" FromRole="Unidad" ToRole="PuestoTrabajo" />
         </EntityType>
         <Association Name="FK_CatalogoCompetencias_ToCategoria">
           <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
@@ -978,7 +1005,23 @@
             <End Role="Procedimiento" EntitySet="Procedimientoes" />
             <End Role="Unidad" EntitySet="Unidads" />
           </AssociationSet>
+          <AssociationSet Name="unidad_puestoTrabajo" Association="Model.unidad_puestoTrabajo">
+            <End Role="PuestoTrabajo" EntitySet="PuestoTrabajoes" />
+            <End Role="Unidad" EntitySet="Unidads" />
+          </AssociationSet>
         </EntityContainer>
+        <Association Name="unidad_puestoTrabajo">
+          <End Type="Model.PuestoTrabajo" Role="PuestoTrabajo" Multiplicity="0..1" />
+          <End Type="Model.Unidad" Role="Unidad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PuestoTrabajo">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Unidad">
+              <PropertyRef Name="idPuestoResponsableTrabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1070,6 +1113,8 @@
           <EntitySetMapping Name="Procedimientoes">
             <EntityTypeMapping TypeName="Model.Procedimiento">
               <MappingFragment StoreEntitySet="Procedimiento">
+                <ScalarProperty Name="aprobado" ColumnName="aprobado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="objetivoInicial" ColumnName="objetivoInicial" />
@@ -1129,6 +1174,9 @@
           <EntitySetMapping Name="Unidads">
             <EntityTypeMapping TypeName="Model.Unidad">
               <MappingFragment StoreEntitySet="Unidad">
+                <ScalarProperty Name="aprobado" ColumnName="aprobado" />
+                <ScalarProperty Name="activo" ColumnName="activo" />
+                <ScalarProperty Name="idPuestoResponsableTrabajo" ColumnName="idPuestoResponsableTrabajo" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
                 <ScalarProperty Name="objetivo" ColumnName="objetivo" />
