@@ -8,7 +8,7 @@ function init() {
 }
 
 function init_stepy() {
-    $('#wfrmpuesto').stepy({
+    $('#wfrmusuario').stepy({
         backLabel: 'Atras',
         block: true,
         nextLabel: 'Siguiente',
@@ -34,7 +34,7 @@ function showError(obj, msj) {
 
 //paso 1
 function ProcesarPaso1() {
-    $("#wfrmpuesto").validate({
+    $("#wfrmusuario").validate({
         rules: {
             nombre: {
                 required: true
@@ -59,9 +59,7 @@ function ProcesarPaso1() {
         },
         submitHandler: function (form) {
             //cuando el formulario es válido.
-            loading($("#loading1"));
-            $("#btnsiguiente1").hide();
-            GuardarPaso1();
+            Next1();          
 
         },
         invalidHandler: function (event, validator) {
@@ -76,7 +74,7 @@ function ProcesarPaso1() {
     });
 
 
-    var d = $("#wfrmpuesto").submit();
+    var d = $("#wfrmusuario").submit();
 
 }
 
@@ -88,12 +86,12 @@ function GuardarPaso1() {
     var action;
     var data;
 
-    if (typeof id == "undefined" || id === "0") {
+    if (typeof id === "undefined" || id === "0") {
         action = "/Personals/CrearUsuario/";
-        data = { "nombre": nombre, "apellido": apellido, "puesto": puesto }
+        data = { "nombre": nombre, "apellido": apellido, "puesto": puesto };
     } else {
         action = "/PerfilTrabajo/ModificarUsuario/";
-        data = { "id": id, "nombre": nombre, "apellido": apellido, "puesto": puesto }
+        data = { "id": id, "nombre": nombre, "apellido": apellido, "puesto": puesto };
     }
 
     $.ajax({
@@ -117,9 +115,8 @@ function GuardarPaso1() {
 function Next1() {
     $("#default-title-1").addClass("current-step");
     $("#default-title-0").removeClass("current-step");
-    $('#wfrmpuesto').stepy("step", 1);
-    obteniendoFunciones();
-}
+    $('#wfrmusuario').stepy("step", 1);
+    }
 
 //paso 2
 function obteniendoFunciones() {
@@ -224,7 +221,7 @@ function EditarFuncion(id) {
 function Back2() {
     $("#default-title-0").addClass("current-step");
     $("#default-title-1").removeClass("current-step");
-    $('#wfrmpuesto').stepy("step", 0);
+    $('#wfrmusuario').stepy("step", 0);
 }
 
 function dlgeliminar(id) {
@@ -258,7 +255,7 @@ function confirmarEliminar() {
 function Next2() {
     $("#default-title-2").addClass("current-step");
     $("#default-title-1").removeClass("current-step");
-    $('#wfrmpuesto').stepy("step", 2);
+    $('#wfrmusuario').stepy("step", 2);
 }
 
 //paso 3

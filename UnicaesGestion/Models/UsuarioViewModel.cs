@@ -7,14 +7,14 @@ namespace UnicaesGestion.Models
 {
     public class UsuarioViewModel
     {
-        public int Id { get; set; }
+        public int Id { get; set; }       
         public Personal personal { get; set; }
-        public Credential credencial { get; set; }
+        public User user { get; set; }
 
         public UsuarioViewModel()
         {
             personal = new Personal();
-            credencial = new Credential();
+            user = new User();
 
         }
 
